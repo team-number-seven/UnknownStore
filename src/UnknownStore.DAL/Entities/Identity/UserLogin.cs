@@ -1,0 +1,11 @@
+﻿using System;
+using Microsoft.AspNetCore.Identity;
+using UnknownStore.DAL.Interfaces;
+
+namespace UnknownStore.DAL.Entities.Identity
+{
+    public class UserLogin : IdentityUserLogin<Guid>, IBaseEntity
+    {
+        public Guid Id { get; set; }
+    }
+}
