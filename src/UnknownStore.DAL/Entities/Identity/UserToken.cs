@@ -4,8 +4,7 @@ using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.DAL.Entities.Identity
 {
-    public class UserToken : IdentityUserToken<Guid>, IBaseEntity
+    public class UserToken : IdentityUserToken<Guid>
     {
-        public Guid Id { get; set; }
     }
 }

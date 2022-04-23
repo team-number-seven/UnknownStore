@@ -1,0 +1,12 @@
+﻿dotnet ef migrations add InitialStore -c StoreDbContext -o Data/Migrations/Store --startup-project ../UnknownStore.WebAPI/UnknownStore.WebAPI.csproj
+dotnet ef database update -c StoreDbContext --startup-project ../UnknownStore.WebAPI/UnknownStore.WebAPI.csproj
+
+
+
+dotnet ef migrations add InitialIdentityServerPersistedGrantDbMigration -c PersistedGrantDbContext -o Data/Migrations/IdentityServer/PersistedGrantDb  --startup-project ../UnknownStore.IdentityServer/UnknownStore.IdentityServer.csproj
+dotnet ef database update -c PersistedGrantDbContext --startup-project ../UnknownStore.IdentityServer/UnknownStore.IdentityServer.csproj
+
+
+dotnet ef migrations add InitialIdentityServerConfigurationDbMigration -c ConfigurationDbContext -o Data/Migrations/IdentityServer/ConfigurationDb  --startup-project ../UnknownStore.IdentityServer/UnknownStore.IdentityServer.csproj
+dotnet ef database update -c ConfigurationDbContext --startup-project ../UnknownStore.IdentityServer/UnknownStore.IdentityServer.csproj
+

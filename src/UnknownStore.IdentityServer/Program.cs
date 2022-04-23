@@ -1,13 +1,17 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using UnknownStore.Common.Extensions;
 
 namespace UnknownStore.IdentityServer
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            await host.IdentityServerHostConfigure();
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)
