@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using UnknownStore.DAL.Entities.Identity;
+using UnknownStore.DAL.Entities.IdentityConfiguration;
 using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.DAL
@@ -30,6 +34,7 @@ namespace UnknownStore.DAL
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             builder.Entity<User>().ToTable("Users");
             builder.Entity<Role>().ToTable("Roles");
             builder.Entity<UserClaim>().ToTable("UserClaims");
