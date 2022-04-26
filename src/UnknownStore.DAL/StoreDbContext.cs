@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using UnknownStore.DAL.Entities.Identity;
-using UnknownStore.DAL.Entities.IdentityConfiguration;
 using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.DAL

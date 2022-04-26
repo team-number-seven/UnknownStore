@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using UnknownStore.Common.Extensions.IdentityServerDependencyInjection;
 
 namespace UnknownStore.IdentityServer
@@ -22,13 +21,22 @@ namespace UnknownStore.IdentityServer
             services.AddStoreContext(Configuration);
             services.AddMicrosoftIdentity();
             services.AddIdentityServer4(Configuration);
+
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
             app.UseIdentityServer();
+
+            app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
+
         }
     }
 }
