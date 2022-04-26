@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using UnknownStore.DAL.Data.SeedData;
 using UnknownStore.DAL.Entities.Identity;
-using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.Common.Extensions
 {

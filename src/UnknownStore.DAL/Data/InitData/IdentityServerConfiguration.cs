@@ -41,8 +41,8 @@ namespace UnknownStore.DAL.Data.InitData
                     ClientUri = "http://localhost:3000",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
-                    RedirectUris = {"http://localhost:3000/signin-oidc"},
-                    PostLogoutRedirectUris = {"http://localhost:3000/signout-oidc"},
+                    RedirectUris = {"http://localhost:3000/callback"},
+                    PostLogoutRedirectUris = {"http://localhost:3000/app"},
                     AllowedCorsOrigins = {"http://localhost:3000"},
                     AllowedScopes = {"openid", "profile", "UnknownStore.WebAPI"},
                     AllowAccessTokensViaBrowser = true

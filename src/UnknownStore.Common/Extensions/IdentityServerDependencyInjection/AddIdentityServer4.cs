@@ -14,6 +14,7 @@ namespace UnknownStore.Common.Extensions.IdentityServerDependencyInjection
             var connectionString = configuration.GetConnectionString("StoreDb");
             var migrationsAssembly = typeof(StoreDbContext).Assembly.GetName().Name;
 
+            services.ConfigureApplicationCookie(config => { config.LoginPath = "/Auth/Login"; });
             services.AddIdentityServer()
                 .AddAspNetIdentity<User>().AddConfigurationStore(options =>
                 {

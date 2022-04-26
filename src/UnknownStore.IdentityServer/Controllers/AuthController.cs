@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authentication;
@@ -12,14 +10,14 @@ using UnknownStore.DAL.Entities.Identity;
 namespace UnknownStore.IdentityServer.Controllers
 {
     [Controller]
-    public class AuthController:Controller
+    public class AuthController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
-        private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
+        private readonly IIdentityServerInteractionService _interaction;
+        private readonly IAuthenticationSchemeProvider _schemeProvider;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
         public AuthController(
             UserManager<User> userManager,
@@ -48,68 +46,62 @@ namespace UnknownStore.IdentityServer.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginInputModel model,string button)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, true);
+                if (result.Succeeded) return Redirect(model.ReturnUrl);
+            }
 
+            ModelState.AddModelError(string.Empty, "Invalid password or login");
+            var vm = await BuildLoginViewModelAsync(model.ReturnUrl);
+            vm.Password = model.Password;
+            vm.Username = model.Username;
+            return View(vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Register(string returnUrl)
+        {
+            return View(returnUrl);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            var rm = new RegisterViewModel
+            {
+                Email = model.Email, PhoneNumber = model.PhoneNumber, ReturnUrl = model.ReturnUrl,
+                Username = model.Username
+            };
+            if (ModelState.IsValid)
+            {
+                if (await _userManager.FindByEmailAsync(model.Email) is not null)
+                {
+                    ModelState.AddModelError(string.Empty, "Email has already been registered");
+                    return View(rm);
+                }
+
+                if (await _userManager.FindByNameAsync(model.Username) is not null)
+                {
+                    ModelState.AddModelError(string.Empty, "Username has already been registered");
+                    return View(rm);
+                }
+
+                var user = new User {Email = model.Email, PhoneNumber = model.PhoneNumber, EmailConfirmed = false};
+                var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "User");
+                return Redirect(model.ReturnUrl);
+            }
+
+            return View(rm);
         }
 
         private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl)
         {
-            var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-            if (context?.IdP != null && await _schemeProvider.GetSchemeAsync(context.IdP) != null)
-            {
-                var local = context.IdP == IdentityServer4.IdentityServerConstants.LocalIdentityProvider;
-
-                // this is meant to short circuit the UI and only trigger the one external IdP
-                var vm = new LoginViewModel
-                {
-                    EnableLocalLogin = local,
-                    ReturnUrl = returnUrl,
-                    Username = context?.LoginHint,
-                };
-
-                if (!local)
-                {
-                    vm.ExternalProviders = new[] { new ExternalProvider { AuthenticationScheme = context.IdP } };
-                }
-
-                return vm;
-            }
-
-            var schemes = await _schemeProvider.GetAllSchemesAsync();
-
-            var providers = schemes
-                .Where(x => x.DisplayName != null)
-                .Select(x => new ExternalProvider
-                {
-                    DisplayName = x.DisplayName ?? x.Name,
-                    AuthenticationScheme = x.Name
-                }).ToList();
-
-            var allowLocal = true;
-            if (context?.Client.ClientId != null)
-            {
-                var client = await _clientStore.FindEnabledClientByIdAsync(context.Client.ClientId);
-                if (client != null)
-                {
-                    allowLocal = client.EnableLocalLogin;
-
-                    if (client.IdentityProviderRestrictions != null && client.IdentityProviderRestrictions.Any())
-                    {
-                        providers = providers.Where(provider => client.IdentityProviderRestrictions.Contains(provider.AuthenticationScheme)).ToList();
-                    }
-                }
-            }
-
-            return new LoginViewModel
-            {
-                AllowRememberLogin = AccountOptions.AllowRememberLogin,
-                EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
-                ReturnUrl = returnUrl,
-                Username = context?.LoginHint,
-                ExternalProviders = providers.ToArray()
-            };
+            return new LoginViewModel {ReturnUrl = returnUrl};
         }
+
     }
 }

@@ -7,17 +7,17 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "CreateDateTime",
-                table: "Users",
-                type: "text",
+                "CreateDateTime",
+                "Users",
+                "text",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CreateDateTime",
-                table: "Users");
+                "CreateDateTime",
+                "Users");
         }
     }
 }

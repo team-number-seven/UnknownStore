@@ -11,18 +11,19 @@ namespace UnknownStore.WebAPI
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<StoreDbContext>(opt =>
             {
                 opt.UseNpgsql(Configuration.GetConnectionString("StoreDb"));
-            }).AddScoped(typeof(IStoreDbContext),typeof(StoreDbContext));
+            }).AddScoped(typeof(IStoreDbContext), typeof(StoreDbContext));
 
             services.AddControllers();
         }

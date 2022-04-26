@@ -14,6 +14,6 @@ namespace UnknownStore.DAL.Interfaces
         DbSet<UserLogin> UserLogins { get; set; }
         DbSet<RoleClaim> RoleClaims { get; set; }
         DbSet<UserToken> UserTokens { get; set; }
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = new());
     }
 }

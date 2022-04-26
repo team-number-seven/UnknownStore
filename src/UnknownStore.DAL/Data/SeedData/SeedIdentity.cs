@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Identity;
@@ -71,6 +70,7 @@ namespace UnknownStore.DAL.Data.SeedData
                     user.CreateDateTime = DateTime.Now.ToString("s");
                     var result = await userManager.CreateAsync(user, user.PasswordHash);
                     await userManager.AddToRoleAsync(user, "Owner");
+                    await userManager.AddClaimsAsync(user, new List<Claim> {new(ClaimTypes.Role, "Owner")});
                 }
             }
             else

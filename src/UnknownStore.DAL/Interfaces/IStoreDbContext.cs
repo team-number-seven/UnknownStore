@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UnknownStore.DAL.Interfaces
+﻿namespace UnknownStore.DAL.Interfaces
 {
     public interface IStoreDbContext
     {
-
     }
 }

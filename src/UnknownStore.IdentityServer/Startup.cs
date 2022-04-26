@@ -1,3 +1,4 @@
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,7 @@ namespace UnknownStore.IdentityServer
             services.AddStoreContext(Configuration);
             services.AddMicrosoftIdentity();
             services.AddIdentityServer4(Configuration);
-
+            services.AddScoped<IProfileService, ProfileService>();
             services.AddControllersWithViews();
         }
 
@@ -30,13 +31,13 @@ namespace UnknownStore.IdentityServer
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
+            app.UseFileServer();
 
             app.UseRouting();
 
             app.UseIdentityServer();
 
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
-
         }
     }
 }
