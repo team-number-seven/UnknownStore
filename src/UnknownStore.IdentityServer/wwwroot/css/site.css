@@ -1,1 +1,84 @@
-﻿
+﻿@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;600&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Radio Canada', sans-serif;
+}
+#register-form-container {
+    
+}
+
+#login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login-form-container {
+    width: 25vw;
+    height: 65vh;
+    background-color: white;
+    border: 2px solid rgba(0, 0, 0, 0.123);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+}
+
+#login-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 4rem;
+}
+#login-form-header h1, #login-form-header h2{
+    padding: 0;
+    margin: 0;
+}
+#login-form-header h1{
+    font-size: 2rem;
+}
+#login-form-header h2{
+    font-size: 0.7rem;
+}
+form{
+    width: 100%;
+    height: 100%;
+}
+#login-form-body{
+    width: 90%;
+    height: 70%;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+}
+
+#login-form-body .form-control{
+    height: 3rem;
+}
+
+#login-form-body .form-floating{
+    width: 100%;
+}
+
+#login-form-footer{
+    margin-top:4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.error-message{
+    font-size: small;
+    color:rgb(197, 64, 40);
+}
