@@ -6,7 +6,7 @@ using UnknownStore.DAL.Entities.Identity;
 namespace UnknownStore.IdentityServer.Controllers
 {
     [Controller]
-    public class VerifyController:Controller
+    public class VerifyController : Controller
     {
         private readonly UserManager<User> _userManager;
 

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using UnknownStore.Common.Extensions.IdentityServerDependencyInjection;
+using UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensions;
 
 namespace UnknownStore.IdentityServer
 {
@@ -19,11 +19,8 @@ namespace UnknownStore.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddStoreContext(Configuration);
-            services.AddMicrosoftIdentity();
-            services.AddIdentityServer4(Configuration);
-            services.AddScoped<IProfileService, ProfileService>();
-            services.AddControllersWithViews();
+            services.AddServices(Configuration);
+            services.AddOptions(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

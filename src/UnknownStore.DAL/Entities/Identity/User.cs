@@ -5,6 +5,6 @@ namespace UnknownStore.DAL.Entities.Identity
 {
     public class User : IdentityUser<Guid>
     {
-        public string CreateDateTime { get; set; }
+        public string CreateDateTime { get; set; } = DateTime.Now.ToLongDateString();
     }
 }

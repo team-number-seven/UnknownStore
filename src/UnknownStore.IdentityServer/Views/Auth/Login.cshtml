@@ -1,4 +1,6 @@
-﻿@model UnknownStore.Common.IdentityModels.LoginViewModel
+﻿@using UnknownStore.IdentityServer.Common.IdentityModels
+@using UnknownStore.IdentityServer.Controllers
+@model UnknownStore.IdentityServer.Common.IdentityModels.LoginViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -24,11 +26,11 @@
                 <input type="hidden" asp-for="ReturnUrl"/>
 
                 <div class="form-floating">
-                    <input class="form-control" placeholder="Username" asp-for="Username" id="username-input">
+                    <input class="form-control" placeholder="Username" asp-for="Email" id="username-input">
                     <label for="username-input">Username</label>
                 </div>
                 <div class="error-message">
-                    <span asp-validation-for="Username"></span>
+                    <span asp-validation-for="Email"></span>
                 </div>
                 <div class="form-floating">
                     <input type="password" class="form-control" placeholder="Password" asp-for="Password" id="password-input" autocomplete="off">
@@ -41,7 +43,7 @@
 
                 <div id="login-form-footer">
                     <button type="submit" class="btn btn-primary" name="button" value="login">Login</button>
-                    <a href="@Url.Action("Register")">
+                    <a href="@Url.Action("Register","Auth",new {returnUrl = Model.ReturnUrl})">
                         <label>Create new account</label>
                     </a>
                 </div>
