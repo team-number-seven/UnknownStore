@@ -1,4 +1,3 @@
-using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +29,14 @@ namespace UnknownStore.IdentityServer
             app.UseStaticFiles();
             app.UseFileServer();
 
+            app.UseCors(cfg =>
+            {
+                cfg.WithOrigins("http://localhost:3000");
+                cfg.AllowAnyHeader();
+                cfg.AllowAnyMethod();
+            });
             app.UseRouting();
+
 
             app.UseIdentityServer();
 

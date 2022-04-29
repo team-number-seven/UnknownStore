@@ -12,6 +12,8 @@ namespace UnknownStore.IdentityServer.Common.IdentityModels
         [Required(ErrorMessage = "Password required")]
         public string Password { get; set; }
 
+        public bool IsRemember { get; set; }
+
         public string ReturnUrl { get; set; }
     }
 }

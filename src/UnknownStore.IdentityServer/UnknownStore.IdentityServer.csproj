@@ -23,4 +23,8 @@
     <ProjectReference Include="..\UnknownStore.DAL\UnknownStore.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\pictures\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UnknownStore.DAL;
@@ -13,7 +14,9 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
             services
                 .AddDbContext<StoreDbContext>(options =>
                 {
-                    options.UseNpgsql(configuration.GetConnectionString("StoreDb"));
+                    options.UseLazyLoadingProxies()
+                        .ConfigureWarnings(x => x.Ignore(RelationalEventId.MultipleCollectionIncludeWarning))
+                        .UseNpgsql(configuration.GetConnectionString("StoreDb"));
                 })
                 .AddScoped(typeof(IIdentityDbContext), typeof(StoreDbContext));
             return services;

@@ -5,7 +5,7 @@ namespace UnknownStore.IdentityServer.Common.IdentityModels
 {
     public class RegisterViewModel
     {
-        [Remote("VerifyUsername", "Verify", AdditionalFields = nameof(Username))]
+        [Remote("ValidationUsername", "Validation", AdditionalFields = nameof(Username))]
         [Required(ErrorMessage = "Username required")]
         public string Username { get; set; }
 
@@ -16,7 +16,7 @@ namespace UnknownStore.IdentityServer.Common.IdentityModels
         public string ReturnUrl { get; set; }
 
         [EmailAddress]
-        [Remote("VerifyEmail", "Verify", AdditionalFields = nameof(Email))]
+        [Remote("ValidationEmail", "Validation", AdditionalFields = nameof(Email))]
         [Required(ErrorMessage = "Email required")]
         public string Email { get; set; }
 

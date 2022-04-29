@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using UnknownStore.DAL.Entities.Identity;
 using UnknownStore.DAL.Interfaces;
 
@@ -24,7 +25,6 @@ namespace UnknownStore.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5555;Database=store;Username=postgres;Password=admin");
             base.OnConfiguring(optionsBuilder);
         }
 

@@ -14,6 +14,7 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
             services.AddStoreContext(configuration);
             services.AddEmailService();
             services.AddGoogleClientSenderService();
+            services.AddModelsBuilder();
             services.AddControllersWithViews();
             return services;
         }
