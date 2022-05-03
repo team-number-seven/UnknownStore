@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using UnknownStore.Common.Constants;
 using UnknownStore.DAL;
 using UnknownStore.DAL.Interfaces;
 
@@ -31,17 +32,28 @@ namespace UnknownStore.WebAPI
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Owner", builder =>
+                options.AddPolicy(Roles.Owner, builder => { builder.RequireClaim(ClaimTypes.Role, Roles.Owner); });
+
+                options.AddPolicy(Roles.Administrator, builder =>
                 {
-                    builder.RequireClaim(ClaimTypes.Role, "Owner");
+                    builder.RequireAssertion(x => x.User.HasClaim(ClaimTypes.Role, Roles.Administrator) ||
+                                                  x.User.HasClaim(ClaimTypes.Role, Roles.Owner));
                 });
 
-                options.AddPolicy("User", builder =>
+                options.AddPolicy(Roles.Manager, builder =>
                 {
-                    builder.RequireAssertion(x => x.User.HasClaim(ClaimTypes.Role, "User")
-                                                  || x.User.HasClaim(ClaimTypes.Role, "Owner"));
+                    builder.RequireAssertion(x => x.User.HasClaim(ClaimTypes.Role, Roles.Manager) ||
+                                                  x.User.HasClaim(ClaimTypes.Role, Roles.Administrator) || 
+                                                  x.User.HasClaim(ClaimTypes.Role, Roles.Owner));
                 });
-
+                options.AddPolicy(Roles.User, builder =>
+                {
+                    builder.RequireAssertion(x =>
+                        x.User.HasClaim(ClaimTypes.Role, Roles.User) ||
+                        x.User.HasClaim(ClaimTypes.Role, Roles.Manager) ||
+                        x.User.HasClaim(ClaimTypes.Role, Roles.Administrator) || 
+                        x.User.HasClaim(ClaimTypes.Role, Roles.Owner));
+                });
             });
 
 
@@ -56,6 +68,7 @@ namespace UnknownStore.WebAPI
 
                     config.Authority = "https://localhost:1001";
                 });
+
             services.AddControllers();
         }
 
