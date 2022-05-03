@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using UnknownStore.IdentityServer.Services.GoogleClientSenderClientSender;
+using UnknownStore.IdentityServer.Services.Google;
 
 namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensions.Services
 {

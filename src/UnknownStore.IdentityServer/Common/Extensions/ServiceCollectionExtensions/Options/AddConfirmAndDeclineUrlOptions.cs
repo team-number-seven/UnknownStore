@@ -4,7 +4,7 @@ using UnknownStore.IdentityServer.Common.Options;
 
 namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensions.Options
 {
-    public static class ServiceCollectionExtensions
+    public static partial class IdentityDependencyInjection
     {
         public static IServiceCollection AddConfirmAndDeclineUrlOptions(this IServiceCollection services,
             IConfiguration configuration)

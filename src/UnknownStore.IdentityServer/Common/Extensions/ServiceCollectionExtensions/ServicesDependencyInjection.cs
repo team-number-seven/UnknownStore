@@ -15,12 +15,7 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
             services.AddIdentityServer4(configuration);
             services.AddGoogleService(configuration);
             services.AddCustomProfileService();
-            services.ConfigureApplicationCookie(config =>
-            {
-                config.LoginPath = "/Auth/Login";
-                config.LogoutPath = "/Auth/Logout";
-                config.Cookie.Name = "IdentityServer.Cookie";
-            });
+
 
             services.AddControllersWithViews();
             return services;

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using UnknownStore.DAL.Entities.Identity;
 using UnknownStore.IdentityServer.Common.IdentityModels;
@@ -25,6 +26,7 @@ namespace UnknownStore.IdentityServer.Controllers
         private readonly IConfiguration _configuration;
         private readonly IEmailService _emailService;
         private readonly IIdentityServerInteractionService _interaction;
+        private readonly ILogger<AuthController> _logger;
         private readonly ModelsBuilder _modelsBuilder;
         private readonly ConfirmAndDeclineUrlOptions _optionsUrlOptions;
         private readonly RoleManager<Role> _roleManager;
@@ -39,7 +41,7 @@ namespace UnknownStore.IdentityServer.Controllers
             IConfiguration configuration,
             IOptions<ConfirmAndDeclineUrlOptions> optionsUrlConfiguration,
             ModelsBuilder modelsBuilder,
-            RoleManager<Role> roleManager)
+            RoleManager<Role> roleManager, ILogger<AuthController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -48,7 +50,9 @@ namespace UnknownStore.IdentityServer.Controllers
             _configuration = configuration;
             _modelsBuilder = modelsBuilder;
             _roleManager = roleManager;
+            _logger = logger;
             _optionsUrlOptions = optionsUrlConfiguration.Value;
+            _logger.LogInformation(_configuration["CurrentDirectory"]);
         }
 
         [Route("[action]")]
@@ -172,58 +176,53 @@ namespace UnknownStore.IdentityServer.Controllers
         {
             if (ModelState.IsValid is false)
             {
-                model.Password = String.Empty;
+                model.Password = string.Empty;
                 return View(model);
             }
 
             if (await _userManager.FindByEmailAsync(model.Email) is not null)
             {
-                model.Password = String.Empty;
+                model.Password = string.Empty;
                 ModelState.AddModelError(string.Empty, "Email has already been registered");
                 return View(model);
             }
 
             var user = new User
             {
-                Id = Guid.NewGuid(), Email = model.Email, PhoneNumber = model.PhoneNumber, EmailConfirmed = false
+                Id = Guid.NewGuid(),
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                EmailConfirmed = false
             };
-
             user.UserName = user.Id + "|" + model.Username;
+
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded is false)
             {
                 foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
-                model.Password = String.Empty;
+                model.Password = string.Empty;
                 return View(model);
             }
 
             await _userManager.AddToRoleAsync(user, "User");
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-
             var urlConfirm = CreateConfirmEmailUrl(new
                 { userId = user.Id, tokenConfirmation = token, returnUrl = model.ReturnUrl });
             var urlDecline = CreateDeclineEmailUrl(new
                 { userId = user.Id, tokenConfirmation = token, returnUrl = model.ReturnUrl });
-            var body = await CreateFormAsync(urlConfirm, urlDecline);
-            await _emailService.SendEmailAsync(user.Email, user.UserName, "Email confirmation", body);
+            var body = await CreateFormAsync(urlConfirm, urlDecline,
+                _configuration["CurrentDirectory"] + _configuration["EmailHtmlFormMessage:PathForm"]);
 
-            var loginViewModel = new LoginViewModel
-            {
-                ReturnUrl = model.ReturnUrl,
-                ExternalProviders = await _signInManager.GetExternalAuthenticationSchemesAsync()
-            };
+            await _emailService.SendEmailAsync(user.Email, user.UserName, "Email confirmation", body);
             return View("SuccessfullyRegistered");
         }
 
-        private async Task<string> CreateFormAsync(string urlConfirm, string urlDecline, string pathForm = null)
+        private async Task<string> CreateFormAsync(string urlConfirm, string urlDecline, string pathForm)
         {
-            pathForm = @"D:\GitHub\UnknownStore\src\UnknownStore.IdentityServer\Common\HTML\EmailConfirmation.html";
-            var htmlForm =
-                new StringBuilder(await System.IO.File.ReadAllTextAsync(pathForm));
+            var htmlForm = new StringBuilder(await System.IO.File.ReadAllTextAsync(pathForm));
             htmlForm.Replace(_configuration["EmailHtmlFormMessage:ReplaceConfirm"], urlConfirm);
             htmlForm.Replace(_configuration["EmailHtmlFormMessage:ReplaceDecline"], urlDecline);
-
             return htmlForm.ToString();
         }
 
@@ -259,6 +258,11 @@ namespace UnknownStore.IdentityServer.Controllers
                 Protocol = _optionsUrlOptions.Scheme,
                 Values = values
             });
+        }
+
+        private string GenerateUserName(string username, string Id)
+        {
+            return username + "|" + Id;
         }
     }
 }

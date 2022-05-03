@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 using UnknownStore.IdentityServer.Common.Options;
-using UnknownStore.IdentityServer.Services.GoogleClientSenderClientSender;
+using UnknownStore.IdentityServer.Services.Google;
 
 namespace UnknownStore.IdentityServer.Services.Email
 {

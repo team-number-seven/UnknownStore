@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MailKit.Security;
 
-namespace UnknownStore.IdentityServer.Services.GoogleClientSenderClientSender
+namespace UnknownStore.IdentityServer.Services.Google
 {
     public interface IGoogleService
     {

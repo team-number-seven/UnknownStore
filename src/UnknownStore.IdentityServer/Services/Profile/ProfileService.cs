@@ -8,7 +8,7 @@ using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using UnknownStore.DAL.Entities.Identity;
 
-namespace UnknownStore.IdentityServer.Services.GoogleClientSenderClientSender
+namespace UnknownStore.IdentityServer.Services.Profile
 {
     public sealed class ProfileService : IProfileService
     {

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using UnknownStore.IdentityServer.Common.Options;
 
-namespace UnknownStore.IdentityServer.Services.GoogleClientSenderClientSender
+namespace UnknownStore.IdentityServer.Services.Google
 {
     public class GoogleService : IGoogleService
     {

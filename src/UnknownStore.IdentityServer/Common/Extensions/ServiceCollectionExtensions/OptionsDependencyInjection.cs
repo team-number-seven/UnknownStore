@@ -11,6 +11,7 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
             services.AddConfirmAndDeclineUrlOptions(configuration);
             services.AddEmailSenderOptions(configuration);
             services.AddGoogleOptions(configuration);
+            services.AddConfigurationAppCookie(configuration);
             return services;
         }
     }
