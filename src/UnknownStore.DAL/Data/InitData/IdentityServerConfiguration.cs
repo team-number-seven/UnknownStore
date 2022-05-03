@@ -41,7 +41,7 @@ namespace UnknownStore.DAL.Data.InitData
                     ClientUri = "http://localhost:3000",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
-                    RedirectUris = {"http://localhost:3000/callback"},
+                    RedirectUris = {"http://localhost:3000/callback","http://localhost:3000/refresh"},
                     PostLogoutRedirectUris = {"http://localhost:3000/app"},
                     AllowedCorsOrigins = {"http://localhost:3000"},
                     AllowedScopes = {"openid", "profile", "UnknownStore.WebAPI"},

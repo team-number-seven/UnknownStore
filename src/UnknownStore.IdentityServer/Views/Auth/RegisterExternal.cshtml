@@ -1,0 +1,24 @@
+﻿@model UnknownStore.IdentityServer.Common.IdentityModels.ExternalLoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <div id="register-form-container">
+        <div class="validation" asp-validation-summary="None"></div>
+        <form asp-route="Register" method="post">
+            <input type="hidden" asp-for="ReturnUrl">
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input type="text" class="form-control" placeholder="Username" asp-for="Username">
+                <span asp-validation-for="Username"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

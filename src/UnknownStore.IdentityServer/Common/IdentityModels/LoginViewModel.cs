@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authentication;
 
 namespace UnknownStore.IdentityServer.Common.IdentityModels
 {
@@ -15,5 +17,6 @@ namespace UnknownStore.IdentityServer.Common.IdentityModels
         public bool IsRemember { get; set; }
 
         public string ReturnUrl { get; set; }
+        public IEnumerable<AuthenticationScheme> ExternalProviders { get; set; }
     }
 }

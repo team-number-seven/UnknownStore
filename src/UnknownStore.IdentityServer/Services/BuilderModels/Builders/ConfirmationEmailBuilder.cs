@@ -9,7 +9,7 @@ namespace UnknownStore.IdentityServer.Services.BuilderModels.Builders
             [NotNull] string userId)
         {
             return new ConfirmationEmail
-                {ReturnUrl = returnUrl, TokenConfirmation = tokenConfirmation, UserId = userId};
+                { ReturnUrl = returnUrl, TokenConfirmation = tokenConfirmation, UserId = userId };
         }
     }
 }

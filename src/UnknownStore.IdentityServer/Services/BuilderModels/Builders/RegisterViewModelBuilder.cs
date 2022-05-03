@@ -6,8 +6,7 @@ namespace UnknownStore.IdentityServer.Services.BuilderModels.Builders
 {
     public class RegisterViewModelBuilder
     {
-        public RegisterViewModel Build([NotNull] string returnUrl, string? email = null, string? password = null,
-            string? confirmPassword = null, string? username = null, string? phoneNumber = null)
+        public RegisterViewModel Build([NotNull] string returnUrl, string? email = null, string? password = null, string? phoneNumber = null, string? username = null,string ? confirmPassword = null)
         {
             return new RegisterViewModel
             {

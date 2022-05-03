@@ -10,7 +10,7 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
         {
             services.AddConfirmAndDeclineUrlOptions(configuration);
             services.AddEmailSenderOptions(configuration);
-            services.AddGoogleClientSenderOptions(configuration);
+            services.AddGoogleOptions(configuration);
             return services;
         }
     }

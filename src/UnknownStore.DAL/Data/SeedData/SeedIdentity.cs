@@ -67,6 +67,8 @@ namespace UnknownStore.DAL.Data.SeedData
                 var users = configuration.GetSection("Users").Get<IEnumerable<User>>();
                 foreach (var user in users)
                 {
+                    user.Id = Guid.NewGuid();
+                    user.UserName = user.Id + "|" + user.UserName;
                     user.CreateDateTime = DateTime.Now.ToString("s");
                     var result = await userManager.CreateAsync(user, user.PasswordHash);
                     await userManager.AddToRoleAsync(user, "Owner");

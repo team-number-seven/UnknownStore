@@ -9,13 +9,13 @@ using UnknownStore.IdentityServer.Common.Options;
 
 namespace UnknownStore.IdentityServer.Services.GoogleClientSenderClientSender
 {
-    public class GoogleClientSenderService : IGoogleClientSenderService
+    public class GoogleService : IGoogleService
     {
         private readonly GoogleClientSenderServiceOptions _googleAuthenticationOptions;
-        private readonly ILogger<GoogleClientSenderService> _logger;
+        private readonly ILogger<GoogleService> _logger;
 
-        public GoogleClientSenderService(IOptions<GoogleClientSenderServiceOptions> googleOptions,
-            ILogger<GoogleClientSenderService> logger)
+        public GoogleService(IOptions<GoogleClientSenderServiceOptions> googleOptions,
+            ILogger<GoogleService> logger)
         {
             _logger = logger;
             _googleAuthenticationOptions = googleOptions.Value;

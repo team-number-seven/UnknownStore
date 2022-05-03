@@ -27,7 +27,9 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
                     opt.Lockout.AllowedForNewUsers = true;
                     opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
 
-                    opt.User.RequireUniqueEmail = true;
+                    opt.User.AllowedUserNameCharacters =
+                        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+/-|{}йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ ";
+                    opt.User.RequireUniqueEmail = false;
                 })
                 .AddEntityFrameworkStores<StoreDbContext>()
                 .AddDefaultTokenProviders();

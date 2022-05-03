@@ -9,12 +9,19 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMicrosoftIdentity();
-            services.AddIdentityServer4(configuration);
-            services.AddCustomProfileService();
             services.AddStoreContext(configuration);
             services.AddEmailService();
-            services.AddGoogleClientSenderService();
             services.AddModelsBuilder();
+            services.AddIdentityServer4(configuration);
+            services.AddGoogleService(configuration);
+            services.AddCustomProfileService();
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/Auth/Login";
+                config.LogoutPath = "/Auth/Logout";
+                config.Cookie.Name = "IdentityServer.Cookie";
+            });
+
             services.AddControllersWithViews();
             return services;
         }

@@ -7,5 +7,6 @@ namespace UnknownStore.IdentityServer.Services.BuilderModels
         public LoginViewModelBuilder LoginViewModelBuilder => new();
         public ConfirmationEmailBuilder ConfirmationEmailBuilder => new();
         public RegisterViewModelBuilder RegisterViewModelBuilder => new();
+        public ExternalLoginViewModelBuilder ExternalLoginViewModelBuilder => new();
     }
 }

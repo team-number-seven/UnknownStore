@@ -13,14 +13,14 @@ namespace UnknownStore.IdentityServer.Services.Email
     public class EmailService : IEmailService
     {
         private readonly EmailServiceOptions _emailConfig;
-        private readonly IGoogleClientSenderService _googleClientSender;
+        private readonly IGoogleService _google;
         private readonly ILogger<EmailService> _logger;
 
 
-        public EmailService(IOptions<EmailServiceOptions> emailOptions, IGoogleClientSenderService googleClientSender,
+        public EmailService(IOptions<EmailServiceOptions> emailOptions, IGoogleService google,
             ILogger<EmailService> logger)
         {
-            _googleClientSender = googleClientSender;
+            _google = google;
             _logger = logger;
             _emailConfig = emailOptions.Value;
         }
@@ -34,8 +34,8 @@ namespace UnknownStore.IdentityServer.Services.Email
                 emailMessage.From.Add(new MailboxAddress(_emailConfig.FromName, _emailConfig.FromAddress));
                 emailMessage.To.Add(new MailboxAddress(name, email));
                 emailMessage.Subject = subject;
-                emailMessage.Body = new TextPart(TextFormat.Html) {Text = message};
-                var oauth2 = await _googleClientSender.AuthorizationAsync();
+                emailMessage.Body = new TextPart(TextFormat.Html) { Text = message };
+                var oauth2 = await _google.AuthorizationAsync();
                 using var client = new SmtpClient();
                 await client.ConnectAsync(_emailConfig.MailServerAddress, _emailConfig.MailServerPort,
                     _emailConfig.SecureSocket);

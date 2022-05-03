@@ -25,11 +25,9 @@ namespace UnknownStore.IdentityServer.Controllers
         }
 
         [AcceptVerbs("GET", "POST")]
-        public async Task<IActionResult> ValidationUsername(string username)
+        public IActionResult ValidationUsername(string username)
         {
-            return await _userManager.FindByNameAsync(username) is not null
-                ? Json($"A username {username} already exists.")
-                : Json(true);
+            return username.Contains('|') ? Json($"{username} contains invalid characters") : Json(true);
         }
     }
 }

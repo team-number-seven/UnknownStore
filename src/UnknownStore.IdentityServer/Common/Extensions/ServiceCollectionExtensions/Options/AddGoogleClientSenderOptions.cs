@@ -6,7 +6,7 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
 {
     public static partial class IdentityDependencyInjection
     {
-        public static IServiceCollection AddGoogleClientSenderOptions(this IServiceCollection services,
+        public static IServiceCollection AddGoogleOptions(this IServiceCollection services,
             IConfiguration configuration)
         {
             services.Configure<GoogleClientSenderServiceOptions>(configuration.GetSection("GoogleClientSenderOptions"));

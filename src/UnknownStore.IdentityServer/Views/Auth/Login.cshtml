@@ -22,6 +22,16 @@
             <h2>Choose how to login</h2>
         </div>
         <div id="login-form-body">
+            <form asp-controller="Auth" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                @foreach (var provider in Model.ExternalProviders)
+                {
+                    <button type="submit"
+                            name="provider"
+                            value="@provider.Name">
+                        @provider.DisplayName
+                    </button>
+                }
+            </form>
             <form asp-route="Login">
                 <input type="hidden" asp-for="ReturnUrl"/>
 
@@ -39,11 +49,15 @@
                 <div class="error-message">
                     <span asp-validation-for="Password"></span>
                 </div>
+                <div class="form-floating">
+                    <input type="checkbox" class="form-check" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
+                    <label for="isRemember-input">isRemember</label>
+                </div>
                 <div class="validation" asp-validation-summary="ModelOnly"></div>
 
                 <div id="login-form-footer">
                     <button type="submit" class="btn btn-primary" name="button" value="login">Login</button>
-                    <a href="@Url.Action("Register", "Auth", new {returnUrl = Model.ReturnUrl})">
+                    <a href="@Url.Action("Register", "Auth", new { returnUrl = Model.ReturnUrl })">
                         <label>Create new account</label>
                     </a>
                 </div>
