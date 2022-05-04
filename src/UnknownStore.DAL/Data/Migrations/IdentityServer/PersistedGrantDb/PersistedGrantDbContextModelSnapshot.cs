@@ -38,7 +38,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.PersistedGrantDb
                         .HasMaxLength(50000)
                         .HasColumnType("character varying(50000)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
@@ -91,7 +91,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.PersistedGrantDb
                         .HasMaxLength(50000)
                         .HasColumnType("character varying(50000)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 

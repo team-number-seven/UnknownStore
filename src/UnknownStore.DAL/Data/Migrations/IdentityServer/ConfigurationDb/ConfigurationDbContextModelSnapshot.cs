@@ -33,7 +33,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.ConfigurationDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
@@ -153,7 +153,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.ConfigurationDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
@@ -184,7 +184,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
@@ -337,7 +337,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.ConfigurationDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
@@ -623,7 +623,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.ConfigurationDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(2000)
                         .HasColumnType("character varying(2000)");
 
@@ -657,7 +657,7 @@ namespace UnknownStore.DAL.Data.Migrations.IdentityServer.ConfigurationDb
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ModelData")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 

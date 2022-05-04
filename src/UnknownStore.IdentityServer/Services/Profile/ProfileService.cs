@@ -34,7 +34,7 @@ namespace UnknownStore.IdentityServer.Services.Profile
 
             var claims = userClaims.Claims.ToList();
             claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
-
+            claims.Add(new Claim(JwtClaimTypes.Id,user.Id.ToString()));
             if (_userManager.SupportsUserRole)
             {
                 var roles = await _userManager.GetRolesAsync(user);

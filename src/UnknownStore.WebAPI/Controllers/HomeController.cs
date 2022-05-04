@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace UnknownStore.WebAPI.Controllers
 {
@@ -7,9 +10,11 @@ namespace UnknownStore.WebAPI.Controllers
     [ApiController]
     public class HomeController:ControllerBase
     {
-        public HomeController()
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
         {
-            
+            _logger = logger;
         }
 
         [Authorize(Policy = "Owner")]
@@ -17,6 +22,7 @@ namespace UnknownStore.WebAPI.Controllers
         [HttpGet]
         public IActionResult Test()
         {
+            _logger.LogInformation(User.FindFirstValue("Id"));
             var t = new Tests();
             return Ok(t);
         }
