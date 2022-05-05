@@ -8,4 +8,7 @@ dotnet ef database update -c PersistedGrantDbContext --startup-project ../Unknow
 
 
 dotnet ef migrations add InitialIdentityServerConfigurationDbMigration -c ConfigurationDbContext -o Data/Migrations/IdentityServer/ConfigurationDb  --startup-project ../UnknownStore.IdentityServer/UnknownStore.IdentityServer.csproj
-dotnet ef database update -c ConfigurationDbContext --startup-project ../UnknownStore.IdentityServer/UnknownStore.IdentityServer.csproj
+dotnet ef database updAdate -c ConfigurationDbContext --startup-project ../UnknownStore.IdentityServer/UnknownStore.IdentityServer.csproj
+
+
+add-migration InitialStore -c StoreDbContext -o Data/Migration/Store -StartupProject ../UnknownStore.WebAPI/UnknownStore.WebAPI.csproj

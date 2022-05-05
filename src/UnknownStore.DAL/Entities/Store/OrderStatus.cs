@@ -8,6 +8,7 @@ namespace UnknownStore.DAL.Entities.Store
 {
     public enum OrderStatus
     {
-        // НЕ ПОДТВЕРЖДЁН, В ДОСТВКЕ, ДОСТАВЛЕН,  
+        Done,
+        Cancelled
     }
 }

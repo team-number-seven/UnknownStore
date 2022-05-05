@@ -17,7 +17,7 @@ namespace UnknownStore.DAL.Entities.Store
         public virtual Brand Brand{ get; set; }
         public Guid BrandId { get; set; }
 
-        public virtual SubType SubType { get; set; }
+        public virtual SubCategory SubCategory { get; set; }
         public Guid SubTypeId { get; set; }
 
         public virtual Color Color { get; set; }
@@ -33,6 +33,5 @@ namespace UnknownStore.DAL.Entities.Store
         public virtual Season Season { get; set; }
         public Guid SeasonId { get; set; }
 
-        public virtual IEnumerable<Comment> Comments { get; set; }
     }
 }
