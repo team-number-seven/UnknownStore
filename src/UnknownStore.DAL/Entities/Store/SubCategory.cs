@@ -11,7 +11,6 @@ namespace UnknownStore.DAL.Entities.Store
         public Guid CategoryId { get; set; }
 
         public virtual Size Size { get; set; }
-        public Guid SizeId { get; set; }
 
         public virtual IEnumerable<Model> Models { get; set; }
     }

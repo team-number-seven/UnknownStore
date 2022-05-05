@@ -17,9 +17,13 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .IsRequired()
                 .HasMaxLength(15);
             builder
-                .HasMany(s => s.SubCategories)
+                .HasOne(s => s.SubCategory)
                 .WithOne(sb => sb.Size)
-                .HasForeignKey(sb => sb.SizeId);
+                .HasForeignKey<Size>(s => s.SubCategoryId);
+            builder
+                .HasOne(s => s.Gender)
+                .WithMany(g => g.Sizes)
+                .HasForeignKey(s => s.GenderId);
         }
     }
 }

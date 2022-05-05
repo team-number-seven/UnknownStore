@@ -57,11 +57,6 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasForeignKey(m => m.SeasonId);
 
             builder
-                .HasOne(m => m.Gender)
-                .WithMany(g => g.Models)
-                .HasForeignKey(m => m.GenderId);
-
-            builder
                 .HasMany(m => m.Images)
                 .WithOne(i => i.Model)
                 .HasForeignKey(m => m.ModelId);

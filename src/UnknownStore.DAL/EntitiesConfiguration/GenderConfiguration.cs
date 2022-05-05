@@ -19,6 +19,10 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .Property(g => g.Title)
                 .HasMaxLength(75)
                 .IsRequired();
+            builder
+                .HasMany(g => g.Sizes)
+                .WithOne(s => s.Gender)
+                .HasForeignKey(s => s.GenderId);
         }
     }
 }
