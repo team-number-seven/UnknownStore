@@ -1,0 +1,867 @@
+[
+  {
+    "Title": "Clothing",
+    "AgeType": {
+      "Title": "Adults"
+    },
+    "SubCategories": [
+      {
+        "Title": "Pants",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 44,
+          "MaxValue": 62
+        }
+      },
+      {
+        "Title": "Shorts",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 42,
+          "MaxValue": 64
+        }
+      },
+      {
+        "Title": "T-Shirts",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 40,
+          "MaxValue": 60
+        }
+      },
+      {
+        "Title": "Hoodies & Sweatshirts",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 40,
+          "MaxValue": 60
+        }
+      },
+      {
+        "Title": "Jackets & Vests",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 40,
+          "MaxValue": 60
+        }
+      },
+      {
+        "Title": "Swimwear",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 42,
+          "MaxValue": 64
+        }
+      },
+      {
+        "Title": "Yoga",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 40,
+          "MaxValue": 60
+        }
+      },
+      {
+        "Title": "Socks",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 39,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Underwear",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 60
+        }
+      },
+      {
+        "Title": "Polos",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 40,
+          "MaxValue": 60
+        }
+      }
+    ]
+  },
+
+  {
+    "Title": "Clothing",
+    "AgeType": {
+      "Title": "Adults"
+    },
+    "SubCategories": [
+      {
+        "Title": "Pants",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 34,
+          "MaxValue": 48
+        }
+      },
+      {
+        "Title": "Leggings",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 34,
+          "MaxValue": 48
+        }
+      },
+      {
+        "Title": "Sports Bras",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 34,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Tops & T-Shirts",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 32,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Shorts",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 32,
+          "MaxValue": 48
+        }
+      },
+      {
+        "Title": "Hoodies & Sweatshirts",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 32,
+          "MaxValue": 48
+        }
+      },
+      {
+        "Title": "Jackets & Vests",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 32,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Swimwear",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 32,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Skirts & Dresses",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 30,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Yoga",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 32,
+          "MaxValue": 44
+        }
+      },
+      {
+        "Title": "Socks",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      }
+    ]
+  },
+  {
+    "Title": "Shoes",
+    "AgeType": {
+      "Title": "Adults"
+    },
+    "SubCategories": [
+      {
+        "Title": "﻿Lifestyle",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Running",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Basketball",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Jordan",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Training & Gym",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Soccer",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Golf",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+         "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Skateboarding",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Baseball",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Tennis",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Walking",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Football",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Sandals & Slides",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Track and Field",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      },
+      {
+        "Title": "Cross Country",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 38,
+          "MaxValue": 46
+        }
+      }
+    ]
+  },
+  {
+    "Title": "Shoes",
+    "AgeType": {
+      "Title": "Adults"
+    },
+    "SubCategories": [
+      {
+        "Title": "﻿Lifestyle",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Running",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Basketball",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Jordan",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Training & Gym",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Soccer",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Golf",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Skateboarding",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Baseball",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Tennis",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Walking",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Football",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Sandals & Slides",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Track and Field",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      },
+      {
+        "Title": "Cross Country",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 36,
+          "MaxValue": 42
+        }
+      }
+    ]
+  },
+  {
+    "Title": "Shoes",
+    "AgeType": {
+      "Title": "Kids"
+    },
+    "SubCategories": [
+      {
+        "Title": "﻿Lifestyle",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 16,
+          "MaxValue": 36
+        }
+      },
+      {
+        "Title": "Running",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 16,
+          "MaxValue": 36
+        }
+      },
+      {
+        "Title": "Basketball",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 16,
+          "MaxValue": 36
+        }
+      },
+      {
+        "Title": "Soccer",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 16,
+          "MaxValue": 36
+        }
+      },
+      {
+        "Title": "Sandals & Slides",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 16,
+          "MaxValue": 36
+        }
+      }
+    ]
+  },
+  {
+    "Title": "Shoes",
+    "AgeType": {
+      "Title": "Kids"
+    },
+    "SubCategories": [
+      {
+        "Title": "﻿Lifestyle",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 16,
+          "MaxValue": 38
+        }
+      },
+      {
+        "Title": "Running",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 16,
+          "MaxValue": 38
+        }
+      },
+      {
+        "Title": "Basketball",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 16,
+          "MaxValue": 38
+        }
+      },
+      {
+        "Title": "Soccer",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 16,
+          "MaxValue": 38
+        }
+      },
+      {
+        "Title": "Sandals & Slides",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+         "MinValue": 16,
+          "MaxValue": 38
+        }
+      }
+    ]
+  },
+  {
+    "Title": "Clothing",
+    "AgeType": {
+      "Title": "Kids"
+    },
+    "SubCategories": [
+      {
+        "Title": "Babies & Toddlers",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Hoodies",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Sweatshirt",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Pants",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Tights",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Jacket & Vests",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Tops & T-Shirt",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Shorts",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      },
+      {
+        "Title": "Swimwear",
+        "Size": {
+          "Gender": {
+            "Title": "Men"
+          },
+          "MinValue": 14,
+          "MaxValue": 34
+        }
+      }
+    ]
+  },
+  {
+    "Title": "Clothing",
+    "AgeType": {
+      "Title": "Kids"
+    },
+    "SubCategories": [
+      {
+        "Title": "Babies & Toddlers",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Hoodies",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Sweatshirt",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Pants",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Leggins",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Tights",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Jacket & Vests",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Tops & T-Shirt",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Shorts",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      },
+      {
+        "Title": "Swimwear",
+        "Size": {
+          "Gender": {
+            "Title": "Women"
+          },
+          "MinValue": 12,
+          "MaxValue": 32
+        }
+      }
+    ]
+  }
+]
