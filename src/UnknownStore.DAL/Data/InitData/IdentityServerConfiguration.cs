@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using IdentityServer4;
-using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using ApiResource = IdentityServer4.EntityFramework.Entities.ApiResource;
@@ -23,7 +21,7 @@ namespace UnknownStore.DAL.Data.InitData
             {
                 new IdentityResources.Profile().ToEntity(),
                 new IdentityResources.OpenId().ToEntity(),
-                new IdentityResources.Email().ToEntity(),
+                new IdentityResources.Email().ToEntity()
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -43,10 +41,10 @@ namespace UnknownStore.DAL.Data.InitData
                     ClientUri = "http://localhost:3000",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
-                    RedirectUris = {"http://localhost:3000/callback","http://localhost:3000/refresh"},
-                    PostLogoutRedirectUris = {"http://localhost:3000/app"},
-                    AllowedCorsOrigins = {"http://localhost:3000"},
-                    AllowedScopes = {"openid", "profile", "UnknownStore.WebAPI"},
+                    RedirectUris = { "http://localhost:3000/callback", "http://localhost:3000/refresh" },
+                    PostLogoutRedirectUris = { "http://localhost:3000/app" },
+                    AllowedCorsOrigins = { "http://localhost:3000" },
+                    AllowedScopes = { "openid", "profile", "UnknownStore.WebAPI" },
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 1800
                 }.ToEntity()

@@ -2,11 +2,10 @@
 
 namespace UnknownStore.DAL.Entities.Store
 {
-    public class ModelData : BaseEntity
+    public class Image : BaseEntity
     {
-        public string Key { get; set; }
-        public string Value { get; set; }
-
+        public string Path { get; set; }
+        public string Format { get; set; }
         public virtual Model Model { get; set; }
         public Guid ModelId { get; set; }
     }

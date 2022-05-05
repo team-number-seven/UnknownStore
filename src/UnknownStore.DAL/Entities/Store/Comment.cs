@@ -3,7 +3,7 @@ using UnknownStore.DAL.Entities.Identity;
 
 namespace UnknownStore.DAL.Entities.Store
 {
-    public class Comment:BaseEntity
+    public class Comment : BaseEntity
     {
         public int Review { get; set; }
         public string Value { get; set; }

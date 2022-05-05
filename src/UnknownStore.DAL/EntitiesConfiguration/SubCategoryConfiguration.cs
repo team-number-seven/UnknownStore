@@ -4,7 +4,7 @@ using UnknownStore.DAL.Entities.Store;
 
 namespace UnknownStore.DAL.EntitiesConfiguration
 {
-    public class SubCategoryConfiguration:IEntityTypeConfiguration<SubCategory>
+    public class SubCategoryConfiguration : IEntityTypeConfiguration<SubCategory>
     {
         public void Configure(EntityTypeBuilder<SubCategory> builder)
         {

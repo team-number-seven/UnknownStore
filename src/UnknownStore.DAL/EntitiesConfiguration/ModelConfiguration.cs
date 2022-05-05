@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UnknownStore.DAL.Entities.Store;
 
 namespace UnknownStore.DAL.EntitiesConfiguration
 {
-    public class ModelConfiguration:IEntityTypeConfiguration<Model>
+    public class ModelConfiguration : IEntityTypeConfiguration<Model>
     {
         public void Configure(EntityTypeBuilder<Model> builder)
         {
@@ -60,6 +55,16 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasOne(m => m.Season)
                 .WithMany(s => s.Models)
                 .HasForeignKey(m => m.SeasonId);
+
+            builder
+                .HasOne(m => m.Gender)
+                .WithMany(g => g.Models)
+                .HasForeignKey(m => m.GenderId);
+
+            builder
+                .HasMany(m => m.Images)
+                .WithOne(i => i.Model)
+                .HasForeignKey(m => m.ModelId);
         }
     }
 }

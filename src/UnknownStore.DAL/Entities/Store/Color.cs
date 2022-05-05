@@ -2,7 +2,7 @@
 
 namespace UnknownStore.DAL.Entities.Store
 {
-    public class Color:BaseEntity
+    public class Color : BaseEntity
     {
         public string Title { get; set; }
 

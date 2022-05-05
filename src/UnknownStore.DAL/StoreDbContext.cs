@@ -2,8 +2,8 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using UnknownStore.DAL.Entities.Identity;
+using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.DAL
@@ -21,6 +21,21 @@ namespace UnknownStore.DAL
         public StoreDbContext()
         {
         }
+
+        public DbSet<AgeType> AgeTypes { get; set; }
+        public DbSet<AmountOfSize> AmountOfSizes { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Factory> Factories { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Model> Models { get; set; }
+        public DbSet<ModelData> ModelData { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

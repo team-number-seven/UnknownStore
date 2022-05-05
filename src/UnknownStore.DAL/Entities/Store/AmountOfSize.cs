@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnknownStore.DAL.Entities.Store
 {
-    public class AmountOfSize:BaseEntity
+    public class AmountOfSize : BaseEntity
     {
         public double Value { get; set; }
         public int Amount { get; set; }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace UnknownStore.DAL.Entities.Store
 {
-    public class Brand:BaseEntity
+    public class Brand : BaseEntity
     {
         public string Title { get; set; }
 

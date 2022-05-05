@@ -72,7 +72,7 @@ namespace UnknownStore.DAL.Data.SeedData
                     user.CreateDateTime = DateTime.Now.ToString("s");
                     var result = await userManager.CreateAsync(user, user.PasswordHash);
                     await userManager.AddToRoleAsync(user, "Owner");
-                    await userManager.AddClaimsAsync(user, new List<Claim> {new(ClaimTypes.Role, "Owner")});
+                    await userManager.AddClaimsAsync(user, new List<Claim> { new(ClaimTypes.Role, "Owner") });
                 }
             }
             else

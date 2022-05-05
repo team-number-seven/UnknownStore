@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UnknownStore.DAL.Entities.Store;
 
 namespace UnknownStore.DAL.EntitiesConfiguration
 {
-    public class SizeConfiguration:IEntityTypeConfiguration<Size>
+    public class SizeConfiguration : IEntityTypeConfiguration<Size>
     {
         public void Configure(EntityTypeBuilder<Size> builder)
         {
