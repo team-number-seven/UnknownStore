@@ -13,9 +13,6 @@ namespace UnknownStore.DAL.EntitiesConfiguration
             builder
                 .HasKey(sb => sb.Id);
             builder
-                .HasIndex(sb => sb.Title)
-                .IsUnique();
-            builder
                 .Property(sb => sb.Title)
                 .IsRequired()
                 .HasMaxLength(50);

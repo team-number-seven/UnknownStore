@@ -22,6 +22,7 @@ namespace UnknownStore.WebAPI
             try
             {
                 await SeedStore.SeedDataStoreAsync(context, configuration, logger);
+
             }
             catch (Exception e)
             {
