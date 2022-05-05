@@ -18,7 +18,7 @@ namespace UnknownStore.DAL.Entities.Store
         public Guid BrandId { get; set; }
 
         public virtual SubCategory SubCategory { get; set; }
-        public Guid SubTypeId { get; set; }
+        public Guid SubCategoryId { get; set; }
 
         public virtual Color Color { get; set; }
         public Guid ColorId { get; set; }

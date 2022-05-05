@@ -9,7 +9,7 @@ namespace UnknownStore.DAL.Entities.Store
         public string Value { get; set; }
         public string CreateDate { get; set; }
 
-        public Model Model { get; set; }
+        public virtual Model Model { get; set; }
         public Guid ModelId { get; set; }
         public virtual User User { get; set; }
         public Guid UserId { get; set; }

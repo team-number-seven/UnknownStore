@@ -10,6 +10,6 @@ namespace UnknownStore.DAL.Entities.Store
         public virtual Country Country { get; set; }
         public Guid CountryId { get; set; }
 
-        public IEnumerable<Model> Models { get; set; }
+        public virtual IEnumerable<Model> Models { get; set; }
     }
 }

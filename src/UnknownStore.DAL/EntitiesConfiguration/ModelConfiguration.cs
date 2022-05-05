@@ -43,7 +43,7 @@ namespace UnknownStore.DAL.EntitiesConfiguration
             builder
                 .HasOne(m => m.SubCategory)
                 .WithMany(sb => sb.Models)
-                .HasForeignKey(m => m.SubTypeId);
+                .HasForeignKey(m => m.SubCategoryId);
             builder
                 .HasOne(m => m.Color)
                 .WithMany(c => c.Models)

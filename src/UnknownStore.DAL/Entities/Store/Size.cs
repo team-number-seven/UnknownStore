@@ -13,6 +13,6 @@ namespace UnknownStore.DAL.Entities.Store
         public double? MinValue { get; set; }
         public double? MaxValue { get; set; }
 
-        public virtual IEnumerable<SubCategory> SubTypes { get; set; }
+        public virtual IEnumerable<SubCategory> SubCategories { get; set; }
     }
 }

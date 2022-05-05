@@ -22,7 +22,7 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .IsRequired()
                 .HasMaxLength(15);
             builder
-                .HasMany(s => s.SubTypes)
+                .HasMany(s => s.SubCategories)
                 .WithOne(sb => sb.Size)
                 .HasForeignKey(sb => sb.SizeId);
         }

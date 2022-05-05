@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UnknownStore.DAL.Entities.Store;
 
@@ -14,7 +9,7 @@ namespace UnknownStore.DAL.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<SubCategory> builder)
         {
             builder
-                .ToTable("SubTypes");
+                .ToTable("SubCategories");
             builder
                 .HasKey(sb => sb.Id);
             builder
@@ -26,16 +21,17 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasMaxLength(50);
             builder
                 .HasOne(sb => sb.Category)
-                .WithMany(s => s.SubTypes)
-                .HasForeignKey(sb => sb.TypeId);
+                .WithMany(s => s.SubCategories)
+                .HasForeignKey(sb => sb.CategoryId);
             builder
                 .HasOne(sb => sb.Size)
-                .WithMany(sb => sb.SubTypes)
+                .WithMany(sb => sb.SubCategories)
                 .HasForeignKey(sb => sb.SizeId);
+
             builder
                 .HasMany(sb => sb.Models)
                 .WithOne(m => m.SubCategory)
-                .HasForeignKey(m => m.SubTypeId);
+                .HasForeignKey(m => m.SubCategoryId);
         }
     }
 }

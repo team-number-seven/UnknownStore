@@ -13,6 +13,24 @@ namespace UnknownStore.DAL.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder
+                .ToTable("Categories");
+            builder
+                .HasKey(c => c.Id);
+            builder
+                .Property(c => c.Title)
+                .IsRequired()
+                .HasMaxLength(30);
+
+            builder
+                .HasOne(c => c.AgeType)
+                .WithMany(at => at.Types)
+                .HasForeignKey(c => c.AgeTypeId);
+
+            builder
+                .HasMany(c => c.SubCategories)
+                .WithOne(sc => sc.Category)
+                .HasForeignKey(sc => sc.CategoryId);
         }
-    }g
+    }
 }
