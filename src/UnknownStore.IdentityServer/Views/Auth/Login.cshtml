@@ -11,64 +11,111 @@
         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Email address</label>
     </div>
+
     <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Password</label>
     </div>*@
 
     <div id="login-form-container">
-        <div id="login-form-header">
+        <div id="login-form-box">
+            <div id="login-form-box-body">
+                <div id="login-form-header">
             <h1>Login</h1>
             <h2>Choose how to login</h2>
         </div>
         <div id="login-form-body">
-            <form asp-controller="Auth" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+
+             <form asp-controller="Auth" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
                 @foreach (var provider in Model.ExternalProviders)
                 {
+                    <div class="login-service">
                     <button type="submit"
                             name="provider"
+
                             value="@provider.Name">
-                        @provider.DisplayName
+                       Sign in with @provider.DisplayName
                     </button>
+                    </div>
                 }
             </form>
+
+
             <form asp-route="Login">
                 <input type="hidden" asp-for="ReturnUrl"/>
 
-                <div class="form-floating">
-                    <input class="form-control" placeholder="Username" asp-for="Email" id="username-input">
-                    <label for="username-input">Username</label>
-                </div>
+             
+                    <input type="text" class="form-control" placeholder="Username" asp-for="Email" id="username-input" autocomplete="off">
+
                 <div class="error-message">
                     <span asp-validation-for="Email"></span>
                 </div>
-                <div class="form-floating">
+
+                
                     <input type="password" class="form-control" placeholder="Password" asp-for="Password" id="password-input" autocomplete="off">
-                    <label for="password-input">Password</label>
-                </div>
-                <div class="error-message">
+                    <div class="error-message">
                     <span asp-validation-for="Password"></span>
                 </div>
-                <div class="form-floating">
+                    <div class="remember-input">
+                        <input type="checkbox" onclick="myFunction()" />
+                    <span>Show password</span>
+                    </div>
+                  
+               
+
+                
+
+                <div class="remember-input">
                     <input type="checkbox" class="form-check" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
-                    <label for="isRemember-input">isRemember</label>
-                </div>
+                    <span>Remember me</span>
+                    </div>
+
                 <div class="validation" asp-validation-summary="ModelOnly"></div>
+                </form>
+
 
                 <div id="login-form-footer">
                     <button type="submit" class="btn btn-primary" name="button" value="login">Login</button>
-                    <a href="@Url.Action("Register", "Auth", new { returnUrl = Model.ReturnUrl })">
-                        <label>Create new account</label>
-                    </a>
+                 
                 </div>
-            </form>
+
+                </div>
+                
+                
         </div>
 
+
+                
+            
+
+        </div>
+        
+        
+            <div class="another-login-way">
+                <a href="@Url.Action("Register", "Auth", new { returnUrl = Model.ReturnUrl })">
+                        <label>Create new account</label>
+                    </a>
+            </div>
+  
     </div>
+
+
+     <script>
+        function myFunction() {
+  var x = document.getElementById("password-input");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+    </script>
+    
 </div>
 
 @section scripts{
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+   
 }
