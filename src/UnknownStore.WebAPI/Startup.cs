@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using UnknownStore.BusinessLogic.Extensions.ServiceCollection;
 using UnknownStore.BusinessLogic.Extensions.ServiceCollection.Services;
 using UnknownStore.Common.Constants;
 using UnknownStore.DAL;
@@ -26,7 +27,7 @@ namespace UnknownStore.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMapper();
+            services.AddServices();
             services.AddDbContext<StoreDbContext>(opt =>
             {
                 opt.UseLazyLoadingProxies().UseNpgsql(Configuration.GetConnectionString("StoreDb"));
