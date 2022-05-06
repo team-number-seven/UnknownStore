@@ -1,6 +1,5 @@
 ﻿using IdentityServer4.Services;
 using Microsoft.Extensions.DependencyInjection;
-using UnknownStore.IdentityServer.Services.Google;
 using UnknownStore.IdentityServer.Services.Profile;
 
 namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensions.Services

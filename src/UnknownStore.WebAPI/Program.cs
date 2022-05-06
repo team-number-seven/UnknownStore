@@ -22,7 +22,6 @@ namespace UnknownStore.WebAPI
             try
             {
                 await SeedStore.SeedDataStoreAsync(context, configuration, logger);
-
             }
             catch (Exception e)
             {
@@ -30,6 +29,7 @@ namespace UnknownStore.WebAPI
                     "[Initializing StoreDbContext]\n[Error Message]" +
                     $"{e.Message}\n[Error Source]{e.Source}\n[Error Inner Exception]{e.InnerException}");
             }
+
             await host.RunAsync();
         }
 

@@ -8,93 +8,93 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Models_Genders_GenderId",
-                table: "Models");
+                "FK_Models_Genders_GenderId",
+                "Models");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_SubCategories_Sizes_SizeId",
-                table: "SubCategories");
+                "FK_SubCategories_Sizes_SizeId",
+                "SubCategories");
 
             migrationBuilder.DropIndex(
-                name: "IX_SubCategories_SizeId",
-                table: "SubCategories");
+                "IX_SubCategories_SizeId",
+                "SubCategories");
 
             migrationBuilder.DropIndex(
-                name: "IX_Models_GenderId",
-                table: "Models");
+                "IX_Models_GenderId",
+                "Models");
 
             migrationBuilder.DropColumn(
-                name: "SizeId",
-                table: "SubCategories");
+                "SizeId",
+                "SubCategories");
 
             migrationBuilder.DropColumn(
-                name: "GenderId",
-                table: "Models");
+                "GenderId",
+                "Models");
 
             migrationBuilder.AddColumn<Guid>(
-                name: "GenderId",
-                table: "Sizes",
-                type: "uuid",
+                "GenderId",
+                "Sizes",
+                "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.AddColumn<Guid>(
-                name: "SubCategoryId",
-                table: "Sizes",
-                type: "uuid",
+                "SubCategoryId",
+                "Sizes",
+                "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.AddColumn<string>(
-                name: "HexCode",
-                table: "Colors",
-                type: "text",
+                "HexCode",
+                "Colors",
+                "text",
                 nullable: true);
 
             migrationBuilder.AddColumn<Guid>(
-                name: "CountryId",
-                table: "Brands",
-                type: "uuid",
+                "CountryId",
+                "Brands",
+                "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sizes_GenderId",
-                table: "Sizes",
-                column: "GenderId");
+                "IX_Sizes_GenderId",
+                "Sizes",
+                "GenderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sizes_SubCategoryId",
-                table: "Sizes",
-                column: "SubCategoryId",
+                "IX_Sizes_SubCategoryId",
+                "Sizes",
+                "SubCategoryId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brands_CountryId",
-                table: "Brands",
-                column: "CountryId");
+                "IX_Brands_CountryId",
+                "Brands",
+                "CountryId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Brands_Countries_CountryId",
-                table: "Brands",
-                column: "CountryId",
-                principalTable: "Countries",
+                "FK_Brands_Countries_CountryId",
+                "Brands",
+                "CountryId",
+                "Countries",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Sizes_Genders_GenderId",
-                table: "Sizes",
-                column: "GenderId",
-                principalTable: "Genders",
+                "FK_Sizes_Genders_GenderId",
+                "Sizes",
+                "GenderId",
+                "Genders",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Sizes_SubCategories_SubCategoryId",
-                table: "Sizes",
-                column: "SubCategoryId",
-                principalTable: "SubCategories",
+                "FK_Sizes_SubCategories_SubCategoryId",
+                "Sizes",
+                "SubCategoryId",
+                "SubCategories",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -102,82 +102,82 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Brands_Countries_CountryId",
-                table: "Brands");
+                "FK_Brands_Countries_CountryId",
+                "Brands");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Sizes_Genders_GenderId",
-                table: "Sizes");
+                "FK_Sizes_Genders_GenderId",
+                "Sizes");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Sizes_SubCategories_SubCategoryId",
-                table: "Sizes");
+                "FK_Sizes_SubCategories_SubCategoryId",
+                "Sizes");
 
             migrationBuilder.DropIndex(
-                name: "IX_Sizes_GenderId",
-                table: "Sizes");
+                "IX_Sizes_GenderId",
+                "Sizes");
 
             migrationBuilder.DropIndex(
-                name: "IX_Sizes_SubCategoryId",
-                table: "Sizes");
+                "IX_Sizes_SubCategoryId",
+                "Sizes");
 
             migrationBuilder.DropIndex(
-                name: "IX_Brands_CountryId",
-                table: "Brands");
+                "IX_Brands_CountryId",
+                "Brands");
 
             migrationBuilder.DropColumn(
-                name: "GenderId",
-                table: "Sizes");
+                "GenderId",
+                "Sizes");
 
             migrationBuilder.DropColumn(
-                name: "SubCategoryId",
-                table: "Sizes");
+                "SubCategoryId",
+                "Sizes");
 
             migrationBuilder.DropColumn(
-                name: "HexCode",
-                table: "Colors");
+                "HexCode",
+                "Colors");
 
             migrationBuilder.DropColumn(
-                name: "CountryId",
-                table: "Brands");
+                "CountryId",
+                "Brands");
 
             migrationBuilder.AddColumn<Guid>(
-                name: "SizeId",
-                table: "SubCategories",
-                type: "uuid",
+                "SizeId",
+                "SubCategories",
+                "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.AddColumn<Guid>(
-                name: "GenderId",
-                table: "Models",
-                type: "uuid",
+                "GenderId",
+                "Models",
+                "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_SizeId",
-                table: "SubCategories",
-                column: "SizeId");
+                "IX_SubCategories_SizeId",
+                "SubCategories",
+                "SizeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_GenderId",
-                table: "Models",
-                column: "GenderId");
+                "IX_Models_GenderId",
+                "Models",
+                "GenderId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Models_Genders_GenderId",
-                table: "Models",
-                column: "GenderId",
-                principalTable: "Genders",
+                "FK_Models_Genders_GenderId",
+                "Models",
+                "GenderId",
+                "Genders",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_SubCategories_Sizes_SizeId",
-                table: "SubCategories",
-                column: "SizeId",
-                principalTable: "Sizes",
+                "FK_SubCategories_Sizes_SizeId",
+                "SubCategories",
+                "SizeId",
+                "Sizes",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
