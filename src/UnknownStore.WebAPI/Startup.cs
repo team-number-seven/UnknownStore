@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using UnknownStore.BusinessLogic.Extensions.ServiceCollection;
-using UnknownStore.BusinessLogic.Extensions.ServiceCollection.Services;
 using UnknownStore.Common.Constants;
 using UnknownStore.DAL;
 using UnknownStore.DAL.Interfaces;

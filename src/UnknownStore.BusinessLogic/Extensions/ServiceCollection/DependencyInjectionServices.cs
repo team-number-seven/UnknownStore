@@ -11,6 +11,8 @@ namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection
         {
             services.AddMapper();
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddValidators();
+            services.AddValidatorBehavior();
             return services;
         }
     }
