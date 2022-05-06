@@ -15,8 +15,9 @@ namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection
             services.AddValidators();
             services.AddValidatorBehavior();
             services.AddStoreContext(configuration);
-            services.AddJwtAuthentication();
+            services.AddJwtAuthentication(configuration);
             services.AddAuthorizationPolicy();
+            services.AddCorsPolicy(configuration);
             return services;
         }
     }

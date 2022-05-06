@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
@@ -7,7 +8,8 @@ namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection.Services
 {
     public static class AuthenticationExtension
     {
-        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services)
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.AddAuthentication(config =>
                 {
@@ -20,8 +22,8 @@ namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection.Services
                     {
                         ClockSkew = TimeSpan.Zero
                     };
-                    config.Audience = "UnknownStore.WebAPI";
-                    config.Authority = "https://localhost:1001";
+                    config.Audience = configuration["AuthConfig:Audience"];
+                    config.Authority = configuration["AuthConfig:Authority"];
                 });
 
             return services;

@@ -28,13 +28,7 @@ namespace UnknownStore.WebAPI
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseRouting();
-            app.UseCors(opt =>
-            {
-                opt.AllowAnyHeader();
-                opt.AllowAnyMethod();
-                opt.AllowAnyOrigin();
-            });
-
+            app.UseCors(Configuration["Cors:PolicyName"]);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
