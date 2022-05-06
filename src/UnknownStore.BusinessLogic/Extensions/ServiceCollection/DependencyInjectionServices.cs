@@ -15,6 +15,7 @@ namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection
             services.AddValidators();
             services.AddValidatorBehavior();
             services.AddStoreContext(configuration);
+            services.AddAuthorizationPolicy();
             return services;
         }
     }
