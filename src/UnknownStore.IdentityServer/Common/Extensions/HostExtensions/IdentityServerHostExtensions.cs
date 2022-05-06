@@ -31,7 +31,7 @@ namespace UnknownStore.IdentityServer.Common.Extensions.HostExtensions
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<IHost>>();
             try
             {
-                await SeedIdentity.SeedConfigurationAsync(configurationDbContext, logger);
+                await SeedIdentity.SeedConfigurationAsync(configurationDbContext, logger, configuration);
                 await SeedIdentity.SeedRolesAsync(roleManager, pathRolesJson, logger);
                 await SeedIdentity.SeedUsersAsync(userManager, configuration, logger);
             }

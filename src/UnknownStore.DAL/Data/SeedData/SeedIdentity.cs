@@ -5,40 +5,69 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.Mappers;
+using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnknownStore.DAL.Data.InitData;
 using UnknownStore.DAL.Entities.Identity;
 
 namespace UnknownStore.DAL.Data.SeedData
 {
     public static class SeedIdentity
     {
-        public static async Task SeedConfigurationAsync(ConfigurationDbContext context, ILogger<IHost> logger)
+        public static async Task SeedConfigurationAsync(ConfigurationDbContext context, ILogger<IHost> logger,
+            IConfiguration configuration)
         {
             if (context.Clients.Any() is false)
-                await context.Clients.AddRangeAsync(IdentityServerConfiguration.Clients.ToArray());
+            {
+                var clients = configuration.GetSection("IdentityServer:Clients").Get<IEnumerable<Client>>();
+                foreach (var s in clients) await context.Clients.AddAsync(s.ToEntity());
+            }
             else
+            {
                 logger.LogWarning("Clients is already initialized ");
+            }
 
             if (context.IdentityResources.Any() is false)
-                await context.IdentityResources.AddRangeAsync(IdentityServerConfiguration.IdentityResources);
+            {
+                var identityResources = new[]
+                {
+                    new IdentityResources.Profile().ToEntity(),
+                    new IdentityResources.OpenId().ToEntity(),
+                    new IdentityResources.Email().ToEntity()
+                };
+                await context.IdentityResources.AddRangeAsync(identityResources);
+            }
             else
+            {
                 logger.LogWarning("IdentityResources is already initialized ");
+            }
 
             if (context.ApiScopes.Any() is false)
-                await context.ApiScopes.AddRangeAsync(IdentityServerConfiguration.ApiScopes);
+            {
+                var apiScopes = configuration.GetSection("IdentityServer:ApiScopes")
+                    .Get<IEnumerable<ApiScope>>();
+                foreach (var apiScope in apiScopes) await context.ApiScopes.AddAsync(apiScope.ToEntity());
+            }
             else
+            {
                 logger.LogWarning("ApiScopes is already initialized ");
+            }
 
             if (context.ApiResources.Any() is false)
-                await context.ApiResources.AddRangeAsync(IdentityServerConfiguration.ApiResources);
+            {
+                var apiResources = configuration.GetSection("IdentityServer:ApiResources")
+                    .Get<IEnumerable<ApiResource>>();
+                foreach (var apiResource in apiResources) await context.ApiResources.AddAsync(apiResource.ToEntity());
+            }
             else
+            {
                 logger.LogWarning("ApiResources is already initialized");
+            }
 
             await context.SaveChangesAsync();
         }

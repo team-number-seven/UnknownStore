@@ -3,7 +3,7 @@ using UnknownStore.Common.Mappings;
 
 namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection.Services
 {
-    public static class DependencyInjection
+    public static class MapperExtension
     {
         public static IServiceCollection AddMapper(this IServiceCollection services)
         {
