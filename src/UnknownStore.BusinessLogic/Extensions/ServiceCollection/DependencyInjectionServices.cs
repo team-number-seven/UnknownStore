@@ -8,13 +8,14 @@ namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection
 {
     public static class DependencyInjectionServices
     {
-        public static IServiceCollection AddServices(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMapper();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddValidators();
             services.AddValidatorBehavior();
             services.AddStoreContext(configuration);
+            services.AddJwtAuthentication();
             services.AddAuthorizationPolicy();
             return services;
         }

@@ -1,17 +1,9 @@
-using System;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using UnknownStore.BusinessLogic.Extensions.ServiceCollection;
-using UnknownStore.Common.Constants;
-using UnknownStore.DAL;
-using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.WebAPI
 {
@@ -27,18 +19,6 @@ namespace UnknownStore.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddServices(Configuration);
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, config =>
-                {
-                    config.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ClockSkew = TimeSpan.FromSeconds(5),
-                        ValidateAudience = false
-                    };
-
-                    config.Authority = "https://localhost:1001";
-                });
 
             services.AddControllers();
         }
