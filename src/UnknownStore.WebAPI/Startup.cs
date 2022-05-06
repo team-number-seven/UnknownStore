@@ -26,11 +26,7 @@ namespace UnknownStore.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddServices();
-            services.AddDbContext<StoreDbContext>(opt =>
-            {
-                opt.UseLazyLoadingProxies().UseNpgsql(Configuration.GetConnectionString("StoreDb"));
-            }).AddScoped(typeof(IStoreDbContext), typeof(StoreDbContext));
+            services.AddServices(Configuration);
 
             services.AddAuthorization(options =>
             {
