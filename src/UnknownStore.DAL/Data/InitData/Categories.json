@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "Title": "Clothing",
     "AgeType": {
@@ -107,7 +107,6 @@
       }
     ]
   },
-
   {
     "Title": "Clothing",
     "AgeType": {
@@ -233,7 +232,7 @@
     },
     "SubCategories": [
       {
-        "Title": "﻿Lifestyle",
+        "Title": " Lifestyle",
         "Size": {
           "Gender": {
             "Title": "Men"
@@ -298,7 +297,7 @@
           "Gender": {
             "Title": "Men"
           },
-         "MinValue": 38,
+          "MinValue": 38,
           "MaxValue": 46
         }
       },
@@ -652,7 +651,7 @@
           "Gender": {
             "Title": "Men"
           },
-         "MinValue": 16,
+          "MinValue": 16,
           "MaxValue": 38
         }
       }

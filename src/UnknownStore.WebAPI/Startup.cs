@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using UnknownStore.BusinessLogic.Extensions.ServiceCollection.Services;
 using UnknownStore.Common.Constants;
 using UnknownStore.DAL;
 using UnknownStore.DAL.Interfaces;
@@ -25,6 +26,7 @@ namespace UnknownStore.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMapper();
             services.AddDbContext<StoreDbContext>(opt =>
             {
                 opt.UseLazyLoadingProxies().UseNpgsql(Configuration.GetConnectionString("StoreDb"));
@@ -43,7 +45,7 @@ namespace UnknownStore.WebAPI
                 options.AddPolicy(Roles.Manager, builder =>
                 {
                     builder.RequireAssertion(x => x.User.HasClaim(ClaimTypes.Role, Roles.Manager) ||
-                                                  x.User.HasClaim(ClaimTypes.Role, Roles.Administrator) || 
+                                                  x.User.HasClaim(ClaimTypes.Role, Roles.Administrator) ||
                                                   x.User.HasClaim(ClaimTypes.Role, Roles.Owner));
                 });
                 options.AddPolicy(Roles.User, builder =>
@@ -51,7 +53,7 @@ namespace UnknownStore.WebAPI
                     builder.RequireAssertion(x =>
                         x.User.HasClaim(ClaimTypes.Role, Roles.User) ||
                         x.User.HasClaim(ClaimTypes.Role, Roles.Manager) ||
-                        x.User.HasClaim(ClaimTypes.Role, Roles.Administrator) || 
+                        x.User.HasClaim(ClaimTypes.Role, Roles.Administrator) ||
                         x.User.HasClaim(ClaimTypes.Role, Roles.Owner));
                 });
             });

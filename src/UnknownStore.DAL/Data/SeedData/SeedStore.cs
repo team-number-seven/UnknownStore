@@ -15,7 +15,8 @@ namespace UnknownStore.DAL.Data.SeedData
 {
     public static class SeedStore
     {
-        public static async Task SeedDataStoreAsync(IStoreDbContext context,IConfiguration configuration,ILogger<IHost> logger)
+        public static async Task SeedDataStoreAsync(IStoreDbContext context, IConfiguration configuration,
+            ILogger<IHost> logger)
         {
             var srcPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\"));
 
@@ -24,8 +25,8 @@ namespace UnknownStore.DAL.Data.SeedData
             var pathToColors = srcPath + configuration["SeedDataLocalPath:Colors"];
             var pathToGenders = srcPath + configuration["SeedDataLocalPath:Genders"];
             var pathToAgeTypes = srcPath + configuration["SeedDataLocalPath:AgeTypes"];
-            var pathToSeasons = srcPath+configuration["SeedDataLocalPath:Seasons"];
-            var pathToCategories = srcPath+configuration["SeedDataLocalPath:Categories"];
+            var pathToSeasons = srcPath + configuration["SeedDataLocalPath:Seasons"];
+            var pathToCategories = srcPath + configuration["SeedDataLocalPath:Categories"];
 
             await SeedCountriesAsync(context, pathToCountries, logger);
             await SeedColorsAsync(context, pathToColors, logger);
@@ -34,10 +35,9 @@ namespace UnknownStore.DAL.Data.SeedData
             await SeedBrandsAsync(context, pathToBrands, logger);
             await SeedSeasonsAsync(context, pathToSeasons, logger);
             await SeedCategoriesAsync(context, pathToCategories, logger);
-
         }
 
-        public static async Task SeedBrandsAsync(IStoreDbContext context, string pathToJson,ILogger<IHost> logger)
+        public static async Task SeedBrandsAsync(IStoreDbContext context, string pathToJson, ILogger<IHost> logger)
         {
             if (context.Brands.Any() is false)
             {
@@ -50,12 +50,15 @@ namespace UnknownStore.DAL.Data.SeedData
                     var country = await context.Countries.FirstAsync(c => c.Title == brand.Country.Title);
                     brand.Country = country;
                 }
+
                 await context.Brands.AddRangeAsync(brands);
                 await context.SaveChangesAsync();
                 return;
             }
+
             logger.LogWarning("Brands is already initialized");
         }
+
         public static async Task SeedCountriesAsync(IStoreDbContext context, string pathToJson, ILogger<IHost> logger)
         {
             if (context.Countries.Any() is false)
@@ -68,8 +71,10 @@ namespace UnknownStore.DAL.Data.SeedData
                 await context.SaveChangesAsync();
                 return;
             }
+
             logger.LogWarning("Countries is already initialized");
         }
+
         public static async Task SeedColorsAsync(IStoreDbContext context, string pathToJson, ILogger<IHost> logger)
         {
             if (context.Colors.Any() is false)
@@ -82,8 +87,10 @@ namespace UnknownStore.DAL.Data.SeedData
                 await context.SaveChangesAsync();
                 return;
             }
+
             logger.LogWarning("Colors is already initialized");
         }
+
         public static async Task SeedGendersAsync(IStoreDbContext context, string pathToJson, ILogger<IHost> logger)
         {
             if (context.Genders.Any() is false)
@@ -96,8 +103,10 @@ namespace UnknownStore.DAL.Data.SeedData
                 await context.SaveChangesAsync();
                 return;
             }
+
             logger.LogWarning("Genders is already initialized");
         }
+
         public static async Task SeedAgeTypesAsync(IStoreDbContext context, string pathToJson, ILogger<IHost> logger)
         {
             if (context.AgeTypes.Any() is false)
@@ -110,8 +119,10 @@ namespace UnknownStore.DAL.Data.SeedData
                 await context.SaveChangesAsync();
                 return;
             }
+
             logger.LogWarning("AgeTypes is already initialized");
         }
+
         public static async Task SeedSeasonsAsync(IStoreDbContext context, string pathToJson, ILogger<IHost> logger)
         {
             if (context.Seasons.Any() is false)
@@ -124,6 +135,7 @@ namespace UnknownStore.DAL.Data.SeedData
                 await context.SaveChangesAsync();
                 return;
             }
+
             logger.LogWarning("Seasons is already initialized");
         }
 
@@ -145,10 +157,12 @@ namespace UnknownStore.DAL.Data.SeedData
                         subCategory.Size.Gender = gender;
                     }
                 }
+
                 await context.Categories.AddRangeAsync(categories);
                 await context.SaveChangesAsync();
                 return;
             }
+
             logger.LogWarning("Categories is already initialized");
         }
     }

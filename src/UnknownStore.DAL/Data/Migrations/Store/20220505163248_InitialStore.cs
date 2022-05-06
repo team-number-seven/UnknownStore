@@ -9,681 +9,656 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AgeTypes",
-                columns: table => new
+                "AgeTypes",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(25)", maxLength: 25, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AgeTypes", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_AgeTypes", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Brands",
-                columns: table => new
+                "Brands",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(250)", maxLength: 250, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Brands", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Brands", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Colors",
-                columns: table => new
+                "Colors",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(100)", maxLength: 100, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Colors", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Colors", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Countries",
-                columns: table => new
+                "Countries",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(100)", maxLength: 100, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Countries", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Countries", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Genders",
-                columns: table => new
+                "Genders",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(75)", maxLength: 75, nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(75)", maxLength: 75, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Genders", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Genders", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Roles",
-                columns: table => new
+                "Roles",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Name = table.Column<string>("character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>("character varying(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>("text", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Roles", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Seasons",
-                columns: table => new
+                "Seasons",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(50)", maxLength: 50, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Seasons", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Seasons", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Sizes",
-                columns: table => new
+                "Sizes",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Standard = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    MinValue = table.Column<double>(type: "double precision", nullable: true),
-                    MaxValue = table.Column<double>(type: "double precision", nullable: true)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Standard = table.Column<string>("character varying(15)", maxLength: 15, nullable: false),
+                    MinValue = table.Column<double>("double precision", nullable: true),
+                    MaxValue = table.Column<double>("double precision", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sizes", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Sizes", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
+                "Users",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CreateDateTime = table.Column<string>(type: "text", nullable: true),
-                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
-                    PasswordHash = table.Column<string>(type: "text", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    CreateDateTime = table.Column<string>("text", nullable: true),
+                    UserName = table.Column<string>("character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>("character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>("character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>("character varying(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>("boolean", nullable: false),
+                    PasswordHash = table.Column<string>("text", nullable: true),
+                    SecurityStamp = table.Column<string>("text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>("text", nullable: true),
+                    PhoneNumber = table.Column<string>("text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>("boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>("boolean", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>("timestamp with time zone", nullable: true),
+                    LockoutEnabled = table.Column<bool>("boolean", nullable: false),
+                    AccessFailedCount = table.Column<int>("integer", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Users", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
+                "Categories",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
-                    AgeTypeId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(30)", maxLength: 30, nullable: false),
+                    AgeTypeId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Categories_AgeTypes_AgeTypeId",
-                        column: x => x.AgeTypeId,
-                        principalTable: "AgeTypes",
-                        principalColumn: "Id",
+                        "FK_Categories_AgeTypes_AgeTypeId",
+                        x => x.AgeTypeId,
+                        "AgeTypes",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Factories",
-                columns: table => new
+                "Factories",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
-                    Address = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    CountryId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(150)", maxLength: 150, nullable: false),
+                    Address = table.Column<string>("character varying(500)", maxLength: 500, nullable: false),
+                    CountryId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Factories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Factories_Countries_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Countries",
-                        principalColumn: "Id",
+                        "FK_Factories_Countries_CountryId",
+                        x => x.CountryId,
+                        "Countries",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoleClaims",
-                columns: table => new
+                "RoleClaims",
+                table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RoleId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ClaimType = table.Column<string>(type: "text", nullable: true),
-                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                    Id = table.Column<int>("integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoleId = table.Column<Guid>("uuid", nullable: false),
+                    ClaimType = table.Column<string>("text", nullable: true),
+                    ClaimValue = table.Column<string>("text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoleClaims_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
-                        principalColumn: "Id",
+                        "FK_RoleClaims_Roles_RoleId",
+                        x => x.RoleId,
+                        "Roles",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserClaims",
-                columns: table => new
+                "UserClaims",
+                table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ClaimType = table.Column<string>(type: "text", nullable: true),
-                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                    Id = table.Column<int>("integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<Guid>("uuid", nullable: false),
+                    ClaimType = table.Column<string>("text", nullable: true),
+                    ClaimValue = table.Column<string>("text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserClaims_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
+                        "FK_UserClaims_Users_UserId",
+                        x => x.UserId,
+                        "Users",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserLogins",
-                columns: table => new
+                "UserLogins",
+                table => new
                 {
-                    LoginProvider = table.Column<string>(type: "text", nullable: false),
-                    ProviderKey = table.Column<string>(type: "text", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
+                    LoginProvider = table.Column<string>("text", nullable: false),
+                    ProviderKey = table.Column<string>("text", nullable: false),
+                    ProviderDisplayName = table.Column<string>("text", nullable: true),
+                    UserId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_UserLogins_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
+                        "FK_UserLogins_Users_UserId",
+                        x => x.UserId,
+                        "Users",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRoles",
-                columns: table => new
+                "UserRoles",
+                table => new
                 {
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uuid", nullable: false)
+                    UserId = table.Column<Guid>("uuid", nullable: false),
+                    RoleId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_UserRoles_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
-                        principalColumn: "Id",
+                        "FK_UserRoles_Roles_RoleId",
+                        x => x.RoleId,
+                        "Roles",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserRoles_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
+                        "FK_UserRoles_Users_UserId",
+                        x => x.UserId,
+                        "Users",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserTokens",
-                columns: table => new
+                "UserTokens",
+                table => new
                 {
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    LoginProvider = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: true)
+                    UserId = table.Column<Guid>("uuid", nullable: false),
+                    LoginProvider = table.Column<string>("text", nullable: false),
+                    Name = table.Column<string>("text", nullable: false),
+                    Value = table.Column<string>("text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_UserTokens_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
+                        "FK_UserTokens_Users_UserId",
+                        x => x.UserId,
+                        "Users",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SubCategories",
-                columns: table => new
+                "SubCategories",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
-                    SizeId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(50)", maxLength: 50, nullable: false),
+                    CategoryId = table.Column<Guid>("uuid", nullable: false),
+                    SizeId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SubCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SubCategories_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
+                        "FK_SubCategories_Categories_CategoryId",
+                        x => x.CategoryId,
+                        "Categories",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SubCategories_Sizes_SizeId",
-                        column: x => x.SizeId,
-                        principalTable: "Sizes",
-                        principalColumn: "Id",
+                        "FK_SubCategories_Sizes_SizeId",
+                        x => x.SizeId,
+                        "Sizes",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Models",
-                columns: table => new
+                "Models",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    ArticleNumber = table.Column<string>(type: "text", nullable: false),
-                    BrandId = table.Column<Guid>(type: "uuid", nullable: false),
-                    SubCategoryId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ColorId = table.Column<Guid>(type: "uuid", nullable: false),
-                    GenderId = table.Column<Guid>(type: "uuid", nullable: false),
-                    FactoryId = table.Column<Guid>(type: "uuid", nullable: false),
-                    SeasonId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Title = table.Column<string>("character varying(100)", maxLength: 100, nullable: false),
+                    Price = table.Column<decimal>("numeric", nullable: false),
+                    ArticleNumber = table.Column<string>("text", nullable: false),
+                    BrandId = table.Column<Guid>("uuid", nullable: false),
+                    SubCategoryId = table.Column<Guid>("uuid", nullable: false),
+                    ColorId = table.Column<Guid>("uuid", nullable: false),
+                    GenderId = table.Column<Guid>("uuid", nullable: false),
+                    FactoryId = table.Column<Guid>("uuid", nullable: false),
+                    SeasonId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Models", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Models_Brands_BrandId",
-                        column: x => x.BrandId,
-                        principalTable: "Brands",
-                        principalColumn: "Id",
+                        "FK_Models_Brands_BrandId",
+                        x => x.BrandId,
+                        "Brands",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Models_Colors_ColorId",
-                        column: x => x.ColorId,
-                        principalTable: "Colors",
-                        principalColumn: "Id",
+                        "FK_Models_Colors_ColorId",
+                        x => x.ColorId,
+                        "Colors",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Models_Factories_FactoryId",
-                        column: x => x.FactoryId,
-                        principalTable: "Factories",
-                        principalColumn: "Id",
+                        "FK_Models_Factories_FactoryId",
+                        x => x.FactoryId,
+                        "Factories",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Models_Genders_GenderId",
-                        column: x => x.GenderId,
-                        principalTable: "Genders",
-                        principalColumn: "Id",
+                        "FK_Models_Genders_GenderId",
+                        x => x.GenderId,
+                        "Genders",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Models_Seasons_SeasonId",
-                        column: x => x.SeasonId,
-                        principalTable: "Seasons",
-                        principalColumn: "Id",
+                        "FK_Models_Seasons_SeasonId",
+                        x => x.SeasonId,
+                        "Seasons",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Models_SubCategories_SubCategoryId",
-                        column: x => x.SubCategoryId,
-                        principalTable: "SubCategories",
-                        principalColumn: "Id",
+                        "FK_Models_SubCategories_SubCategoryId",
+                        x => x.SubCategoryId,
+                        "SubCategories",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AmountOfSizes",
-                columns: table => new
+                "AmountOfSizes",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Value = table.Column<double>(type: "double precision", nullable: false),
-                    Amount = table.Column<int>(type: "integer", nullable: false),
-                    ModelId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Value = table.Column<double>("double precision", nullable: false),
+                    Amount = table.Column<int>("integer", nullable: false),
+                    ModelId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AmountOfSizes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AmountOfSizes_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
-                        principalColumn: "Id",
+                        "FK_AmountOfSizes_Models_ModelId",
+                        x => x.ModelId,
+                        "Models",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
-                columns: table => new
+                "Comment",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Review = table.Column<int>(type: "integer", nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: true),
-                    CreateDate = table.Column<string>(type: "text", nullable: true),
-                    ModelId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Review = table.Column<int>("integer", nullable: false),
+                    Value = table.Column<string>("text", nullable: true),
+                    CreateDate = table.Column<string>("text", nullable: true),
+                    ModelId = table.Column<Guid>("uuid", nullable: false),
+                    UserId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comment_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
-                        principalColumn: "Id",
+                        "FK_Comment_Models_ModelId",
+                        x => x.ModelId,
+                        "Models",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Comment_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
+                        "FK_Comment_Users_UserId",
+                        x => x.UserId,
+                        "Users",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
+                "Images",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Path = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    Format = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    ModelId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Path = table.Column<string>("character varying(500)", maxLength: 500, nullable: false),
+                    Format = table.Column<string>("character varying(20)", maxLength: 20, nullable: false),
+                    ModelId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Images_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
-                        principalColumn: "Id",
+                        "FK_Images_Models_ModelId",
+                        x => x.ModelId,
+                        "Models",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ModelsData",
-                columns: table => new
+                "ModelsData",
+                table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Key = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Value = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    ModelId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>("uuid", nullable: false),
+                    Key = table.Column<string>("character varying(50)", maxLength: 50, nullable: false),
+                    Value = table.Column<string>("character varying(500)", maxLength: 500, nullable: false),
+                    ModelId = table.Column<Guid>("uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ModelsData", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ModelsData_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
-                        principalColumn: "Id",
+                        "FK_ModelsData_Models_ModelId",
+                        x => x.ModelId,
+                        "Models",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AgeTypes_Title",
-                table: "AgeTypes",
-                column: "Title",
+                "IX_AgeTypes_Title",
+                "AgeTypes",
+                "Title",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AmountOfSizes_ModelId",
-                table: "AmountOfSizes",
-                column: "ModelId");
+                "IX_AmountOfSizes_ModelId",
+                "AmountOfSizes",
+                "ModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_AgeTypeId",
-                table: "Categories",
-                column: "AgeTypeId");
+                "IX_Categories_AgeTypeId",
+                "Categories",
+                "AgeTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Colors_Title",
-                table: "Colors",
-                column: "Title",
+                "IX_Colors_Title",
+                "Colors",
+                "Title",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_ModelId",
-                table: "Comment",
-                column: "ModelId");
+                "IX_Comment_ModelId",
+                "Comment",
+                "ModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_UserId",
-                table: "Comment",
-                column: "UserId",
+                "IX_Comment_UserId",
+                "Comment",
+                "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Countries_Title",
-                table: "Countries",
-                column: "Title",
+                "IX_Countries_Title",
+                "Countries",
+                "Title",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Factories_CountryId",
-                table: "Factories",
-                column: "CountryId");
+                "IX_Factories_CountryId",
+                "Factories",
+                "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Genders_Title",
-                table: "Genders",
-                column: "Title",
+                "IX_Genders_Title",
+                "Genders",
+                "Title",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_Format",
-                table: "Images",
-                column: "Format",
+                "IX_Images_Format",
+                "Images",
+                "Format",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_ModelId",
-                table: "Images",
-                column: "ModelId");
+                "IX_Images_ModelId",
+                "Images",
+                "ModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_Path",
-                table: "Images",
-                column: "Path",
+                "IX_Images_Path",
+                "Images",
+                "Path",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_ArticleNumber",
-                table: "Models",
-                column: "ArticleNumber",
+                "IX_Models_ArticleNumber",
+                "Models",
+                "ArticleNumber",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_BrandId",
-                table: "Models",
-                column: "BrandId");
+                "IX_Models_BrandId",
+                "Models",
+                "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_ColorId",
-                table: "Models",
-                column: "ColorId");
+                "IX_Models_ColorId",
+                "Models",
+                "ColorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_FactoryId",
-                table: "Models",
-                column: "FactoryId");
+                "IX_Models_FactoryId",
+                "Models",
+                "FactoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_GenderId",
-                table: "Models",
-                column: "GenderId");
+                "IX_Models_GenderId",
+                "Models",
+                "GenderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_SeasonId",
-                table: "Models",
-                column: "SeasonId");
+                "IX_Models_SeasonId",
+                "Models",
+                "SeasonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_SubCategoryId",
-                table: "Models",
-                column: "SubCategoryId");
+                "IX_Models_SubCategoryId",
+                "Models",
+                "SubCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ModelsData_ModelId",
-                table: "ModelsData",
-                column: "ModelId");
+                "IX_ModelsData_ModelId",
+                "ModelsData",
+                "ModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleClaims_RoleId",
-                table: "RoleClaims",
-                column: "RoleId");
+                "IX_RoleClaims_RoleId",
+                "RoleClaims",
+                "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "Roles",
-                column: "NormalizedName",
+                "RoleNameIndex",
+                "Roles",
+                "NormalizedName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seasons_Title",
-                table: "Seasons",
-                column: "Title",
+                "IX_Seasons_Title",
+                "Seasons",
+                "Title",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_CategoryId",
-                table: "SubCategories",
-                column: "CategoryId");
+                "IX_SubCategories_CategoryId",
+                "SubCategories",
+                "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_SizeId",
-                table: "SubCategories",
-                column: "SizeId");
+                "IX_SubCategories_SizeId",
+                "SubCategories",
+                "SizeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_Title",
-                table: "SubCategories",
-                column: "Title",
+                "IX_SubCategories_Title",
+                "SubCategories",
+                "Title",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserClaims_UserId",
-                table: "UserClaims",
-                column: "UserId");
+                "IX_UserClaims_UserId",
+                "UserClaims",
+                "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserLogins_UserId",
-                table: "UserLogins",
-                column: "UserId");
+                "IX_UserLogins_UserId",
+                "UserLogins",
+                "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRoles_RoleId",
-                table: "UserRoles",
-                column: "RoleId");
+                "IX_UserRoles_RoleId",
+                "UserRoles",
+                "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "EmailIndex",
-                table: "Users",
-                column: "NormalizedEmail");
+                "EmailIndex",
+                "Users",
+                "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
-                table: "Users",
-                column: "NormalizedUserName",
+                "UserNameIndex",
+                "Users",
+                "NormalizedUserName",
                 unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AmountOfSizes");
+                "AmountOfSizes");
 
             migrationBuilder.DropTable(
-                name: "Comment");
+                "Comment");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                "Images");
 
             migrationBuilder.DropTable(
-                name: "ModelsData");
+                "ModelsData");
 
             migrationBuilder.DropTable(
-                name: "RoleClaims");
+                "RoleClaims");
 
             migrationBuilder.DropTable(
-                name: "UserClaims");
+                "UserClaims");
 
             migrationBuilder.DropTable(
-                name: "UserLogins");
+                "UserLogins");
 
             migrationBuilder.DropTable(
-                name: "UserRoles");
+                "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "UserTokens");
+                "UserTokens");
 
             migrationBuilder.DropTable(
-                name: "Models");
+                "Models");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                "Roles");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                "Users");
 
             migrationBuilder.DropTable(
-                name: "Brands");
+                "Brands");
 
             migrationBuilder.DropTable(
-                name: "Colors");
+                "Colors");
 
             migrationBuilder.DropTable(
-                name: "Factories");
+                "Factories");
 
             migrationBuilder.DropTable(
-                name: "Genders");
+                "Genders");
 
             migrationBuilder.DropTable(
-                name: "Seasons");
+                "Seasons");
 
             migrationBuilder.DropTable(
-                name: "SubCategories");
+                "SubCategories");
 
             migrationBuilder.DropTable(
-                name: "Countries");
+                "Countries");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                "Categories");
 
             migrationBuilder.DropTable(
-                name: "Sizes");
+                "Sizes");
 
             migrationBuilder.DropTable(
-                name: "AgeTypes");
+                "AgeTypes");
         }
     }
 }

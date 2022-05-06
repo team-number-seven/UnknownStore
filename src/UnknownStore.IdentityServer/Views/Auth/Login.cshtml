@@ -21,110 +21,102 @@
         <div id="login-form-box">
             <div id="login-form-box-body">
                 <div id="login-form-header">
-            <h1>Login</h1>
-            <h2>Choose how to login</h2>
-        </div>
-        <div id="login-form-body">
-
-             <form asp-controller="Auth" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-                @foreach (var provider in Model.ExternalProviders)
-                {
-                    <div class="login-service">
-                    <button type="submit"
-                            name="provider"
-
-                            value="@provider.Name">
-                            <img id="google-icon" src=~/pictures/1534129544.svg/>
-                       Continue with @provider.DisplayName
-                    </button>
-               
-                    </div>
-                }
-            </form>
-
-
-            <form asp-route="Login">
-                <input type="hidden" asp-for="ReturnUrl"/>
-
-             
-                    <input type="text" class="form-control" placeholder="Email" asp-for="Email" id="username-input" autocomplete="off">
-
-                <div class="error-message">
-                    <span asp-validation-for="Email"></span>
+                    <h1>Login</h1>
+                    <h2>Choose how to login</h2>
                 </div>
+                <div id="login-form-body">
 
-                
-                    <input type="password" class="form-control" placeholder="Password" asp-for="Password" id="password-input" autocomplete="off">
-                    <div class="error-message">
-                    <span asp-validation-for="Password"></span>
-                </div>
-                    <div class="under-password">
+                    <form asp-controller="Auth" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                        @foreach (var provider in Model.ExternalProviders)
+                        {
+                            <div class="login-service">
+                                <button type="submit"
+                                        name="provider"
+
+                                        value="@provider.Name">
+                                    <img id="google-icon" src=~/pictures/1534129544.svg/>
+                                    Continue with @provider.DisplayName
+                                </button>
+
+                            </div>
+                        }
+                    </form>
+
+
+                    <form asp-route="Login">
+                        <input type="hidden" asp-for="ReturnUrl"/>
+
+
+                        <input type="text" class="form-control" placeholder="Email" asp-for="Email" id="username-input" autocomplete="off">
+
+                        <div class="error-message">
+                            <span asp-validation-for="Email"></span>
+                        </div>
+
+
+                        <input type="password" class="form-control" placeholder="Password" asp-for="Password" id="password-input" autocomplete="off">
+                        <div class="error-message">
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                        <div class="under-password">
+                            <div class="remember-input">
+                                <input type="checkbox" class="custom-checkbox" onclick="myFunction()"/>
+                                <span>Show password</span>
+
+                            </div>
+                            <a href="#">Forgot password?</a>
+                        </div>
+
+
                         <div class="remember-input">
-                        <input type="checkbox" class="custom-checkbox" onclick="myFunction()" />
-                    <span>Show password</span>
-                   
-                    </div>
-                    <a href="#">Forgot password?</a>
-                    </div>
-                  
-               
+                            <input type="checkbox" class="custom-checkbox" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
+                            <span>Remember me</span>
+                        </div>
 
-                
+                        <div class="validation" asp-validation-summary="ModelOnly"></div>
+                        <div id="login-form-footer">
+                            <button type="submit" class="btn btn-primary" name="button" value="login">Login</button>
 
-                <div class="remember-input">
-                    <input type="checkbox" class="custom-checkbox" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
-                    <span>Remember me</span>
-                    </div>
+                        </div>
+                    </form>
 
-                <div class="validation" asp-validation-summary="ModelOnly"></div>
-                <div id="login-form-footer">
-                    <button type="submit" class="btn btn-primary" name="button" value="login">Login</button>
-                 
-                </div>
-                </form>
-
-
-                
 
                 </div>
-                
-                
-        </div>
 
 
-                
-            
-
-        </div>
-        
-        
-            <div class="another-login-way">
-                <label>No account?</label>
-                <a href="@Url.Action("Register", "Auth", new { returnUrl = Model.ReturnUrl })">
-                        Create one!
-                </a>
             </div>
-           
-  
+
+
+        </div>
+
+
+        <div class="another-login-way">
+            <label>No account?</label>
+            <a href="@Url.Action("Register", "Auth", new { returnUrl = Model.ReturnUrl })">
+                Create one!
+            </a>
+        </div>
+
+
     </div>
 
 
-     <script>
+    <script>
         function myFunction() {
-  var x = document.getElementById("password-input");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-} 
+            var x = document.getElementById("password-input");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
     </script>
-    
+
 </div>
 
 @section scripts{
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-   
+
 }

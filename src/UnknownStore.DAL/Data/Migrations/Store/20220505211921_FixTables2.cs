@@ -7,16 +7,16 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_SubCategories_Title",
-                table: "SubCategories");
+                "IX_SubCategories_Title",
+                "SubCategories");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_Title",
-                table: "SubCategories",
-                column: "Title",
+                "IX_SubCategories_Title",
+                "SubCategories",
+                "Title",
                 unique: true);
         }
     }

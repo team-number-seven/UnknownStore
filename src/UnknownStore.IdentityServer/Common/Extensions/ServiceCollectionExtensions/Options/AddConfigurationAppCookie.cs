@@ -5,7 +5,8 @@ namespace UnknownStore.IdentityServer.Common.Extensions.ServiceCollectionExtensi
 {
     public static partial class IdentityDependencyInjection
     {
-        public static IServiceCollection AddConfigurationAppCookie(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddConfigurationAppCookie(this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.ConfigureApplicationCookie(config =>
             {

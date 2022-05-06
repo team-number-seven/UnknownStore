@@ -1,162 +1,162 @@
 [
   {
     "Title": "Red",
-    "HexCode":"#FF0000"
+    "HexCode": "#FF0000"
   },
   {
     "Title": "Blue",
-    "HexCode":"#0000FF"
+    "HexCode": "#0000FF"
   },
   {
     "Title": "Green",
-    "HexCode":"#006400"
+    "HexCode": "#006400"
   },
   {
     "Title": "Orange",
-    "HexCode":"#FF6600"
+    "HexCode": "#FF6600"
   },
   {
     "Title": "White",
-    "HexCode":"#FFFFFF"
+    "HexCode": "#FFFFFF"
   },
   {
     "Title": "Black",
-    "HexCode":"#000000"
+    "HexCode": "#000000"
   },
   {
     "Title": "Yellow",
-    "HexCode":"#FFFF00"
+    "HexCode": "#FFFF00"
   },
   {
     "Title": "Purple",
-    "HexCode":"#A020F0"
+    "HexCode": "#A020F0"
   },
   {
     "Title": "Brown",
-    "HexCode":"#964B00"
+    "HexCode": "#964B00"
   },
   {
     "Title": "Silver",
-    "HexCode":"#C0C0C0"
+    "HexCode": "#C0C0C0"
   },
   {
     "Title": "Gray",
-    "HexCode":"#808080"
+    "HexCode": "#808080"
   },
   {
     "Title": "Pink",
-    "HexCode":"#FFC0CB"
+    "HexCode": "#FFC0CB"
   },
   {
     "Title": "Olive",
-    "HexCode":"#808000"
+    "HexCode": "#808000"
   },
   {
     "Title": "Maroon",
-    "HexCode":"#800000"
+    "HexCode": "#800000"
   },
   {
     "Title": "Violet",
-    "HexCode":"#8F00FF"
+    "HexCode": "#8F00FF"
   },
   {
     "Title": "Charcoal",
-    "HexCode":"#36454F"
+    "HexCode": "#36454F"
   },
   {
     "Title": "Magenta",
-    "HexCode":"#FF00FF"
+    "HexCode": "#FF00FF"
   },
   {
     "Title": "Bronze",
-    "HexCode":"#CD7F32"
+    "HexCode": "#CD7F32"
   },
   {
     "Title": "Cream",
-    "HexCode":"#FFFDD0"
+    "HexCode": "#FFFDD0"
   },
   {
     "Title": "Gold",
-    "HexCode":"#FFD700"
+    "HexCode": "#FFD700"
   },
   {
     "Title": "Tan",
-    "HexCode":"#D2B48C"
+    "HexCode": "#D2B48C"
   },
   {
     "Title": "Teal",
-    "HexCode":"#008080"
+    "HexCode": "#008080"
   },
   {
     "Title": "Mustard",
-    "HexCode":"#FFDB58"
+    "HexCode": "#FFDB58"
   },
   {
     "Title": "Navy Blue",
-    "HexCode":"#000080"
+    "HexCode": "#000080"
   },
   {
     "Title": "Coral",
-    "HexCode":"#FF7F50"
+    "HexCode": "#FF7F50"
   },
   {
     "Title": "Burgundy",
-    "HexCode":"#800020"
+    "HexCode": "#800020"
   },
   {
     "Title": "Lavender",
-    "HexCode":"#E6E6FA"
+    "HexCode": "#E6E6FA"
   },
   {
     "Title": "Mauve",
-    "HexCode":"#E0b0FF"
+    "HexCode": "#E0b0FF"
   },
   {
     "Title": "Peach",
-    "HexCode":"#FFE5B4"
+    "HexCode": "#FFE5B4"
   },
   {
     "Title": "Rust",
-    "HexCode":"#B7410E"
+    "HexCode": "#B7410E"
   },
   {
     "Title": "Indigo",
-    "HexCode":"#4B0082"
+    "HexCode": "#4B0082"
   },
   {
     "Title": "Ruby",
-    "HexCode":"#E0115F"
+    "HexCode": "#E0115F"
   },
   {
     "Title": "Clay",
-    "HexCode":"#CC7357"
+    "HexCode": "#CC7357"
   },
   {
     "Title": "Cyan",
-    "HexCode":"#00FFFF"
+    "HexCode": "#00FFFF"
   },
   {
     "Title": "Azure",
-    "HexCode":"#007FFF"
+    "HexCode": "#007FFF"
   },
   {
     "Title": "Beige",
-    "HexCode":"#F5F5DC"
+    "HexCode": "#F5F5DC"
   },
   {
     "Title": "Off White",
-    "HexCode":"#FAF9F6"
+    "HexCode": "#FAF9F6"
   },
   {
     "Title": "Turquoise",
-    "HexCode":"#30D5C8"
+    "HexCode": "#30D5C8"
   },
   {
     "Title": "Amber",
-    "HexCode":"#FFBF00"
+    "HexCode": "#FFBF00"
   },
   {
     "Title": "Mint",
-    "HexCode":"#3EB489"
+    "HexCode": "#3EB489"
   }
 ]

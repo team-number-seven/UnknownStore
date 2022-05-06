@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,7 +7,7 @@ namespace UnknownStore.WebAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class HomeController:ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -32,6 +31,4 @@ namespace UnknownStore.WebAPI.Controllers
     {
         public string test { get; set; } = "test";
     }
-
 }
-
