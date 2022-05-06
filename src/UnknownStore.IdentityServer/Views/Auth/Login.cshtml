@@ -34,8 +34,10 @@
                             name="provider"
 
                             value="@provider.Name">
-                       Sign in with @provider.DisplayName
+                            <img id="google-icon" src=~/pictures/1534129544.svg/>
+                       Continue with @provider.DisplayName
                     </button>
+               
                     </div>
                 }
             </form>
@@ -56,9 +58,13 @@
                     <div class="error-message">
                     <span asp-validation-for="Password"></span>
                 </div>
-                    <div class="remember-input">
-                        <input type="checkbox" onclick="myFunction()" />
+                    <div class="under-password">
+                        <div class="remember-input">
+                        <input type="checkbox" class="custom-checkbox" onclick="myFunction()" />
                     <span>Show password</span>
+                   
+                    </div>
+                    <a href="#">Forgot password?</a>
                     </div>
                   
                
@@ -66,7 +72,7 @@
                 
 
                 <div class="remember-input">
-                    <input type="checkbox" class="form-check" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
+                    <input type="checkbox" class="custom-checkbox" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
                     <span>Remember me</span>
                     </div>
 
@@ -92,10 +98,12 @@
         
         
             <div class="another-login-way">
+                <label>No account?</label>
                 <a href="@Url.Action("Register", "Auth", new { returnUrl = Model.ReturnUrl })">
-                        <label>Create new account</label>
+                        Create one!
                     </a>
             </div>
+           
   
     </div>
 
