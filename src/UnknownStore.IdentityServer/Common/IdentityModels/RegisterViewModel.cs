@@ -21,7 +21,7 @@ namespace UnknownStore.IdentityServer.Common.IdentityModels
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "ConfirmPassword required")]
+        [Required(ErrorMessage = "Confirm password required")]
         [Compare(nameof(Password), ErrorMessage = "Passwords must match")]
         public string ConfirmPassword { get; set; }
 
