@@ -10,5 +10,8 @@ namespace UnknownStore.Common
         {
             return $"The {name} cannot be null";
         }
+
+        public static string CommandExecutedSuccessfully(string commandName) =>
+            $"{TimeNow}The command {commandName} was executed successfully.";
     }
 }

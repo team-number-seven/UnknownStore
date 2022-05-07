@@ -8,7 +8,6 @@ namespace UnknownStore.DAL.Entities.Store
         public string Title { get; set; }
 
         public decimal Price { get; set; }
-        public string ArticleNumber { get; set; }
 
         public virtual Brand Brand { get; set; }
         public Guid BrandId { get; set; }

@@ -1,7 +1,10 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel;
+using UnknownStore.Common.DataTransferObjects;
+using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.WebAPI.Controllers
 {
@@ -9,21 +12,23 @@ namespace UnknownStore.WebAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        private readonly IStoreDbContext _context;
         private readonly ILogger<HomeController> _logger;
+        private readonly IMediator _mediator;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMediator mediator, IStoreDbContext context)
         {
             _logger = logger;
+            _mediator = mediator;
+            _context = context;
         }
 
-        [Authorize(Policy = "Owner")]
         [Route("[action]")]
         [HttpGet]
-        public IActionResult Test()
+        public async Task<IActionResult> Test([FromForm] CreateModelDto request)
         {
-            _logger.LogInformation(User.FindFirstValue("Id"));
-            var t = new Tests();
-            return Ok(t);
+            var response = await _mediator.Send(new CreateModelCommand(request));
+             return StatusCode((int)response.StatusCode, response);
         }
     }
 
