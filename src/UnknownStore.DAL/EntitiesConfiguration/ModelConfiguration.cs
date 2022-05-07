@@ -13,18 +13,12 @@ namespace UnknownStore.DAL.EntitiesConfiguration
             builder
                 .HasKey(m => m.Id);
             builder
-                .HasIndex(m => m.ArticleNumber)
-                .IsUnique();
-            builder
                 .Property(m => m.Price)
                 .IsRequired();
             builder
                 .Property(m => m.Title)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder
-                .Property(m => m.ArticleNumber)
-                .IsRequired();
 
             builder
                 .HasOne(m => m.Brand)
