@@ -349,5 +349,7 @@ healthchecksdb
 MigrationBackup/
 
 src/TestProject/
+
+src/UnknownStore.DAL/Images/
 
-src/UnknownStore.DAL/Images/
+.idea

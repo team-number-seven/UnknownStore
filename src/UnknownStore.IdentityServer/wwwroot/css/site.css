@@ -303,3 +303,33 @@ span {
     font-size: small;
     color: var(--color-input-unfocus);
 }
+
+.validation{
+    height:10px;
+    max-height:10px;
+    font-size:small;
+    color:var(--error-color);
+}
+.success-registrated {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-image: url('/pictures/Artboard 1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color:var(--color-primary);
+   
+}
+
+    .success-registrated h1 {
+        font-weight: 900;
+        font-size: 5rem;
+        margin-bottom:50px;
+    }
+}
+

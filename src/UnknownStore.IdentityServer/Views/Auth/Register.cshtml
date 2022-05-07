@@ -15,7 +15,6 @@
                     <div id="login-form-body">
                         <form asp-route="Register" method="post">
                             <input type="hidden" asp-for="ReturnUrl">
-                            <div class="validation" asp-validation-summary="ModelOnly"></div>
 
                             <input type="text" class="form-control" placeholder="Email" asp-for="Email">
                             <div class="error-message">
@@ -44,6 +43,12 @@
                             <div class="error-message">
                                 <span asp-validation-for="ConfirmPassword"></span>
                             </div>
+
+                            <div class="validation">
+                                <div asp-validation-summary="ModelOnly"></div>
+
+                                </div>
+
 
                             <div id="login-form-footer">
                                 <button type="submit" class="btn btn-primary" name="button" value="register">Sign up</button>
