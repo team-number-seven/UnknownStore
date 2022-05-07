@@ -12,9 +12,6 @@ namespace UnknownStore.DAL.EntitiesConfiguration
             builder
                 .HasKey(i => i.Id);
             builder
-                .HasIndex(i => i.Format)
-                .IsUnique();
-            builder
                 .HasIndex(i => i.Path)
                 .IsUnique();
             builder

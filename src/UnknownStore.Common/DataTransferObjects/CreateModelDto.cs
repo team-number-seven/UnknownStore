@@ -13,8 +13,8 @@ namespace UnknownStore.Common.DataTransferObjects
         public Guid ColorId { get; set; }
         public Guid SeasonId { get; set; }
         public Guid FactoryId { get; set; }
-        public IEnumerable<IFormFile> Files { get; set; }
-        public IDictionary<string,string> AmountOfSize { get; set; }
-        public IDictionary<string,string> ModelData { get; set; }
+        public IFormFileCollection Files { get; set; }
+        public IDictionary<double, int> AmountOfSize { get; set; }
+        public IDictionary<string, string> ModelData { get; set; }
     }
 }

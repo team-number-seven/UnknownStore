@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,8 @@ namespace UnknownStore.WebAPI
             var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
             var context = scope.ServiceProvider.GetRequiredService<IStoreDbContext>();
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<IHost>>();
+            var currentDir = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\"));
+            configuration["CurrentDirectory"] = currentDir;
             try
             {
                 await SeedStore.SeedDataStoreAsync(context, configuration, logger);

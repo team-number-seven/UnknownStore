@@ -7,27 +7,27 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_Models_ArticleNumber",
-                table: "Models");
+                "IX_Models_ArticleNumber",
+                "Models");
 
             migrationBuilder.DropColumn(
-                name: "ArticleNumber",
-                table: "Models");
+                "ArticleNumber",
+                "Models");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "ArticleNumber",
-                table: "Models",
-                type: "text",
+                "ArticleNumber",
+                "Models",
+                "text",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_ArticleNumber",
-                table: "Models",
-                column: "ArticleNumber",
+                "IX_Models_ArticleNumber",
+                "Models",
+                "ArticleNumber",
                 unique: true);
         }
     }
