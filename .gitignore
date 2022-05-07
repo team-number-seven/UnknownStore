@@ -349,3 +349,5 @@ healthchecksdb
 MigrationBackup/
 
 src/TestProject/
+
+.idea
