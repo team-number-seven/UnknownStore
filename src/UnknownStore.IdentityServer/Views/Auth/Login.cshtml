@@ -6,38 +6,24 @@
 }
 
 <div id="login">
-
-    @*<div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-    </div>
-
-    <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-    </div>*@
-
     <div id="login-form-container">
         <div id="login-form-box">
             <div id="login-form-box-body">
                 <div id="login-form-header">
-                    <h1>Login</h1>
-                    <h2>Choose how to login</h2>
+                    <h1>Sign in</h1>
+                    <h2>Choose how to sign in</h2>
                 </div>
                 <div id="login-form-body">
-
                     <form asp-controller="Auth" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
                         @foreach (var provider in Model.ExternalProviders)
                         {
                             <div class="login-service">
                                 <button type="submit"
                                         name="provider"
-
                                         value="@provider.Name">
-                                    <img id="google-icon" src=~/pictures/1534129544.svg/>
+                                    <img alt="google icon" id="google-icon" src=~/pictures/1534129544.svg/>
                                     Continue with @provider.DisplayName
                                 </button>
-
                             </div>
                         }
                     </form>
@@ -46,76 +32,65 @@
                     <form asp-route="Login">
                         <input type="hidden" asp-for="ReturnUrl"/>
 
-
                         <input type="text" class="form-control" placeholder="Email" asp-for="Email" id="username-input" autocomplete="off">
-
                         <div class="error-message">
                             <span asp-validation-for="Email"></span>
                         </div>
-
-
+                        
+                        <img src="/pictures/hidden.svg" class="password-icon"/>
                         <input type="password" class="form-control" placeholder="Password" asp-for="Password" id="password-input" autocomplete="off">
                         <div class="error-message">
                             <span asp-validation-for="Password"></span>
                         </div>
+
                         <div class="under-password">
                             <div class="remember-input">
-                                <input type="checkbox" class="custom-checkbox" onclick="myFunction()"/>
-                                <span>Show password</span>
-
+                                <input type="checkbox" class="custom-checkbox" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
+                                <span>Remember me</span>
                             </div>
                             <a href="#">Forgot password?</a>
                         </div>
 
-
-                        <div class="remember-input">
-                            <input type="checkbox" class="custom-checkbox" placeholder="isRemember" asp-for="IsRemember" id="isRemember-input">
-                            <span>Remember me</span>
-                        </div>
+                        
 
                         <div class="validation" asp-validation-summary="ModelOnly"></div>
                         <div id="login-form-footer">
-                            <button type="submit" class="btn btn-primary" name="button" value="login">Login</button>
-
+                            <button type="submit" class="btn btn-primary" name="button" value="login">Sign in</button>
                         </div>
                     </form>
-
-
                 </div>
-
-
             </div>
-
-
         </div>
-
-
         <div class="another-login-way">
             <label>No account?</label>
             <a href="@Url.Action("Register", "Auth", new { returnUrl = Model.ReturnUrl })">
                 Create one!
             </a>
         </div>
-
-
     </div>
-
-
-    <script>
-        function myFunction() {
-            var x = document.getElementById("password-input");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
 
 </div>
 
 @section scripts{
+    
+    <script>
+        var icon1 = document.getElementsByClassName("password-icon")[0];
+        var input1 = document.getElementById("password-input");
+        icon1Show = false;
+        icon1.addEventListener("click", function() {
+            icon1Show = !icon1Show;
 
+            if (icon1Show === true) {
+                icon1.src = "/pictures/show.svg";
+                input1.type = "text";
+
+            } else {
+                icon1.src = "/pictures/hidden.svg";
+                input1.type = "password";
+            }
+            
+        });
+    </script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 

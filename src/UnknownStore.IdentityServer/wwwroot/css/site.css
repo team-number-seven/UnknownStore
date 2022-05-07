@@ -24,7 +24,8 @@ body {
     font-weight: lighter;
 }
 
-#register-form-container { }
+
+#register-form-container {
 
 #login {
     align-items: center;
@@ -123,7 +124,10 @@ body {
     height: 2.5rem;
 }
 
-#login-form-body .form-control input { padding: 0; }
+#login-form-body .form-control input {
+    padding: 0;
+    color: var(--color-input-unfocus);
+}
 
 #login-form-body .form-control:focus {
     border-bottom: var(--first-color) 1px solid;
@@ -139,8 +143,8 @@ body {
 }
 
 #login-form-footer {
-    margin-top: 10px;
     width: 100%;
+    margin-top: 20px;
 }
 
 #login-form-footer button {
@@ -204,7 +208,22 @@ body {
     transition: opacity 0.2s ease-out;
 }
 
-#username-input { margin-top: 10px; }
+#username-input, #Email {
+    margin-top: 10px;
+}
+
+.password-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    margin-left: 60%;
+    margin-top: 1.75%;
+    -webkit-filter: invert(58%) sepia(9%) saturate(9%) hue-rotate(334deg) brightness(88%) contrast(84%);
+}
+    .password-icon:hover {
+        -webkit-filter: invert(46%) sepia(48%) saturate(7463%) hue-rotate(188deg) brightness(99%) contrast(93%);
+    }
 
 .remember-input {
     align-items: center;
