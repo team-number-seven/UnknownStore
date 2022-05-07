@@ -191,7 +191,6 @@ namespace UnknownStore.IdentityServer.Controllers
             {
                 Id = Guid.NewGuid(),
                 Email = model.Email,
-                PhoneNumber = model.PhoneNumber,
                 EmailConfirmed = false
             };
             user.UserName = user.Id + "|" + model.Username;
@@ -258,11 +257,6 @@ namespace UnknownStore.IdentityServer.Controllers
                 Protocol = _optionsUrlOptions.Scheme,
                 Values = values
             });
-        }
-
-        private string GenerateUserName(string username, string Id)
-        {
-            return username + "|" + Id;
         }
     }
 }

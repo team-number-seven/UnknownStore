@@ -24,7 +24,5 @@ namespace UnknownStore.IdentityServer.Common.IdentityModels
         [Required(ErrorMessage = "Confirm password required")]
         [Compare(nameof(Password), ErrorMessage = "Passwords must match")]
         public string ConfirmPassword { get; set; }
-
-        [Phone] public string PhoneNumber { get; set; }
     }
 }
