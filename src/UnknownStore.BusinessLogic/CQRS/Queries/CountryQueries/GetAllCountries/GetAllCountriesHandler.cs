@@ -1,10 +1,15 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using UnknownStore.Common;
 using UnknownStore.Common.CQRS;
+using UnknownStore.Common.DataTransferObjects;
+using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.BusinessLogic.CQRS.Queries.CountryQueries.GetAllCountries
@@ -25,9 +30,18 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CountryQueries.GetAllCountries
             _logger = logger;
         }
 
-        public Task<ResponseBase> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseBase> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var countries = await _context.Countries.ToListAsync(cancellationToken);
+            var countryDtos = MapCountriesToCountryDtos(countries);
+            _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllCountriesHandler)));
+            return new GetAllCountriesResponse(countryDtos);
+        }
+
+        private IEnumerable<GetCountryDto> MapCountriesToCountryDtos(IEnumerable<Country> countries)
+        {
+            var countryDtos = countries.Select(country => _mapper.Map<GetCountryDto>(country)).ToList();
+            return countryDtos;
         }
     }
 }
