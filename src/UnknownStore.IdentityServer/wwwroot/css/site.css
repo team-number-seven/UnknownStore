@@ -33,7 +33,9 @@ body {
 
 #login {
     align-items: center;
-    background-color: var(--background);
+    background-image: url('/pictures/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     height: 100vh;
     justify-content: center;
