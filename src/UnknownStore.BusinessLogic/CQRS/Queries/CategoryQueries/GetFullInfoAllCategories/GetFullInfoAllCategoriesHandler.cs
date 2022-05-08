@@ -11,30 +11,30 @@ using UnknownStore.Common.DataTransferObjects;
 using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
 
-namespace UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetAllCategories
+namespace UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetFullInfoAllCategories
 {
-    public class GetAllCategoriesHandler : IRequestHandler<GetAllCategoriesQuery, ResponseBase>
+    public class GetFullInfoAllCategoriesHandler : IRequestHandler<GetAllFullInfoCategoriesQuery, ResponseBase>
     {
         private readonly IStoreDbContext _context;
-        private readonly ILogger<GetAllCategoriesHandler> _logger;
+        private readonly ILogger<GetFullInfoAllCategoriesHandler> _logger;
         private readonly IMapper _mapper;
 
-        public GetAllCategoriesHandler(
+        public GetFullInfoAllCategoriesHandler(
             IStoreDbContext context,
             IMapper mapper,
-            ILogger<GetAllCategoriesHandler> logger)
+            ILogger<GetFullInfoAllCategoriesHandler> logger)
         {
             _context = context;
             _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task<ResponseBase> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseBase> Handle(GetAllFullInfoCategoriesQuery request, CancellationToken cancellationToken)
         {
             var categories = await _context.Categories.ToListAsync(cancellationToken);
             var categoryDtos = MapCategoriesToGetSubCategories(categories);
-            _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllCategoriesHandler)));
-            return new GetAllCategoriesResponse(categoryDtos);
+            _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetFullInfoAllCategoriesHandler)));
+            return new GetFullInfoAllCategoriesResponse(categoryDtos);
         }
 
         private IEnumerable<GetCategoryDto> MapCategoriesToGetSubCategories(IEnumerable<Category> categories)

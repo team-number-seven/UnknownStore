@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetAllCategories;
+using UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetFullInfoAllCategories;
 
 namespace UnknownStore.WebAPI.Controllers
 {
@@ -21,9 +21,9 @@ namespace UnknownStore.WebAPI.Controllers
 
         [HttpGet]
         [Route("get-all")]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<IActionResult> GetFullInfoAllCategories()
         {
-            var response = await _mediator.Send(new GetAllCategoriesQuery());
+            var response = await _mediator.Send(new GetAllFullInfoCategoriesQuery());
             return StatusCode((int)response.StatusCode, response);
         }
     }
