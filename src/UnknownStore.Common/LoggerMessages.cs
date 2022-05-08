@@ -11,7 +11,14 @@ namespace UnknownStore.Common
             return $"The {name} cannot be null";
         }
 
-        public static string CommandExecutedSuccessfully(string commandName) =>
-            $"{TimeNow}The command {commandName} was executed successfully.";
+        public static string CommandExecutedSuccessfully(string commandName)
+        {
+            return $"{TimeNow}The command {commandName} was executed successfully.";
+        }
+
+        public static string QueryExecutedSuccessfully(string queryName)
+        {
+            return $"{TimeNow}The query {queryName} was executed successfully.";
+        }
     }
 }

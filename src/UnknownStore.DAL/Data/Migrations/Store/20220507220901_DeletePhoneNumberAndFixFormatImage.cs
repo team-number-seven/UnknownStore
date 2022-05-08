@@ -7,37 +7,37 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_Images_Format",
-                table: "Images");
+                "IX_Images_Format",
+                "Images");
 
             migrationBuilder.DropColumn(
-                name: "PhoneNumber",
-                table: "Users");
+                "PhoneNumber",
+                "Users");
 
             migrationBuilder.DropColumn(
-                name: "PhoneNumberConfirmed",
-                table: "Users");
+                "PhoneNumberConfirmed",
+                "Users");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "PhoneNumber",
-                table: "Users",
-                type: "text",
+                "PhoneNumber",
+                "Users",
+                "text",
                 nullable: true);
 
             migrationBuilder.AddColumn<bool>(
-                name: "PhoneNumberConfirmed",
-                table: "Users",
-                type: "boolean",
+                "PhoneNumberConfirmed",
+                "Users",
+                "boolean",
                 nullable: false,
                 defaultValue: false);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_Format",
-                table: "Images",
-                column: "Format",
+                "IX_Images_Format",
+                "Images",
+                "Format",
                 unique: true);
         }
     }

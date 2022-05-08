@@ -4,7 +4,7 @@ using UnknownStore.DAL.Entities.Identity;
 
 namespace UnknownStore.DAL.EntitiesConfiguration
 {
-    public class UserConfiguration:IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {

@@ -7,56 +7,56 @@
     <div id="login-form-container">
         <div id="login-form-box">
             <div id="login-form-box-body">
-                
-                    <div id="login-form-header">
-                        <h1>Sign up</h1>
-                        <h2>Create your account</h2>
-                    </div>
-                    <div id="login-form-body">
-                        <form asp-route="Register" method="post">
-                            <input type="hidden" asp-for="ReturnUrl">
 
-                            <input type="text" class="form-control" placeholder="Email" asp-for="Email">
-                            <div class="error-message">
-                                <span asp-validation-for="Email"></span>
-                            </div>
-                            
+                <div id="login-form-header">
+                    <h1>Sign up</h1>
+                    <h2>Create your account</h2>
+                </div>
+                <div id="login-form-body">
+                    <form asp-route="Register" method="post">
+                        <input type="hidden" asp-for="ReturnUrl">
 
-                            <input type="text" class="form-control" placeholder="Username" asp-for="Username" autocomplete="off">
-                           
-                            <div class="error-message">
-                                <span asp-validation-for="Username"></span>
-                            </div>
-                            
-                            <img src="/pictures/hidden.svg" class="password-icon"/>
-                            <input type="password" id="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
-                            
-                            
-                            <div class="error-message">
-                                <span asp-validation-for="Password"></span>
-                            </div>
-
-                            <img src="/pictures/hidden.svg" class="password-icon"/>
-                            <input type="password" id="password-repeat" class="form-control" placeholder="Confirm password" asp-for="ConfirmPassword" autocomplete="off">
-                            
-
-                            <div class="error-message">
-                                <span asp-validation-for="ConfirmPassword"></span>
-                            </div>
-
-                            <div class="validation">
-                                <div asp-validation-summary="ModelOnly"></div>
-
-                                </div>
+                        <input type="text" class="form-control" placeholder="Email" asp-for="Email">
+                        <div class="error-message">
+                            <span asp-validation-for="Email"></span>
+                        </div>
 
 
-                            <div id="login-form-footer">
-                                <button type="submit" class="btn btn-primary" name="button" value="register">Sign up</button>
-                            </div>
-                            
-                            
-                        </form>
-                    </div>
+                        <input type="text" class="form-control" placeholder="Username" asp-for="Username" autocomplete="off">
+
+                        <div class="error-message">
+                            <span asp-validation-for="Username"></span>
+                        </div>
+
+                        <img src="/pictures/hidden.svg" class="password-icon"/>
+                        <input type="password" id="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+
+
+                        <div class="error-message">
+                            <span asp-validation-for="Password"></span>
+                        </div>
+
+                        <img src="/pictures/hidden.svg" class="password-icon"/>
+                        <input type="password" id="password-repeat" class="form-control" placeholder="Confirm password" asp-for="ConfirmPassword" autocomplete="off">
+
+
+                        <div class="error-message">
+                            <span asp-validation-for="ConfirmPassword"></span>
+                        </div>
+
+                        <div class="validation">
+                            <div asp-validation-summary="ModelOnly"></div>
+
+                        </div>
+
+
+                        <div id="login-form-footer">
+                            <button type="submit" class="btn btn-primary" name="button" value="register">Sign up</button>
+                        </div>
+
+
+                    </form>
+                </div>
             </div>
         </div>
         <div class="another-login-way">
@@ -70,42 +70,44 @@
 
 
 @section scripts{
-    
+
     <script>
         var icon1 = document.getElementsByClassName("password-icon")[0];
         var input1 = document.getElementById("password");
         icon1Show = false;
-        icon1.addEventListener("click", function() {
-            icon1Show = !icon1Show;
+        icon1.addEventListener("click",
+            function() {
+                icon1Show = !icon1Show;
 
-            if (icon1Show === true) {
-                icon1.src = "/pictures/show.svg";
-                
-                input1.type = "text";
+                if (icon1Show === true) {
+                    icon1.src = "/pictures/show.svg";
 
-            } else {
-                icon1.src = "/pictures/hidden.svg";
-                input1.type = "password";
-            }
-            
-        });
+                    input1.type = "text";
+
+                } else {
+                    icon1.src = "/pictures/hidden.svg";
+                    input1.type = "password";
+                }
+
+            });
         var icon2 = document.getElementsByClassName("password-icon")[1];
         var input2 = document.getElementById("password-repeat");
         icon2Show = false;
-        icon2.addEventListener("click", function() {
-            icon2Show = !icon2Show;
+        icon2.addEventListener("click",
+            function() {
+                icon2Show = !icon2Show;
 
-            if (icon2Show === true) {
-                icon2.src = "/pictures/show.svg";
-                
-                input2.type = "text";
+                if (icon2Show === true) {
+                    icon2.src = "/pictures/show.svg";
 
-            } else {
-                icon2.src = "/pictures/hidden.svg";
-                input2.type = "password";
-            }
-            
-        });
+                    input2.type = "text";
+
+                } else {
+                    icon2.src = "/pictures/hidden.svg";
+                    input2.type = "password";
+                }
+
+            });
 
     </script>
 

@@ -28,7 +28,7 @@ namespace UnknownStore.WebAPI.Controllers
         public async Task<IActionResult> Test([FromForm] CreateModelDto request)
         {
             var response = await _mediator.Send(new CreateModelCommand(request));
-             return StatusCode((int)response.StatusCode, response);
+            return StatusCode((int)response.StatusCode, response);
         }
     }
 

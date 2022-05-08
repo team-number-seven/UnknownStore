@@ -36,7 +36,7 @@
                         <div class="error-message">
                             <span asp-validation-for="Email"></span>
                         </div>
-                        
+
                         <img src="/pictures/hidden.svg" class="password-icon"/>
                         <input type="password" class="form-control" placeholder="Password" asp-for="Password" id="password-input" autocomplete="off">
                         <div class="error-message">
@@ -51,7 +51,6 @@
                             <a href="#">Forgot password?</a>
                         </div>
 
-                        
 
                         <div class="validation" asp-validation-summary="ModelOnly"></div>
                         <div id="login-form-footer">
@@ -72,24 +71,25 @@
 </div>
 
 @section scripts{
-    
+
     <script>
         var icon1 = document.getElementsByClassName("password-icon")[0];
         var input1 = document.getElementById("password-input");
         icon1Show = false;
-        icon1.addEventListener("click", function() {
-            icon1Show = !icon1Show;
+        icon1.addEventListener("click",
+            function() {
+                icon1Show = !icon1Show;
 
-            if (icon1Show === true) {
-                icon1.src = "/pictures/show.svg";
-                input1.type = "text";
+                if (icon1Show === true) {
+                    icon1.src = "/pictures/show.svg";
+                    input1.type = "text";
 
-            } else {
-                icon1.src = "/pictures/hidden.svg";
-                input1.type = "password";
-            }
-            
-        });
+                } else {
+                    icon1.src = "/pictures/hidden.svg";
+                    input1.type = "password";
+                }
+
+            });
     </script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
