@@ -1,0 +1,6 @@
+{
+  "origin": "http://localhost:3000",
+  "server": "https://localhost:5001/UnknownStore",
+  "content-type-URL8": "application/json; charset=utf-8",
+  "requestMode": "cors"
+}
