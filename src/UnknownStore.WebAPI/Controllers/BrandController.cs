@@ -8,7 +8,7 @@ namespace UnknownStore.WebAPI.Controllers
 {
     [AllowAnonymous]
     [ApiController]
-    [Route("store/[action]")]
+    [Route("store/[controller]")]
     public class BrandController : ControllerBase
     {
         private readonly IMediator _mediator;
