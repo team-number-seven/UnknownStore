@@ -20,10 +20,7 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasOne(s => s.SubCategory)
                 .WithOne(sb => sb.Size)
                 .HasForeignKey<Size>(s => s.SubCategoryId);
-            builder
-                .HasOne(s => s.Gender)
-                .WithMany(g => g.Sizes)
-                .HasForeignKey(s => s.GenderId);
+
         }
     }
 }

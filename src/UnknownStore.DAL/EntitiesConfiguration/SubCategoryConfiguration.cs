@@ -29,6 +29,10 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasMany(sb => sb.Models)
                 .WithOne(m => m.SubCategory)
                 .HasForeignKey(m => m.SubCategoryId);
+            builder
+                .HasOne(s => s.Gender)
+                .WithMany(g => g.SubCategories)
+                .HasForeignKey(s => s.GenderId);
         }
     }
 }

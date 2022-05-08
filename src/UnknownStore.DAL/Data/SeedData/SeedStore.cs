@@ -153,8 +153,8 @@ namespace UnknownStore.DAL.Data.SeedData
                     category.AgeType = ageType;
                     foreach (var subCategory in category.SubCategories)
                     {
-                        var gender = await context.Genders.FirstAsync(g => g.Title == subCategory.Size.Gender.Title);
-                        subCategory.Size.Gender = gender;
+                        var gender = await context.Genders.FirstAsync(g => g.Title == subCategory.Gender.Title);
+                        subCategory.Gender = gender;
                     }
                 }
 
