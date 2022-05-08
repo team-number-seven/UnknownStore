@@ -13,6 +13,10 @@
     --box-color: white;
 }
 
+::-ms-reveal {
+    display: none;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -29,7 +33,9 @@ body {
 
 #login {
     align-items: center;
-    background-color: var(--background);
+    background-image: url('/pictures/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -319,4 +325,68 @@ span {
     margin-bottom: 50px;
 }
 
+.not-found-page {
+    align-items: center;
+    background-image: url('/pictures/Artboard 2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
 }
+.not-found-page h1 {
+    line-height:15rem;
+    font-size: 15rem;
+    font-weight: 900;
+    padding:0;
+}
+
+.access-denied-page {
+    align-items: center;
+    background-image: url('/pictures/Artboard 3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+}
+
+.access-denied-page h1 {
+    line-height: 15rem;
+    font-size: 15rem;
+    font-weight: 900;
+    padding: 0;
+}
+
+.email-confirm {
+    align-items: center;
+    background-image: url('/pictures/Artboard 4.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+}
+.email-confirm h1 {
+    line-height: 15rem;
+    font-size: 15rem;
+    font-weight: 900;
+    padding: 0;
+}
+
+
