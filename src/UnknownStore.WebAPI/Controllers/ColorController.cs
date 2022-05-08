@@ -13,7 +13,8 @@ namespace UnknownStore.WebAPI.Controllers
     {
         private readonly IMediator _mediator;
 
-        public ColorController(IMediator mediator)
+        public ColorController(
+            IMediator mediator)
         {
             _mediator = mediator;
         }
