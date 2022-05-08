@@ -319,4 +319,24 @@ span {
     margin-bottom: 50px;
 }
 
+.not-found-page {
+    align-items: center;
+    background-image: url('/pictures/Artboard 2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+}
+.not-found-page h1 {
+    line-height:15rem;
+    font-size: 15rem;
+    font-weight: 900;
+
+    padding:0;
 }
