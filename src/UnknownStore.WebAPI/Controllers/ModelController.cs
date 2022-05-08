@@ -23,7 +23,7 @@ namespace UnknownStore.WebAPI.Controllers
         }
 
         [Authorize(Policy = nameof(Roles.Manager))]
-        [HttpGet]
+        [HttpPost]
         [Route("add-model")]
         public async Task<IActionResult> CreateModel([FromForm] CreateModelDto request)
         {
