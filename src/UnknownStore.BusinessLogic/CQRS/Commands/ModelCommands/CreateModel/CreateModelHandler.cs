@@ -49,7 +49,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
                 Factory = await _context.Factories.FindAsync(dto.FactoryId),
                 Price = dto.Price,
                 Season = await _context.Seasons.FindAsync(dto.SeasonId),
-                Title = dto.Title
+                Title = dto.Title,
+                Description = dto.Description
             };
             await _context.Models.AddAsync(model, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);

@@ -6,7 +6,7 @@ namespace UnknownStore.DAL.Entities.Store
     public class Model : BaseEntity
     {
         public string Title { get; set; }
-
+        public string Description { get; set; }
         public decimal Price { get; set; }
 
         public virtual Brand Brand { get; set; }

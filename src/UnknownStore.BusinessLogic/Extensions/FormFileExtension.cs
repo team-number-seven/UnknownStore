@@ -16,7 +16,8 @@ namespace UnknownStore.BusinessLogic.Extensions
             { ".jpeg", "image/jpeg" },
             { ".jpg", "image/jpeg" },
             { ".png", "image/png" },
-            { ".pnz", "image/png" }
+            { ".pnz", "image/png" },
+            { ".webp", "image/webp" }
         };
 
         public static string FileExtension(this IFormFile file)

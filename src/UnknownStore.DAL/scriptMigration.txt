@@ -1,4 +1,4 @@
-﻿dotnet ef migrations add fixSizeEntity -c StoreDbContext -o Data/Migrations/Store --startup-project ../UnknownStore.WebAPI/UnknownStore.WebAPI.csproj
+﻿dotnet ef migrations add addDescriptionModel -c StoreDbContext -o Data/Migrations/Store --startup-project ../UnknownStore.WebAPI/UnknownStore.WebAPI.csproj
 dotnet ef database update -c StoreDbContext --startup-project ../UnknownStore.WebAPI/UnknownStore.WebAPI.csproj
 
 

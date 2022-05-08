@@ -8,6 +8,7 @@ namespace UnknownStore.Common.DataTransferObjects
     {
         public string Title { get; set; }
         public decimal Price { get; set; }
+        public string Description { get; set; }
         public Guid BrandId { get; set; }
         public Guid SubCategoryId { get; set; }
         public Guid ColorId { get; set; }

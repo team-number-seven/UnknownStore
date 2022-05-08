@@ -19,7 +19,7 @@ namespace UnknownStore.DAL.EntitiesConfiguration
             builder
                 .Property(md => md.Value)
                 .IsRequired()
-                .HasMaxLength(500);
+                .HasMaxLength(100);
             builder
                 .HasOne(md => md.Model)
                 .WithMany(m => m.ModelData)
