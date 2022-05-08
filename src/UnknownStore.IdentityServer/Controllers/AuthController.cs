@@ -69,6 +69,7 @@ namespace UnknownStore.IdentityServer.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            model.ExternalProviders = await _signInManager.GetExternalAuthenticationSchemesAsync();
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
             if (ModelState.IsValid)
             {
@@ -88,6 +89,7 @@ namespace UnknownStore.IdentityServer.Controllers
             await _interaction.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
             ModelState.AddModelError(string.Empty, "Invalid email or password");
             model.Password = string.Empty;
+
             return View(model);
         }
 
