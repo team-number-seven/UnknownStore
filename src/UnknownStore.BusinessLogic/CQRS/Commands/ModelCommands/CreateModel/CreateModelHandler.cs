@@ -26,7 +26,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
         public CreateModelHandler(
             IStoreDbContext context, 
             ILogger<CreateModelHandler> logger,
-            IConfiguration configuration)
+            IConfiguration configuration
+            )
         {
             _pathToImages = configuration["CurrentDirectory"] + configuration["ImagePath"];
             _context = context;

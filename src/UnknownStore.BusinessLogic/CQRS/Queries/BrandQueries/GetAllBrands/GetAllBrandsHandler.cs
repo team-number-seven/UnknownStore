@@ -23,7 +23,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.BrandQueries.GetAllBrands
         public GetAllBrandsHandler(
             IStoreDbContext context,
             IMapper mapper,
-            ILogger<GetAllBrandsHandler> logger)
+            ILogger<GetAllBrandsHandler> logger
+            )
         {
             _context = context;
             _mapper = mapper;

@@ -20,7 +20,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ColorQueries.GetAllColors
         private readonly ILogger<GetAllColorsHandler> _logger;
         private readonly IMapper _mapper;
 
-        public GetAllColorsHandler(IStoreDbContext context, ILogger<GetAllColorsHandler> logger, IMapper mapper)
+        public GetAllColorsHandler(
+            IStoreDbContext context,
+            ILogger<GetAllColorsHandler> logger, 
+            IMapper mapper
+            )
         {
             _context = context;
             _logger = logger;

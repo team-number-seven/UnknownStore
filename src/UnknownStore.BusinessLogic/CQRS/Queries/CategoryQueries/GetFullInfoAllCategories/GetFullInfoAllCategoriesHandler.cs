@@ -22,7 +22,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetFullInfoAll
         public GetFullInfoAllCategoriesHandler(
             IStoreDbContext context,
             IMapper mapper,
-            ILogger<GetFullInfoAllCategoriesHandler> logger)
+            ILogger<GetFullInfoAllCategoriesHandler> logger
+            )
         {
             _context = context;
             _mapper = mapper;

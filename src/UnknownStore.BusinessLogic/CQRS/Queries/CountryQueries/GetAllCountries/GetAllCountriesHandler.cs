@@ -23,7 +23,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CountryQueries.GetAllCountries
         public GetAllCountriesHandler(
             IStoreDbContext context,
             IMapper mapper,
-            ILogger<GetAllCountriesHandler> logger)
+            ILogger<GetAllCountriesHandler> logger
+            )
         {
             _context = context;
             _mapper = mapper;

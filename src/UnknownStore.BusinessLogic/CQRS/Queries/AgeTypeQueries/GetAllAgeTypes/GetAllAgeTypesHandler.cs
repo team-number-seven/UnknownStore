@@ -23,7 +23,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.AgeTypeQueries.GetAllAgeTypes
         public GetAllAgeTypesHandler(
             IStoreDbContext context,
             IMapper mapper,
-            ILogger<GetAllAgeTypesHandler> logger)
+            ILogger<GetAllAgeTypesHandler> logger
+            )
         {
             _context = context;
             _mapper = mapper;
