@@ -1,6 +1,6 @@
 export const CONFIG = {
     "origin": "http://localhost:3000",
-    "server": "https://localhost:1001/store/",
+    "server": "https://localhost:2001/store/",
     "content-type-URL8": "application/json; charset=utf-8",
     "requestMode": "cors",
     "auth-routes": {
@@ -10,7 +10,8 @@ export const CONFIG = {
     },
     "GET": {
         "age-type": {
-            "get-all": "age-type/get-all"
+            "get-all": "age-type/get-all",
+            "dto":"ageTypeDtos"
         },
         "brand": {
             "get-all": "brand/get-all"
