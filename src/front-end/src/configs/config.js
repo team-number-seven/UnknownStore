@@ -23,6 +23,7 @@ export const CONFIG = {
         },
         "color": {
             "get-all": "color/get-all",
+            "dto":"colorDtos"
         },
         "country": {
             "get-all": "country/get-all"
