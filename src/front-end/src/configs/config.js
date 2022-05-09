@@ -35,8 +35,8 @@ export const CONFIG = {
         },
         "season": {
             "get-all": "season/get-all",
-        },
-        "home": "home",
+            "dto":"seasonDtos"
+        }
     },
     "POST": {
         "model": {

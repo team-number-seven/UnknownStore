@@ -5,10 +5,11 @@ import {GetCategory} from "./modules/server/dto/get/requests/get-category/get-ca
 import {GetColor} from "./modules/server/dto/get/requests/get-color/get-color";
 import {GetCountry} from "./modules/server/dto/get/requests/get-country/get-country";
 import {GetFactory} from "./modules/server/dto/get/requests/get-factory/get-factory";
+import {GetSeason} from "./modules/server/dto/get/requests/get-season/get-season";
 
 export const App = () => {
 
-    GetFactory().then(value => console.log(value))
+    GetSeason().then(value => console.log(value))
     return (
         <>
             <Header/>
