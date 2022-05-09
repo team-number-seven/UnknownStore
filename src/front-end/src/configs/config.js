@@ -18,10 +18,11 @@ export const CONFIG = {
             "dto":"brandDtos"
         },
         "category": {
-            "get-all": "category/get-all"
+            "get-all": "category/get-all",
+            "dto":"categoryDtos"
         },
         "color": {
-            "get-all": "color/get-all"
+            "get-all": "color/get-all",
         },
         "country": {
             "get-all": "country/get-all"
