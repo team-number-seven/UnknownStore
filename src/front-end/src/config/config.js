@@ -4,8 +4,8 @@ export const CONFIG = {
     "content-type-URL8": "application/json; charset=utf-8",
     "requestMode": "cors",
     "auth-routes": {
-        "callback": "/signin-oidc",
+        "sign-in-callback": "/signin-oidc",
         "silent-sign-in": "/silent-renew-oidc",
-        "auth": "/signout-oidc",
+        "sign-out-callback": "/signout-oidc",
     }
 }

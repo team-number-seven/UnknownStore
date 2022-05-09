@@ -46,15 +46,10 @@ export const Auth = () => {
         })
     }
 
-
     isAuth();
     return (
         <div id={'auth-component'}>
-            {userIsAuth?<p>aaaa</p>:<p>no</p>}
-            <button onClick={signIn}>Sign In</button>
-            <button onClick={isAuth}>Auth?</button>
-            <button onClick={signOut}>Sign Out</button>
-            <button onClick={refresh}>Refresh</button>
+            {userIsAuth?<button onClick={signOut}>Sign Out</button>: <button onClick={signIn}>Sign In</button>}
         </div>
     )
 }

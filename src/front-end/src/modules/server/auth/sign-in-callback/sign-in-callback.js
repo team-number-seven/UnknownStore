@@ -1,7 +1,7 @@
 import {Navigate} from "react-router-dom";
 import {UserManager, WebStorageStateStore} from "oidc-client";
 
-export const Callback = () => {
+export const SignInCallback = () => {
     new UserManager({
         response_mode: "query",
         loadUserInfo: true,
@@ -9,6 +9,8 @@ export const Callback = () => {
     }).signinRedirectCallback()
         .then((user) => {
             console.log(user.profile);
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
         }).catch((e) => console.log("NE log"));
 
     return (
