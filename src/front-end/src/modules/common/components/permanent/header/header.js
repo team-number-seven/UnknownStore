@@ -1,10 +1,10 @@
-import {Auth} from "./auth/auth";
-
+import {AuthRoutes} from "../../../../routes/auth-routes";
 
 export const Header = () => {
     return (
             <header>
-                <Auth/>
+                <AuthRoutes/>
+                header
             </header>
     )
 }
