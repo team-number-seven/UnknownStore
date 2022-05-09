@@ -30,10 +30,11 @@ export const CONFIG = {
             "dto":"countryDtos"
         },
         "factory": {
-            "get-all": "factory/get-all"
+            "get-all": "factory/get-all",
+            "dto":"factoryDtos"
         },
         "season": {
-            "get-all": "season/get-all"
+            "get-all": "season/get-all",
         },
         "home": "home",
     },
