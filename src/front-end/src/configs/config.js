@@ -26,7 +26,8 @@ export const CONFIG = {
             "dto":"colorDtos"
         },
         "country": {
-            "get-all": "country/get-all"
+            "get-all": "country/get-all",
+            "dto":"countryDtos"
         },
         "factory": {
             "get-all": "factory/get-all"
