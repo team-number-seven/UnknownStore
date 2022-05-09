@@ -14,7 +14,8 @@ export const CONFIG = {
             "dto":"ageTypeDtos"
         },
         "brand": {
-            "get-all": "brand/get-all"
+            "get-all": "brand/get-all",
+            "dto":"brandDtos"
         },
         "category": {
             "get-all": "category/get-all"

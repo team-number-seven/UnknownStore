@@ -1,6 +1,5 @@
-export class AgeTypeDataTemplate {
+export class DtoTemplateGet {
     constructor(dtoObject) {
-        debugger;
         for (let key in dtoObject) {
             this[key] = dtoObject[key];
         }
