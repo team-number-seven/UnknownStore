@@ -2,8 +2,8 @@
 import {UserManager} from "oidc-client";
 import {useState} from "react";
 import {Navigate} from "react-router-dom"
-import {CONFIG} from "../../../config/config";
-import {AuthConfig} from "../../../config/auth-config";
+import {CONFIG} from "../../../configs/config";
+import {AuthConfig} from "../../../configs/auth-config";
 
 
 
