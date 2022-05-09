@@ -1,4 +1,4 @@
-import {CONFIG} from "../../config/config";
+import {CONFIG} from "../../configs/config";
 import {Route, Routes} from "react-router-dom";
 import {Auth} from "../server/auth/auth";
 import {SignInCallback} from "../server/auth/sign-in-callback/sign-in-callback";
