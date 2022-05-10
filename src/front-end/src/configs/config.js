@@ -31,7 +31,7 @@ export const CONFIG = {
         },
         "factory": {
             "get-all": "factory/get-all",
-            "dto":"factoryDtos"
+            "dto": "factoryDtos"
         },
         "season": {
             "get-all": "season/get-all",

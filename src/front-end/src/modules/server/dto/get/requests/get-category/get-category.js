@@ -1,13 +1,7 @@
 import {CONFIG} from "../../../../../../configs/config";
-import {DtoTemplateGet} from "../../templates/dto-template-get/dto-template-get";
+import {Categories} from "../../../classes/category/Categories";
 
 export const GetCategory = async () => await fetch(CONFIG.server + CONFIG.GET["category"]["get-all"])
     .then(response => response.json())
-    .then(value => {
-        const data = [];
-        for (let dtoObject of value[CONFIG.GET["category"].dto]) {
-            data.push(new DtoTemplateGet(dtoObject));
-        }
-        return data;
-    })
+    .then(value => new Categories(value[CONFIG.GET["category"].dto]))
     .catch((error) => console.log(error));
