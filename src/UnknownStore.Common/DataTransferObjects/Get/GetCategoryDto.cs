@@ -20,7 +20,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
                 .ForMember(dto => dto.CategoryId, opt => opt.MapFrom(c => c.Id))
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(c => c.Title))
                 .ForMember(dto => dto.AgeType, opt => opt.Ignore())
-                .ForMember(dto=>dto.Gender,opt=>opt.Ignore())
+                .ForMember(dto => dto.Gender, opt => opt.Ignore())
                 .ForMember(dto => dto.SubCategories, opt => opt.Ignore());
         }
     }
