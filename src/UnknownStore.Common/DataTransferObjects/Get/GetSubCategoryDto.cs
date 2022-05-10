@@ -9,7 +9,6 @@ namespace UnknownStore.Common.DataTransferObjects.Get
     {
         public Guid SubCategoryId { get; set; }
         public string Title { get; set; }
-        public GetGenderDto Gender { get; set; }
         public GetSizeDto Size { get; set; }
 
         public void Mapping(Profile profile)
@@ -17,7 +16,6 @@ namespace UnknownStore.Common.DataTransferObjects.Get
             profile.CreateMap<SubCategory, GetSubCategoryDto>()
                 .ForMember(dto => dto.SubCategoryId, opt => opt.MapFrom(sc => sc.Id))
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(sc => sc.Title))
-                .ForMember(dto => dto.Gender, opt => opt.Ignore())
                 .ForMember(dto => dto.Size, opt => opt.Ignore());
         }
     }

@@ -1,4 +1,5 @@
-﻿using UnknownStore.Common.Mappings;
+﻿using Microsoft.AspNetCore.Mvc;
+using UnknownStore.Common.Mappings;
 using UnknownStore.DAL.Entities.Store;
 
 namespace UnknownStore.Common.DataTransferObjects.Get
@@ -10,5 +11,6 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         public GetBrandDto Brand { get; set; }
         public GetSubCategoryDto SubCategory { get; set; }
 
+        public FileContentResult MainImage { get; set; }
     }
 }

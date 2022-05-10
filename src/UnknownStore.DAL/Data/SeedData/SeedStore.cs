@@ -151,11 +151,7 @@ namespace UnknownStore.DAL.Data.SeedData
                 {
                     var ageType = await context.AgeTypes.FirstAsync(at => at.Title == category.AgeType.Title);
                     category.AgeType = ageType;
-                    foreach (var subCategory in category.SubCategories)
-                    {
-                        var gender = await context.Genders.FirstAsync(g => g.Title == subCategory.Gender.Title);
-                        subCategory.Gender = gender;
-                    }
+                    category.Gender = await context.Genders.FirstAsync(g => g.Title == category.Gender.Title);
                 }
 
                 await context.Categories.AddRangeAsync(categories);

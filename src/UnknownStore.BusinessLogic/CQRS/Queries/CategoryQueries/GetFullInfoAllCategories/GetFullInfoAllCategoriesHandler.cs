@@ -47,11 +47,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetFullInfoAll
                 var categoryDto = _mapper.Map<GetCategoryDto>(category);
                 categoryDto.AgeType = _mapper.Map<GetAgeTypeDto>(category.AgeType);
                 var subCategoryDtos = new List<GetSubCategoryDto>();
+                categoryDto.GenderDto = _mapper.Map<GetGenderDto>(category.Gender);
                 foreach (var subCategory in category.SubCategories)
                 {
                     var subCategoryDto = _mapper.Map<GetSubCategoryDto>(subCategory);
                     subCategoryDto.Size = _mapper.Map<GetSizeDto>(subCategory.Size);
-                    subCategoryDto.Gender = _mapper.Map<GetGenderDto>(subCategory.Gender);
                     subCategoryDtos.Add(subCategoryDto);
                 }
 
