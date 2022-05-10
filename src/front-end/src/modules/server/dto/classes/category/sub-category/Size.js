@@ -3,6 +3,10 @@ export class Size {
         for (let field of fields) {
             for (let key in dtoObject) {
                 if (field === key) {
+                    if (key === 'sizeId') {
+                        this.id = dtoObject[key];
+                        break;
+                    }
                     this[key] = dtoObject[key];
                     break;
                 }

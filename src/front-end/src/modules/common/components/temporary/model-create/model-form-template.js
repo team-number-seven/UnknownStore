@@ -1,0 +1,13 @@
+export const ModelFormTemplate = {
+    title: 'title',
+    price: 'price',
+    description: 'description',
+    brandId: 'brandId',
+    colorId: 'colorId',
+    seasonId: 'seasonId',
+    factoryId: 'factoryId',
+    mainImage: 'mainImage',
+    images: 'images',
+    amountOfSize: 'amountOfSize',
+    modelData: 'modelData'
+}
