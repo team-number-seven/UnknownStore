@@ -1,12 +1,12 @@
 import {CONFIG} from "../../../../../../configs/config";
-import {DtoTemplateGet} from "../../templates/dto-template-get/dto-template-get";
+import {Season} from "../../../classes/Season";
 
 export const GetSeason = async () => await fetch(CONFIG.server + CONFIG.GET["season"]["get-all"])
     .then(response => response.json())
     .then(value => {
         const data = [];
         for (let dtoObject of value[CONFIG.GET["season"].dto]) {
-            data.push(new DtoTemplateGet(dtoObject));
+            data.push(new Season(dtoObject));
         }
         return data;
     })
