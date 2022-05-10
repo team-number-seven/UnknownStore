@@ -15,7 +15,7 @@ namespace UnknownStore.WebAPI.Controllers
 
         public CountryController(
             IMediator mediator
-            )
+        )
         {
             _mediator = mediator;
         }

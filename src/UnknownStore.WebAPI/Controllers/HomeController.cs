@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel;
-using UnknownStore.Common.DataTransferObjects;
 using UnknownStore.Common.DataTransferObjects.Create;
 using UnknownStore.DAL.Interfaces;
 

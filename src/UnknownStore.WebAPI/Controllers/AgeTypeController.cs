@@ -9,16 +9,17 @@ namespace UnknownStore.WebAPI.Controllers
     [AllowAnonymous]
     [ApiController]
     [Route("store/age-type")]
-    public class AgeTypeController:ControllerBase
+    public class AgeTypeController : ControllerBase
     {
         private readonly IMediator _mediator;
 
         public AgeTypeController(
             IMediator mediator
-            )
+        )
         {
             _mediator = mediator;
         }
+
         [HttpGet]
         [Route("get-all")]
         public async Task<IActionResult> GetAllAgeTypes()

@@ -28,7 +28,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
             if (dto.Title.IsNullOrEmpty())
                 return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.Title)));
 
-            if(dto.Description.IsNullOrEmpty())
+            if (dto.Description.IsNullOrEmpty())
                 return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.Description)));
 
             if (dto.ModelData.IsNullOrEmpty())

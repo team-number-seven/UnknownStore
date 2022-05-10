@@ -21,5 +21,10 @@
         {
             return $"Invalid{name} value({value})";
         }
+
+        public static string ObjectAlreadyExists(string name)
+        {
+            return $"The {name} already exists";
+        }
     }
 }

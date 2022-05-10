@@ -16,6 +16,7 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .Property(f => f.Title)
                 .IsRequired()
                 .HasMaxLength(150);
+            //TODO Make the 'Address' unique
             builder
                 .Property(c => c.Address)
                 .IsRequired()

@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UnknownStore.Common;
 using UnknownStore.Common.CQRS;
-using UnknownStore.Common.DataTransferObjects;
 using UnknownStore.Common.DataTransferObjects.Get;
 using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
@@ -24,14 +23,15 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetFullInfoAll
             IStoreDbContext context,
             IMapper mapper,
             ILogger<GetFullInfoAllCategoriesHandler> logger
-            )
+        )
         {
             _context = context;
             _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task<ResponseBase> Handle(GetAllFullInfoCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseBase> Handle(GetAllFullInfoCategoriesQuery request,
+            CancellationToken cancellationToken)
         {
             var categories = await _context.Categories.ToListAsync(cancellationToken);
             var categoryDtos = MapCategoriesToGetSubCategories(categories);

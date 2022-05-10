@@ -15,7 +15,7 @@ namespace UnknownStore.WebAPI.Controllers
 
         public CategoryController(
             IMediator mediator
-            )
+        )
         {
             _mediator = mediator;
         }

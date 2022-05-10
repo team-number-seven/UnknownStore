@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UnknownStore.Common;
 using UnknownStore.Common.CQRS;
-using UnknownStore.Common.DataTransferObjects;
 using UnknownStore.Common.DataTransferObjects.Get;
 using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
@@ -25,7 +24,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.AgeTypeQueries.GetAllAgeTypes
             IStoreDbContext context,
             IMapper mapper,
             ILogger<GetAllAgeTypesHandler> logger
-            )
+        )
         {
             _context = context;
             _mapper = mapper;

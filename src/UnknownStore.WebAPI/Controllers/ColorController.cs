@@ -15,7 +15,7 @@ namespace UnknownStore.WebAPI.Controllers
 
         public ColorController(
             IMediator mediator
-            )
+        )
         {
             _mediator = mediator;
         }

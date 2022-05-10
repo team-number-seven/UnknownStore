@@ -2,5 +2,5 @@
 
 namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
 {
-    public record CreateModelResponse() : ResponseBase;
+    public record CreateModelResponse : ResponseBase;
 }

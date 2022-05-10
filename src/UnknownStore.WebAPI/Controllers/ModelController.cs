@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel;
 using UnknownStore.Common.Constants;
-using UnknownStore.Common.DataTransferObjects;
 using UnknownStore.Common.DataTransferObjects.Create;
 
 namespace UnknownStore.WebAPI.Controllers
