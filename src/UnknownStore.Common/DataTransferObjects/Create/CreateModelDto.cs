@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 
-namespace UnknownStore.Common.DataTransferObjects
+namespace UnknownStore.Common.DataTransferObjects.Create
 {
     public class CreateModelDto
     {

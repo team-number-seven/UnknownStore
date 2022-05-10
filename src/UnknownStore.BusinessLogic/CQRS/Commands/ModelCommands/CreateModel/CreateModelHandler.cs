@@ -55,7 +55,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
             await _context.Models.AddAsync(model, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             _logger.LogInformation(LoggerMessages.CommandExecutedSuccessfully(nameof(CreateModelHandler)));
-            return new CreateModelResponse(model.Id){StatusCode = HttpStatusCode.Created};
+            return new CreateModelResponse(){StatusCode = HttpStatusCode.Created};
         }
 
         private IEnumerable<ModelData> CreateModelDataAsync(IDictionary<string, string> dtoModelData)

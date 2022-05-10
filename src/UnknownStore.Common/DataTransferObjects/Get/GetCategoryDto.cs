@@ -4,7 +4,7 @@ using AutoMapper;
 using UnknownStore.Common.Mappings;
 using UnknownStore.DAL.Entities.Store;
 
-namespace UnknownStore.Common.DataTransferObjects
+namespace UnknownStore.Common.DataTransferObjects.Get
 {
     public class GetCategoryDto : IMapWith<Category>
     {
