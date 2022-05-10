@@ -11,7 +11,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         public Guid CategoryId { get; set; }
         public string Title { get; set; }
         public GetAgeTypeDto AgeType { get; set; }
-        public GetGenderDto GenderDto { get; set; }
+        public GetGenderDto Gender { get; set; }
         public IEnumerable<GetSubCategoryDto> SubCategories { get; set; }
 
         public void Mapping(Profile profile)
@@ -20,7 +20,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
                 .ForMember(dto => dto.CategoryId, opt => opt.MapFrom(c => c.Id))
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(c => c.Title))
                 .ForMember(dto => dto.AgeType, opt => opt.Ignore())
-                .ForMember(dto=>dto.GenderDto,opt=>opt.Ignore())
+                .ForMember(dto=>dto.Gender,opt=>opt.Ignore())
                 .ForMember(dto => dto.SubCategories, opt => opt.Ignore());
         }
     }
