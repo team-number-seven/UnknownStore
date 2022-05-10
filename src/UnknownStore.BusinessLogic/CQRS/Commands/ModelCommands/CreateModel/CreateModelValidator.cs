@@ -34,8 +34,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
             if (dto.ModelData.IsNullOrEmpty())
                 return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.ModelData)));
 
-            if (dto.Files.IsNullOrEmpty())
-                return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.Files)));
+            if (dto.Images.IsNullOrEmpty())
+                return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.Images)));
+
+            if (dto.MainImage is null)
+                return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.MainImage)));
 
             if (await _context.Brands.FindAsync(dto.BrandId) is null)
                 return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.BrandId)));
@@ -53,9 +56,12 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
                 return ValidationResult.Fail(ValidationMessenger.InvalidValue(nameof(dto.Price),
                     dto.Price.ToString(CultureInfo.InvariantCulture)));
 
-            foreach (var file in dto.Files)
+            foreach (var file in dto.Images)
                 if (file.IsImage() is false)
                     return ValidationResult.Fail(ValidationMessenger.InvalidFormat("Image", file.FileExtension()));
+
+            if (dto.MainImage.IsImage() is false)
+                return ValidationResult.Fail(ValidationMessenger.InvalidFormat("Image", dto.MainImage.FileExtension()));
 
             return await _context.SubCategories.FindAsync(dto.SubCategoryId) is null
                 ? ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.SubCategoryId)))

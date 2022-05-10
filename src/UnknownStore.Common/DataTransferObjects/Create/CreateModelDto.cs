@@ -14,7 +14,8 @@ namespace UnknownStore.Common.DataTransferObjects.Create
         public Guid ColorId { get; set; }
         public Guid SeasonId { get; set; }
         public Guid FactoryId { get; set; }
-        public IFormFileCollection Files { get; set; }
+        public IFormFile MainImage { get; set; }
+        public IEnumerable<IFormFile> Images { get; set; }
         public IDictionary<double, int> AmountOfSize { get; set; }
         public IDictionary<string, string> ModelData { get; set; }
     }

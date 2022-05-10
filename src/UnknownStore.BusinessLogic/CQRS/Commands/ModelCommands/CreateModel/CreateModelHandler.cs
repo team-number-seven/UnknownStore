@@ -40,7 +40,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
             var model = new Model
             {
                 Id = Guid.NewGuid(),
-                Images = await CreateImagesAsync(dto.Files, cancellationToken),
+                Images = await CreateImagesAsync(dto.Images, cancellationToken),
                 AmountOfSizes = CreateAmountOfSize(dto.AmountOfSize),
                 ModelData = CreateModelDataAsync(dto.ModelData),
                 SubCategory = await _context.SubCategories.FindAsync(dto.SubCategoryId),
@@ -50,7 +50,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
                 Price = dto.Price,
                 Season = await _context.Seasons.FindAsync(dto.SeasonId),
                 Title = dto.Title,
-                Description = dto.Description
+                Description = dto.Description,
+                MainImage = await CreateMainImageAsync(dto.MainImage, cancellationToken)
             };
             await _context.Models.AddAsync(model, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
@@ -72,7 +73,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
             return amountOfSize;
         }
 
-        private async Task<IEnumerable<Image>> CreateImagesAsync(IFormFileCollection files,
+        private async Task<IEnumerable<Image>> CreateImagesAsync(IEnumerable<IFormFile> files,
             CancellationToken cancellationToken)
         {
             var images = new List<Image>();
@@ -87,6 +88,17 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
             }
 
             return images;
+        }
+
+        private async Task<MainImage> CreateMainImageAsync(IFormFile file, CancellationToken cancellationToken)
+        {
+            var image = new MainImage { Id = Guid.NewGuid(), Format = file.FileExtension() };
+            var imagePath = _pathToImages + image.Id + image.Format;
+            image.Path = imagePath;
+
+            await using var stream = File.Create(imagePath);
+            await file.CopyToAsync(stream, cancellationToken);
+            return image;
         }
     }
 }

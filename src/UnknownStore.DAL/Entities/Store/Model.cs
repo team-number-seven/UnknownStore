@@ -18,7 +18,7 @@ namespace UnknownStore.DAL.Entities.Store
         public virtual Color Color { get; set; }
         public Guid ColorId { get; set; }
 
-
+        public virtual MainImage MainImage { get; set; }
         public virtual IEnumerable<Image> Images { get; set; }
 
         public virtual IEnumerable<AmountOfSize> AmountOfSizes { get; set; }
