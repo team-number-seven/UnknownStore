@@ -36,6 +36,7 @@ namespace UnknownStore.DAL
         public DbSet<Season> Seasons { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<MainImage> MainImages { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

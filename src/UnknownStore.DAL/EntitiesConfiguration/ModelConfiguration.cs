@@ -36,6 +36,11 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasOne(m => m.SubCategory)
                 .WithMany(sb => sb.Models)
                 .HasForeignKey(m => m.SubCategoryId);
+
+            builder
+                .HasOne(m => m.MainImage)
+                .WithOne(i => i.Model)
+                .HasForeignKey<MainImage>(i => i.ModelId);
             builder
                 .HasOne(m => m.Color)
                 .WithMany(c => c.Models)
