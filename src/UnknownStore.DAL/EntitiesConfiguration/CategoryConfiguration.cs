@@ -21,7 +21,10 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasOne(c => c.AgeType)
                 .WithMany(at => at.Types)
                 .HasForeignKey(c => c.AgeTypeId);
-
+            builder
+                .HasOne(c => c.Gender)
+                .WithMany(g => g.Categories)
+                .HasForeignKey(c => c.GenderId);
             builder
                 .HasMany(c => c.SubCategories)
                 .WithOne(sc => sc.Category)
