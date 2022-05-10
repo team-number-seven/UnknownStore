@@ -1,5 +1,5 @@
 import {CONFIG} from "../../../../../../configs/config";
-import {AgeType} from "../../../classes/AgeType";
+import {AgeType} from "../../../classes/category/AgeType";
 
 export const GetAgeType = async () => await fetch(CONFIG.server + CONFIG.GET["age-type"]["get-all"])
         .then(response => response.json())

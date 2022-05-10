@@ -9,7 +9,7 @@ import {GetSeason} from "./modules/server/dto/get/requests/get-season/get-season
 
 export const App = () => {
 
-    GetSeason().then(value => console.log(value));
+    GetCategory().then(value => console.log(value));
     return (
         <>
             <Header/>
