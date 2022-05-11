@@ -1,12 +1,12 @@
 import {useState} from "react";
-import {GetAgeType} from "../../../../../server/dto/get/requests/get-age-type/get-age-type";
-import {GetBrand} from "../../../../../server/dto/get/requests/get-brand/get-brand";
-import {GetCategory} from "../../../../../server/dto/get/requests/get-category/get-category";
-import {GetColor} from "../../../../../server/dto/get/requests/get-color/get-color";
-import {GetCountry} from "../../../../../server/dto/get/requests/get-country/get-country";
-import {GetFactory} from "../../../../../server/dto/get/requests/get-factory/get-factory";
-import {GetSeason} from "../../../../../server/dto/get/requests/get-season/get-season";
-import {ModelCreateForm} from "../model-create-form";
+import {GetAgeType} from "../../../../server/dto/get/requests/get-age-type/get-age-type";
+import {GetBrand} from "../../../../server/dto/get/requests/get-brand/get-brand";
+import {GetCategory} from "../../../../server/dto/get/requests/get-category/get-category";
+import {GetColor} from "../../../../server/dto/get/requests/get-color/get-color";
+import {GetCountry} from "../../../../server/dto/get/requests/get-country/get-country";
+import {GetFactory} from "../../../../server/dto/get/requests/get-factory/get-factory";
+import {GetSeason} from "../../../../server/dto/get/requests/get-season/get-season";
+import {ModelCreateForm} from "./model-create-form";
 
 export const ModelCreate = () => {
     const [brand, setBrand] = useState([]);
@@ -24,7 +24,7 @@ export const ModelCreate = () => {
         GetCountry().then(value => setCountry(value));
         GetColor().then(value => setColor(value));
         GetFactory().then(value => setFactory(value));
-        GetCategory().then(value => setCategory(value.value));
+        GetCategory().then(value => setCategory(value));
     }
 
 

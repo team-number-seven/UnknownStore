@@ -12,6 +12,7 @@ import {PostModel} from "../../../../server/dto/post/requests/post-model/post-mo
 import {capitalLetter} from "../../../../utilites/capitalLetter";
 import {DefaultList} from "./lists/default-list";
 import {ModelFormTemplate} from "./model-form-template";
+import {findCategoryTitleById} from "./utilites/findCategoryTitleById";
 
 
 export const ModelCreateForm = ({brand, color, category, country, factory, ageType, season}) => {
@@ -27,8 +28,8 @@ export const ModelCreateForm = ({brand, color, category, country, factory, ageTy
             mode: 'all'
         }
     );
-
-    const watchShowColor = watch(ModelFormTemplate.brandId.replace('Id', ''), false);
+    const watchShowAgeType = watch(ModelFormTemplate.categoryId.replace('Id', ''), false);
+    console.log(findCategoryTitleById(watchShowAgeType, category.value), watchShowAgeType);
 
     const onSubmit = (formData) => {
         PostModel(formData).then();
@@ -89,8 +90,7 @@ export const ModelCreateForm = ({brand, color, category, country, factory, ageTy
             {errors?.price && <small className="input-error">{errors?.price?.message}</small>}
 
 
-            <select id="brand-list"
-                    className="form-control selectpicker"
+            <select className="form-control selectpicker"
                     data-live-search="true"
                     data-width="fit"
                     defaultValue={''}
@@ -104,23 +104,48 @@ export const ModelCreateForm = ({brand, color, category, country, factory, ageTy
                 <DefaultList listData={brand} listPlaceHolder={'Choose brand'}/>
             </select>
             {errors?.brand && <small className="input-error">{errors?.brand?.message}</small>}
-            {watchShowColor &&
-                <select id="color-list"
-                        className="form-control selectpicker"
+            <select className="form-control selectpicker"
+                    data-live-search="true"
+                    data-width="fit"
+                    defaultValue={''}
+                    {...register(ModelFormTemplate.colorId.replace('Id', ''), {
+                        required: {
+                            value: true,
+                            message: 'This field cannot be empty',
+                        }
+                    })}
+            >
+                <DefaultList listData={color} listPlaceHolder={'Choose color'}/>
+            </select>
+            {errors?.color && <small className="input-error">{errors?.color?.message}</small>}
+            <select className="form-control selectpicker"
+                    data-live-search="true"
+                    data-width="fit"
+                    defaultValue={''}
+                    {...register(ModelFormTemplate.categoryId.replace('Id', ''), {
+                        required: {
+                            value: true,
+                            message: 'This field cannot be empty',
+                        }
+                    })}
+            >
+                <DefaultList listData={category.value} listPlaceHolder={'Choose category'}/>
+            </select>
+            {errors?.color && <small className="input-error">{errors?.color?.message}</small>}
+            {watchShowAgeType &&
+                <select className="form-control selectpicker"
                         data-live-search="true"
                         data-width="fit"
                         defaultValue={''}
-                        {...register(ModelFormTemplate.colorId.replace('Id', ''), {
+                        {...register(ModelFormTemplate.ageTypeId.replace('Id', ''), {
                             required: {
                                 value: true,
                                 message: 'This field cannot be empty',
                             }
                         })}
                 >
-                    <DefaultList listData={color} listPlaceHolder={'Choose color'}/>
-                </select>
-            }
-            {errors?.color && <small className="input-error">{errors?.color?.message}</small>}
+                    <DefaultList listData={ageType} listPlaceHolder={'Choose age'}/>
+                </select>}
 
 
             <button className="btn btn-primary"

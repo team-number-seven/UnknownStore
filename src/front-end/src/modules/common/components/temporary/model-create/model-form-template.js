@@ -3,12 +3,14 @@ export const ModelFormTemplate = {
     price: 'price',
     description: 'description',
     brandId: 'brandId',
-    subTypeId: 'subTypeId',
+    subCategoryId: 'subTypeId',
+    categoryId: 'categoryId',
     colorId: 'colorId',
     seasonId: 'seasonId',
     factoryId: 'factoryId',
     mainImage: 'mainImage',
     images: 'images',
     amountOfSize: 'amountOfSize',
-    modelData: 'modelData'
+    modelData: 'modelData',
+    ageTypeId:'ageTypeId'
 }
