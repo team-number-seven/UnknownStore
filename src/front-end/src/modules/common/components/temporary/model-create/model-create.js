@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {GetAgeType} from "../../../../server/dto/get/requests/get-age-type/get-age-type";
 import {GetBrand} from "../../../../server/dto/get/requests/get-brand/get-brand";
 import {GetCategory} from "../../../../server/dto/get/requests/get-category/get-category";
 import {GetColor} from "../../../../server/dto/get/requests/get-color/get-color";
@@ -11,6 +12,7 @@ import {ModelCreateForm} from "./model-create-form/model-create-form";
 const init = async () => {
     const values = {};
     await GetCategory().then(value => values.categories = value);
+    await GetAgeType().then(value => values.ageTypes = value);
     await GetBrand().then(value => values.brands = value);
     await GetColor().then(value => values.colors = value);
     await GetCountry().then(value => values.countries = value);

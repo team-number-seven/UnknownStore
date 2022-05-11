@@ -1,22 +1,22 @@
 export const CategoryFormat = {
-    categoryId: 'default',
+    id: 'default',
     title: 'default',
     ageType: {
-        ageTypeId: 'default',
+        id: 'default',
         title: 'default',
     },
     gender: {
-        genderId: 'default',
+        id: 'default',
         title: 'default'
     },
     subCategories: [{
-        subCategoryId: 'default',
+        id: 'default',
         title: '',
         size: {
-            sizeId: 'default',
+            id: 'default',
             standard: 'default',
-            minValue: '',
-            maxValue: ''
+            minValue: 'default',
+            maxValue: 'default'
         }
     }],
 }
