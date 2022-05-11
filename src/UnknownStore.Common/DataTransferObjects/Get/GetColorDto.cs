@@ -7,7 +7,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
 {
     public class GetColorDto : IMapWith<Color>
     {
-        public Guid ColorId { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string HexCode { get; set; }
 
@@ -15,7 +15,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         {
             profile.CreateMap<Color, GetColorDto>()
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(c => c.Title))
-                .ForMember(dto => dto.ColorId, opt => opt.MapFrom(c => c.Id))
+                .ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id))
                 .ForMember(dto => dto.HexCode, opt => opt.MapFrom(c => c.HexCode));
         }
     }

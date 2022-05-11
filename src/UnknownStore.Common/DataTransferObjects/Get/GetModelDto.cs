@@ -10,7 +10,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
 {
     public class GetModelDto : IMapWith<Model>
     {
-        public Guid ModelId { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -28,7 +28,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Model, GetModelDto>()
-                .ForMember(dto => dto.ModelId, opt => opt.MapFrom(m => m.Id))
+                .ForMember(dto => dto.Id, opt => opt.MapFrom(m => m.Id))
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(m => m.Title))
                 .ForMember(dto => dto.Description, opt => opt.MapFrom(m => m.Description))
                 .ForMember(dto => dto.Price, opt => opt.MapFrom(m => m.Price))
