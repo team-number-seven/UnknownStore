@@ -7,13 +7,13 @@ namespace UnknownStore.Common.DataTransferObjects.Get
 {
     public class GetSeasonDto : IMapWith<Season>
     {
-        public Guid SeasonId { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Season, GetSeasonDto>()
-                .ForMember(dto => dto.SeasonId, opt => opt.MapFrom(s => s.Id))
+                .ForMember(dto => dto.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(s => s.Title));
         }
     }

@@ -8,7 +8,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
 {
     public class GetCategoryDto : IMapWith<Category>
     {
-        public Guid CategoryId { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public GetAgeTypeDto AgeType { get; set; }
         public GetGenderDto Gender { get; set; }
@@ -17,10 +17,10 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Category, GetCategoryDto>()
-                .ForMember(dto => dto.CategoryId, opt => opt.MapFrom(c => c.Id))
+                .ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id))
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(c => c.Title))
                 .ForMember(dto => dto.AgeType, opt => opt.Ignore())
-                .ForMember(dto=>dto.Gender,opt=>opt.Ignore())
+                .ForMember(dto => dto.Gender, opt => opt.Ignore())
                 .ForMember(dto => dto.SubCategories, opt => opt.Ignore());
         }
     }
