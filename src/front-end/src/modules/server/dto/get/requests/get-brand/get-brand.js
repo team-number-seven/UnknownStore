@@ -10,4 +10,3 @@ export const GetBrand = async () => await fetch(CONFIG.server + CONFIG.GET["bran
             return data;
         })
         .catch((error) => console.log(error));
-
