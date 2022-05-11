@@ -1,9 +1,15 @@
+import {useState} from "react";
 import {useForm} from "react-hook-form";
+import {GetFactory} from "../../../../../server/dto/get/requests/get-factory/get-factory";
+import {FactoryCreate} from "../factory-create/factory-create";
 import {TitleList} from "./lists/titile-list";
 import {ModelCreateFormValues} from "./model-create-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
 
 export const ModelCreateForm = ({listValues}) => {
+
+    const [showFactoryForm, setShowFactoryForm] = useState(false);
+
     const {
         formState: {errors, isValid},
         handleSubmit,
@@ -27,9 +33,19 @@ export const ModelCreateForm = ({listValues}) => {
         //post
     }
 
+    const showFactoryFormHandler = () => {
+        setShowFactoryForm(!showFactoryForm);
+    }
+
+    const onCreateFactoryHandler = () => {
+        GetFactory().then(value => listValues.factories = value);
+    }
+
 
     return (
         <>
+            {showFactoryForm ? <FactoryCreate countries={listValues.countries} onCreate={onCreateFactoryHandler}/> : <></>}
+
             <form id={'model-create-form'}
                   className="container form-group"
                   onSubmit={handleSubmit(onSubmit)}
@@ -195,7 +211,9 @@ export const ModelCreateForm = ({listValues}) => {
                 {errors[form.factoryId] &&
                     <small className="input-error">{errors[form.factoryId]?.message}</small>}
 
-                create factory
+
+                {watchSubCategoryId &&
+                    <button onClick={showFactoryFormHandler}>{'Create factory'}</button>}
 
                 {watchSubCategoryId &&
                     <select className="form-control selectpicker"
@@ -230,8 +248,6 @@ export const ModelCreateForm = ({listValues}) => {
                     </select>}
                 {errors[form.colorId] &&
                     <small className="input-error">{errors[form.colorId]?.message}</small>}
-
-
 
 
                 <input type={'file'}

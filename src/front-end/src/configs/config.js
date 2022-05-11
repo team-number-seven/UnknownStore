@@ -41,6 +41,9 @@ export const CONFIG = {
     "POST": {
         "model": {
             "add-model": "model/add-model"
+        },
+        "factory": {
+            "add-factory": "factory/add-factory"
         }
     }
 

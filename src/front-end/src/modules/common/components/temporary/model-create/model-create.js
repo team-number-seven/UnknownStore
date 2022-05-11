@@ -12,13 +12,13 @@ import {ModelCreateForm} from "./model-create-form/model-create-form";
 const init = async () => {
     const values = {};
     await GetCategory().then(value => values.categories = value);
+    await GetCountry().then(value => values.countries = value);
     await GetAgeType().then(value => values.ageTypes = value);
     await GetBrand().then(value => values.brands = value);
     await GetColor().then(value => values.colors = value);
-    await GetCountry().then(value => values.countries = value);
     await GetSeason().then(value => values.seasons = value);
     await GetFactory().then(value => values.factories = value);
-    return (values);
+    return values;
 }
 
 
