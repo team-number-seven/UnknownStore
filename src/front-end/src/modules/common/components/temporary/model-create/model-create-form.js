@@ -1,26 +1,34 @@
+import {useState} from "react";
 import {useForm} from "react-hook-form";
+import {Category} from "../../../../server/dto/classes/category/Category";
+import {GetAgeType} from "../../../../server/dto/get/requests/get-age-type/get-age-type";
+import {GetBrand} from "../../../../server/dto/get/requests/get-brand/get-brand";
 import {GetCategory} from "../../../../server/dto/get/requests/get-category/get-category";
+import {GetColor} from "../../../../server/dto/get/requests/get-color/get-color";
+import {GetCountry} from "../../../../server/dto/get/requests/get-country/get-country";
+import {GetFactory} from "../../../../server/dto/get/requests/get-factory/get-factory";
+import {GetSeason} from "../../../../server/dto/get/requests/get-season/get-season";
 import {PostModel} from "../../../../server/dto/post/requests/post-model/post-model";
 import {capitalLetter} from "../../../../utilites/capitalLetter";
-import {BrandList} from "./lists/brand-list";
+import {DefaultList} from "./lists/default-list";
 import {ModelFormTemplate} from "./model-form-template";
 
 
-export const ModelCreate = () => {
-    let categories;
-    GetCategory().then(value => categories = value);
-
+export const ModelCreateForm = ({brand, color, category, country, factory, ageType, season}) => {
 
     const {
         formState: {errors, isValid},
         handleSubmit,
         register,
+        watch,
         reset,
         getValues,
     } = useForm({
             mode: 'all'
         }
     );
+
+    const watchShowColor = watch(ModelFormTemplate.brandId.replace('Id', ''), false);
 
     const onSubmit = (formData) => {
         PostModel(formData).then();
@@ -93,26 +101,27 @@ export const ModelCreate = () => {
                         }
                     })}
             >
-                <BrandList/>
+                <DefaultList listData={brand} listPlaceHolder={'Choose brand'}/>
             </select>
             {errors?.brand && <small className="input-error">{errors?.brand?.message}</small>}
-
-
-            <select id="color-list"
-                    className="form-control selectpicker"
-                    data-live-search="true"
-                    data-width="fit"
-                    defaultValue={''}
-                    {...register(ModelFormTemplate.colorId.replace('Id', ''), {
-                        required: {
-                            value: true,
-                            message: 'This field cannot be empty',
-                        }
-                    })}
-            >
-
-            </select>
+            {watchShowColor &&
+                <select id="color-list"
+                        className="form-control selectpicker"
+                        data-live-search="true"
+                        data-width="fit"
+                        defaultValue={''}
+                        {...register(ModelFormTemplate.colorId.replace('Id', ''), {
+                            required: {
+                                value: true,
+                                message: 'This field cannot be empty',
+                            }
+                        })}
+                >
+                    <DefaultList listData={color} listPlaceHolder={'Choose color'}/>
+                </select>
+            }
             {errors?.color && <small className="input-error">{errors?.color?.message}</small>}
+
 
             <button className="btn btn-primary"
                     type="submit"

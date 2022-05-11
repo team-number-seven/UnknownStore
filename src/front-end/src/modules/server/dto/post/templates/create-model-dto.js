@@ -3,6 +3,7 @@ export const CreateModelDto = {
     price: null,
     description: null,
     brandId: null,
+    subTypeId:null,
     colorId: null,
     seasonId: null,
     factoryId: null,
