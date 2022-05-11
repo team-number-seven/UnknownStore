@@ -58,7 +58,7 @@ export const FactoryCreateForm = ({countries}) => {
                            message: 'This field cannot be empty',
                        },
                        pattern: {
-                           value: /^[a-zA-Z\s]*$/,
+                           value: /^[a-zA-Z0-9\s,'-]*$/,
                            message: 'Invalid address',
                        }
                    })}

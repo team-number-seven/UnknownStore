@@ -13,5 +13,5 @@ export const ModelCreateFormValues = {
     mainImage: 'mainImage',
     images: 'images',
     amountOfSize: 'size',
-    modelData: null
+    modelData: 'modelData'
 }

@@ -1,7 +1,9 @@
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {GetFactory} from "../../../../../server/dto/get/requests/get-factory/get-factory";
+import {PostModel} from "../../../../../server/dto/post/requests/post-model/post-model";
 import {FactoryCreate} from "../factory-create/factory-create";
+import {ModelData} from "../model-data/model-data";
 import {TitleList} from "./lists/titile-list";
 import {ModelCreateFormValues} from "./model-create-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
@@ -9,6 +11,7 @@ import {capitalLetter} from "./utilites/capitalLetter";
 export const ModelCreateForm = ({listValues}) => {
 
     const [showFactoryForm, setShowFactoryForm] = useState(false);
+    const [modelData, setModelData] = useState([]);
 
     const {
         formState: {errors, isValid},
@@ -30,7 +33,14 @@ export const ModelCreateForm = ({listValues}) => {
 
 
     const onSubmit = (formData) => {
-        //post
+        let data = new FormData(document.querySelector('#model-create-form'));
+        console.log(data);
+
+        PostModel(data).then(ok => {
+            if (ok) {
+                alert("Success");
+            } else alert("Failed");
+        });
     }
 
     const showFactoryFormHandler = () => {
@@ -41,10 +51,16 @@ export const ModelCreateForm = ({listValues}) => {
         GetFactory().then(value => listValues.factories = value);
     }
 
+    const onUpdateModelDataHandler = (modelDataPair) => {
+        debugger;
+        if (modelData.includes(modelDataPair)) {
+        } else modelData.push(modelDataPair);
+    }
+
 
     return (
         <>
-            {showFactoryForm ? <FactoryCreate countries={listValues.countries} onCreate={onCreateFactoryHandler}/> : <></>}
+
 
             <form id={'model-create-form'}
                   className="container form-group"
@@ -213,9 +229,6 @@ export const ModelCreateForm = ({listValues}) => {
 
 
                 {watchSubCategoryId &&
-                    <button onClick={showFactoryFormHandler}>{'Create factory'}</button>}
-
-                {watchSubCategoryId &&
                     <select className="form-control selectpicker"
                             data-live-search="true"
                             data-width="fit"
@@ -249,6 +262,24 @@ export const ModelCreateForm = ({listValues}) => {
                 {errors[form.colorId] &&
                     <small className="input-error">{errors[form.colorId]?.message}</small>}
 
+                {watchSubCategoryId &&
+                    <input type={'text'}
+                           className="form-control"
+                           placeholder={capitalLetter(form.modelData)}
+                           {...register(form.title, {
+                               required: {
+                                   value: true,
+                                   message: 'This field cannot be empty',
+                               },
+                               pattern: {
+                                   value: /^[a-zA-Z\s]*$/,
+                                   message: 'Invalid model data',
+                               }
+                           })}
+                    />
+                }
+                {errors[form.description] &&
+                    <small className="input-error">{errors[form.description]?.message}</small>}
 
                 <input type={'file'}
                        accept={'image/*'}
@@ -274,6 +305,21 @@ export const ModelCreateForm = ({listValues}) => {
                     Upload
                 </button>
             </form>
+
+
+            <div>
+                {modelData.map((pair, key=0) => {
+                    key++;
+                    return <span key={key}><p>{JSON.stringify(pair)}</p></span>
+                })
+                }
+            </div>
+            <ModelData onFillPair={onUpdateModelDataHandler}/>
+
+            {showFactoryForm ?
+                <FactoryCreate countries={listValues.countries} onCreate={onCreateFactoryHandler}/> : <></>}
+            <button onClick={showFactoryFormHandler}>{'Create factory'}</button>
+            }
         </>
     )
 }
