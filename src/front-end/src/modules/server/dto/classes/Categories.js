@@ -14,7 +14,7 @@ export class Categories {
         return this.value.find((category) => category.id === categoryId)
     }
 
-    getGenders(categoryId){
+    getGenders(categoryId) {
         let value = [];
         for (let category of this.value) {
             if (this.findTitle(category.id) === this.findTitle(categoryId)) {
@@ -60,6 +60,19 @@ export class Categories {
                 ageTypeId === category.ageType.id &&
                 genderId === category.gender.id) {
                 return category;
+            }
+        }
+    }
+
+    findSize(categoryId, ageTypeId, genderId, subCategoryId) {
+        debugger;
+        for (let category of this.value) {
+            if (category.title === this.findTitle(categoryId) &&
+                ageTypeId === category.ageType.id &&
+                genderId === category.gender.id &&
+                category.subCategories.includes(category.subCategories.find((subCategory) => subCategory.id === subCategoryId))
+            ) {
+                return category.subCategories.find((subCategory) => subCategory.id === subCategoryId).size;
             }
         }
     }

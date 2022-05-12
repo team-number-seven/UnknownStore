@@ -3,8 +3,9 @@ import {useForm} from "react-hook-form";
 import {GetFactory} from "../../../../../server/dto/get/requests/get-factory/get-factory";
 import {PostModel} from "../../../../../server/dto/post/requests/post-model/post-model";
 import {FactoryCreate} from "../factory-create/factory-create";
+import {SizeList} from "../lists/size-list";
 import {ModelData} from "../model-data/model-data";
-import {TitleList} from "./lists/titile-list";
+import {TitleList} from "../lists/titile-list";
 import {ModelCreateFormValues} from "./model-create-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
 
@@ -263,20 +264,9 @@ export const ModelCreateForm = ({listValues}) => {
                     <small className="input-error">{errors[form.colorId]?.message}</small>}
 
                 {watchSubCategoryId &&
-                    <input type={'text'}
-                           className="form-control"
-                           placeholder={capitalLetter(form.modelData)}
-                           {...register(form.title, {
-                               required: {
-                                   value: true,
-                                   message: 'This field cannot be empty',
-                               },
-                               pattern: {
-                                   value: /^[a-zA-Z\s]*$/,
-                                   message: 'Invalid model data',
-                               }
-                           })}
-                    />
+                    <div>
+                        <SizeList listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}/>
+                    </div>
                 }
                 {errors[form.description] &&
                     <small className="input-error">{errors[form.description]?.message}</small>}
@@ -308,9 +298,16 @@ export const ModelCreateForm = ({listValues}) => {
 
 
             <div>
-                {modelData.map((pair, key=0) => {
+                {modelData.map((pair, key = 0) => {
                     key++;
-                    return <span key={key}><p>{JSON.stringify(pair)}</p></span>
+                    return <span
+                        key={key}>
+                        <p>{JSON.stringify(pair).replace('{"', '')
+                            .replace('"', '')
+                            .replace('"','')
+                            .replace('"}', '')
+                        }</p>
+                    </span>
                 })
                 }
             </div>
@@ -319,7 +316,7 @@ export const ModelCreateForm = ({listValues}) => {
             {showFactoryForm ?
                 <FactoryCreate countries={listValues.countries} onCreate={onCreateFactoryHandler}/> : <></>}
             <button onClick={showFactoryFormHandler}>{'Create factory'}</button>
-            }
+
         </>
     )
 }

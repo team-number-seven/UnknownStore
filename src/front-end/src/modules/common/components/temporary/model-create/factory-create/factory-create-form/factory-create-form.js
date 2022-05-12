@@ -1,7 +1,7 @@
 import {typeImplementation} from "@testing-library/user-event/dist/type/typeImplementation";
 import {useForm} from "react-hook-form";
 import {PostFactory} from "../../../../../../server/dto/post/requests/post-factory/post-factory";
-import {TitleList} from "../../model-create-form/lists/titile-list";
+import {TitleList} from "../../lists/titile-list";
 import {capitalLetter} from "../../model-create-form/utilites/capitalLetter";
 
 export const FactoryCreateForm = ({countries}) => {
