@@ -1,5 +1,5 @@
 import {CONFIG} from "../../../../../../configs/config";
-import {Categories} from "../../../classes/category/Categories";
+import {Categories} from "../../../classes/Categories";
 
 export const GetCategory = async () => await fetch(CONFIG.server + CONFIG.GET["category"]["get-all"])
     .then(response => response.json())
