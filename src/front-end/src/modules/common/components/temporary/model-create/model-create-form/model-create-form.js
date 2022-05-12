@@ -38,6 +38,10 @@ export const ModelCreateForm = ({listValues}) => {
     const onSubmit = (formData) => {
         let data = new FormData(document.querySelector('#model-create-form'));
 
+        data.delete('Files');
+        data.append('mainImage', formData.mainImage);
+        data.append('images', formData.images);
+
         let idx = 0;
         for (let key in sizes) {
             data.append(`AmountOfSize[${idx}].Key`, key);
@@ -46,7 +50,6 @@ export const ModelCreateForm = ({listValues}) => {
         }
 
         idx = 0;
-        debugger;
         for (let key in modelData) {
             data.append(`ModelData[${idx}].Key`, key);
             data.append(`ModelData[${idx}].Value`, modelData[key]);
@@ -299,7 +302,7 @@ export const ModelCreateForm = ({listValues}) => {
 
                 <input type={'file'}
                        accept={'image/*'}
-                       {...register('Files', {
+                       {...register(form.mainImage, {
                            required: {
                                value: true,
                                message: 'You need to upload the main picture',
@@ -310,6 +313,7 @@ export const ModelCreateForm = ({listValues}) => {
 
                 <input type={'file'}
                        accept={'image/*'}
+                       {...register(form.images)}
                        multiple
                 />
 
