@@ -4,15 +4,17 @@ import {GetFactory} from "../../../../../server/dto/get/requests/get-factory/get
 import {PostModel} from "../../../../../server/dto/post/requests/post-model/post-model";
 import {FactoryCreate} from "../factory-create/factory-create";
 import {SizeList} from "../lists/size-list";
-import {ModelData} from "../model-data/model-data";
 import {TitleList} from "../lists/titile-list";
+import {ModelData} from "../model-data/model-data";
 import {ModelCreateFormValues} from "./model-create-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
+import {modelDataDisplay} from "./utilites/modelDataDisplay";
 
 export const ModelCreateForm = ({listValues}) => {
 
     const [showFactoryForm, setShowFactoryForm] = useState(false);
-    const [modelData, setModelData] = useState([]);
+    const [modelData, setModelData] = useState({});
+    const [sizes, setSizes] = useState({});
 
     const {
         formState: {errors, isValid},
@@ -35,7 +37,23 @@ export const ModelCreateForm = ({listValues}) => {
 
     const onSubmit = (formData) => {
         let data = new FormData(document.querySelector('#model-create-form'));
-        console.log(data);
+
+        let idx = 0;
+        for (let key in sizes) {
+            data.append(`AmountOfSize[${idx}].Key`, key);
+            data.append(`AmountOfSize[${idx}].Value`, sizes[key]);
+            idx++;
+        }
+
+        idx = 0;
+        debugger;
+        for (let key in modelData) {
+            data.append(`ModelData[${idx}].Key`, key);
+            data.append(`ModelData[${idx}].Value`, modelData[key]);
+            idx++;
+        }
+
+        debugger;
 
         PostModel(data).then(ok => {
             if (ok) {
@@ -53,9 +71,14 @@ export const ModelCreateForm = ({listValues}) => {
     }
 
     const onUpdateModelDataHandler = (modelDataPair) => {
-        debugger;
-        if (modelData.includes(modelDataPair)) {
-        } else modelData.push(modelDataPair);
+        setModelData(Object.assign(modelData, modelDataPair));
+    }
+
+    const onSizeChangeHandler = (e) => {
+        let sizeObj = {};
+        let key = e.target.id.slice(5);
+        sizeObj[key] = e.target.value;
+        setSizes(Object.assign(sizes, sizeObj));
     }
 
 
@@ -265,7 +288,10 @@ export const ModelCreateForm = ({listValues}) => {
 
                 {watchSubCategoryId &&
                     <div>
-                        <SizeList listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}/>
+                        <SizeList
+                            listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}
+                            onSizeChange={onSizeChangeHandler}
+                        />
                     </div>
                 }
                 {errors[form.description] &&
@@ -298,18 +324,7 @@ export const ModelCreateForm = ({listValues}) => {
 
 
             <div>
-                {modelData.map((pair, key = 0) => {
-                    key++;
-                    return <span
-                        key={key}>
-                        <p>{JSON.stringify(pair).replace('{"', '')
-                            .replace('"', '')
-                            .replace('"','')
-                            .replace('"}', '')
-                        }</p>
-                    </span>
-                })
-                }
+                {modelDataDisplay(modelData)}
             </div>
             <ModelData onFillPair={onUpdateModelDataHandler}/>
 

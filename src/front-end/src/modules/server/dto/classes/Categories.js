@@ -65,7 +65,6 @@ export class Categories {
     }
 
     findSize(categoryId, ageTypeId, genderId, subCategoryId) {
-        debugger;
         for (let category of this.value) {
             if (category.title === this.findTitle(categoryId) &&
                 ageTypeId === category.ageType.id &&
