@@ -8,26 +8,31 @@ export const CONFIG = {
         "silent-sign-in": "/silent-renew-oidc",
         "sign-out-callback": "/signout-oidc",
     },
+    "user-role": {
+        "User": "User",
+        "Manager": "Manager",
+        "Owner": "Owner",
+    },
     "GET": {
         "age-type": {
             "get-all": "age-type/get-all",
-            "dto":"ageTypeDtos"
+            "dto": "ageTypeDtos"
         },
         "brand": {
             "get-all": "brand/get-all",
-            "dto":"brandDtos"
+            "dto": "brandDtos"
         },
         "category": {
             "get-all": "category/get-all",
-            "dto":"categoryDtos"
+            "dto": "categoryDtos"
         },
         "color": {
             "get-all": "color/get-all",
-            "dto":"colorDtos"
+            "dto": "colorDtos"
         },
         "country": {
             "get-all": "country/get-all",
-            "dto":"countryDtos"
+            "dto": "countryDtos"
         },
         "factory": {
             "get-all": "factory/get-all",
@@ -35,7 +40,7 @@ export const CONFIG = {
         },
         "season": {
             "get-all": "season/get-all",
-            "dto":"seasonDtos"
+            "dto": "seasonDtos"
         }
     },
     "POST": {
