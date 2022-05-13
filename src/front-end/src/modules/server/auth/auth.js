@@ -1,4 +1,3 @@
-
 import {UserManager} from "oidc-client";
 import {useState} from "react";
 import {Navigate} from "react-router-dom"
@@ -6,12 +5,7 @@ import {CONFIG} from "../../../configs/config";
 import {AuthConfig} from "../../../configs/auth-config";
 
 
-
-
-export const Auth = () => {
-
-    const [userIsAuth, setUserIsAuth] = useState(false);
-
+export const Auth = ({useAuthIsAuth, useAuthSignOut, useAuthIsRefresh, useAuthSignIn, authStatus, accessToken}) => {
 
     const mgr = new UserManager(AuthConfig);
 
@@ -29,7 +23,7 @@ export const Auth = () => {
                 console.log("Token refreshed", user);
             })
             .catch((error) => {
-                console.log("Something went wrong");
+                console.log(error);
             })
     }
 
@@ -37,19 +31,29 @@ export const Auth = () => {
     const isAuth = () => {
         mgr.getUser().then((user) => {
             if (user) {
-                console.log("User logged in", user.access_token);
-                setUserIsAuth(true);
+                accessToken(user.access_token);
+                authStatus(true);
             } else {
-                console.log("User not logged in");
-                setUserIsAuth(false);
+                authStatus(false);
             }
         })
     }
 
-    isAuth();
+    if (useAuthIsAuth) {
+        isAuth();
+    }
+    if (useAuthSignIn) {
+        signIn();
+    }
+    if (useAuthSignOut) {
+        signOut();
+    }
+    if (useAuthIsRefresh) {
+        refresh();
+    }
+
+
     return (
-        <div id={'auth-component'}>
-            {userIsAuth?<button onClick={signOut}>Sign Out</button>: <button onClick={signIn}>Sign In</button>}
-        </div>
+        <></>
     )
 }
