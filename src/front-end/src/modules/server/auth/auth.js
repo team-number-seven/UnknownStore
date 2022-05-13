@@ -5,16 +5,27 @@ import {CONFIG} from "../../../configs/config";
 import {AuthConfig} from "../../../configs/auth-config";
 
 
-export const Auth = ({useAuthIsAuth, useAuthSignOut, useAuthIsRefresh, useAuthSignIn, authStatus, accessToken}) => {
+export const Auth = ({
+                         useAuthIsAuth,
+                         useAuthSignOut,
+                         useAuthRefresh,
+                         useAuthSignIn,
+                         authStatus,
+                         accessToken,
+                         switchUseAuthIsAuth,
+                         switchUseAuthSignOut,
+                         switchUseAuthRefresh,
+                         switchUseAuthSignIn
+                     }) => {
 
     const mgr = new UserManager(AuthConfig);
 
     const signIn = () => {
-        mgr.signinRedirect().then();
+        mgr.signinRedirect().then().catch(error => console.log(error));
     }
 
     const signOut = () => {
-        mgr.signoutRedirect().then();
+        mgr.signoutRedirect().then().catch(error => console.log(error));
     }
 
     const refresh = () => {
@@ -24,7 +35,7 @@ export const Auth = ({useAuthIsAuth, useAuthSignOut, useAuthIsRefresh, useAuthSi
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
     }
 
 
@@ -36,7 +47,7 @@ export const Auth = ({useAuthIsAuth, useAuthSignOut, useAuthIsRefresh, useAuthSi
             } else {
                 authStatus(false);
             }
-        })
+        }).catch(error => console.log(error));
     }
 
     if (useAuthIsAuth) {
@@ -48,7 +59,7 @@ export const Auth = ({useAuthIsAuth, useAuthSignOut, useAuthIsRefresh, useAuthSi
     if (useAuthSignOut) {
         signOut();
     }
-    if (useAuthIsRefresh) {
+    if (useAuthRefresh) {
         refresh();
     }
 
