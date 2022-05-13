@@ -1,9 +1,6 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
-import {ROUTES_CONFIG} from "./configs/routes-config";
 import {Pages} from "./modules/common/components/pages/pages";
 import {Header} from "./modules/common/components/permanent/header/header";
-import {ModelCreate} from "./modules/common/components/temporary/model-create/model-create";
 import {AuthRoutes} from "./modules/routes/auth-routes";
 import {Auth} from "./modules/server/auth/auth";
 import {jwtParser} from "./modules/utilites/jwt-parser";
@@ -67,7 +64,6 @@ export const App = () => {
             />
             <Header onSignInClick={onSignInClickHandler} onSignOutClick={onSignOutClickHandler} isAuth={isAuth}/>
             <Pages isAuth={isAuth} userAccessToken={userAccessToken} userData={userData}/>
-            <Link to={ROUTES_CONFIG.private.manager["create-model"]}>Create model</Link>
         </>
     )
 }
