@@ -10,8 +10,8 @@ using UnknownStore.DAL;
 namespace UnknownStore.DAL.Data.Migrations.Store
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20220510152902_addTable")]
-    partial class addTable
+    [Migration("20220514142708_addAddress")]
+    partial class addAddress
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,6 +211,30 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.ToTable("UserTokens");
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AddressLine")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.AgeType", b =>
                 {
                     b.Property<Guid>("Id")
@@ -282,6 +306,9 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("AgeTypeId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("GenderId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -291,7 +318,28 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.HasIndex("AgeTypeId");
 
+                    b.HasIndex("GenderId");
+
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Color", b =>
@@ -352,6 +400,9 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Iso2")
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -601,9 +652,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("GenderId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -612,8 +660,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("GenderId");
 
                     b.ToTable("SubCategories");
                 });
@@ -669,6 +715,25 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Address", b =>
+                {
+                    b.HasOne("UnknownStore.DAL.Entities.Store.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("Country");
+                });
+
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.AmountOfSize", b =>
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.Model", "Model")
@@ -699,7 +764,26 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Gender", "Gender")
+                        .WithMany("Categories")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AgeType");
+
+                    b.Navigation("Gender");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.City", b =>
+                {
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Country", "Country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Comment", b =>
@@ -827,15 +911,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UnknownStore.DAL.Entities.Store.Gender", "Gender")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
-
-                    b.Navigation("Gender");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Identity.User", b =>
@@ -865,6 +941,8 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Country", b =>
                 {
+                    b.Navigation("Cities");
+
                     b.Navigation("Factories");
                 });
 
@@ -875,7 +953,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Gender", b =>
                 {
-                    b.Navigation("SubCategories");
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Model", b =>

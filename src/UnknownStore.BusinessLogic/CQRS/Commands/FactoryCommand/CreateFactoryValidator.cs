@@ -23,18 +23,28 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.FactoryCommand
                 return ValidationResult.Fail(
                     ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(request.CreateFactoryDto)));
 
+            var country = await _context.Countries.FindAsync(dto.CountryId);
+            var city = await _context.Cities.FindAsync(dto.CityId);
+
+            if (country is null)
+                return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.CountryId)));
+
+            if (city is null)
+                return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.CityId)));
+
+            if (city.CountryId != country.Id)
+                return ValidationResult.Fail(
+                    ValidationMessenger.InvalidValue(nameof(dto.CityId), dto.CityId.ToString()));
+
             if (dto.Title.IsNullOrEmpty())
                 return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.Title)));
 
-            if (dto.Address.IsNullOrEmpty())
-                return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.Address)));
+            if (dto.AddressLine.IsNullOrEmpty())
+                return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(dto.AddressLine)));
 
-            if (await _context.Factories.FirstOrDefaultAsync(f => f.Address == dto.Address, cancellationToken) is not
-                null)
-                return ValidationResult.Fail(ValidationMessenger.ObjectAlreadyExists(nameof(dto.Address)));
-
-            return await _context.Countries.FindAsync(dto.CountryId) is null
-                ? ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.CountryId)))
+            return await _context.Addresses.FirstOrDefaultAsync(a => a.AddressLine == dto.AddressLine,
+                cancellationToken) is not null
+                ? ValidationResult.Fail(ValidationMessenger.ObjectAlreadyExists(nameof(dto.AddressLine)))
                 : ValidationResult.Success;
         }
     }
