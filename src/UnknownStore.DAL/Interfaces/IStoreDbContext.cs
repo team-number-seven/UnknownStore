@@ -25,6 +25,9 @@ namespace UnknownStore.DAL.Interfaces
         DbSet<City> Cities { get; set; }
         DbSet<Address> Addresses { get; set; }
 
+        DbSet<Order> Orders { get; set; }
+        DbSet<BuyModel> BuyModels { get; set; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = new());
     }
 }
