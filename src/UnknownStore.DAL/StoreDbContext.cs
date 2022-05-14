@@ -38,6 +38,9 @@ namespace UnknownStore.DAL
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<MainImage> MainImages { get; set; }
 
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -5,20 +5,19 @@ using UnknownStore.DAL.Entities.Store;
 
 namespace UnknownStore.Common.DataTransferObjects.Get
 {
-    public class GetFactoryDto : IMapWith<Factory>
+    public class GetAddressDto : IMapWith<Address>
     {
         public Guid Id { get; set; }
-        public string Title { get; set; }
-        public GetAddressDto Address { get; set; }
+        public string AddressLine { get; set; }
         public GetCountryDto Country { get; set; }
-
+        public GetCityDto City { get; set; }
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Factory, GetFactoryDto>()
+            profile.CreateMap<Address, GetAddressDto>()
                 .ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id))
-                .ForMember(dto => dto.Address, opt => opt.MapFrom(c => c.Address))
+                .ForMember(dto => dto.AddressLine, opt => opt.MapFrom(c => c.AddressLine))
                 .ForMember(dto => dto.Country, opt => opt.Ignore())
-                .ForMember(dto => dto.Title, opt => opt.MapFrom(c => c.Title));
+                .ForMember(dto => dto.AddressLine, opt => opt.Ignore());
         }
     }
 }

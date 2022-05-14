@@ -16,13 +16,24 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasIndex(c => c.Title)
                 .IsUnique();
             builder
+                .HasIndex(c => c.Iso2)
+                .IsUnique();
+            builder
                 .Property(c => c.Title)
                 .IsRequired()
                 .HasMaxLength(100);
             builder
-                .HasMany(c => c.Factories)
-                .WithOne(f => f.Country)
-                .HasForeignKey(f => f.CountryId);
+                .Property(c => c.Iso2)
+                .IsRequired();
+
+            builder
+                .HasMany(c => c.Address)
+                .WithOne(a => a.Country)
+                .HasForeignKey(a => a.CountryId);
+            builder
+                .HasMany(c => c.Cities)
+                .WithOne(c => c.Country)
+                .HasForeignKey(c => c.CountryId);
         }
     }
 }

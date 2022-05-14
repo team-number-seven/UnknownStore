@@ -4,7 +4,7 @@ using UnknownStore.DAL.Entities.Store;
 
 namespace UnknownStore.DAL.EntitiesConfiguration
 {
-    public class MainImageConfiguration:IEntityTypeConfiguration<MainImage>
+    public class MainImageConfiguration : IEntityTypeConfiguration<MainImage>
     {
         public void Configure(EntityTypeBuilder<MainImage> builder)
         {

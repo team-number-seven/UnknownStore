@@ -542,7 +542,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.ToTable("Seasons");
                 });
 
-            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Size", b =>
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Value", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -777,7 +777,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UnknownStore.DAL.Entities.Store.Size", "Size")
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Value", "Value")
                         .WithMany("SubCategories")
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -785,7 +785,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.Navigation("Category");
 
-                    b.Navigation("Size");
+                    b.Navigation("Value");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Identity.User", b =>
@@ -842,7 +842,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Models");
                 });
 
-            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Size", b =>
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Value", b =>
                 {
                     b.Navigation("SubCategories");
                 });
