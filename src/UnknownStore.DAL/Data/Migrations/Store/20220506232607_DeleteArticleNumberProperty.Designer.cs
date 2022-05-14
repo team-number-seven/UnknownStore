@@ -538,7 +538,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.ToTable("Seasons");
                 });
 
-            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Size", b =>
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Value", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -771,7 +771,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Model");
                 });
 
-            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Size", b =>
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Value", b =>
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.Gender", "Gender")
                         .WithMany("Sizes")
@@ -780,8 +780,8 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .IsRequired();
 
                     b.HasOne("UnknownStore.DAL.Entities.Store.SubCategory", "SubCategory")
-                        .WithOne("Size")
-                        .HasForeignKey("UnknownStore.DAL.Entities.Store.Size", "SubCategoryId")
+                        .WithOne("Value")
+                        .HasForeignKey("UnknownStore.DAL.Entities.Store.Value", "SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -859,7 +859,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 {
                     b.Navigation("Models");
 
-                    b.Navigation("Size");
+                    b.Navigation("Value");
                 });
 #pragma warning restore 612, 618
         }

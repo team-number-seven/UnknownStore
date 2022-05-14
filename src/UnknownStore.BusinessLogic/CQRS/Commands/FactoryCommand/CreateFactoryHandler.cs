@@ -28,7 +28,13 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.FactoryCommand
         {
             var dto = request.CreateFactoryDto;
             var country = await _context.Countries.FindAsync(dto.CountryId);
-            var factory = new Factory { Address = dto.Address, Country = country, Title = dto.Title };
+            var address = new Address
+            {
+                AddressLine = dto.AddressLine,
+                Country = await _context.Countries.FindAsync(dto.CountryId),
+                City = await _context.Cities.FindAsync(dto.CityId)
+            };
+            var factory = new Factory { Address = address, Title = dto.Title };
 
             await _context.Factories.AddAsync(factory, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);

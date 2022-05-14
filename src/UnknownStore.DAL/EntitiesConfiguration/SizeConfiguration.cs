@@ -20,7 +20,6 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .HasOne(s => s.SubCategory)
                 .WithOne(sb => sb.Size)
                 .HasForeignKey<Size>(s => s.SubCategoryId);
-
         }
     }
 }

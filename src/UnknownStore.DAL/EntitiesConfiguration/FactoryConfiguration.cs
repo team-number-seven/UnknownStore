@@ -16,21 +16,14 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .Property(f => f.Title)
                 .IsRequired()
                 .HasMaxLength(150);
-            //TODO Make the 'Address' unique
-            builder
-                .Property(c => c.Address)
-                .IsRequired()
-                .HasMaxLength(500);
-
-            builder
-                .HasOne(f => f.Country)
-                .WithMany(c => c.Factories)
-                .HasForeignKey(f => f.CountryId);
-
             builder
                 .HasMany(f => f.Models)
                 .WithOne(m => m.Factory)
                 .HasForeignKey(f => f.FactoryId);
+            builder
+                .HasOne(f => f.Address)
+                .WithOne(a => a.Factory)
+                .HasForeignKey<Factory>(f => f.AddressId);
         }
     }
 }
