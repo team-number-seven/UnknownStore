@@ -14,15 +14,15 @@ namespace UnknownStore.DAL.Entities.Store
         public string FirstName { get; set; }
         public string OrderDescription { get; set; }
         public string OrderStatusDescription { get; set; }
-        public DateTime CreteDate { get; set; }
-        public DateTime? PickUpBefore { get; set; }
-        public DateTime? DeliveredTo { get; set; }
+        public string CreteDate { get; set; }
+        public string PickUpBefore { get; set; }
+        public string DeliveredTo { get; set; }
         public PaymentMode PaymentMode { get; set; }
         public DeliveryMode DeliveryMode { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
         public virtual Address DeliveryAddress { get; set; }
-        public Guid AddressId { get; set; }
+        public Guid DeliveryAddressId { get; set; }
 
         public virtual User User { get; set; }
         public Guid? UserId { get; set; }

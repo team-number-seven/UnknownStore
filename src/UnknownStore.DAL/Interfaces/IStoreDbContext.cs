@@ -29,5 +29,6 @@ namespace UnknownStore.DAL.Interfaces
         DbSet<BuyModel> BuyModels { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = new());
+        int SaveChanges();
     }
 }

@@ -266,7 +266,8 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("ModelId")
                         .HasColumnType("uuid");
 
-                    b.Property<double>("Value")
+                    b.Property<double?>("Value")
+                        .IsRequired()
                         .HasColumnType("double precision");
 
                     b.HasKey("Id");
@@ -303,14 +304,17 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
                     b.Property<Guid>("ModelId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Size")
-                        .HasColumnType("text");
+                    b.Property<double?>("Size")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
@@ -455,9 +459,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("AddressId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("CountryId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -467,8 +468,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.HasIndex("AddressId")
                         .IsUnique();
-
-                    b.HasIndex("CountryId");
 
                     b.ToTable("Factories");
                 });
@@ -632,14 +631,14 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AddressId")
+                    b.Property<string>("CreteDate")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeliveredTo")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("DeliveryAddressId")
                         .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreteDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DeliveredTo")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("DeliveryCost")
                         .HasColumnType("numeric");
@@ -668,8 +667,8 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("PickUpBefore")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<string>("PickUpBefore")
+                        .HasColumnType("text");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("numeric");
@@ -679,7 +678,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("DeliveryAddressId");
 
                     b.HasIndex("UserId");
 
@@ -922,10 +921,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UnknownStore.DAL.Entities.Store.Country", null)
-                        .WithMany("Factories")
-                        .HasForeignKey("CountryId");
-
                     b.Navigation("Address");
                 });
 
@@ -1009,7 +1004,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.Address", "DeliveryAddress")
                         .WithMany("Orders")
-                        .HasForeignKey("AddressId")
+                        .HasForeignKey("DeliveryAddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1088,8 +1083,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Address");
 
                     b.Navigation("Cities");
-
-                    b.Navigation("Factories");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Factory", b =>

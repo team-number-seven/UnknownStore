@@ -9,7 +9,6 @@ namespace UnknownStore.DAL.Entities.Store
 
         public virtual IEnumerable<City> Cities { get; set; }
 
-        public virtual IEnumerable<Factory> Factories { get; set; }
 
         public virtual IEnumerable<Address> Address { get; set; }
     }
