@@ -9,6 +9,7 @@ namespace UnknownStore.DAL.Entities.Store
 
         public virtual AgeType AgeType { get; set; }
         public Guid AgeTypeId { get; set; }
+
         public virtual Gender Gender { get; set; }
         public Guid GenderId { get; set; }
 
