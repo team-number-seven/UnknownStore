@@ -24,7 +24,7 @@ export const ModelDataForm = ({onFill}) => {
 
     return (
         <>
-            <form id={'factory-create-form'}
+            <form id={'create-factory-short-form'}
                   className="container form-group"
                   onSubmit={handleSubmit(onSubmit)}
             >

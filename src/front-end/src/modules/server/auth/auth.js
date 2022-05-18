@@ -1,8 +1,8 @@
 import {UserManager} from "oidc-client";
 import {useState} from "react";
 import {Navigate} from "react-router-dom"
-import {CONFIG} from "../../../configs/config";
-import {AuthConfig} from "../../../configs/auth-config";
+import {CONFIG} from "../../../../../FrontEnd/src/configs/config";
+import {AuthConfig} from "../../../../../FrontEnd/src/configs/auth-config";
 
 
 export const Auth = ({

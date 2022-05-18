@@ -1,10 +1,16 @@
+import {Link} from "react-router-dom";
+import {ROUTES_CONFIG} from "../../../../../../../../../FrontEnd/src/configs/routes-config";
 
 export const ManagerPanelPage = () => {
 
     return (
         <>
-            <button>Create Model</button>
-            <button>Create Factory</button>
+            <Link to={'../' + ROUTES_CONFIG.private.manager["create-model"]}>
+                <button>Create Model</button>
+            </Link>
+            <Link to={'../' + ROUTES_CONFIG.private.manager["create-factory"]}>
+                <button>Create Factory</button>
+            </Link>
         </>
     )
 }
