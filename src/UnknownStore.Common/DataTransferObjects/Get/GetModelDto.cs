@@ -21,7 +21,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         public GetSeasonDto Season { get; set; }
         public FileContentResult MainImage { get; set; }
         public IEnumerable<FileContentResult> Images { get; set; }
-        public IDictionary<double, int> AmountOfSize { get; set; }
+        public IEnumerable<GetAmountOfSizeDto> AmountOfSize { get; set; }
         public IDictionary<string, string> ModelData { get; set; }
 
 
@@ -40,7 +40,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
                 .ForMember(dto => dto.MainImage, opt => opt.Ignore())
                 .ForMember(dto => dto.Images, opt => opt.Ignore())
                 .ForMember(dto => dto.AmountOfSize,
-                    opt => opt.MapFrom(m => m.AmountOfSizes.ToDictionary(am => am.Value, am => am.Amount)))
+                    opt => opt.Ignore())
                 .ForMember(dto => dto.ModelData,
                     opt => opt.MapFrom(m => m.ModelData.ToDictionary(md => md.Key, md => md.Value)));
         }
