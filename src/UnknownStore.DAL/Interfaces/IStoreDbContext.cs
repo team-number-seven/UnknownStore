@@ -24,7 +24,7 @@ namespace UnknownStore.DAL.Interfaces
         DbSet<MainImage> MainImages { get; set; }
         DbSet<City> Cities { get; set; }
         DbSet<Address> Addresses { get; set; }
-
+        DbSet<DeliveryCity> DeliveryCities { get; set; }
         DbSet<Order> Orders { get; set; }
         DbSet<BuyModel> BuyModels { get; set; }
 

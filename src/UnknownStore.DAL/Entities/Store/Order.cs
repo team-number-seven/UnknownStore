@@ -16,13 +16,15 @@ namespace UnknownStore.DAL.Entities.Store
         public string OrderStatusDescription { get; set; }
         public string CreteDate { get; set; }
         public string PickUpBefore { get; set; }
-        public string DeliveredTo { get; set; }
         public PaymentMode PaymentMode { get; set; }
         public DeliveryMode DeliveryMode { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
         public virtual Address DeliveryAddress { get; set; }
         public Guid DeliveryAddressId { get; set; }
+
+        public virtual DeliveryCity DeliveryCity { get; set; }
+        public Guid DeliveryCityId { get; set; }
 
         public virtual User User { get; set; }
         public Guid? UserId { get; set; }

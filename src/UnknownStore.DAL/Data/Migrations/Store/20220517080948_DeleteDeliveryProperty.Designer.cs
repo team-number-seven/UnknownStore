@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UnknownStore.DAL;
@@ -9,9 +10,10 @@ using UnknownStore.DAL;
 namespace UnknownStore.DAL.Data.Migrations.Store
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220517080948_DeleteDeliveryProperty")]
+    partial class DeleteDeliveryProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -458,9 +460,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.Property<Guid>("CityId")
                         .HasColumnType("uuid");
-
-                    b.Property<TimeSpan>("MaxTimeDelivered")
-                        .HasColumnType("interval");
 
                     b.HasKey("Id");
 

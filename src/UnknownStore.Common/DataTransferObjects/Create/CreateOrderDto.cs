@@ -15,9 +15,8 @@ namespace UnknownStore.Common.DataTransferObjects.Create
         public string DeliveryMode { get; set; }
         public string AddressLine { get; set; }
         public Guid CountryId { get; set; }
-        public Guid CityId { get; set; }
-        public Guid ModelId { get; set; }
         public Guid? UserId { get; set; }
+        public Guid DeliveryCity { get; set; }
         public IEnumerable<CreateBuyModelDto> BuyModels { get; set; }
     }
 }

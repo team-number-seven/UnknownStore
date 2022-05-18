@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UnknownStore.Common;
 using UnknownStore.Common.CQRS;
-using UnknownStore.Common.DataTransferObjects.Create;
 using UnknownStore.DAL.Entities.Enums;
 using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
@@ -34,10 +33,10 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
         public async Task<ResponseBase> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
             var dto = request.OrderDto;
-            var address = await FindOrCreateAddressAsync(dto.CountryId, dto.CityId, dto.AddressLine, cancellationToken);
+            var address = await FindOrCreateAddressAsync(dto.CountryId, dto.DeliveryCity, dto.AddressLine, cancellationToken);
 
             var buyModels = dto.BuyModels.Select(buyModel => new BuyModel
-                { ModelId = buyModel.ModelId, Size = buyModel.Size, Amount = buyModel.Amount });
+                { ModelId = buyModel.ModelId, Size = buyModel.Size, Amount = buyModel.Amount }).ToList();
             var order = new Order
             {
                 TotalPrice = dto.TotalPrice,
@@ -50,6 +49,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
                 DeliveryMode = Enum.Parse<DeliveryMode>(dto.DeliveryMode),
                 OrderStatus = OrderStatus.PendingConfirmation,
                 UserId = dto.UserId,
+                DeliveryCityId = dto.DeliveryCity,
                 DeliveryAddress = address,
                 BuyModels = buyModels,
                 OrderDescription = dto.OrderDescription,
@@ -61,13 +61,14 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
             return new CreateOrderResponse { StatusCode = HttpStatusCode.Created };
         }
 
-        private async Task<Address> FindOrCreateAddressAsync(Guid countryId, Guid cityId, string addressLine,
+        private async Task<Address> FindOrCreateAddressAsync(Guid countryId, Guid deliveryCityId, string addressLine,
             CancellationToken cancellationToken = new())
         {
+            var deliveryCity = await _context.DeliveryCities.FindAsync(deliveryCityId);
             var address = await _context.Addresses.FirstOrDefaultAsync(a =>
-                    a.CountryId == countryId && a.CityId == cityId && a.AddressLine == addressLine,
+                    a.CountryId == countryId && a.CityId == deliveryCity.CityId && a.AddressLine == addressLine,
                 cancellationToken: cancellationToken);
-            return address ?? new Address { AddressLine = addressLine, CityId = cityId, CountryId = countryId };
+            return address ?? new Address { AddressLine = addressLine, CityId = deliveryCity.CityId, CountryId = countryId };
         }
 
         private void UpdateCountSizeModels(IEnumerable<BuyModel> buyModels)
