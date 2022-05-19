@@ -1,6 +1,8 @@
 import React from "react";
 import './App.css';
+import {Pages} from "./modules/components/pages/pages";
 import {Header} from "./modules/components/permanent/header/header";
+import {NavBar} from "./modules/components/permanent/nav-bar/nav-bar";
 import {AuthRoutes} from "./routes/auth-routes";
 import {Auth} from "./server/auth/auth";
 import {jwtParser} from "./modules/utilites/jwt-parser";
@@ -9,13 +11,15 @@ export class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+
             isAuth: false,
             useAuthSignIn: false,
             useAuthSignOut: false,
             useAuthIsAuth: true,
             useAuthRefresh: false,
-            userData: {},
-            userAccessToken: '',
+
+            userData: false,
+            userAccessToken: false,
         }
 
         this.handleSignInClick = this.handleSignInClick.bind(this);
@@ -39,7 +43,7 @@ export class App extends React.Component {
     }
 
     handleAuthStatusChange(authStatus) {
-        if(authStatus){
+        if (authStatus) {
             this.setState(() => ({
                 isAuth: authStatus,
                 useAuthIsAuth: false,
@@ -81,7 +85,8 @@ export class App extends React.Component {
                     onSignOutClick={this.handleSignOutClick}
                     isAuth={this.state.isAuth}
                 />
-
+                <NavBar userData={this.state.userData}/>
+                <Pages userData={this.state.userData}/>
             </div>
         );
     }
