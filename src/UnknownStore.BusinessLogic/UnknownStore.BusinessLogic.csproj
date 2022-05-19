@@ -17,4 +17,8 @@
     <PackageReference Include="Scrutor" Version="4.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CQRS\Queries\OrderQueries\GetAllOrders\" />
+  </ItemGroup>
+
 </Project>
