@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -48,6 +49,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetModelById
             modelDto.Color = _mapper.Map<GetColorDto>(model.Color);
             modelDto.Factory = _mapper.Map<GetFactoryDto>(model.Factory);
             modelDto.Season = _mapper.Map<GetSeasonDto>(model.Season);
+            modelDto.AmountOfSize = model.AmountOfSizes
+                .Select(amountOfSize => _mapper.Map<GetAmountOfSizeDto>(amountOfSize)).ToList();
             new FileExtensionContentTypeProvider().TryGetContentType(model.MainImage.Format, out var contentType);
             modelDto.MainImage = new FileContentResult(await File.ReadAllBytesAsync
                 (model.MainImage.Path, cancellationToken), contentType);

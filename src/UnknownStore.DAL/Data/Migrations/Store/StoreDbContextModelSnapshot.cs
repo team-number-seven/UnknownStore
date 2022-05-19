@@ -266,7 +266,8 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("ModelId")
                         .HasColumnType("uuid");
 
-                    b.Property<double>("Value")
+                    b.Property<double?>("Value")
+                        .IsRequired()
                         .HasColumnType("double precision");
 
                     b.HasKey("Id");
@@ -295,6 +296,35 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.HasIndex("CountryId");
 
                     b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.BuyModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AmountOfSizeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AmountOfSizeId");
+
+                    b.HasIndex("ModelId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("BuyModels");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Category", b =>
@@ -422,6 +452,25 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("uuid");
+
+                    b.Property<TimeSpan>("MaxTimeDelivered")
+                        .HasColumnType("interval");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("DeliveryCities");
+                });
+
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Factory", b =>
                 {
                     b.Property<Guid>("Id")
@@ -429,9 +478,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("AddressId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("CountryId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Title")
@@ -443,8 +489,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.HasIndex("AddressId")
                         .IsUnique();
-
-                    b.HasIndex("CountryId");
 
                     b.ToTable("Factories");
                 });
@@ -600,6 +644,68 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.HasIndex("ModelId");
 
                     b.ToTable("ModelsData");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CreteDate")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("DeliveryAddressId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("DeliveryCityId")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("DeliveryCost")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("DeliveryMode")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OrderDescription")
+                        .HasColumnType("text");
+
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("OrderStatusDescription")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PaymentMode")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PickUpBefore")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeliveryAddressId");
+
+                    b.HasIndex("DeliveryCityId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Season", b =>
@@ -762,6 +868,33 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.BuyModel", b =>
+                {
+                    b.HasOne("UnknownStore.DAL.Entities.Store.AmountOfSize", "AmountOfSize")
+                        .WithMany()
+                        .HasForeignKey("AmountOfSizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Model", "Model")
+                        .WithMany()
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Order", "Order")
+                        .WithMany("BuyModels")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AmountOfSize");
+
+                    b.Navigation("Model");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Category", b =>
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.AgeType", "AgeType")
@@ -811,6 +944,17 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", b =>
+                {
+                    b.HasOne("UnknownStore.DAL.Entities.Store.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Factory", b =>
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.Address", "Address")
@@ -818,10 +962,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .HasForeignKey("UnknownStore.DAL.Entities.Store.Factory", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("UnknownStore.DAL.Entities.Store.Country", null)
-                        .WithMany("Factories")
-                        .HasForeignKey("CountryId");
 
                     b.Navigation("Address");
                 });
@@ -902,6 +1042,31 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Model");
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Order", b =>
+                {
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Address", "DeliveryAddress")
+                        .WithMany("Orders")
+                        .HasForeignKey("DeliveryAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", "DeliveryCityMigration")
+                        .WithMany("Orders")
+                        .HasForeignKey("DeliveryCityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UnknownStore.DAL.Entities.Identity.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("DeliveryAddress");
+
+                    b.Navigation("DeliveryCityMigration");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Size", b =>
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.SubCategory", "SubCategory")
@@ -927,11 +1092,15 @@ namespace UnknownStore.DAL.Data.Migrations.Store
             modelBuilder.Entity("UnknownStore.DAL.Entities.Identity.User", b =>
                 {
                     b.Navigation("Comment");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Address", b =>
                 {
                     b.Navigation("Factory");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.AgeType", b =>
@@ -964,8 +1133,11 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Address");
 
                     b.Navigation("Cities");
+                });
 
-                    b.Navigation("Factories");
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Factory", b =>
@@ -987,6 +1159,11 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("MainImage");
 
                     b.Navigation("ModelData");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Order", b =>
+                {
+                    b.Navigation("BuyModels");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Season", b =>
