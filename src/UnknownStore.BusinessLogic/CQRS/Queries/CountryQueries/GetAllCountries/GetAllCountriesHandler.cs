@@ -41,7 +41,14 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CountryQueries.GetAllCountries
 
         private IEnumerable<GetCountryDto> MapCountriesToCountryDtos(IEnumerable<Country> countries)
         {
-            var countryDtos = countries.Select(country => _mapper.Map<GetCountryDto>(country)).ToList();
+            var countryDtos = new List<GetCountryDto>();
+            foreach (var country in countries)
+            {
+                var countryDto = _mapper.Map<GetCountryDto>(country);
+                countryDto.Cities = country.Cities.Select(city => _mapper.Map<GetCityDto>(city)).ToList();
+                countryDtos.Add(countryDto);
+            }
+
             return countryDtos;
         }
     }
