@@ -24,7 +24,7 @@ export class App extends React.Component {
         this.handleAccessTokenChange = this.handleAccessTokenChange.bind(this);
         this.handleUserDataChange = this.handleUserDataChange.bind(this);
     }
-    
+
 
     handleSignInClick() {
         if (!this.state.useAuthSignIn) {
@@ -39,10 +39,12 @@ export class App extends React.Component {
     }
 
     handleAuthStatusChange(authStatus) {
-        this.setState(() => ({
-            isAuth: authStatus,
-            useAuthIsAuth: false,
-        }));
+        if(authStatus){
+            this.setState(() => ({
+                isAuth: authStatus,
+                useAuthIsAuth: false,
+            }));
+        }
     }
 
     handleAccessTokenChange(accessToken) {
@@ -54,7 +56,6 @@ export class App extends React.Component {
     }
 
     handleUserDataChange(userData) {
-        debugger;
         this.setState(() => ({
             userData: userData
         }));
@@ -64,19 +65,17 @@ export class App extends React.Component {
     render() {
         return (
             <div className={'App'}>
-                {this.state.useAuthIsAuth &&
-                    <>
-                        <AuthRoutes userData={this.handleUserDataChange}/>
-                        <Auth
-                            useAuthSignIn={this.state.useAuthSignIn}
-                            useAuthSignOut={this.state.useAuthSignOut}
-                            useAuthIsAuth={this.state.useAuthIsAuth}
-                            useAuthRefresh={this.state.useAuthRefresh}
-                            accessToken={this.handleAccessTokenChange}
-                            authStatus={this.handleAuthStatusChange}
-                        />
-                    </>
-                }
+
+                <AuthRoutes userData={this.handleUserDataChange}/>
+                <Auth
+                    useAuthSignIn={this.state.useAuthSignIn}
+                    useAuthSignOut={this.state.useAuthSignOut}
+                    useAuthIsAuth={this.state.useAuthIsAuth}
+                    useAuthRefresh={this.state.useAuthRefresh}
+                    accessToken={this.handleAccessTokenChange}
+                    authStatus={this.handleAuthStatusChange}
+                />
+
                 <Header
                     onSignInClick={this.handleSignInClick}
                     onSignOutClick={this.handleSignOutClick}

@@ -1,5 +1,5 @@
 export const CONFIG = {
-    "origin": "http://localhost:3000",
+    "origin": "https://localhost:3000",
     "server": "https://localhost:2001/store/",
     "content-type-URL8": "application/json; charset=utf-8",
     "requestMode": "cors",
