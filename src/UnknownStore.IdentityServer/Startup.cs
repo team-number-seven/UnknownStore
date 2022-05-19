@@ -30,7 +30,7 @@ namespace UnknownStore.IdentityServer
 
             app.UseCors(cfg =>
             {
-                cfg.WithOrigins("http://localhost:3000");
+                cfg.WithOrigins("https://localhost:3000");
                 cfg.AllowAnyHeader();
                 cfg.AllowAnyMethod();
             });

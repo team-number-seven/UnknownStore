@@ -27,6 +27,7 @@ export const ModelCreate = () => {
     if (typeof listValues === "undefined") {
         init().then(value => setListValues(value));
     }
+
     return (
         <>
             {typeof listValues === "undefined" ? <></> : <ModelCreateForm listValues={listValues}/>}

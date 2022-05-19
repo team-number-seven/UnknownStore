@@ -1,14 +1,17 @@
 import {useState} from "react";
 import {useForm} from "react-hook-form";
+import {Link, Outlet} from "react-router-dom";
+import {ROUTES_CONFIG} from "../../../../../../../../FrontEnd/src/configs/routes-config";
 import {GetFactory} from "../../../../../server/dto/get/requests/get-factory/get-factory";
 import {PostModel} from "../../../../../server/dto/post/requests/post-model/post-model";
-import {FactoryCreate} from "../factory-create/factory-create";
+import {CreateFactoryShort} from "../create-factory-short/create-factory-short";
 import {SizeList} from "../lists/size-list";
 import {TitleList} from "../lists/titile-list";
 import {ModelData} from "../model-data/model-data";
 import {ModelCreateFormValues} from "./model-create-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
 import {modelDataDisplay} from "./utilites/modelDataDisplay";
+import './model-create-form.css';
 
 export const ModelCreateForm = ({listValues}) => {
 
@@ -86,8 +89,8 @@ export const ModelCreateForm = ({listValues}) => {
 
 
     return (
-        <>
-
+        <div className={'model-create-background-container'}>
+            <Outlet/>
 
             <form id={'model-create-form'}
                   className="container form-group"
@@ -238,19 +241,24 @@ export const ModelCreateForm = ({listValues}) => {
                     <small className="input-error">{errors[form.brandId]?.message}</small>}
 
                 {watchSubCategoryId &&
-                    <select className="form-control selectpicker"
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(form.factoryId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={listValues.factories} listPlaceholder={'Choose factory'}/>
-                    </select>}
+                    <>
+                        <select className="form-control selectpicker"
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(form.factoryId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList listValues={listValues.factories} listPlaceholder={'Choose factory'}/>
+                        </select>
+                        <span>No factory? <Link
+                            to={ROUTES_CONFIG.private.manager["create-factory-short"]}>Create one!</Link></span><br/>
+                    </>
+                }
                 {errors[form.factoryId] &&
                     <small className="input-error">{errors[form.factoryId]?.message}</small>}
 
@@ -333,9 +341,9 @@ export const ModelCreateForm = ({listValues}) => {
             <ModelData onFillPair={onUpdateModelDataHandler}/>
 
             {showFactoryForm ?
-                <FactoryCreate countries={listValues.countries} onCreate={onCreateFactoryHandler}/> : <></>}
+                <CreateFactoryShort countries={listValues.countries} onCreate={onCreateFactoryHandler}/> : <></>}
             <button onClick={showFactoryFormHandler}>{'Create factory'}</button>
 
-        </>
+        </div>
     )
 }

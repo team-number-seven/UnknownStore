@@ -1,4 +1,5 @@
 export const ROUTES_CONFIG = {
+    "origin": "http://localhost:3000",
     "index": "*",
     "home": "/",
     "public": {
@@ -11,6 +12,8 @@ export const ROUTES_CONFIG = {
         "manager": {
             "manager-panel": "manager-panel",
             "create-model": "create-model",
+            "create-factory": "create-factory",
+            "create-factory-short": "create-factory-short",
         }
     }
 }
