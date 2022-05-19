@@ -1,0 +1,18 @@
+.create-factory-short-background-container{
+    background-color: rgba(0, 0, 0, 0.47);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+.create-factory-form-container{
+    position: relative;
+    min-width: 400px;
+    min-height: 400px;
+    background-color: white;
+
+}

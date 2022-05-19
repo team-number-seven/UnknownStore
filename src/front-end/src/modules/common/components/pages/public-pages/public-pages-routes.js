@@ -1,5 +1,5 @@
 import {Route, Routes} from "react-router-dom";
-import {ROUTES_CONFIG} from "../../../../../configs/routes-config";
+import {ROUTES_CONFIG} from "../../../../../../../FrontEnd/src/configs/routes-config";
 import {HomePage} from "./home-page/home-page";
 import {KidsPage} from "./kids-page/kids-page";
 import {MenPage} from "./men-page/men-page";

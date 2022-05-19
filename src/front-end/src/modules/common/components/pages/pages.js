@@ -1,4 +1,4 @@
-import {CONFIG} from "../../../../configs/config";
+import {CONFIG} from "../../../../../../FrontEnd/src/configs/config";
 import {PrivatePagesRoutes} from "./private-pages/private-pages-routes";
 import {PublicPagesRoutes} from "./public-pages/public-pages-routes";
 
