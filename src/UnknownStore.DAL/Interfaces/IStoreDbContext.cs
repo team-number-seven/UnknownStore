@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using UnknownStore.DAL.Entities.Identity;
 using UnknownStore.DAL.Entities.Store;
 
 namespace UnknownStore.DAL.Interfaces
@@ -27,7 +28,7 @@ namespace UnknownStore.DAL.Interfaces
         DbSet<DeliveryCity> DeliveryCities { get; set; }
         DbSet<Order> Orders { get; set; }
         DbSet<BuyModel> BuyModels { get; set; }
-
+        DbSet<User> Users { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = new());
         int SaveChanges();
     }

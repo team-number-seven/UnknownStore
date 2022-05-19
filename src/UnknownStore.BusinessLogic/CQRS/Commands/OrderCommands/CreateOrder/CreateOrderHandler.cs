@@ -33,7 +33,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
         public async Task<ResponseBase> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
             var dto = request.OrderDto;
-            var address = await FindOrCreateAddressAsync(dto.CountryId, dto.DeliveryCity, dto.AddressLine, cancellationToken);
+            var deliveryCity = await _context.DeliveryCities.FindAsync(dto.DeliveryCityId);
+            var address = await FindOrCreateAddressAsync(deliveryCity.City.CountryId, dto.DeliveryCityId, dto.AddressLine, cancellationToken);
 
             var buyModels = dto.BuyModels.Select(buyModel => new BuyModel
                 { ModelId = buyModel.ModelId, AmountOfSizeId = buyModel.AmountOfSizeId, Amount = buyModel.Amount }).ToList();
@@ -49,7 +50,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
                 DeliveryMode = Enum.Parse<DeliveryMode>(dto.DeliveryMode),
                 OrderStatus = OrderStatus.PendingConfirmation,
                 UserId = dto.UserId,
-                DeliveryCityId = dto.DeliveryCity,
+                DeliveryCityId = dto.DeliveryCityId,
                 DeliveryAddress = address,
                 BuyModels = buyModels,
                 OrderDescription = dto.OrderDescription,

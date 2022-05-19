@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -30,7 +31,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.DeliveryCityCommands.CreateDe
         public async Task<ResponseBase> Handle(CreateDeliveryCityCommand request, CancellationToken cancellationToken)
         {
             var dto = request.DeliveryCityDto;
-            var deliveryCity = new DeliveryCity { CityId = dto.CityId, };
+            var deliveryCity = new DeliveryCity
+            {
+                CityId = dto.CityId,
+                MaxTimeDelivered = TimeSpan.Parse(dto.MaxTimeDelivery)
+            };
             await _context.DeliveryCities.AddAsync(deliveryCity, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             _logger.LogInformation(LoggerMessages.CommandExecutedSuccessfully(nameof(CreateDeliveryCityHandler)));
