@@ -1,8 +1,7 @@
 import React from "react";
 import {CONFIG} from "../../../../../../../../configs/config";
 import API from "../../../../../../../../server/API";
-import {Categories} from "../../../../../../../../server/dto/classes/Categories";
-import {CreateFactoryModelCreateWindow} from "./create-factory-model-create-window";
+import {CreateFactoryForModelCreateWindow} from "./create-factory-for-model-create-window";
 
 export class CreateFactoryForModelCreate extends React.Component {
 
@@ -23,15 +22,20 @@ export class CreateFactoryForModelCreate extends React.Component {
         const allListValues = {};
         await API.get(CONFIG.GET.country["get-all"])
             .then(result => result.data[CONFIG.GET.country.dto])
-            .then(value => {
-                console.log(value)
-            })
+            .then(value => allListValues.countries = value)
             .catch(error => console.log(error));
         return allListValues;
     }
 
     handleFactoryCreate(dataForCreateFactory) {
-        //factory-post
+        debugger;
+        API.post(CONFIG.POST.factory["add-factory"], dataForCreateFactory)
+            .then(result => {
+                if (result.status >= 200 && result.status < 300) {
+                    alert('Successfully created');
+                }
+            })
+            .catch(error => console.log(error));
         this.props.onFactoryCreate();
     }
 
@@ -39,7 +43,7 @@ export class CreateFactoryForModelCreate extends React.Component {
         return (
             <>
                 {this.state.listValues
-                    && <CreateFactoryModelCreateWindow
+                    && <CreateFactoryForModelCreateWindow
                         createFactory={this.handleFactoryCreate}
                         listValues={this.state.listValues}/>
                 }

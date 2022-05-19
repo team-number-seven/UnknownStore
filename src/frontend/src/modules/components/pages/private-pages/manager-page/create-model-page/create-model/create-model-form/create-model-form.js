@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {useForm} from "react-hook-form";
-import {Link} from "react-router-dom";
 import {CreateFactoryForModelCreate} from "../create-factory-for-model-create/create-factory-for-model-create";
 import {SizeList} from "../lists/size-list";
 import {TitleList} from "../lists/titile-list";
@@ -154,7 +153,8 @@ export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate})
                                 }
                             })}
                     >
-                        <TitleList listValues={listValues.categories.getAll()} listPlaceholder={'Choose category'}/>
+                        <TitleList listValues={listValues.categories ? listValues.categories.getAll() : []}
+                                   listPlaceholder={'Choose category'}/>
                     </select>
                     {errors[createModelFormValues.categoryId] &&
                         <small className="input-error">{errors[createModelFormValues.categoryId]?.message}</small>}
