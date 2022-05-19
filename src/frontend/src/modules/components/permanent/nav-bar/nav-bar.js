@@ -10,8 +10,12 @@ export const NavBar = ({userData}) => {
                 <Link to={ROUTES_CONFIG.public.women}>Women</Link>
                 <Link to={ROUTES_CONFIG.public.kids}>Kids</Link>
                 <Link to={ROUTES_CONFIG.public.bag}>Bag</Link>
-                <span>Hello, {userData ? userNameFromUserData(userData) : 'Guest'}!</span>
-                <Link to={ROUTES_CONFIG.public.profile}>Profile</Link>
+                <span>
+                    Hello,
+                    <Link to={ROUTES_CONFIG.public.profile}>
+                        {userData ? userNameFromUserData(userData) : 'Guest'}
+                    </Link>!
+                </span>
             </div>
 
         </div>

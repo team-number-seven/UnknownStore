@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 
-export const ModelDataForm = ({onFill}) => {
+export const ModelDataForModelCreateForm = ({onFill}) => {
 
     const modelData = {};
 
@@ -8,9 +8,6 @@ export const ModelDataForm = ({onFill}) => {
         formState: {errors, isValid},
         handleSubmit,
         register,
-        watch,
-        reset,
-        getValues,
     } = useForm({
             mode: 'all'
         }
@@ -56,7 +53,7 @@ export const ModelDataForm = ({onFill}) => {
                                message: 'This field cannot be empty',
                            },
                            pattern: {
-                               value: /^[a-zA-Z0-9\s,'-]*$/,
+                               value: /^[a-zA-Z\d\s,'-]*$/,
                                message: 'Invalid description',
                            }
                        })}
