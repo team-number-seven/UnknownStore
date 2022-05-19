@@ -32,8 +32,8 @@ namespace UnknownStore.WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("set-status-order")]
-        public async Task<IActionResult> UpdateOrderStatus([FromQuery] UpdateOrderStatusDto request)
+        [Route("update-order")]
+        public async Task<IActionResult> UpdateOrderStatus([FromBody] UpdateOrderStatusDto request)
         {
             var response = await _mediator.Send(new UpdateOrderStatusCommand(request));
             return StatusCode((int)response.StatusCode, response);

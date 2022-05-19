@@ -30,6 +30,5 @@ namespace UnknownStore.DAL.Entities.Store
         public Guid? UserId { get; set; }
 
         public virtual IEnumerable<BuyModel> BuyModels { get; set; }
-
     }
 }
