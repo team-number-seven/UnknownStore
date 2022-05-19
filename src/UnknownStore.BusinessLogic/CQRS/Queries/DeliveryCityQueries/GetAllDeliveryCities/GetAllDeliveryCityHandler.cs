@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -33,7 +34,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.DeliveryCityQueries.GetAllDeli
         public async Task<ResponseBase> Handle(GetAllDeliveryCityQuery request, CancellationToken cancellationToken)
         {
             var deliveryCityDtos =
-                MapDeliveryCitiesToDtos(await _context.DeliveryCities.ToListAsync(cancellationToken));
+                MapDeliveryCitiesToDtos(await _context.DeliveryCities.OrderBy(c=>c.City.Title).ToListAsync(cancellationToken));
 
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllDeliveryCityHandler)));
             return new GetAllDeliveryCityResponse(deliveryCityDtos);

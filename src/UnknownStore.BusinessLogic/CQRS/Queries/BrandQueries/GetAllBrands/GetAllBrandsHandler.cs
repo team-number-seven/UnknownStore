@@ -33,7 +33,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.BrandQueries.GetAllBrands
 
         public async Task<ResponseBase> Handle(GetAllBrandsQuery request, CancellationToken cancellationToken)
         {
-            var brands = await _context.Brands.ToListAsync(cancellationToken);
+            var brands = await _context.Brands.OrderBy(b=>b.Title).ToListAsync(cancellationToken);
             var brandsDtos = MapBrandsToGetBrandDtos(brands);
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllBrandsHandler)));
             return new GetAllBrandsResponse(brandsDtos);

@@ -33,9 +33,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CountryQueries.GetAllCountries
 
         public async Task<ResponseBase> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
         {
-            var countries = await _context.Countries.ToListAsync(cancellationToken);
+            var countries = await _context.Countries.OrderBy(c=>c.Title).ToListAsync(cancellationToken);
+            countries.ForEach(country => country.Cities = country.Cities.OrderBy(city => city.Title));
             var countryDtos = MapCountriesToCountryDtos(countries);
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllCountriesHandler)));
+
             return new GetAllCountriesResponse(countryDtos);
         }
 
