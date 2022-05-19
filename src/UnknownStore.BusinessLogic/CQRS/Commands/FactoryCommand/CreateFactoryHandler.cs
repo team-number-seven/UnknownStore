@@ -27,12 +27,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.FactoryCommand
         public async Task<ResponseBase> Handle(CreateFactoryCommand request, CancellationToken cancellationToken)
         {
             var dto = request.CreateFactoryDto;
-            var country = await _context.Countries.FindAsync(dto.CountryId);
             var address = new Address
             {
                 AddressLine = dto.AddressLine,
-                Country = await _context.Countries.FindAsync(dto.CountryId),
-                City = await _context.Cities.FindAsync(dto.CityId)
+                CountryId = dto.CountryId,
+                CityId = dto.CityId
             };
             var factory = new Factory { Address = address, Title = dto.Title };
 

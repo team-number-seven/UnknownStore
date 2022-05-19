@@ -18,17 +18,18 @@ namespace UnknownStore.DAL.Entities.Store
         public virtual Color Color { get; set; }
         public Guid ColorId { get; set; }
 
-        public virtual MainImage MainImage { get; set; }
-        public virtual IEnumerable<Image> Images { get; set; }
-
-        public virtual IEnumerable<AmountOfSize> AmountOfSizes { get; set; }
-
-        public virtual IEnumerable<ModelData> ModelData { get; set; }
-
         public virtual Factory Factory { get; set; }
         public Guid FactoryId { get; set; }
 
         public virtual Season Season { get; set; }
         public Guid SeasonId { get; set; }
+
+        public virtual MainImage MainImage { get; set; }
+
+        public virtual IEnumerable<Image> Images { get; set; }
+
+        public virtual IEnumerable<AmountOfSize> AmountOfSizes { get; set; }
+
+        public virtual IEnumerable<ModelData> ModelData { get; set; }
     }
 }

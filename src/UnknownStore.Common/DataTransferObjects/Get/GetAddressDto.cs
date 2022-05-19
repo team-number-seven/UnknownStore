@@ -11,6 +11,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         public string AddressLine { get; set; }
         public GetCountryDto Country { get; set; }
         public GetCityDto City { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Address, GetAddressDto>()

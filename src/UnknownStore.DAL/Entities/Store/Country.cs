@@ -6,8 +6,10 @@ namespace UnknownStore.DAL.Entities.Store
     {
         public string Title { get; set; }
         public string Iso2 { get; set; }
+
         public virtual IEnumerable<City> Cities { get; set; }
-        public virtual IEnumerable<Factory> Factories { get; set; }
+
+
         public virtual IEnumerable<Address> Address { get; set; }
     }
 }

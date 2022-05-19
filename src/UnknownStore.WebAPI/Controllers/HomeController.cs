@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using UnknownStore.BusinessLogic.CQRS.Commands.DeliveryCityCommands.CreateDeliveryCity;
 using UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel;
+using UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder;
 using UnknownStore.Common.DataTransferObjects.Create;
 using UnknownStore.DAL.Interfaces;
 
@@ -25,9 +28,18 @@ namespace UnknownStore.WebAPI.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        public async Task<IActionResult> Test([FromForm] CreateModelDto request)
+        public async Task<IActionResult> Test([FromBody] CreateDeliveryCityDto request)
         {
-            var response = await _mediator.Send(new CreateModelCommand(request));
+            var response = await _mediator.Send(new CreateDeliveryCityCommand(request));
+            return StatusCode((int)response.StatusCode, response);
+        }
+
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<IActionResult> testorder([FromBody] CreateOrderDto request)
+        {
+            var response = await _mediator.Send(new CreateOrderCommand(request));
             return StatusCode((int)response.StatusCode, response);
         }
     }
