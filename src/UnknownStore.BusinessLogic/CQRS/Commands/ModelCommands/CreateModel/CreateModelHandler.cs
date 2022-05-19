@@ -44,7 +44,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel
                 AmountOfSizes = CreateAmountOfSize(dto.AmountOfSize),
                 ModelData = CreateModelDataAsync(dto.ModelData),
                 SubCategoryId = dto.SubCategoryId,
-                BrandId = dto.BrandId, 
+                BrandId = dto.BrandId,
                 ColorId = dto.ColorId,
                 FactoryId = dto.FactoryId,
                 Price = dto.Price,

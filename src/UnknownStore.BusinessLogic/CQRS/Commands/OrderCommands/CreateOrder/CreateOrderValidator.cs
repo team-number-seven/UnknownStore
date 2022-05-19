@@ -9,7 +9,6 @@ using PhoneNumbers;
 using UnknownStore.Common.CQRS.Validation;
 using UnknownStore.Common.DataTransferObjects.Create;
 using UnknownStore.DAL.Entities.Enums;
-using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
 
 namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder

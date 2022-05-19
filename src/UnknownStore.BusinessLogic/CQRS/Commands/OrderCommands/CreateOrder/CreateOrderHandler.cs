@@ -34,10 +34,12 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
         {
             var dto = request.OrderDto;
             var deliveryCity = await _context.DeliveryCities.FindAsync(dto.DeliveryCityId);
-            var address = await FindOrCreateAddressAsync(deliveryCity.City.CountryId, dto.DeliveryCityId, dto.AddressLine, cancellationToken);
+            var address = await FindOrCreateAddressAsync(deliveryCity.City.CountryId, dto.DeliveryCityId,
+                dto.AddressLine, cancellationToken);
 
             var buyModels = dto.BuyModels.Select(buyModel => new BuyModel
-                { ModelId = buyModel.ModelId, AmountOfSizeId = buyModel.AmountOfSizeId, Amount = buyModel.Amount }).ToList();
+                    { ModelId = buyModel.ModelId, AmountOfSizeId = buyModel.AmountOfSizeId, Amount = buyModel.Amount })
+                .ToList();
             var order = new Order
             {
                 TotalPrice = dto.TotalPrice,
@@ -53,7 +55,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
                 DeliveryCityId = dto.DeliveryCityId,
                 DeliveryAddress = address,
                 BuyModels = buyModels,
-                OrderDescription = dto.OrderDescription,
+                OrderDescription = dto.OrderDescription
             };
             UpdateCountSizeModels(order.BuyModels);
             await _context.Orders.AddAsync(order, cancellationToken);
@@ -68,8 +70,9 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
             var deliveryCity = await _context.DeliveryCities.FindAsync(deliveryCityId);
             var address = await _context.Addresses.FirstOrDefaultAsync(a =>
                     a.CountryId == countryId && a.CityId == deliveryCity.CityId && a.AddressLine == addressLine,
-                cancellationToken: cancellationToken);
-            return address ?? new Address { AddressLine = addressLine, CityId = deliveryCity.CityId, CountryId = countryId };
+                cancellationToken);
+            return address ?? new Address
+                { AddressLine = addressLine, CityId = deliveryCity.CityId, CountryId = countryId };
         }
 
         private void UpdateCountSizeModels(IEnumerable<BuyModel> buyModels)
@@ -78,15 +81,15 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
             {
                 var model = _context.Models.Find(buyModel.ModelId);
                 foreach (var amountOfSize in model.AmountOfSizes)
-                {
                     if (amountOfSize.Id == buyModel.AmountOfSizeId)
                     {
                         amountOfSize.Amount -= buyModel.Amount;
                         break;
                     }
-                }
+
                 _context.Models.Update(model);
             }
+
             _context.SaveChangesAsync();
         }
     }

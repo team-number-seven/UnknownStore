@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UnknownStore.DAL.Data.Migrations.Store
 {
-    public partial class DeliveryCity : Migration
+    public partial class DeliveryCityMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

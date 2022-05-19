@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging;
 using UnknownStore.BusinessLogic.CQRS.Commands.FactoryCommand;
 using UnknownStore.Common;
 using UnknownStore.Common.CQRS;
+using UnknownStore.DAL.Entities.Store;
 using UnknownStore.DAL.Interfaces;
-using DeliveryCity = UnknownStore.DAL.Entities.Store.DeliveryCity;
 
 namespace UnknownStore.BusinessLogic.CQRS.Commands.DeliveryCityCommands.CreateDeliveryCity
 {

@@ -11,7 +11,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 {
     [DbContext(typeof(StoreDbContext))]
     [Migration("20220517073449_DeliveryCity")]
-    partial class DeliveryCity
+    partial class DeliveryCityMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -452,7 +452,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCity", b =>
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -936,7 +936,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCity", b =>
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", b =>
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.City", "City")
                         .WithMany()
@@ -1042,7 +1042,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UnknownStore.DAL.Entities.Store.DeliveryCity", "DeliveryCity")
+                    b.HasOne("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", "DeliveryCityMigration")
                         .WithMany("Orders")
                         .HasForeignKey("DeliveryCityId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1054,7 +1054,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.Navigation("DeliveryAddress");
 
-                    b.Navigation("DeliveryCity");
+                    b.Navigation("DeliveryCityMigration");
 
                     b.Navigation("User");
                 });
@@ -1127,7 +1127,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Cities");
                 });
 
-            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCity", b =>
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCityMigration", b =>
                 {
                     b.Navigation("Orders");
                 });
