@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -33,7 +34,8 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetFullInfoAll
         public async Task<ResponseBase> Handle(GetAllFullInfoCategoriesQuery request,
             CancellationToken cancellationToken)
         {
-            var categories = await _context.Categories.ToListAsync(cancellationToken);
+            var categories = await _context.Categories.OrderBy(c => c.Title).ToListAsync(cancellationToken);
+            categories.ForEach(c => c.SubCategories = c.SubCategories.OrderBy(sc => sc.Title));
             var categoryDtos = MapCategoriesToGetSubCategories(categories);
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetFullInfoAllCategoriesHandler)));
             return new GetFullInfoAllCategoriesResponse(categoryDtos);
