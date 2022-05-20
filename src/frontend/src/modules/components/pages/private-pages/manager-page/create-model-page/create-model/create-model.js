@@ -70,7 +70,13 @@ export class CreateModel extends React.Component {
     }
 
     async handleModelCreate(dataForCreateModel) {
-        //post model
+        debugger;
+        API.post(CONFIG.POST.model["add-model"], dataForCreateModel)
+            .then(result=>{
+                if(result.status>=200 && result.status<300){
+                    alert('Successfully create');
+                }
+            })
     }
 
 
