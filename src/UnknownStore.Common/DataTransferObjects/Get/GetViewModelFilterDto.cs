@@ -5,7 +5,6 @@ namespace UnknownStore.Common.DataTransferObjects.Get
 {
     public class GetViewModelFilterDto
     {
-        public int Count { get; set; }
         public string Title { get; set; }
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set; }
