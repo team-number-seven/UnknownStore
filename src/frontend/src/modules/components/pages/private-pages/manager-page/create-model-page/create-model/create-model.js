@@ -57,9 +57,15 @@ export class CreateModel extends React.Component {
     }
 
     async handleFactoryListRefresh() {
-        await API.get(CONFIG.GET.factory["get-all"])
+        API.get(CONFIG.GET.factory["get-all"])
             .then(result => result.data[CONFIG.GET.factory.dto])
-            .then(value => this.setState({listValues: {factories: value}}))
+            .then(value => {
+                debugger;
+                const updateFactoryList = {factories: value};
+                const previousFactoryList = this.state.listValues;
+                Object.assign(previousFactoryList, updateFactoryList);
+                this.setState({listValues: previousFactoryList});
+            })
             .catch(error => console.log(error));
     }
 

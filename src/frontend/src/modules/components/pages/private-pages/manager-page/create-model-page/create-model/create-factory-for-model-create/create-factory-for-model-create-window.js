@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import {TitleList} from "../lists/titile-list";
 
 
-export const CreateFactoryForModelCreateWindow = ({listValues, createFactory}) => {
+export const CreateFactoryForModelCreateWindow = ({listValues, createFactory, onClose}) => {
     const {
         formState: {errors, isValid},
         handleSubmit,
@@ -14,10 +14,12 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory}) =
     );
 
     const watchCountryId = watch('countryId', false);
-    console.log(watchCountryId);
 
     const onSubmit = (formData) => {
         createFactory(formData);
+    }
+    const handleOnClose = () => {
+        onClose();
     }
 
 
@@ -27,6 +29,9 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory}) =
                   className="container form-group"
                   onSubmit={handleSubmit(onSubmit)}
             >
+                <div className={'window-close-header'}>
+                    <span className={'fake-link'} onClick={handleOnClose}>Close</span>
+                </div>
 
                 <div className={'form-field-container'}>
                     <input type={'text'}
@@ -79,7 +84,7 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory}) =
                             })}
                     >
                         <TitleList
-                            listValues={watchCountryId ? listValues.countries.find((country) => country.id === watchCountryId).cities : []}
+                            listValues={watchCountryId ? listValues.countries.find((country) => country.id === watchCountryId)['cities'] : []}
                             listPlaceholder={'Choose city'}
                         />
                     </select>

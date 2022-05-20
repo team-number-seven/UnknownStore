@@ -8,7 +8,7 @@ import {CreateModelFormValues} from "./create-model-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
 import {modelDataDisplay} from "./utilites/modelDataDisplay";
 
-export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate}) => {
+export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList}) => {
     const [modelData, setModelData] = useState({});
     const [sizes, setSizes] = useState({});
     const [showCreateFactory, setShowCreateFactory] = useState(false);
@@ -16,7 +16,8 @@ export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate})
     const handleShowCreateFactoryWindowChange = () => {
         setShowCreateFactory(!showCreateFactory);
     }
-    const handleFactoryCreate = () => {
+    const handleRefreshFactoryList = () => {
+        debugger;
         refreshFactoryList();
     }
 
@@ -78,7 +79,8 @@ export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate})
 
         <div className={'create-model-background-container'}>
 
-            {showCreateFactory && <CreateFactoryForModelCreate onFactoryCreate={handleFactoryCreate}/>}
+            {showCreateFactory && <CreateFactoryForModelCreate onClose={handleShowCreateFactoryWindowChange}
+                                                               onRefresh={handleRefreshFactoryList}/>}
 
             <form id={'create-model-form'}
                   className="container form-group"

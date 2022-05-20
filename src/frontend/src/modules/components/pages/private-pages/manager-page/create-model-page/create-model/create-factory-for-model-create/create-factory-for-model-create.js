@@ -12,10 +12,15 @@ export class CreateFactoryForModelCreate extends React.Component {
         }
         this.getAllListValues = this.getAllListValues.bind(this);
         this.handleFactoryCreate = this.handleFactoryCreate.bind(this);
+        this.handleCloseWindow = this.handleCloseWindow.bind(this);
     }
 
     componentDidMount() {
         this.getAllListValues().then(value => this.setState({listValues: value}))
+    }
+    componentWillUnmount() {
+        debugger;
+        this.props.onRefresh();
     }
 
     async getAllListValues() {
@@ -28,7 +33,6 @@ export class CreateFactoryForModelCreate extends React.Component {
     }
 
     handleFactoryCreate(dataForCreateFactory) {
-        debugger;
         API.post(CONFIG.POST.factory["add-factory"], dataForCreateFactory)
             .then(result => {
                 if (result.status >= 200 && result.status < 300) {
@@ -36,18 +40,23 @@ export class CreateFactoryForModelCreate extends React.Component {
                 }
             })
             .catch(error => console.log(error));
-        this.props.onFactoryCreate();
+    }
+
+    handleCloseWindow() {
+        this.props.onClose();
     }
 
     render() {
         return (
-            <>
+            <div className={'create-factory-for-model-background'}>
                 {this.state.listValues
                     && <CreateFactoryForModelCreateWindow
                         createFactory={this.handleFactoryCreate}
-                        listValues={this.state.listValues}/>
+                        listValues={this.state.listValues}
+                        onClose={this.handleCloseWindow}
+                    />
                 }
-            </>
+            </div>
         )
     }
 }
