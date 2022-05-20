@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {useForm} from "react-hook-form";
-import {Link} from "react-router-dom";
 import {CreateFactoryForModelCreate} from "../create-factory-for-model-create/create-factory-for-model-create";
 import {SizeList} from "../lists/size-list";
 import {TitleList} from "../lists/titile-list";
@@ -9,7 +8,7 @@ import {CreateModelFormValues} from "./create-model-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
 import {modelDataDisplay} from "./utilites/modelDataDisplay";
 
-export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate}) => {
+export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList}) => {
     const [modelData, setModelData] = useState({});
     const [sizes, setSizes] = useState({});
     const [showCreateFactory, setShowCreateFactory] = useState(false);
@@ -17,7 +16,8 @@ export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate})
     const handleShowCreateFactoryWindowChange = () => {
         setShowCreateFactory(!showCreateFactory);
     }
-    const handleFactoryCreate = () => {
+    const handleRefreshFactoryList = () => {
+        debugger;
         refreshFactoryList();
     }
 
@@ -79,7 +79,8 @@ export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate})
 
         <div className={'create-model-background-container'}>
 
-            {showCreateFactory && <CreateFactoryForModelCreate onFactoryCreate={handleFactoryCreate}/>}
+            {showCreateFactory && <CreateFactoryForModelCreate onClose={handleShowCreateFactoryWindowChange}
+                                                               onRefresh={handleRefreshFactoryList}/>}
 
             <form id={'create-model-form'}
                   className="container form-group"
@@ -154,7 +155,8 @@ export const CreateModelForm = ({listValues, refreshFactoryList, onModelCreate})
                                 }
                             })}
                     >
-                        <TitleList listValues={listValues.categories.getAll()} listPlaceholder={'Choose category'}/>
+                        <TitleList listValues={listValues.categories ? listValues.categories.getAll() : []}
+                                   listPlaceholder={'Choose category'}/>
                     </select>
                     {errors[createModelFormValues.categoryId] &&
                         <small className="input-error">{errors[createModelFormValues.categoryId]?.message}</small>}
