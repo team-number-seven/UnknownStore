@@ -1,4 +1,5 @@
 ﻿using System;
+using UnknownStore.DAL.Entities.Identity;
 
 namespace UnknownStore.DAL.Entities.Store
 {
@@ -13,5 +14,8 @@ namespace UnknownStore.DAL.Entities.Store
         public Guid AmountOfSizeId { get; set; }
         public virtual Order Order { get; set; }
         public Guid OrderId { get; set; }
+
+        public virtual User UserBagItem { get; set; }
+        public Guid? UserBagItemId { get; set; }
     }
 }

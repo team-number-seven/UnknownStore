@@ -10,6 +10,16 @@ namespace UnknownStore.DAL.EntitiesConfiguration
         {
             builder.Ignore(u => u.PhoneNumber);
             builder.Ignore(u => u.PhoneNumberConfirmed);
+
+            builder
+                .HasMany(u => u.FavoriteItems)
+                .WithMany(m => m.UsersFavoriteItems)
+                .UsingEntity(e => e.ToTable("FavoriteItems"));
+
+            builder
+                .HasMany(u => u.BagItems)
+                .WithOne(b => b.UserBagItem)
+                .HasForeignKey(b => b.UserBagItemId);
         }
     }
 }
