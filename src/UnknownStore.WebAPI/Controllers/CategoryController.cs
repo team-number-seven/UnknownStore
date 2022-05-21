@@ -2,7 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UnknownStore.BusinessLogic.CQRS.Commands.CategoryCommands.CreateCategory;
 using UnknownStore.BusinessLogic.CQRS.Queries.CategoryQueries.GetFullInfoAllCategories;
+using UnknownStore.Common.DataTransferObjects.Create;
 
 namespace UnknownStore.WebAPI.Controllers
 {
@@ -25,6 +27,14 @@ namespace UnknownStore.WebAPI.Controllers
         public async Task<IActionResult> GetFullInfoAllCategories()
         {
             var response = await _mediator.Send(new GetAllFullInfoCategoriesQuery());
+            return StatusCode((int)response.StatusCode, response);
+        }
+
+        [HttpPost]
+        [Route("add-category")]
+        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto request)
+        {
+            var response = await _mediator.Send(new CreateCategoryCommand(request));
             return StatusCode((int)response.StatusCode, response);
         }
     }

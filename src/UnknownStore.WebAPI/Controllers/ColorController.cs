@@ -33,7 +33,7 @@ namespace UnknownStore.WebAPI.Controllers
 
         [HttpPost]
         [Route("add-color")]
-        public async Task<IActionResult> CreateColor(CreateColorDto request)
+        public async Task<IActionResult> CreateColor([FromBody] CreateColorDto request)
         {
             var response = await _mediator.Send(new CreateColorCommand(request));
             return StatusCode((int)response.StatusCode, response);

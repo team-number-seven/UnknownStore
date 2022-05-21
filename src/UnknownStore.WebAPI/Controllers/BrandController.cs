@@ -30,10 +30,10 @@ namespace UnknownStore.WebAPI.Controllers
             return StatusCode((int)response.StatusCode, response);
         }
 
-        
+
         [HttpPost]
         [Route("add-brand")]
-        public async Task<IActionResult> CreateBrand(CreateBrandDto request)
+        public async Task<IActionResult> CreateBrand([FromBody] CreateBrandDto request)
         {
             var response = await _mediator.Send(new CreateBrandCommand(request));
             return StatusCode((int)response.StatusCode, response);

@@ -2,9 +2,10 @@
 
 namespace UnknownStore.Common.DataTransferObjects.Create
 {
-    public class CreateBrandDto
+    public class CreateSubCategoryDto
     {
         public string Title { get; set; }
-        public Guid CountryId { get; set; }
+        public Guid CategoryId { get; set; }
+        public CreateSizeDto Size { get; set; }
     }
 }

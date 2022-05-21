@@ -18,7 +18,7 @@ namespace UnknownStore.Common.DataTransferObjects.Get
             profile.CreateMap<Country, GetCountryDto>()
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(c => c.Title))
                 .ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id))
-                .ForMember(dto=>dto.Cities,opt=>opt.Ignore());
+                .ForMember(dto => dto.Cities, opt => opt.Ignore());
         }
     }
 }
