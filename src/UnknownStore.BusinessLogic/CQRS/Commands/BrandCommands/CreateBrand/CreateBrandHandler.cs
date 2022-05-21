@@ -33,7 +33,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.BrandCommands.CreateBrand
             await _context.SaveChangesAsync(cancellationToken);
 
             _logger.LogInformation(LoggerMessages.CommandExecutedSuccessfully(nameof(CreateBrandHandler)));
-            return new ResponseBase { StatusCode = HttpStatusCode.Created };
+            return new CreateBrandResponse { StatusCode = HttpStatusCode.Created };
         }
     }
 }
