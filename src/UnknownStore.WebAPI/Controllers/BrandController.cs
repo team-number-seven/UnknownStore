@@ -2,7 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UnknownStore.BusinessLogic.CQRS.Commands.BrandCommands.CreateBrand;
 using UnknownStore.BusinessLogic.CQRS.Queries.BrandQueries.GetAllBrands;
+using UnknownStore.Common.DataTransferObjects.Create;
 
 namespace UnknownStore.WebAPI.Controllers
 {
@@ -25,6 +27,15 @@ namespace UnknownStore.WebAPI.Controllers
         public async Task<IActionResult> GetAllBrands()
         {
             var response = await _mediator.Send(new GetAllBrandsQuery());
+            return StatusCode((int)response.StatusCode, response);
+        }
+
+        
+        [HttpPost]
+        [Route("add-brand")]
+        public async Task<IActionResult> CreateBrand(CreateBrandDto request)
+        {
+            var response = await _mediator.Send(new CreateBrandCommand(request));
             return StatusCode((int)response.StatusCode, response);
         }
     }

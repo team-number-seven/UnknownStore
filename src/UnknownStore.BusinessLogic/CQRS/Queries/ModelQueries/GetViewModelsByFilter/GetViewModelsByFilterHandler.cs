@@ -58,7 +58,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetViewModelsByFi
             models = models.FilterBySeasons(filter.SeasonsId?.ToList());
             models = models.FilterByTitle(filter.Title);
 
-            return await models.ToListAsync(cancellationToken);
+            return await models.OrderBy(m=>m.Title).ToListAsync(cancellationToken);
         }
 
         private async Task<IEnumerable<GetViewModelDto>> MapModelsToGetViewModels(IEnumerable<Model> models,
