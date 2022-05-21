@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnknownStore.DAL.Entities.Identity;
 
 namespace UnknownStore.DAL.Entities.Store
 {
@@ -31,5 +32,7 @@ namespace UnknownStore.DAL.Entities.Store
         public virtual IEnumerable<AmountOfSize> AmountOfSizes { get; set; }
 
         public virtual IEnumerable<ModelData> ModelData { get; set; }
+
+        public virtual IEnumerable<User> UsersFavoriteModels { get; set; }
     }
 }
