@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace UnknownStore.DAL.Data.Migrations.Store
 {
-    public partial class Inital : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -305,6 +305,25 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 });
 
             migrationBuilder.CreateTable(
+                name: "DeliveryCities",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CityId = table.Column<Guid>(type: "uuid", nullable: false),
+                    MaxTimeDelivered = table.Column<TimeSpan>(type: "interval", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeliveryCities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DeliveryCities_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubCategories",
                 columns: table => new
                 {
@@ -356,11 +375,11 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     OrderStatusDescription = table.Column<string>(type: "text", nullable: true),
                     CreteDate = table.Column<string>(type: "text", nullable: true),
                     PickUpBefore = table.Column<string>(type: "text", nullable: true),
-                    DeliveredTo = table.Column<string>(type: "text", nullable: true),
                     PaymentMode = table.Column<int>(type: "integer", nullable: false),
                     DeliveryMode = table.Column<int>(type: "integer", nullable: false),
                     OrderStatus = table.Column<int>(type: "integer", nullable: false),
                     DeliveryAddressId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DeliveryCityId = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -370,6 +389,12 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         name: "FK_Orders_Addresses_DeliveryAddressId",
                         column: x => x.DeliveryAddressId,
                         principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_DeliveryCities_DeliveryCityId",
+                        column: x => x.DeliveryCityId,
+                        principalTable: "DeliveryCities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -471,33 +496,6 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 });
 
             migrationBuilder.CreateTable(
-                name: "BuyModels",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Size = table.Column<double>(type: "double precision", nullable: true),
-                    Amount = table.Column<int>(type: "integer", nullable: false),
-                    ModelId = table.Column<Guid>(type: "uuid", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BuyModels", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BuyModels_Models_ModelId",
-                        column: x => x.ModelId,
-                        principalTable: "Models",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BuyModels_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Comment",
                 columns: table => new
                 {
@@ -520,6 +518,30 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     table.ForeignKey(
                         name: "FK_Comment_Users_UserId",
                         column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FavoriteModels",
+                columns: table => new
+                {
+                    FavoriteModelsId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UsersFavoriteModelsId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FavoriteModels", x => new { x.FavoriteModelsId, x.UsersFavoriteModelsId });
+                    table.ForeignKey(
+                        name: "FK_FavoriteModels_Models_FavoriteModelsId",
+                        column: x => x.FavoriteModelsId,
+                        principalTable: "Models",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FavoriteModels_Users_UsersFavoriteModelsId",
+                        column: x => x.UsersFavoriteModelsId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -585,6 +607,46 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BuyModels",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Amount = table.Column<int>(type: "integer", nullable: false),
+                    ModelId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AmountOfSizeId = table.Column<Guid>(type: "uuid", nullable: false),
+                    OrderId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserBagModelId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BuyModels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BuyModels_AmountOfSizes_AmountOfSizeId",
+                        column: x => x.AmountOfSizeId,
+                        principalTable: "AmountOfSizes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BuyModels_Models_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "Models",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BuyModels_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BuyModels_Users_UserBagModelId",
+                        column: x => x.UserBagModelId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
                 table: "Addresses",
@@ -612,6 +674,11 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BuyModels_AmountOfSizeId",
+                table: "BuyModels",
+                column: "AmountOfSizeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BuyModels_ModelId",
                 table: "BuyModels",
                 column: "ModelId");
@@ -620,6 +687,11 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 name: "IX_BuyModels_OrderId",
                 table: "BuyModels",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BuyModels_UserBagModelId",
+                table: "BuyModels",
+                column: "UserBagModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_AgeTypeId",
@@ -666,10 +738,20 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_DeliveryCities_CityId",
+                table: "DeliveryCities",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Factories_AddressId",
                 table: "Factories",
                 column: "AddressId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FavoriteModels_UsersFavoriteModelsId",
+                table: "FavoriteModels",
+                column: "UsersFavoriteModelsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Genders_Title",
@@ -736,6 +818,11 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 column: "DeliveryAddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_DeliveryCityId",
+                table: "Orders",
+                column: "DeliveryCityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
@@ -798,13 +885,13 @@ namespace UnknownStore.DAL.Data.Migrations.Store
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AmountOfSizes");
-
-            migrationBuilder.DropTable(
                 name: "BuyModels");
 
             migrationBuilder.DropTable(
                 name: "Comment");
+
+            migrationBuilder.DropTable(
+                name: "FavoriteModels");
 
             migrationBuilder.DropTable(
                 name: "Images");
@@ -834,13 +921,19 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 name: "UserTokens");
 
             migrationBuilder.DropTable(
+                name: "AmountOfSizes");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Models");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "DeliveryCities");
 
             migrationBuilder.DropTable(
                 name: "Users");

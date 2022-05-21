@@ -15,7 +15,7 @@ namespace UnknownStore.DAL.Entities.Store
         public virtual Order Order { get; set; }
         public Guid OrderId { get; set; }
 
-        public virtual User UserBagItem { get; set; }
-        public Guid? UserBagItemId { get; set; }
+        public virtual User UserBagModel { get; set; }
+        public Guid? UserBagModelId { get; set; }
     }
 }

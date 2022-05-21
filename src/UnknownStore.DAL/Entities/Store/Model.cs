@@ -33,6 +33,6 @@ namespace UnknownStore.DAL.Entities.Store
 
         public virtual IEnumerable<ModelData> ModelData { get; set; }
 
-        public virtual IEnumerable<User> UsersFavoriteItems { get; set; }
+        public virtual IEnumerable<User> UsersFavoriteModels { get; set; }
     }
 }

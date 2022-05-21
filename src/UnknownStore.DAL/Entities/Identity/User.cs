@@ -12,7 +12,7 @@ namespace UnknownStore.DAL.Entities.Identity
         public virtual Comment Comment { get; set; }
 
         public virtual IEnumerable<Order> Orders { get; set; }
-        public virtual IEnumerable<BuyModel> BagItems { get; set; }
-        public virtual IEnumerable<Model> FavoriteItems { get; set; }
+        public virtual IEnumerable<BuyModel> BagModels { get; set; }
+        public virtual IEnumerable<Model> FavoriteModels { get; set; }
     }
 }

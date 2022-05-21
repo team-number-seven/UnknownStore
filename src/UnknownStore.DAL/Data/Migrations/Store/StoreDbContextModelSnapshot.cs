@@ -21,17 +21,17 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
             modelBuilder.Entity("ModelUser", b =>
                 {
-                    b.Property<Guid>("FavoriteItemsId")
+                    b.Property<Guid>("FavoriteModelsId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("UsersFavoriteItemsId")
+                    b.Property<Guid>("UsersFavoriteModelsId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("FavoriteItemsId", "UsersFavoriteItemsId");
+                    b.HasKey("FavoriteModelsId", "UsersFavoriteModelsId");
 
-                    b.HasIndex("UsersFavoriteItemsId");
+                    b.HasIndex("UsersFavoriteModelsId");
 
-                    b.ToTable("FavoriteItems");
+                    b.ToTable("FavoriteModels");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Identity.Role", b =>
@@ -331,7 +331,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("UserBagItemId")
+                    b.Property<Guid?>("UserBagModelId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -342,7 +342,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("UserBagItemId");
+                    b.HasIndex("UserBagModelId");
 
                     b.ToTable("BuyModels");
                 });
@@ -800,13 +800,13 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.Model", null)
                         .WithMany()
-                        .HasForeignKey("FavoriteItemsId")
+                        .HasForeignKey("FavoriteModelsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("UnknownStore.DAL.Entities.Identity.User", null)
                         .WithMany()
-                        .HasForeignKey("UsersFavoriteItemsId")
+                        .HasForeignKey("UsersFavoriteModelsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -923,9 +923,9 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UnknownStore.DAL.Entities.Identity.User", "UserBagItem")
-                        .WithMany("BagItems")
-                        .HasForeignKey("UserBagItemId");
+                    b.HasOne("UnknownStore.DAL.Entities.Identity.User", "UserBagModel")
+                        .WithMany("BagModels")
+                        .HasForeignKey("UserBagModelId");
 
                     b.Navigation("AmountOfSize");
 
@@ -933,7 +933,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
                     b.Navigation("Order");
 
-                    b.Navigation("UserBagItem");
+                    b.Navigation("UserBagModel");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Category", b =>
@@ -1132,7 +1132,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Identity.User", b =>
                 {
-                    b.Navigation("BagItems");
+                    b.Navigation("BagModels");
 
                     b.Navigation("Comment");
 

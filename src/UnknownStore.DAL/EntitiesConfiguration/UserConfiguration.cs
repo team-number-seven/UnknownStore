@@ -12,14 +12,14 @@ namespace UnknownStore.DAL.EntitiesConfiguration
             builder.Ignore(u => u.PhoneNumberConfirmed);
 
             builder
-                .HasMany(u => u.FavoriteItems)
-                .WithMany(m => m.UsersFavoriteItems)
-                .UsingEntity(e => e.ToTable("FavoriteItems"));
+                .HasMany(u => u.FavoriteModels)
+                .WithMany(m => m.UsersFavoriteModels)
+                .UsingEntity(e => e.ToTable("FavoriteModels"));
 
             builder
-                .HasMany(u => u.BagItems)
-                .WithOne(b => b.UserBagItem)
-                .HasForeignKey(b => b.UserBagItemId);
+                .HasMany(u => u.BagModels)
+                .WithOne(b => b.UserBagModel)
+                .HasForeignKey(b => b.UserBagModelId);
         }
     }
 }
