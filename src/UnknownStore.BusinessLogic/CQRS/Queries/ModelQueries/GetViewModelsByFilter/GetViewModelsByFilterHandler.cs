@@ -38,7 +38,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetViewModelsByFi
         {
             var modelsFilter =
                 await FiltrationModelsAsync(_context.Models.AsQueryable(), request.Filter, cancellationToken);
-            var modelsDtos = await MapModelsToGetViewModels(modelsFilter, cancellationToken);
+            var modelsDtos = await MapModelsToGetViewModelsAsync(modelsFilter, cancellationToken);
 
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetViewModelsByFilterHandler)));
             return new GetViewModelsByFilterResponse(modelsDtos);
@@ -61,7 +61,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetViewModelsByFi
             return await models.OrderBy(m=>m.Title).ToListAsync(cancellationToken);
         }
 
-        private async Task<IEnumerable<GetViewModelDto>> MapModelsToGetViewModels(IEnumerable<Model> models,
+        private async Task<IEnumerable<GetViewModelDto>> MapModelsToGetViewModelsAsync(IEnumerable<Model> models,
             CancellationToken cancellationToken)
         {
             var dtos = new List<GetViewModelDto>();
