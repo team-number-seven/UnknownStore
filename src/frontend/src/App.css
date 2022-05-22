@@ -49,6 +49,7 @@ body {
 
     background-color: var(--background);
 
+    scroll-behavior: smooth;
     overflow-x: hidden;
     -ms-overflow-x: hidden;
 }

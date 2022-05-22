@@ -29,9 +29,23 @@
     color: var(--color-1);
 }
 
+
 .form-size-list-field-container {
+    position: relative;
+    width: 15vw;
+    max-height: 36vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.form-size-list-field-container:hover {
+    border-bottom: var(--color-1) 2px solid;
     overflow: auto;
-    max-height: 10vh;
+}
+
+.form-field-container {
+    width: 100%;
 }
 
 .form-field-container select:disabled {
@@ -40,17 +54,18 @@
     background-color: unset;
 }
 
-.input-error-container{
+.input-error-container {
     display: flex;
     align-items: start;
     min-height: 1.1rem;
 }
 
-.input-error{
+.input-error {
     font-weight: normal;
     font-size: 0.7rem;
-    color:var(--color-error);
+    color: var(--color-error);
 }
+
 
 #create-model-form {
     width: 100%;
@@ -59,12 +74,12 @@
 
 }
 
-.main-info-container, .info-container, .images-container, .size-container {
+.main-info-container, .info-container, .images-container {
     width: 30%;
     max-width: 30%;
 }
 
-::file-selector-button{
+::file-selector-button {
 
 }
 
