@@ -12,7 +12,6 @@ header {
 }
 
 header span{
-    height: 100%;
     padding: var(--padding-header-nav-bar);
 }
 

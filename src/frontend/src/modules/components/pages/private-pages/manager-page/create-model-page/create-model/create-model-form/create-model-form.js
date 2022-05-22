@@ -10,6 +10,7 @@ import {modelDataDisplay} from "./utilites/modelDataDisplay";
 
 export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList}) => {
     const [modelData, setModelData] = useState({});
+    const [modelDataIsNotEmpty, setModelDataIsNotEmpty] = useState(false);
     const [sizes, setSizes] = useState({});
     const [showCreateFactory, setShowCreateFactory] = useState(false);
 
@@ -41,13 +42,18 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
     const onUpdateModelDataHandler = (modelDataPair) => {
         Object.assign(modelDataPair, modelData)
         setModelData(modelDataPair);
+        setModelDataIsNotEmpty(true);
     }
 
     const onSizeChangeHandler = (e) => {
         let sizeObj = {};
         let key = e.target.id.slice(5);
-        sizeObj[key] = e.target.value;
-        setSizes(Object.assign(sizes, sizeObj));
+        if (+e.target.value > 0) {
+            sizeObj[key] = e.target.value;
+            setSizes(Object.assign(sizes, sizeObj));
+        } else {
+            e.target.value = '';
+        }
     }
 
     const onSubmit = (formData) => {
@@ -86,275 +92,366 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
                   className="container form-group"
                   onSubmit={handleSubmit(onSubmit)}
             >
-                <div className={'form-field-container'}>
-                    <input type={'text'}
-                           className="form-control"
-                           placeholder={capitalLetter(createModelFormValues.title)}
-                           {...register(createModelFormValues.title, {
-                               required: {
-                                   value: true,
-                                   message: 'This field cannot be empty',
-                               },
-                               pattern: {
-                                   value: /^[a-zA-Z\s]*$/,
-                                   message: 'Invalid title',
-                               }
-                           })}
-                    />
-                    {errors[createModelFormValues.title] &&
-                        <small className="input-error">{errors[createModelFormValues.title]?.message}</small>}
+
+                <div className={'main-info-container'}>
+                    <div className={'form-field-container'}>
+                        <input type={'text'}
+                               className="form-control"
+                               autoComplete="off"
+                               placeholder={capitalLetter(createModelFormValues.title)}
+                               {...register(createModelFormValues.title, {
+                                   required: {
+                                       value: true,
+                                       message: 'This field cannot be empty',
+                                   },
+                                   pattern: {
+                                       value: /^[a-zA-Z\s]*$/,
+                                       message: 'Invalid title',
+                                   }
+                               })}
+                        />
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.title] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.title]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
+
+                    <div className={'form-field-container'}>
+                        <input type={'text'}
+                               className="form-control"
+                               autoComplete="off"
+                               placeholder={capitalLetter(createModelFormValues.description)}
+                               {...register(createModelFormValues.description, {
+                                   required: {
+                                       value: true,
+                                       message: 'This field cannot be empty',
+                                   },
+                                   pattern: {
+                                       value: /[^a-zA-Z\d]/g,
+                                       message: 'Invalid description',
+                                   }
+                               })}
+                        />
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.description] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.description]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
+
+                    <div className={'form-field-container'}>
+                        <input type={'text'}
+                               className="form-control"
+                               autoComplete="off"
+                               placeholder={capitalLetter(createModelFormValues.price)}
+                               {...register(createModelFormValues.price, {
+                                   required: {
+                                       value: true,
+                                       message: 'This field cannot be empty',
+                                   },
+                                   pattern: {
+                                       value: /^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/,
+                                       message: 'Invalid price',
+                                   }
+                               })}
+                        />
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.price] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.price]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
                 </div>
 
-                <div className={'form-field-container'}>
-                    <input type={'text'}
-                           className="form-control"
-                           placeholder={capitalLetter(createModelFormValues.description)}
-                           {...register(createModelFormValues.description, {
-                               required: {
-                                   value: true,
-                                   message: 'This field cannot be empty',
-                               },
-                               pattern: {
-                                   value: /[^a-zA-Z\d]/g,
-                                   message: 'Invalid description',
-                               }
-                           })}
-                    />
-                    {errors[createModelFormValues.description] &&
-                        <small className="input-error">{errors[createModelFormValues.description]?.message}</small>}
-                </div>
+                <div className={'info-container'}>
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.categoryId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList listValues={listValues.categories ? listValues.categories.getAll() : []}
+                                       listPlaceholder={'Choose category'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.categoryId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.categoryId]?.message}
+                                </small>
+                            }
+                        </div>
 
-                <div className={'form-field-container'}>
-                    <input type={'text'}
-                           className="form-control"
-                           placeholder={capitalLetter(createModelFormValues.price)}
-                           {...register(createModelFormValues.price, {
-                               required: {
-                                   value: true,
-                                   message: 'This field cannot be empty',
-                               },
-                               pattern: {
-                                   value: /^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/,
-                                   message: 'Invalid price',
-                               }
-                           })}
-                    />
-                    {errors[createModelFormValues.price] &&
-                        <small className="input-error">{errors[createModelFormValues.price]?.message}</small>}
-                </div>
+                    </div>
 
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.categoryId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={listValues.categories ? listValues.categories.getAll() : []}
-                                   listPlaceholder={'Choose category'}/>
-                    </select>
-                    {errors[createModelFormValues.categoryId] &&
-                        <small className="input-error">{errors[createModelFormValues.categoryId]?.message}</small>}
-                </div>
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                disabled={!watchCategoryId}
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.genderId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList
+                                listValues={watchCategoryId ? listValues.categories.getGenders(watchCategoryId) : []}
+                                listPlaceholder={'Choose gender'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.genderId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.genderId]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
 
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            disabled={!watchCategoryId}
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.genderId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={watchCategoryId ? listValues.categories.getGenders(watchCategoryId) : []}
-                                   listPlaceholder={'Choose gender'}/>
-                    </select>
-                    {errors[createModelFormValues.genderId] &&
-                        <small className="input-error">{errors[createModelFormValues.genderId]?.message}</small>}
-                </div>
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                disabled={!watchGenderId}
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.ageTypeId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList listValues={watchGenderId ? listValues.ageTypes : []}
+                                       listPlaceholder={'Choose age'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.ageTypeId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.ageTypeId]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
 
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            disabled={!watchGenderId}
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.ageTypeId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={watchGenderId ? listValues.ageTypes : []}
-                                   listPlaceholder={'Choose age'}/>
-                    </select>
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                disabled={!watchAgeId}
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.subCategoryId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList
+                                listValues={watchAgeId ? listValues.categories.findCategory(watchCategoryId, watchAgeId, watchGenderId).subCategories : []}
+                                listPlaceholder={'Choose subcategory'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.subCategoryId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.subCategoryId]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
 
-                    {errors[createModelFormValues.ageTypeId] &&
-                        <small className="input-error">{errors[createModelFormValues.ageTypeId]?.message}</small>}
-                </div>
-
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            disabled={!watchAgeId}
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.subCategoryId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList
-                            listValues={watchAgeId ? listValues.categories.findCategory(watchCategoryId, watchAgeId, watchGenderId).subCategories : []}
-                            listPlaceholder={'Choose subcategory'}/>
-                    </select>
-                    {errors[createModelFormValues.subCategoryId] &&
-                        <small className="input-error">{errors[createModelFormValues.subCategoryId]?.message}</small>}
-                </div>
-
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            disabled={!watchSubCategoryId}
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.brandId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={watchSubCategoryId ? listValues.brands : []}
-                                   listPlaceholder={'Choose brand'}/>
-                    </select>
-                    {errors[createModelFormValues.brandId] &&
-                        <small className="input-error">{errors[createModelFormValues.brandId]?.message}</small>}
-                </div>
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                disabled={!watchSubCategoryId}
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.brandId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList listValues={watchSubCategoryId ? listValues.brands : []}
+                                       listPlaceholder={'Choose brand'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.brandId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.brandId]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
 
 
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            disabled={!watchSubCategoryId}
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.factoryId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={watchSubCategoryId ? listValues.factories : []}
-                                   listPlaceholder={'Choose factory'}/>
-                    </select>
-                    <span>
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                disabled={!watchSubCategoryId}
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.factoryId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList listValues={watchSubCategoryId ? listValues.factories : []}
+                                       listPlaceholder={'Choose factory'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.factoryId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.factoryId]?.message}
+                                </small>
+                            }
+                        </div>
+
+                        <span>
                             No factory?
-                            <span onClick={handleShowCreateFactoryWindowChange}>
+                            <span className={'link'} onClick={handleShowCreateFactoryWindowChange}>
                                 Create one!
                             </span>
-                    </span>
-                    {errors[createModelFormValues.factoryId] &&
-                        <small className="input-error">{errors[createModelFormValues.factoryId]?.message}</small>}
-                </div>
+                        </span>
 
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            disabled={!watchSubCategoryId}
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.seasonId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={watchSubCategoryId ? listValues.seasons : []}
-                                   listPlaceholder={'Choose season'}/>
-                    </select>
-                    {errors[createModelFormValues.seasonId] &&
-                        <small className="input-error">{errors[createModelFormValues.seasonId]?.message}</small>}
-                </div>
+                    </div>
 
-                <div className={'form-field-container'}>
-                    <select className="form-control selectpicker"
-                            disabled={!watchSubCategoryId}
-                            data-live-search="true"
-                            data-width="fit"
-                            defaultValue={''}
-                            {...register(createModelFormValues.colorId, {
-                                required: {
-                                    value: true,
-                                    message: 'This field cannot be empty',
-                                }
-                            })}
-                    >
-                        <TitleList listValues={watchSubCategoryId ? listValues.colors : []}
-                                   listPlaceholder={'Choose color'}/>
-                    </select>
-                </div>
-                {errors[createModelFormValues.colorId] &&
-                    <small className="input-error">{errors[createModelFormValues.colorId]?.message}</small>}
-
-                <div className={'form-field-container'}>
-                    {watchSubCategoryId &&
-                        <div className={'form-size-list-field-container'}>
-                            <SizeList
-                                listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}
-                                onSizeChange={onSizeChangeHandler}
-                            />
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                disabled={!watchSubCategoryId}
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.seasonId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList listValues={watchSubCategoryId ? listValues.seasons : []}
+                                       listPlaceholder={'Choose season'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.seasonId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.seasonId]?.message}
+                                </small>
+                            }
                         </div>
-                    }
-                    {errors[createModelFormValues.description] &&
-                        <small className="input-error">{errors[createModelFormValues.description]?.message}</small>}
+                    </div>
+
+                    <div className={'form-field-container'}>
+                        <select className="form-control selectpicker form-select"
+                                disabled={!watchSubCategoryId}
+                                data-live-search="true"
+                                data-width="fit"
+                                defaultValue={''}
+                                {...register(createModelFormValues.colorId, {
+                                    required: {
+                                        value: true,
+                                        message: 'This field cannot be empty',
+                                    }
+                                })}
+                        >
+                            <TitleList listValues={watchSubCategoryId ? listValues.colors : []}
+                                       listPlaceholder={'Choose color'}/>
+                        </select>
+                        <div className={'input-error-container'}>
+                            {errors[createModelFormValues.colorId] &&
+                                <small className="input-error">
+                                    {errors[createModelFormValues.colorId]?.message}
+                                </small>
+                            }
+                        </div>
+                    </div>
+
+
+                    <div className={'size-container'}>
+                        <div className={'form-field-container'}>
+                            {watchSubCategoryId &&
+                                <div className={'form-size-list-field-container'}>
+                                    Enter sizes values:
+                                    <SizeList
+                                        listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}
+                                        onSizeChange={onSizeChangeHandler}
+                                    />
+                                </div>
+                            }
+                            {errors[createModelFormValues.description] &&
+                                <small
+                                    className="input-error">{errors[createModelFormValues.description]?.message}</small>}
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <input type={'file'}
-                       accept={'image/*'}
-                       {...register(createModelFormValues.mainImage, {
-                           required: {
-                               value: true,
-                               message: 'You need to upload the main picture',
-                           },
-                       })}
-                />
-                {errors?.mainPicture && <small className="input-error">{errors?.mainPicture?.message}</small>}
+                <div className={'images-container'}>
+                    <input type={'file'}
+                           accept={'image/*'}
+                           {...register(createModelFormValues.mainImage, {
+                               required: {
+                                   value: true,
+                                   message: 'You need to upload the main photo',
+                               },
+                           })}
+                    />
+                    <div className={'input-error-container'}>
+                        {errors?.mainImage &&
+                            <small className="input-error">
+                                {errors?.mainImage?.message}
+                            </small>
+                        }
+                    </div>
 
-                <input type={'file'}
-                       accept={'image/*'}
-                       {...register(createModelFormValues.images)}
-                       multiple
-                />
+                    <input type={'file'}
+                           accept={'image/*'}
+                           multiple
+                           {...register(createModelFormValues.images, {
+                               required: {
+                                   value: true,
+                                   message: 'You need to upload at least one additional photo',
+                               },
+                           })}
+                    />
+                    <div className={'input-error-container'}>
+                        {errors?.images &&
+                            <small className="input-error">
+                                {errors?.images?.message}
+                            </small>
+                        }
+                    </div>
+                </div>
 
-
-                <button className="btn btn-primary"
-                        type="submit"
-                        disabled={!isValid}
+                <button type="submit"
+                        disabled={!isValid || !modelDataIsNotEmpty}
                 >
                     Upload
                 </button>
+
             </form>
 
-
-            <div>
+            <div className={'model-data-container'}>
                 {modelDataDisplay(modelData)}
+                <ModelDataForModelCreate onFillPair={onUpdateModelDataHandler}/>
             </div>
-            <ModelDataForModelCreate onFillPair={onUpdateModelDataHandler}/>
 
         </div>
     )

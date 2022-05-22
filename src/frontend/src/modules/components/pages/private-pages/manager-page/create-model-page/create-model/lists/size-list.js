@@ -8,7 +8,7 @@ export const SizeList = ({listValues, onSizeChange}) => {
             style={{display: "flex", justifyContent: "space-between", alignItems: "center", maxWidth: "90px"}} key={key}
         >
             <label style={{maxWidth: "30px"}}>{iterator}</label>
-            <input style={{maxWidth: "60px"}} type={"number"} id={`size-${iterator}`} onChange={onSizeChange}/>
+            <input className={'form-control'} style={{maxWidth: "5.5vw"}} type={"number"} id={`size-${iterator}`} onChange={onSizeChange}/>
         </div>)
         iterator++;
         key++;

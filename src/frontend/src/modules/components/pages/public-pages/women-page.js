@@ -1,5 +1,5 @@
 export const WomenPage = () => {
     return (
-        <>WomenPage</>
+        <h1>Women</h1>
     );
 }

@@ -14,8 +14,18 @@
     -moz-box-shadow: var(--shadow);
     -webkit-box-shadow: var(--shadow);
 }
+
+.nav-bar .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
 .nav-filters{
-    min-width:80vw;
+    min-width:70vw;
     height: 100%;
 
     display: flex;
@@ -23,8 +33,19 @@
     align-items: center;
 }
 
+.nav-filters .link, .nav-filters .link:hover {
+    color: unset;
+}
+
+.nav-filters .link:hover {
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+    color: var(--color-3);
+    background-color: var(--color-1);
+
+}
+
 .user-panel{
-    min-width:20vw;
+    min-width:30vw;
     height: 100%;
 
     display: flex;
@@ -41,23 +62,3 @@
     height: 100%;
 }
 
-
-.nav-bar span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 100%;
-}
-
-.nav-filters .link, .nav-filters .link:hover {
-    color: unset;
-}
-
-.nav-filters span:hover {
-    transition: background-color 0.2s ease-out, color 0.2s ease-out;
-    color: var(--color-3);
-    background-color: var(--color-1);
-
-}

@@ -1,5 +1,5 @@
 export const KidsPage = () => {
     return (
-        <>KidsPage</>
+        <h1>Kids</h1>
     );
 }

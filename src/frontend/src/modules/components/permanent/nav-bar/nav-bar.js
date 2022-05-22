@@ -9,18 +9,16 @@ export const NavBar = ({userData}) => {
         <div className={'nav-bar-container'}>
             <div className={'nav-bar'}>
                 <div className={'nav-filters'}>
-                    <span><Link className={'link'} to={ROUTES_CONFIG.public.men}>Men</Link></span>
-                    <span><Link className={'link'} to={ROUTES_CONFIG.public.women}>Women</Link></span>
-                    <span><Link className={'link'} to={ROUTES_CONFIG.public.kids}>Kids</Link></span>
+                    <Link className={'link'} to={ROUTES_CONFIG.public.men}>Men</Link>
+                    <Link className={'link'} to={ROUTES_CONFIG.public.women}>Women</Link>
+                    <Link className={'link'} to={ROUTES_CONFIG.public.kids}>Kids</Link>
                 </div>
                 <div className={'user-panel'}>
                     <span><Link className={'link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
-                    <span>
-                    Hello,
+
                     <Link className={'link'} to={ROUTES_CONFIG.public.profile}>
-                        {userData ? cutUserName( '12345678',8) : 'Guest'}
-                    </Link>!
-                </span>
+                        {userData ? cutUserName(userNameFromUserData(userData), 8) : 'Guest'}
+                    </Link>
                 </div>
             </div>
 

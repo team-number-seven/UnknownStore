@@ -61,8 +61,7 @@ export const ModelDataForModelCreateForm = ({onFill}) => {
                 {errors?.description &&
                     <small className="input-error">{errors?.description?.message}</small>}
 
-                <button className="btn btn-primary"
-                        type="submit"
+                <button type="submit"
                         disabled={!isValid}
                 >
                     Add
