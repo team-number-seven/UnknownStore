@@ -1,8 +1,6 @@
 export const BagPage = () => {
 
     return (
-        <>
-            Bag Page
-        </>
+        <h1>Bag Page</h1>
     )
 }

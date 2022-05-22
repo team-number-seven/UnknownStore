@@ -6,10 +6,10 @@ import {userNameFromUserData} from "../../../utilites/userNameFromUserData";
 export const ProfilePage = ({userData}) => {
     return (
         <div>
-            <>ProfilePage for {userNameFromUserData(userData)}</>
+            <h1>{userNameFromUserData(userData)} profile</h1>
             {(userData?.role === CONFIG["user-role"].Owner
                     || userData?.role === CONFIG["user-role"].Manager)
-                && <Link to={'../' + ROUTES_CONFIG.private.manager["manager-panel"]}>Manager Panel</Link>}
+                && <Link className={'link'} to={'../' + ROUTES_CONFIG.private.manager["manager-panel"]}>Manager Panel</Link>}
         </div>
     )
 }

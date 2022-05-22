@@ -7,7 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import {MainRoutes} from "./routes/main-routes";
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(
   <React.StrictMode>
       <BrowserRouter>

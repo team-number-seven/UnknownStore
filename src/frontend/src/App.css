@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;600&display=swap');
+
+
+:root {
+    /*COLORS*/
+    --color-text: #424242;
+    --color-placeholder: #858585;
+    --color-1: #0984e3;
+    --color-2: #74b9ff;
+    --color-3: white;
+    --color-error: #e74c3c;
+    --background: #dadade;
+    --background-page: white;
+    /*CONSTANT SIZES*/
+
+    --width-header: 100vw;
+    --height-header: 4vh;
+
+    --width-nav-bar: 100vw;
+    --height-nav-bar: 5vh;
+
+
+    /*PADDINGS*/
+    --padding-header-nav-bar: 0 1rem 0 1rem;
+    --padding-page: 2vh 3vw 2vh 3vw;
+    --margin-page: 0 10vw 0 10vw;
+
+
+    /*CONSTANT SHADOW*/
+    --shadow: 0 2px 6px rgba(0, 0, 0, .2);
+
+    /*FONT*/
+    --font-main: 'Radio Canada', sans-serif;
+}
+
+::-ms-reveal {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-weight: lighter;
+
+    background-color: var(--background);
+
+    overflow-x: hidden;
+    -ms-overflow-x: hidden;
+}
+
+.link {
+    box-shadow: none;
+    border: none;
+    background-color: unset;
+    height: unset;
+
+    color: var(--color-1);
+    text-decoration: none;
+    font-weight: unset;
+}
+
+.link:hover {
+    transition: color 0.2s ease-out;
+    color: var(--color-2);
+    background-color: unset;
+    cursor: pointer;
+}
+
+button/*, input[type="file"]::file-selector-button*/ {
+    -moz-box-shadow: var(--shadow);
+    -webkit-box-shadow: var(--shadow);
+    background-color: var(--color-1);
+    border: none;
+    border-radius: unset;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+
+    color: white;
+    cursor: pointer;
+    font-weight: normal;
+
+    height: 40px;
+    padding: unset;
+    min-width: 10vw;
+}
+/*input[type="file"]::file-selector-button{
+    -moz-box-shadow: var(--shadow);
+    -webkit-box-shadow: var(--shadow);
+    min-width: 5vw;
+}*/
+
+button:hover/*, input[type="file"]::file-selector-button:hover*/ {
+    background-color: var(--color-2);
+    transition: background-color 0.2s ease-out;
+}
+
+button:disabled/*, input[type="file"]::file-selector-button:disabled*/ {
+    background-color: var(--color-placeholder);
+    cursor: default;
+}
+
+
+.page-container {
+    min-height: 91vh;
+    max-width: 80vw;
+    margin: var(--margin-page);
+    padding: var(--padding-page);
+    background-color: var(--background-page);
+
+    box-shadow: var(--shadow);
+    -moz-box-shadow: var(--shadow);
+    -webkit-box-shadow: var(--shadow);
+}

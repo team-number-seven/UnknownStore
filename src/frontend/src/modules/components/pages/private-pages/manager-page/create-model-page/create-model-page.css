@@ -1,0 +1,72 @@
+.create-model-page {
+    position: relative;
+}
+
+.form-control {
+    width: 15vw;
+    padding-bottom: 0;
+    padding-top: 0;
+    border: none;
+    /*border-bottom: var(--color-placeholder) 1px solid;*/
+    border-radius: unset;
+    color: var(--color-text);
+    font-weight: lighter;
+    height: 2.5rem;
+}
+
+.form-control input {
+    color: var(--color-placeholder);
+    padding: 0;
+}
+
+.form-control:focus {
+    border-bottom: var(--color-1) 2px solid;
+    box-shadow: unset;
+    color: var(--color-1);
+}
+
+.form-control:focus::placeholder {
+    color: var(--color-1);
+}
+
+.form-size-list-field-container {
+    overflow: auto;
+    max-height: 10vh;
+}
+
+.form-field-container select:disabled {
+    color: var(--color-placeholder);
+    opacity: 0.3;
+    background-color: unset;
+}
+
+.input-error-container{
+    display: flex;
+    align-items: start;
+    min-height: 1.1rem;
+}
+
+.input-error{
+    font-weight: normal;
+    font-size: 0.7rem;
+    color:var(--color-error);
+}
+
+#create-model-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.main-info-container, .info-container, .images-container, .size-container {
+    width: 30%;
+    max-width: 30%;
+}
+
+::file-selector-button{
+
+}
+
+
+

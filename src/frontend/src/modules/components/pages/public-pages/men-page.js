@@ -1,5 +1,5 @@
 export const MenPage = () => {
     return (
-        <>MenPage</>
+        <h1>Men</h1>
     );
 }

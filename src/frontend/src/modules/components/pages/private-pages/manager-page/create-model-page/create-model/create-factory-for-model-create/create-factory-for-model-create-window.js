@@ -111,8 +111,7 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory, on
                         <small className="input-error">{errors?.address?.message}</small>}
                 </div>
 
-                <button className="btn btn-primary"
-                        type="submit"
+                <button type="submit"
                         disabled={!isValid}
                 >
                     Create

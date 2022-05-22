@@ -1,11 +1,12 @@
+import './header.css';
 
 export const Header = ({onSignInClick, onSignOutClick, isAuth}) => {
     return (
         <header>
-            header
+            <span>UnknownStore</span>
             {!isAuth ?
-                <button onClick={onSignInClick}>Sign In</button>
-                : <button onClick={onSignOutClick}>Sign Out</button>
+                <span><button className={'link'} onClick={onSignInClick}>Sign In</button></span>
+                : <span><button className={'link'} onClick={onSignOutClick}>Sign Out</button></span>
             }
         </header>
     )

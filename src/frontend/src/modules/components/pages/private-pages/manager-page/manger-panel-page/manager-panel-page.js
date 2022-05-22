@@ -6,10 +6,10 @@ export const ManagerPanelPage = () => {
     return (
         <>
             <Link to={'../' + ROUTES_CONFIG.private.manager["create-model"]}>
-                <button>Create Model</button>
+                <button className={'link'}>Create Model</button>
             </Link>
             <Link to={'../' + ROUTES_CONFIG.private.manager["create-factory"]}>
-                <button>Create Factory</button>
+                <button className={'link'}>Create Factory</button>
             </Link>
         </>
     )
