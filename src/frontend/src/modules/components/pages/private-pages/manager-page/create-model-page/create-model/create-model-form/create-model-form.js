@@ -168,6 +168,27 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
                             }
                         </div>
                     </div>
+
+
+                    <div className={'size-container'}>
+                        <div className={'form-field-container'}>
+                            {watchSubCategoryId &&
+                                <>
+                                    Enter sizes values:
+                                    <div className={'form-size-list-field-container'}>
+                                        <SizeList
+                                            listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}
+                                            onSizeChange={onSizeChangeHandler}
+                                        />
+                                    </div>
+                                </>
+                            }
+                            {errors[createModelFormValues.description] &&
+                                <small
+                                    className="input-error">{errors[createModelFormValues.description]?.message}</small>}
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className={'info-container'}>
@@ -381,25 +402,6 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
                             }
                         </div>
                     </div>
-
-
-                    <div className={'size-container'}>
-                        <div className={'form-field-container'}>
-                            {watchSubCategoryId &&
-                                <div className={'form-size-list-field-container'}>
-                                    Enter sizes values:
-                                    <SizeList
-                                        listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}
-                                        onSizeChange={onSizeChangeHandler}
-                                    />
-                                </div>
-                            }
-                            {errors[createModelFormValues.description] &&
-                                <small
-                                    className="input-error">{errors[createModelFormValues.description]?.message}</small>}
-                        </div>
-                    </div>
-
 
                 </div>
 
