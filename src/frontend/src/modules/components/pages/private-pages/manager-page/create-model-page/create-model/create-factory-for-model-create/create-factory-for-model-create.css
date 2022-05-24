@@ -1,0 +1,51 @@
+.create-factory-for-model-background {
+    min-height: var(--height-page);
+    min-width: var(--width-overlay-background);
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.create-factory-for-model-container {
+    margin: auto;
+    min-width: var(--width-overlay);
+    min-height: var(--height-overlay);
+
+    background-color: var(--color-3);
+
+    box-shadow: var(--shadow);
+    -moz-box-shadow: var(--shadow);
+    -webkit-box-shadow: var(--shadow);
+    border: var(--border-blue);
+
+    padding:var(--padding-overlay);
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.container + .form-group{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.window-close-header{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}

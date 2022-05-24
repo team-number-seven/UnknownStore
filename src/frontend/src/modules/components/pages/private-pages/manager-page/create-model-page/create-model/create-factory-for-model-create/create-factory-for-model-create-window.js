@@ -30,7 +30,7 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory, on
                   onSubmit={handleSubmit(onSubmit)}
             >
                 <div className={'window-close-header'}>
-                    <span className={'fake-link'} onClick={handleOnClose}>Close</span>
+                    <span className={'link'} onClick={handleOnClose}>Close</span>
                 </div>
 
                 <div className={'form-field-container'}>
@@ -48,8 +48,11 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory, on
                                }
                            })}
                     />
-                    {errors?.title &&
-                        <small className="input-error">{errors?.title?.message}</small>}
+                    <div className={'input-error-container'}>
+                        {errors?.title &&
+                            <small className="input-error">{errors?.title?.message}</small>
+                        }
+                    </div>
                 </div>
 
                 <div className={'form-field-container'}>
@@ -66,8 +69,13 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory, on
                     >
                         <TitleList listValues={listValues.countries} listPlaceholder={'Choose country'}/>
                     </select>
-                    {errors?.countryId &&
-                        <small className="input-error">{errors?.countryId?.message}</small>}
+                    <div className={'input-error-container'}>
+                        {errors?.countryId &&
+                            <small className="input-error">{errors?.countryId?.message}</small>
+                        }
+                    </div>
+
+
                 </div>
 
                 <div className={'form-field-container'}>
@@ -88,8 +96,15 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory, on
                             listPlaceholder={'Choose city'}
                         />
                     </select>
-                    {errors?.countryId &&
-                        <small className="input-error">{errors?.countryId?.message}</small>}
+                    <div className={'input-error-container'}>
+                        {errors?.countryId &&
+                            <small className="input-error">
+                                {errors?.countryId?.message}
+                            </small>
+                        }
+                    </div>
+
+
                 </div>
 
                 <div className={'form-field-container'}>
@@ -107,15 +122,20 @@ export const CreateFactoryForModelCreateWindow = ({listValues, createFactory, on
                                }
                            })}
                     />
-                    {errors?.address &&
-                        <small className="input-error">{errors?.address?.message}</small>}
-                </div>
+                    <div className={'input-error-container'}>
+                        {errors?.address &&
+                            <small className="input-error">
+                                {errors?.address?.message}
+                            </small>
+                        }
+                    </div>
 
-                <button type="submit"
-                        disabled={!isValid}
-                >
-                    Create
-                </button>
+                    <button type="submit"
+                            disabled={!isValid}
+                    >
+                        Create
+                    </button>
+                </div>
 
             </form>
         </div>
