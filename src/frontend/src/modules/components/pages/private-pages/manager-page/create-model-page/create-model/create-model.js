@@ -2,6 +2,7 @@ import React from "react";
 import {CONFIG} from "../../../../../../../configs/config";
 import API from "../../../../../../../server/API";
 import {Categories} from "../../../../../../../server/dto/classes/Categories";
+import {CreateFactoryForModelCreate} from "./create-factory-for-model-create/create-factory-for-model-create";
 import {CreateModelForm} from "./create-model-form/create-model-form";
 
 
@@ -15,6 +16,7 @@ export class CreateModel extends React.Component {
         this.getAllListValues = this.getAllListValues.bind(this);
         this.handleFactoryListRefresh = this.handleFactoryListRefresh.bind(this);
         this.handleModelCreate = this.handleModelCreate.bind(this);
+        this.handleShowCreateFactory = this.handleShowCreateFactory.bind(this);
     }
 
     componentDidMount() {
@@ -70,24 +72,33 @@ export class CreateModel extends React.Component {
     }
 
     async handleModelCreate(dataForCreateModel) {
-        debugger;
         API.post(CONFIG.POST.model["add-model"], dataForCreateModel)
-            .then(result=>{
-                if(result.status>=200 && result.status<300){
+            .then(result => {
+                if (result.status >= 200 && result.status < 300) {
                     alert('Successfully create');
                 }
             })
+    }
+
+    handleShowCreateFactory() {
+        this.setState({showCreateFactory: !this.state.showCreateFactory});
     }
 
 
     render() {
         return (
             <>
+                {this.state.showCreateFactory &&
+                    <CreateFactoryForModelCreate
+                        onClose={this.handleShowCreateFactory}
+                        onRefresh={this.handleFactoryListRefresh}
+                    />
+                }
                 {this.state.listValues
                     && <CreateModelForm
                         listValues={this.state.listValues}
-                        refreshFactoryList={this.handleFactoryListRefresh}
                         onModelCreate={this.handleModelCreate}
+                        showCreateFactory={this.handleShowCreateFactory}
                     />
                 }
             </>

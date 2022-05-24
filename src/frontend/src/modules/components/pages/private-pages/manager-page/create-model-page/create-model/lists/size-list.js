@@ -5,9 +5,9 @@ export const SizeList = ({listValues, onSizeChange}) => {
     let inputs = [];
     while (iterator <= listValues.maxValue) {
         inputs.push(<div
-            style={{display: "flex", justifyContent: "space-between", alignItems: "center", maxWidth: "90px"}} key={key}
+            style={{display: "flex", justifyContent: "space-between", alignItems: "center", maxWidth: "5.859vw"}} key={key}
         >
-            <label style={{maxWidth: "30px"}}>{iterator}</label>
+            <label className={'text-blue'} style={{maxWidth: "1.953vw"}}>{iterator}</label>
             <input className={'form-control'} style={{maxWidth: "5.5vw"}} type={"number"} id={`size-${iterator}`} onChange={onSizeChange}/>
         </div>)
         iterator++;

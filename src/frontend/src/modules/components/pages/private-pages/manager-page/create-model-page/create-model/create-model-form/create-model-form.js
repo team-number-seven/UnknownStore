@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {useForm} from "react-hook-form";
-import {CreateFactoryForModelCreate} from "../create-factory-for-model-create/create-factory-for-model-create";
 import {SizeList} from "../lists/size-list";
 import {TitleList} from "../lists/titile-list";
 import {ModelDataForModelCreate} from "../model-data-for-model-create/model-data-for-model-create";
@@ -8,18 +7,13 @@ import {CreateModelFormValues} from "./create-model-form-values";
 import {capitalLetter} from "./utilites/capitalLetter";
 import {modelDataDisplay} from "./utilites/modelDataDisplay";
 
-export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList}) => {
+export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) => {
     const [modelData, setModelData] = useState({});
     const [modelDataIsNotEmpty, setModelDataIsNotEmpty] = useState(false);
     const [sizes, setSizes] = useState({});
-    const [showCreateFactory, setShowCreateFactory] = useState(false);
 
-    const handleShowCreateFactoryWindowChange = () => {
-        setShowCreateFactory(!showCreateFactory);
-    }
-    const handleRefreshFactoryList = () => {
-        debugger;
-        refreshFactoryList();
+    const handleShowCreateFactory = () => {
+        showCreateFactory();
     }
 
     const {
@@ -85,8 +79,7 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
 
         <div className={'create-model-background-container'}>
 
-            {showCreateFactory && <CreateFactoryForModelCreate onClose={handleShowCreateFactoryWindowChange}
-                                                               onRefresh={handleRefreshFactoryList}/>}
+
 
             <form id={'create-model-form'}
                   className="container form-group"
@@ -174,7 +167,7 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
                         <div className={'form-field-container'}>
                             {watchSubCategoryId &&
                                 <>
-                                    Enter sizes values:
+                                    <span>Enter sizes values:</span>
                                     <div className={'form-size-list-field-container'}>
                                         <SizeList
                                             listValues={listValues.categories.findSize(watchCategoryId, watchAgeId, watchGenderId, watchSubCategoryId)}
@@ -183,9 +176,6 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
                                     </div>
                                 </>
                             }
-                            {errors[createModelFormValues.description] &&
-                                <small
-                                    className="input-error">{errors[createModelFormValues.description]?.message}</small>}
                         </div>
                     </div>
 
@@ -346,7 +336,7 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
 
                         <span>
                             No factory?
-                            <span className={'link'} onClick={handleShowCreateFactoryWindowChange}>
+                            <span className={'link'} onClick={handleShowCreateFactory}>
                                 Create one!
                             </span>
                         </span>
@@ -440,13 +430,13 @@ export const CreateModelForm = ({listValues, onModelCreate, refreshFactoryList})
                             </small>
                         }
                     </div>
+                    <button type="submit"
+                            disabled={!isValid || !modelDataIsNotEmpty}
+                    >
+                        Upload
+                    </button>
                 </div>
 
-                <button type="submit"
-                        disabled={!isValid || !modelDataIsNotEmpty}
-                >
-                    Upload
-                </button>
 
             </form>
 

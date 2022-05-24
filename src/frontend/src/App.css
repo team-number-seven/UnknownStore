@@ -7,10 +7,12 @@
     --color-placeholder: #858585;
     --color-1: #0984e3;
     --color-2: #74b9ff;
+    --color-2-light: rgba(116, 185, 255, 0.8);
     --color-3: white;
     --color-error: #e74c3c;
     --background: #dadade;
     --background-page: white;
+    --background-dark: rgb(66, 66, 66);
     /*CONSTANT SIZES*/
 
     --width-header: 100vw;
@@ -19,15 +21,28 @@
     --width-nav-bar: 100vw;
     --height-nav-bar: 5vh;
 
+    --height-page: 91vh;
+    --width-page: 80vw;
 
+    --width-overlay-background: 46.510vw;
+    --width-overlay: 10vw;
+    --height-overlay: 10vh;
+
+
+    /*BORDER*/
+    --border-blue: 2px solid var(--color-1);
     /*PADDINGS*/
     --padding-header-nav-bar: 0 1rem 0 1rem;
     --padding-page: 2vh 3vw 2vh 3vw;
+    --padding-overlay: 3vh 3vw;
     --margin-page: 0 10vw 0 10vw;
+    --margin-page-aside: 10vw;
 
 
     /*CONSTANT SHADOW*/
     --shadow: 0 2px 6px rgba(0, 0, 0, .2);
+    --shadow-blue: 0px 5px 36px 19px rgba(9, 132, 227, 0.2);
+
 
     /*FONT*/
     --font-main: 'Radio Canada', sans-serif;
@@ -72,7 +87,8 @@ body {
     cursor: pointer;
 }
 
-button/*, input[type="file"]::file-selector-button*/ {
+button /*, input[type="file"]::file-selector-button*/
+{
     -moz-box-shadow: var(--shadow);
     -webkit-box-shadow: var(--shadow);
     background-color: var(--color-1);
@@ -88,26 +104,72 @@ button/*, input[type="file"]::file-selector-button*/ {
     padding: unset;
     min-width: 10vw;
 }
+
 /*input[type="file"]::file-selector-button{
     -moz-box-shadow: var(--shadow);
     -webkit-box-shadow: var(--shadow);
     min-width: 5vw;
 }*/
 
-button:hover/*, input[type="file"]::file-selector-button:hover*/ {
+button:hover /*, input[type="file"]::file-selector-button:hover*/
+{
     background-color: var(--color-2);
     transition: background-color 0.2s ease-out;
 }
 
-button:disabled/*, input[type="file"]::file-selector-button:disabled*/ {
+button:disabled /*, input[type="file"]::file-selector-button:disabled*/
+{
     background-color: var(--color-placeholder);
     cursor: default;
 }
 
 
+.form-control {
+    width: 15vw;
+    padding-bottom: 0;
+    padding-top: 0;
+    border: none;
+    /*border-bottom: var(--color-placeholder) 1px solid;*/
+    border-radius: unset;
+    color: var(--color-text);
+    font-weight: lighter;
+    height: 2.5rem;
+}
+
+.form-control input {
+    color: var(--color-placeholder);
+    padding: 0;
+}
+
+.form-control:focus {
+    border-bottom: var(--color-1) 2px solid;
+    box-shadow: unset;
+    color: var(--color-1);
+}
+
+.form-control:focus::placeholder {
+    color: var(--color-1);
+}
+
+.text-blue {
+    color: var(--color-1);
+}
+
+.input-error-container {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+form.container{
+    padding: 0;
+}
+
+
 .page-container {
-    min-height: 91vh;
-    max-width: 80vw;
+    min-height: var(--height-page);
+    max-width: var(--width-page);
     margin: var(--margin-page);
     padding: var(--padding-page);
     background-color: var(--background-page);
@@ -116,3 +178,5 @@ button:disabled/*, input[type="file"]::file-selector-button:disabled*/ {
     -moz-box-shadow: var(--shadow);
     -webkit-box-shadow: var(--shadow);
 }
+
+

@@ -2,6 +2,7 @@ import React from "react";
 import {CONFIG} from "../../../../../../../../configs/config";
 import API from "../../../../../../../../server/API";
 import {CreateFactoryForModelCreateWindow} from "./create-factory-for-model-create-window";
+import './create-factory-for-model-create.css'
 
 export class CreateFactoryForModelCreate extends React.Component {
 
