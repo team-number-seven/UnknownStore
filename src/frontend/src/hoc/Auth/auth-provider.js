@@ -28,7 +28,6 @@ export const AuthProvider = ({children}) => {
     const authenticationCheck = () => {
         mgr.getUser().then((userData) => {
             if ((!user && userData) || (!isAuthenticated && userData)) {
-                debugger;
                 setUser(userData.profile);
                 setIsAuthenticated(true);
             }

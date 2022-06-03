@@ -62,7 +62,6 @@ export class CreateModel extends React.Component {
         API.get(CONFIG.GET.factory["get-all"])
             .then(result => result.data[CONFIG.GET.factory.dto])
             .then(value => {
-                debugger;
                 const updateFactoryList = {factories: value};
                 const previousFactoryList = this.state.listValues;
                 Object.assign(previousFactoryList, updateFactoryList);

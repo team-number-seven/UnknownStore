@@ -1,5 +1,5 @@
 import {AppRoutes} from "./components/app-routes";
-import {AuthProvider} from "./hoc/Auth/AuthProvider";
+import {AuthProvider} from "./hoc/Auth/auth-provider";
 import "./App.css";
 
 

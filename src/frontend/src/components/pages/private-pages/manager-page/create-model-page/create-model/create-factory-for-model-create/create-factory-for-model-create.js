@@ -20,7 +20,6 @@ export class CreateFactoryForModelCreate extends React.Component {
         this.getAllListValues().then(value => this.setState({listValues: value}))
     }
     componentWillUnmount() {
-        debugger;
         this.props.onRefresh();
     }
 

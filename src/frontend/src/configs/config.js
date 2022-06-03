@@ -42,9 +42,9 @@ export const CONFIG = {
             "get-all": "season/get-all",
             "dto": "seasonDtos"
         },
-        "model":{
-            "get-models":"model/get-models",
-            "get":"model/get"
+        "model": {
+            "get-models": "model/get-models",
+            "get": "model/get"
         }
     },
     "POST": {
@@ -53,6 +53,10 @@ export const CONFIG = {
         },
         "factory": {
             "add-factory": "factory/add-factory"
+        },
+        "user":{
+            "add-favorite": "user/add-favorite",
+            "get-favorites": "user/get-favorites"
         }
     }
 

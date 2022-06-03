@@ -42,7 +42,7 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
     const onSizeChangeHandler = (e) => {
         let sizeObj = {};
         let key = e.target.id.slice(5);
-        if (+e.target.value > 0) {
+        if (parseInt(e.target.value) > 0) {
             sizeObj[key] = e.target.value;
             setSizes(Object.assign(sizes, sizeObj));
         } else {
