@@ -5,7 +5,7 @@ import {userNameFromUserData} from "../../../utilites/userNameFromUserData";
 
 export const ProfilePage = ({userData}) => {
     return (
-        <div>
+        <div className={'page-container'}>
             <h1>{userNameFromUserData(userData)} profile</h1>
             {(userData?.role === CONFIG["user-role"].Owner
                     || userData?.role === CONFIG["user-role"].Manager)

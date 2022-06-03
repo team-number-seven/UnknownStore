@@ -1,9 +1,14 @@
+/*
 import React from "react";
 import './App.css';
-import {Pages} from "./modules/components/pages/pages";
+import {Navigate, Route, Routes} from "react-router-dom";
+import {CONFIG} from "./configs/config";
+import {PagesRoutes} from "./modules/components/pages/pages-routes";
+import {Page} from "./modules/components/pages/public-pages/page";
 import {Header} from "./modules/components/permanent/header/header";
 import {NavBar} from "./modules/components/permanent/nav-bar/nav-bar";
 import {AuthRoutes} from "./routes/auth-routes";
+import API from "./server/API";
 import {Auth} from "./server/auth/auth";
 import {jwtParser} from "./modules/utilites/jwt-parser";
 
@@ -20,13 +25,23 @@ export class App extends React.Component {
 
             userData: false,
             userAccessToken: false,
+
+            searchTitleFromNavBar: false,
+            filterFromNavBar: false,
         }
+
 
         this.handleSignInClick = this.handleSignInClick.bind(this);
         this.handleSignOutClick = this.handleSignOutClick.bind(this);
         this.handleAuthStatusChange = this.handleAuthStatusChange.bind(this);
         this.handleAccessTokenChange = this.handleAccessTokenChange.bind(this);
         this.handleUserDataChange = this.handleUserDataChange.bind(this);
+        this.handleSearchFromNavBar = this.handleSearchFromNavBar.bind(this);
+    }
+
+    componentDidMount() {
+        API.get(CONFIG.GET.model["get-models"], {params: {title: 'te'}})
+            .then(result => console.log(result.data));
     }
 
 
@@ -65,6 +80,10 @@ export class App extends React.Component {
         }));
     }
 
+    handleSearchFromNavBar(title) {
+        debugger
+        this.setState(() => ({searchTitleFromNavBar: title}));
+    }
 
     render() {
         return (
@@ -80,14 +99,23 @@ export class App extends React.Component {
                     authStatus={this.handleAuthStatusChange}
                 />
 
-                <Header
-                    onSignInClick={this.handleSignInClick}
-                    onSignOutClick={this.handleSignOutClick}
-                    isAuth={this.state.isAuth}
-                />
-                <NavBar userData={this.state.userData}/>
-                <Pages userData={this.state.userData}/>
+                <div className={'app-head'}>
+                    <Header
+                        onSignInClick={this.handleSignInClick}
+                        onSignOutClick={this.handleSignOutClick}
+                        isAuth={this.state.isAuth}
+                    />
+                    <NavBar userData={this.state.userData} onSearch={this.handleSearchFromNavBar}/>
+                </div>
+
+                <PagesRoutes userData={this.state.userData}/>
+                {this.state.searchTitleFromNavBar &&
+                    <Page searchTitle={this.state.searchTitleFromNavBar} filter={this.state.filterFromNavBar}/>
+                }
+
+
             </div>
         );
     }
 }
+*/

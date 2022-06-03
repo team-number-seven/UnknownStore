@@ -1,5 +1,5 @@
-export const Page =()=>{
+export const Page =({searchTitle})=>{
    return(
-       <>Page</>
+       <>Page {searchTitle}</>
    )
 }

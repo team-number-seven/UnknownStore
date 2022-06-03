@@ -35,7 +35,7 @@
     --padding-header-nav-bar: 0 1rem 0 1rem;
     --padding-page: 2vh 3vw 2vh 3vw;
     --padding-overlay: 3vh 3vw;
-    --margin-page: 0 10vw 0 10vw;
+    --margin-page: 9vh 10vw 0 10vw;
     --margin-page-aside: 10vw;
 
 
@@ -162,10 +162,15 @@ button:disabled /*, input[type="file"]::file-selector-button:disabled*/
     align-items: center;
 }
 
-form.container{
+form.container {
     padding: 0;
 }
 
+
+.app-head {
+    position: fixed;
+    top: 0;
+}
 
 .page-container {
     min-height: var(--height-page);

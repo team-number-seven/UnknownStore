@@ -24,8 +24,8 @@
     align-items: center;
 }
 
-.form-field-container span{
-    width:100%;
+.form-field-container span {
+    width: 100%;
 }
 
 .form-field-container select:disabled {

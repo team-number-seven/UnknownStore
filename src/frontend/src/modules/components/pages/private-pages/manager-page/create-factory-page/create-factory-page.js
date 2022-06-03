@@ -1,5 +1,8 @@
 export const CreateFactoryPage = () => {
-    return(
-        <>Create Factory</>
+    return (
+        <div className={'page-container'}>
+            <>Create Factory</>
+        </div>
+
     )
 }

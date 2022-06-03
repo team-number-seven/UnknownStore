@@ -1,6 +1,6 @@
 export const HomePage = () => {
     return (
-        <>
+        <div className={'page-container'}>
             <h1>Unknown store</h1>
             {/*<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
             <div className="example-1">
@@ -12,6 +12,6 @@ export const HomePage = () => {
                     </label>
                 </div>
             </div>*/}
-        </>
+        </div>
     );
 }

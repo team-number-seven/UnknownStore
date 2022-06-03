@@ -1,6 +1,8 @@
 export const BagPage = () => {
 
     return (
-        <h1>Bag Page</h1>
+        <div className={'page-container'}>
+            <h1>Bag Page</h1>
+        </div>
     )
 }

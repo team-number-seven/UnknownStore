@@ -1,5 +1,8 @@
 export const KidsPage = () => {
+
     return (
-        <h1>Kids</h1>
+        <div className={'page-container'}>
+            <h1>Kids</h1>
+        </div>
     );
 }

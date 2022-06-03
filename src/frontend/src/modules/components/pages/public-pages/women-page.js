@@ -1,5 +1,7 @@
 export const WomenPage = () => {
     return (
-        <h1>Women</h1>
+        <div className={'page-container'}>
+            <h1>Women</h1>
+        </div>
     );
 }
