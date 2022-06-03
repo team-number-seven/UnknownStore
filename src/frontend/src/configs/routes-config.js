@@ -11,7 +11,7 @@ export const ROUTES_CONFIG = {
     },
     "private": {
         "manager": {
-            "manager-panel": "manager-panel",
+            "manager": "manager",
             "create-model": "create-model",
             "create-factory": "create-factory",
             "create-factory-short": "create-factory-short",

@@ -41,6 +41,10 @@ export const CONFIG = {
         "season": {
             "get-all": "season/get-all",
             "dto": "seasonDtos"
+        },
+        "model":{
+            "get-models":"model/get-models",
+            "get":"model/get"
         }
     },
     "POST": {
