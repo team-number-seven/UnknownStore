@@ -8,6 +8,7 @@
     --color-1: #0984e3;
     --color-2: #74b9ff;
     --color-2-light: rgba(116, 185, 255, 0.8);
+    --color-2-megalight: rgba(116, 185, 255, 0.3);
     --color-3: white;
     --color-error: #e74c3c;
     --background: #dadade;
@@ -33,9 +34,10 @@
     --border-blue: 2px solid var(--color-1);
     /*PADDINGS*/
     --padding-header-nav-bar: 0 1rem 0 1rem;
-    --padding-page: 2vh 3vw 2vh 3vw;
+    --padding-page: 2vh 0vw 2vh 0vw;
     --padding-overlay: 3vh 3vw;
-    --margin-page: 9vh 10vw 0 10vw;
+    --margin-page: 9vh 15vw 0 15vw;
+    --margin-page-half: 9vh 0 0 0;
     --margin-page-aside: 10vw;
 
 
@@ -67,6 +69,18 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     -ms-overflow-x: hidden;
+}
+
+.fake-link {
+    text-decoration: none;
+    color: unset;
+}
+
+.fake-link:hover {
+    text-decoration: none;
+    color: unset;
+    transition: opacity 0.2s ease-out;
+    opacity: 60%;
 }
 
 .link {
@@ -185,3 +199,12 @@ form.container {
 }
 
 
+@media screen and (max-width: 900px) {
+    .page-container {
+        max-width: 100%;
+        padding: 0;
+        margin: var(--margin-page-half);
+    }
+}
+
+/*810*/

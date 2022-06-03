@@ -1,8 +1,7 @@
-import {useContext} from "react";
 import {Link} from "react-router-dom";
 import {ROUTES_CONFIG} from "../../configs/routes-config";
 import {useAuth} from "../../hook/useAuth";
-import {cutUserName} from "../../components/utilites/cutUserName";
+import {cutString} from "../../components/utilites/cutString";
 import {userNameFromUserData} from "../../components/utilites/userNameFromUserData";
 import './nav-bar.css';
 
@@ -35,7 +34,7 @@ export const NavBar = ({userData, onSearch}) => {
                     <span><Link className={'link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
 
                     <Link className={'link'} to={ROUTES_CONFIG.public.profile}>
-                        {user ? cutUserName(userNameFromUserData(user), 8) : 'Guest'}
+                        {user ? cutString(userNameFromUserData(user), 8) : 'Guest'}
                     </Link>
                 </div>
             </div>

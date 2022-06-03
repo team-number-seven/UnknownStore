@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {AuthContext} from "../hoc/Auth/AuthProvider";
+import {AuthContext} from "../hoc/Auth/auth-provider";
 
 export const useAuth =()=>{
     return useContext(AuthContext)

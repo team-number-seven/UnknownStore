@@ -12,7 +12,6 @@ export const SignInCallback = ({userData}) => {
     }).signinRedirectCallback()
         .then((user) => {
             if(user){
-                debugger;
                 setUser(jwtParser(user.access_token));
                 setIsAuthenticated(true);
             }

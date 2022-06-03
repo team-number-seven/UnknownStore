@@ -11,11 +11,20 @@ import {CreateModelPage} from "./pages/private-pages/manager-page/create-model-p
 import {ManagerPanelPage} from "./pages/private-pages/manager-page/manger-panel-page/manager-panel-page";
 import {BagPage} from "./pages/public-pages/bag-page";
 import {HomePage} from "./pages/public-pages/home-page";
-import {KidsPage} from "./pages/public-pages/kids-page";
-import {MenPage} from "./pages/public-pages/men-page";
+import {ModelPage} from "./pages/public-pages/model-page";
 import {NotFoundPage} from "./pages/public-pages/not-found-page";
+import {ModelsPage} from "./pages/public-pages/models-page";
+import {NewOrderPage} from "./pages/public-pages/new-order-page";
 import {ProfilePage} from "./pages/public-pages/profile-page";
-import {WomenPage} from "./pages/public-pages/women-page";
+
+
+function FavouritesPage() {
+    return null;
+}
+
+function OrdersPage() {
+    return null;
+}
 
 export const AppRoutes = () => {
     const {user} = useAuth();
@@ -32,11 +41,18 @@ export const AppRoutes = () => {
                 <Route index element={<HomePage/>}/>
                 <Route path={"*"} element={<NotFoundPage/>}/>
 
-                <Route path={"kids"} element={<KidsPage/>}/>
-                <Route path={"men"} element={<MenPage/>}/>
-                <Route path={"women"} element={<WomenPage/>}/>
-                <Route path={"profile"} element={<ProfilePage/>}/>
-                <Route path={"bag"} element={<BagPage/>}/>
+                <Route path={"profile"} element={<ProfilePage/>}>
+                    <Route path={"orders"} element={<OrdersPage/>}/>
+                    <Route path={"bag"} element={<BagPage/>}/>
+                    <Route path={"favourites"} element={<FavouritesPage/>}/>
+                </Route>
+
+
+                <Route path={"models"} element={<ModelsPage/>}>
+                    <Route path={"models/:id"} element={<ModelPage/>}/>
+                    <Route path={"models/:id/new-order"} element={<NewOrderPage/>}/>
+                </Route>
+
 
                 {(user?.role === CONFIG["user-role"].Owner
                         || user?.role === CONFIG["user-role"].Manager) &&
