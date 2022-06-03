@@ -69,6 +69,17 @@ body {
     -ms-overflow-x: hidden;
 }
 
+.fake-link{
+    text-decoration: none;
+    color:unset;
+}
+.fake-link:hover{
+    text-decoration: none;
+    color:unset;
+    transition: opacity 0.2s ease-out;
+    opacity: 60%;
+}
+
 .link {
     box-shadow: none;
     border: none;

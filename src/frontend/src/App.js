@@ -21,7 +21,7 @@ import './App.css';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {CONFIG} from "./configs/config";
 import {PagesRoutes} from "./components/components/pages/pages-routes";
-import {Page} from "./components/components/pages/public-pages/page";
+import {ModelsPage} from "./components/components/pages/public-pages/page";
 import {Header} from "./components/components/permanent/header/header";
 import {NavBar} from "./components/components/permanent/nav-bar/nav-bar";
 import {AuthRoutes} from "./routes/auth-routes";
@@ -127,7 +127,7 @@ export class App extends React.Component {
 
                 <PagesRoutes userData={this.state.userData}/>
                 {this.state.searchTitleFromNavBar &&
-                    <Page searchTitle={this.state.searchTitleFromNavBar} filter={this.state.filterFromNavBar}/>
+                    <ModelsPage searchTitle={this.state.searchTitleFromNavBar} filter={this.state.filterFromNavBar}/>
                 }
 
 
