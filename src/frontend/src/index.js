@@ -4,14 +4,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery';
 import {BrowserRouter} from "react-router-dom";
-import {MainRoutes} from "./routes/main-routes";
+import {App} from "./App";
 
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(
   <React.StrictMode>
       <BrowserRouter>
-          <MainRoutes/>
+          <App/>
       </BrowserRouter>
   </React.StrictMode>
 );

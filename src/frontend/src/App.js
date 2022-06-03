@@ -1,16 +1,33 @@
+import {AppRoutes} from "./components/app-routes";
+import {AuthProvider} from "./hoc/Auth/AuthProvider";
+import "./App.css";
+
+
+export const App = () => {
+
+    return (
+        <>
+            <AuthProvider>
+               <AppRoutes/>
+            </AuthProvider>
+        </>
+    )
+}
+
+
 /*
 import React from "react";
 import './App.css';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {CONFIG} from "./configs/config";
-import {PagesRoutes} from "./modules/components/pages/pages-routes";
-import {Page} from "./modules/components/pages/public-pages/page";
-import {Header} from "./modules/components/permanent/header/header";
-import {NavBar} from "./modules/components/permanent/nav-bar/nav-bar";
+import {PagesRoutes} from "./components/components/pages/pages-routes";
+import {Page} from "./components/components/pages/public-pages/page";
+import {Header} from "./components/components/permanent/header/header";
+import {NavBar} from "./components/components/permanent/nav-bar/nav-bar";
 import {AuthRoutes} from "./routes/auth-routes";
 import API from "./server/API";
 import {Auth} from "./server/auth/auth";
-import {jwtParser} from "./modules/utilites/jwt-parser";
+import {jwtParser} from "./components/utilites/jwt-parser";
 
 export class App extends React.Component {
     constructor(props) {
