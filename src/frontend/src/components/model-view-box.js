@@ -23,7 +23,7 @@ export const ModelViewBox = ({model}) => {
         user.favorites.push(model.id);
         if (isAuthenticated) {
             API.post(CONFIG.POST.user["add-favorite"],
-                {UserId: user.id, ModelId: model.id})
+                {UserId: user.id, ModelId: model.id}, {headers: {"Authorization": `Bearer ${user.access_token}`}})
                 .then(result => console.log(result))
                 .catch(error => console.log(error))
         } else {
@@ -34,7 +34,12 @@ export const ModelViewBox = ({model}) => {
     const handleModelUnlike = () => {
         user.favorites = user.favorites.filter(favorite => favorite !== model.id);
         if (isAuthenticated) {
-            //post delete favourite request
+            API.delete(CONFIG.DELETE.user["remove-favorite"],
+                {
+                    headers: {"Authorization": `Bearer ${user.access_token}`},
+                    params: {modelId: model.id}
+                })
+                .then().catch(error => console.log(error));
         } else {
             localStorage.setItem("guestFavorites", JSON.stringify(user.favorites));
         }

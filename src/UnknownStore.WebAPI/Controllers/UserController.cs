@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UnknownStore.BusinessLogic.CQRS.Commands.UserCommands.CreateFavoriteItem;
+using UnknownStore.BusinessLogic.CQRS.Commands.UserCommands.DeleteFavoriteItem;
 using UnknownStore.BusinessLogic.CQRS.Queries.UserQueries.GetFavoriteModels;
 using UnknownStore.Common.Constants;
 using UnknownStore.Common.DataTransferObjects.Create;
 
 namespace UnknownStore.WebAPI.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Policy = nameof(Roles.User))]
     [ApiController]
     [Route("store/[controller]")]
     public class UserController : ControllerBase
@@ -43,6 +44,18 @@ namespace UnknownStore.WebAPI.Controllers
             if (id != userId) return StatusCode(StatusCodes.Status400BadRequest, new { error = "Invalid userId" });
 
             var response = await _mediator.Send(new GetFavoriteModelsQuery(userId));
+            return StatusCode((int)response.StatusCode, response);
+        }
+
+        
+        [HttpDelete]
+        [Route("remove-favorite")]
+        public async Task<IActionResult> RemoveFavorite([FromQuery] Guid modelId)
+        {
+            var parseResult = Guid.TryParse(User!.FindFirstValue("id"), out var userId);
+            if (parseResult is false) return StatusCode(StatusCodes.Status400BadRequest, new { error = "Invalid userId" });
+
+            var response = await _mediator.Send(new DeleteFavoriteItemCommand(userId, modelId));
             return StatusCode((int)response.StatusCode, response);
         }
     }
