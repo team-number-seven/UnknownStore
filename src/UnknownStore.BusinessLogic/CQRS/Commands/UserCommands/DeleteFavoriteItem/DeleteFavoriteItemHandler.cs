@@ -27,8 +27,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.UserCommands.DeleteFavoriteIt
         {
             var user = await _context.Users.FindAsync(request.UserId);
             var favoriteModel = user.FavoriteModels.First(m => m.Id == request.FavoriteItemId);
-            user.FavoriteModels.ToList().Remove(favoriteModel);
+            var listModels = user.FavoriteModels.ToList();
+            listModels.Remove(favoriteModel);
+            user.FavoriteModels = listModels;
 
+            _context.Users.Update(user);
             await _context.SaveChangesAsync(cancellationToken);
             _logger.LogInformation(LoggerMessages.CommandExecutedSuccessfully(nameof(DeleteFavoriteItemHandler)));
             return new DeleteFavoriteItemResponse();
