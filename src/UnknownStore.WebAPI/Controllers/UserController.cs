@@ -35,6 +35,7 @@ namespace UnknownStore.WebAPI.Controllers
             return StatusCode((int)response.StatusCode, response);
         }
 
+        [Authorize(Policy = nameof(Roles.User))]
         [HttpGet]
         [Route("get-favorites")]
         public async Task<IActionResult> GetAllFavoriteModels([FromQuery] Guid userId)

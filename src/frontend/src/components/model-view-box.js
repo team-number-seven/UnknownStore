@@ -5,7 +5,7 @@ import API from "../server/API";
 import {cutString} from "./utilites/cutString";
 
 export const ModelViewBox = ({model}) => {
-    const {user} = useAuth();
+    const {user, isAuthenticated} = useAuth();
     const [showBoxInfo, setShowBoxInfo] = useState(false);
 
     const handleShowBoxInfo = () => {
@@ -20,12 +20,25 @@ export const ModelViewBox = ({model}) => {
     }
 
     const handleModelLike = () => {
-        API.post(CONFIG.POST.user["add-favorite"],
-            {UserId: user.id, ModelId: model.id})
-            .then(result => console.log(result))
-            .catch(error => console.log(error))
+        user.favorites.push(model.id);
+        if (isAuthenticated) {
+            API.post(CONFIG.POST.user["add-favorite"],
+                {UserId: user.id, ModelId: model.id})
+                .then(result => console.log(result))
+                .catch(error => console.log(error))
+        } else {
+            localStorage.setItem("guestFavorites", JSON.stringify(user.favorites));
+        }
     }
 
+    const handleModelUnlike = () => {
+        user.favorites = user.favorites.filter(favorite => favorite !== model.id);
+        if (isAuthenticated) {
+            //post delete favourite request
+        } else {
+            localStorage.setItem("guestFavorites", JSON.stringify(user.favorites));
+        }
+    }
 
     return (
         <div className={"model-view-box"} onClick={handleModelView} onMouseEnter={handleShowBoxInfo}
@@ -56,7 +69,11 @@ export const ModelViewBox = ({model}) => {
 
                         </div>
                         <div className={"model-view-box-footer"}>
-                            <button onClick={handleModelLike}>Like</button>
+                            {user?.favorites.includes(model.id) ?
+                                <button onClick={handleModelUnlike}>Unlike</button>
+                                :
+                                <button onClick={handleModelLike}>Like</button>
+                            }
                         </div>
                     </div>
                 }
