@@ -50,12 +50,12 @@ namespace UnknownStore.WebAPI.Controllers
         
         [HttpDelete]
         [Route("remove-favorite")]
-        public async Task<IActionResult> RemoveFavorite([FromQuery] Guid itemId)
+        public async Task<IActionResult> RemoveFavorite([FromQuery] Guid modelId)
         {
             var parseResult = Guid.TryParse(User!.FindFirstValue("id"), out var userId);
             if (parseResult is false) return StatusCode(StatusCodes.Status400BadRequest, new { error = "Invalid userId" });
 
-            var response = await _mediator.Send(new DeleteFavoriteItemCommand(userId,itemId));
+            var response = await _mediator.Send(new DeleteFavoriteItemCommand(userId, modelId));
             return StatusCode((int)response.StatusCode, response);
         }
     }
