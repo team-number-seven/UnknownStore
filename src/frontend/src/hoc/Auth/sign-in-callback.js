@@ -1,7 +1,8 @@
 import {Navigate} from "react-router-dom";
 import {UserManager, WebStorageStateStore} from "oidc-client";
+import {CONFIG} from "../../configs/config";
 import {useAuth} from "../../hook/useAuth";
-import {jwtParser} from "../../components/utilites/jwt-parser";
+import API from "../../server/API";
 
 export const SignInCallback = ({userData}) => {
     const {setUser, setIsAuthenticated} = useAuth();
@@ -12,7 +13,21 @@ export const SignInCallback = ({userData}) => {
     }).signinRedirectCallback()
         .then((user) => {
             if(user){
-                setUser(jwtParser(user.access_token));
+                const userData = user.profile;
+                userData.access_token = user.access_token;
+                userData.favorites = [];
+
+                if (!userData.favorites.length) {
+                    API.get(CONFIG.GET.user["get-favorites"],
+                        {
+                            headers: {"Authorization": `Bearer ${userData.access_token}`},
+                            params: {userId: userData.id}
+                        })
+                        .then(result => {
+                            userData.favorites = result.data.modelDtos.map((favourite => favourite.id));
+                        })
+                }
+                setUser(userData);
                 setIsAuthenticated(true);
             }
         }).catch((e) => e);

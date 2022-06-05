@@ -45,6 +45,9 @@ export const CONFIG = {
         "model": {
             "get-models": "model/get-models",
             "get": "model/get"
+        },
+        "user":{
+            "get-favorites": "user/get-favorites"
         }
     },
     "POST": {

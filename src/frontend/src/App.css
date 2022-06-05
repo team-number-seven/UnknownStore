@@ -54,6 +54,16 @@
     display: none;
 }
 
+::-webkit-scrollbar{
+    width:15px;
+}
+::-webkit-scrollbar-track{
+    background: white;
+}
+::-webkit-scrollbar-thumb{
+    background: var(--color-1);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -188,9 +198,10 @@ form.container {
 
 .page-container {
     min-height: var(--height-page);
-    max-width: var(--width-page);
+    /*max-width: var(--width-page);
     margin: var(--margin-page);
-    padding: var(--padding-page);
+    padding: var(--padding-page);*/
+    margin:var(--margin-page-half);
     background-color: var(--background-page);
 
     box-shadow: var(--shadow);

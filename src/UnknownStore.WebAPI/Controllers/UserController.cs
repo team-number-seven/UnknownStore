@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UnknownStore.BusinessLogic.CQRS.Commands.UserCommands.CreateFavoriteItem;
 using UnknownStore.BusinessLogic.CQRS.Queries.UserQueries.GetFavoriteModels;
+using UnknownStore.Common.Constants;
 using UnknownStore.Common.DataTransferObjects.Create;
 
 namespace UnknownStore.WebAPI.Controllers
@@ -33,6 +34,7 @@ namespace UnknownStore.WebAPI.Controllers
             return StatusCode((int)response.StatusCode, response);
         }
 
+        [Authorize(Policy = nameof(Roles.User))]
         [HttpGet]
         [Route("get-favorites")]
         public async Task<IActionResult> GetAllFavoriteModels([FromQuery] Guid userId)
