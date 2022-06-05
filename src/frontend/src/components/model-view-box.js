@@ -23,7 +23,7 @@ export const ModelViewBox = ({model}) => {
         user.favorites.push(model.id);
         if (isAuthenticated) {
             API.post(CONFIG.POST.user["add-favorite"],
-                {UserId: user.id, ModelId: model.id})
+                {UserId: user.id, ModelId: model.id}, {headers: {"Authorization": `Bearer ${user.access_token}`}})
                 .then(result => console.log(result))
                 .catch(error => console.log(error))
         } else {
