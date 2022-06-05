@@ -34,7 +34,12 @@ export const ModelViewBox = ({model}) => {
     const handleModelUnlike = () => {
         user.favorites = user.favorites.filter(favorite => favorite !== model.id);
         if (isAuthenticated) {
-            //post delete favourite request
+            API.delete(CONFIG.DELETE.user["remove-favorite"],
+                {
+                    headers: {"Authorization": `Bearer ${user.access_token}`},
+                    params: {modelId: model.id}
+                })
+                .then().catch(error => console.log(error));
         } else {
             localStorage.setItem("guestFavorites", JSON.stringify(user.favorites));
         }

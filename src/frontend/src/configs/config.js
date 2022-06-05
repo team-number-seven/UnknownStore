@@ -46,7 +46,7 @@ export const CONFIG = {
             "get-models": "model/get-models",
             "get": "model/get"
         },
-        "user":{
+        "user": {
             "get-favorites": "user/get-favorites"
         }
     },
@@ -57,9 +57,14 @@ export const CONFIG = {
         "factory": {
             "add-factory": "factory/add-factory"
         },
-        "user":{
+        "user": {
             "add-favorite": "user/add-favorite",
-            "get-favorites": "user/get-favorites"
+            "get-favorites": "user/get-favorites",
+        }
+    },
+    "DELETE":{
+        "user":{
+            "remove-favorite": "user/remove-favorite",
         }
     }
 
