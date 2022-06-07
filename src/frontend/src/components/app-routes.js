@@ -11,10 +11,10 @@ import {CreateModelPage} from "./pages/private-pages/manager-page/create-model-p
 import {ManagerPanelPage} from "./pages/private-pages/manager-page/manger-panel-page/manager-panel-page";
 import {BagPage} from "./pages/public-pages/bag-page";
 import {HomePage} from "./pages/public-pages/home-page";
-import {ModelPage} from "./pages/public-pages/model-page";
+import {ModelPage} from "./pages/public-pages/models-page/model-page";
 import {NotFoundPage} from "./pages/public-pages/not-found-page";
-import {ModelsPage} from "./pages/public-pages/models-page";
-import {NewOrderPage} from "./pages/public-pages/new-order-page";
+import {ModelsPage} from "./pages/public-pages/models-page/models-page";
+import {NewOrderPage} from "./pages/public-pages/orders-page/new-order-page";
 import {ProfilePage} from "./pages/public-pages/profile-page";
 
 
