@@ -6,6 +6,7 @@ import {userNameFromUserData} from "../../utilites/userNameFromUserData";
 
 export const ProfilePage = () => {
     const {user} = useAuth();
+
     return (
         <div>
             <h1>{userNameFromUserData(user)} profile</h1>

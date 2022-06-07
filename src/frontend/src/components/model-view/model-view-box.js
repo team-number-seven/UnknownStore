@@ -1,8 +1,8 @@
 import {useState} from "react";
-import {CONFIG} from "../configs/config";
-import {useAuth} from "../hook/useAuth";
-import API from "../server/API";
-import {cutString} from "./utilites/cutString";
+import {CONFIG} from "../../configs/config";
+import {useAuth} from "../../hook/useAuth";
+import API from "../../server/API";
+import {cutString} from "../utilites/cutString";
 
 export const ModelViewBox = ({model}) => {
     const {user, isAuthenticated} = useAuth();
