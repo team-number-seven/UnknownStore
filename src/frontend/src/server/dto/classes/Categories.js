@@ -1,7 +1,7 @@
 export class Categories {
     constructor(categoryList = []) {
         this.value = [];
-        if (categoryList.length !== 0) {
+        if (categoryList.length) {
             categoryList.forEach(category => this.value.push(category));
         }
     }
@@ -23,7 +23,6 @@ export class Categories {
         }
         return value;
     }
-
 
     getByGender(genderId) {
         let value = [];

@@ -6,7 +6,10 @@ import API from "../../server/API";
 import {cutString} from "../utilites/cutString";
 
 export const ModelViewBox = ({model}) => {
-    const {user, isAuthenticated} = useAuth();
+
+    const {user, isAuthenticated, refreshUser} = useAuth();
+    refreshUser();
+
     const [showBoxInfo, setShowBoxInfo] = useState(false);
 
     const handleShowBoxInfo = () => {

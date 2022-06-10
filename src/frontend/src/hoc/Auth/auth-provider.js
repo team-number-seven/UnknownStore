@@ -21,21 +21,28 @@ export const AuthProvider = ({children}) => {
         mgr.signoutRedirect().then().catch(error => console.log(error));
     }
     const refreshUser = () => {
-        mgr.signinRedirect()
-            .then((user) => {
-                console.log("Token refreshed", user);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if (user && (Date.now() >= user.expires_at * 1000)) {
+            try {
+                mgr.signinRedirect()
+                    .then((user) => {
+                        console.log("Token refreshed", user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            } catch (e) {
+                signIn();
+            }
+        }
     }
     const authenticationCheck = () => {
         mgr.getUser().then((userData) => {
             if ((!user && userData) || (!isAuthenticated && userData)) {
-
                 const userInfo = userData.profile;
-                userInfo.access_token = userData.access_token
+                userInfo.access_token = userData.access_token;
+                userInfo.expires_at = userData.expires_at;
                 userInfo.favorites = [];
+
                 if (!userInfo.favorites.length) {
                     API.get(CONFIG.GET.user["get-favorites"],
                         {

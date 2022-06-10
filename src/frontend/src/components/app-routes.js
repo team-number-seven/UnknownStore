@@ -28,7 +28,7 @@ function OrdersPage() {
 }
 
 export const AppRoutes = () => {
-    const {user, refreshUser} = useAuth();
+    const {user} = useAuth();
     return (
         <Routes>
 
@@ -52,7 +52,6 @@ export const AppRoutes = () => {
                 <Route path={"models"} element={<ModelsPage/>}/>
                 <Route path={"models/:id"} element={<ModelPage/>}/>
                 <Route path={"models/:id/new-order"} element={<NewOrderPage/>}/>
-
 
 
                 {(user?.role === CONFIG["user-role"].Owner

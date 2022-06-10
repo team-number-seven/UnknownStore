@@ -12,9 +12,10 @@ export const SignInCallback = ({userData}) => {
         userStore: new WebStorageStateStore({store: localStorage})
     }).signinRedirectCallback()
         .then((user) => {
-            if(user){
+            if (user) {
                 const userData = user.profile;
                 userData.access_token = user.access_token;
+                userData.expires_at = user.expires_at;
                 userData.favorites = [];
 
                 if (!userData.favorites.length) {
