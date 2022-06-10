@@ -21,7 +21,9 @@ export const ModelsPage = () => {
             <FilterBar/>
             <div className={"models-page"}>
                 {models &&
-                    models.map((model, key = 0) => <ModelViewBox id={model.id} model={model} key={key++}/>)
+                    models.map((model, key = 0) =>
+                        <ModelViewBox id={model.id} model={model}/>
+                    )
                 }
             </div>
         </>

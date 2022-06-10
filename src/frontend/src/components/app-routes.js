@@ -1,3 +1,4 @@
+import {useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 import {CONFIG} from "../configs/config";
 import {ROUTES_CONFIG} from "../configs/routes-config";
@@ -27,7 +28,7 @@ function OrdersPage() {
 }
 
 export const AppRoutes = () => {
-    const {user} = useAuth();
+    const {user, refreshUser} = useAuth();
     return (
         <Routes>
 
@@ -48,10 +49,10 @@ export const AppRoutes = () => {
                 </Route>
 
 
-                <Route path={"models"} element={<ModelsPage/>}>
-                    <Route path={"models/:id"} element={<ModelPage/>}/>
-                    <Route path={"models/:id/new-order"} element={<NewOrderPage/>}/>
-                </Route>
+                <Route path={"models"} element={<ModelsPage/>}/>
+                <Route path={"models/:id"} element={<ModelPage/>}/>
+                <Route path={"models/:id/new-order"} element={<NewOrderPage/>}/>
+
 
 
                 {(user?.role === CONFIG["user-role"].Owner

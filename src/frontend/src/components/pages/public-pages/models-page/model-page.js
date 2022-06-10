@@ -1,3 +1,11 @@
+import {useParams} from "react-router-dom";
+
 export const ModelPage =()=>{
-    return <></>
+    const {id}=useParams();
+    console.log(useParams());
+    return(
+        <>
+            {id}
+        </>
+    )
 }
