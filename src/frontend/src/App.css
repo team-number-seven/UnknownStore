@@ -182,6 +182,10 @@ button:disabled /*, input[type="file"]::file-selector-button:disabled*/
     color: var(--color-1);
 }
 
+.btn-lighter{
+    background-color: var(--color-2-light);
+}
+
 .input-error-container {
     width: 100%;
     display: flex;

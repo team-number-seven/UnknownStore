@@ -1,11 +1,15 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 import {CONFIG} from "../../configs/config";
 import {useAuth} from "../../hook/useAuth";
 import API from "../../server/API";
 import {cutString} from "../utilites/cutString";
 
 export const ModelViewBox = ({model}) => {
-    const {user, isAuthenticated} = useAuth();
+
+    const {user, isAuthenticated, refreshUser} = useAuth();
+    refreshUser();
+
     const [showBoxInfo, setShowBoxInfo] = useState(false);
 
     const handleShowBoxInfo = () => {
@@ -48,10 +52,14 @@ export const ModelViewBox = ({model}) => {
     return (
         <div className={"model-view-box"} onClick={handleModelView} onMouseEnter={handleShowBoxInfo}
              onMouseLeave={handleHideBoxInfo}>
-            <div className={"model-view-image"}>
-                <img src={`data:${model.mainImage["contentType"]};base64, ` + model.mainImage["fileContents"]}
-                     alt={model.title}/>
-            </div>
+            <Link to={`/models/${model.id}`}>
+                <div className={"model-view-image"}>
+
+                    <img src={`data:${model.mainImage["contentType"]};base64, ` + model.mainImage["fileContents"]}
+                         alt={model.title}/>
+                </div>
+            </Link>
+
             <div className={"model-view-box-info"}>
 
                 {!showBoxInfo &&
@@ -75,7 +83,7 @@ export const ModelViewBox = ({model}) => {
                         </div>
                         <div className={"model-view-box-footer"}>
                             {user?.favorites.includes(model.id) ?
-                                <button onClick={handleModelUnlike}>Unlike</button>
+                                <button className={"btn-lighter"} onClick={handleModelUnlike}>Unlike</button>
                                 :
                                 <button onClick={handleModelLike}>Like</button>
                             }
