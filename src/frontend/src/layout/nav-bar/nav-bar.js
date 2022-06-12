@@ -4,16 +4,11 @@ import {useAuth} from "../../hook/useAuth";
 import {cutString} from "../../components/utilites/cutString";
 import {userNameFromUserData} from "../../components/utilites/userNameFromUserData";
 import './nav-bar.css';
+import {Search} from "./search";
 
 export const NavBar = ({onSearch}) => {
 
     const {user} = useAuth();
-
-    const handleSearchSubmit = (e) => {
-        if (e.code === "Enter") {
-            onSearch(e.target.value);
-        }
-    }
 
     return (
         <div className={'nav-bar-container'}>
@@ -24,13 +19,7 @@ export const NavBar = ({onSearch}) => {
                     <Link className={'link'} to={ROUTES_CONFIG.public.kids}>Kids</Link>
                 </div>
                 <div className={'user-panel'}>
-                    <div className={'form-field-container'} style={{height:'100%'}}>
-                        <input type={'text'} style={{height: '100%', maxWidth: '7vw', margin: '0'}}
-                               className="form-control"
-                               onKeyDown={handleSearchSubmit}
-                               placeholder={'Search...'}
-                        />
-                    </div>
+                    <Search/>
                     <span><Link className={'link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
 
                     <Link className={'link'} to={ROUTES_CONFIG.public.profile}>

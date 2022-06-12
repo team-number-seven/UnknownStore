@@ -5,3 +5,4 @@ export default axios.create({
     baseURL: CONFIG.server,
     headers:{}
 });
+
