@@ -4,12 +4,12 @@ import {NavBar} from "./nav-bar/nav-bar";
 
 export const Layout = () => {
     return (
-        <div className={"main-background color-change-8x-white"}>
+        <div className={"main-background "}>
             <div className={'app-head'}>
                 <Header/>
                 <NavBar/>
             </div>
-            <div className={'page-container color-change-8x-white'}>
+            <div className={'page-container'}>
                 <Outlet/>
             </div>
         </div>

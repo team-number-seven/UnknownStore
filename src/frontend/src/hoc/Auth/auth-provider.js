@@ -26,6 +26,10 @@ export const AuthProvider = ({children}) => {
                 mgr.signinRedirect()
                     .then((user) => {
                         console.log("Token refreshed", user);
+                        mgr.getUser().then((userData) => {
+                            user.access_token = userData.access_token;
+                            user.expires_at = userData.expires_at;
+                        })
                     })
                     .catch((error) => {
                         console.log(error);

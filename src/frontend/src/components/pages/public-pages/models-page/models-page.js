@@ -7,8 +7,7 @@ import "./models-page.css";
 
 
 export const ModelsPage = () => {
-    /*const {refreshUser} = useAuth();
-    refreshUser();*/
+
 
     const [models, setModels] = useState(null);
 
