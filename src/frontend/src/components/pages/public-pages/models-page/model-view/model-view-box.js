@@ -7,8 +7,7 @@ import {cutString} from "../../../../utilites/cutString";
 
 export const ModelViewBox = ({model}) => {
 
-    const {user, isAuthenticated, refreshUser} = useAuth();
-    refreshUser();
+    const {user, isAuthenticated} = useAuth();
 
     const [showBoxInfo, setShowBoxInfo] = useState(false);
 
