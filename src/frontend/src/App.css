@@ -43,7 +43,7 @@
 
 
     /*CONSTANT SHADOW*/
-    --shadow: 0 2px 6px rgba(0, 0, 0, .2);
+    --shadow: 0px 5px 14px 4px rgba(34, 60, 80, 0.2);
     --shadow-blue: 0px 5px 36px 19px rgba(9, 132, 227, 0.2);
 
 
@@ -83,6 +83,10 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     -ms-overflow-x: hidden;
+}
+.main-background{
+    width: 100vw;
+    height: 100vh;
 }
 
 .fake-link {

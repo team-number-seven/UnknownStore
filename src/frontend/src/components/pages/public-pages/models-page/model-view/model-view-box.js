@@ -1,9 +1,9 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {CONFIG} from "../../configs/config";
-import {useAuth} from "../../hook/useAuth";
-import API from "../../server/API";
-import {cutString} from "../utilites/cutString";
+import {CONFIG} from "../../../../../configs/config";
+import {useAuth} from "../../../../../hook/useAuth";
+import API from "../../../../../server/API";
+import {cutString} from "../../../../utilites/cutString";
 
 export const ModelViewBox = ({model}) => {
 
@@ -70,7 +70,7 @@ export const ModelViewBox = ({model}) => {
                 }
 
                 {showBoxInfo &&
-                    <div className={"model-view-box-hidden scale-down-ver-top"}>
+                    <div className={"model-view-box-hidden scale-up-ver-bottom"}>
                         <div className={"model-view-box-header"}>
                             <h2>{model.title}</h2>
                             <span className={"model-view-box-price"}>{model.price} $</span>
