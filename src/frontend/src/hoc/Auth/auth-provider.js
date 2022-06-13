@@ -9,8 +9,8 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     useEffect(() => {
-        authenticationCheck();
         refreshUser();
+        authenticationCheck();
     }, []);
 
     const mgr = new UserManager(AuthConfig);
@@ -21,7 +21,7 @@ export const AuthProvider = ({children}) => {
         mgr.signoutRedirect().then().catch(error => console.log(error));
     }
     const refreshUser = () => {
-        if (Date.now() >= user?.expires_at * 1000) {
+        if (user && Date.now() >= user?.expires_at * 1000) {
             try {
                 mgr.signinRedirect()
                     .then((user) => {
