@@ -1,7 +1,6 @@
 .filter-bar-container {
     width: 19vw;
     height: var(--height-page);
-    background: var(--background);
     position: fixed;
     z-index: 1;
     right: 0;

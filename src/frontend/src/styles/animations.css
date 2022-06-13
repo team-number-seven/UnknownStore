@@ -1,0 +1,172 @@
+@-webkit-keyframes scale-up-ver-bottom {
+    0% {
+        -webkit-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+        -webkit-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+    }
+}
+
+@-webkit-keyframes scale-down-ver-bottom {
+    0% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+    100% {
+        -webkit-transform: scaleY(.3);
+        transform: scaleY(.3);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+}
+
+@keyframes scale-down-ver-bottom {
+    0% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+    100% {
+        -webkit-transform: scaleY(.3);
+        transform: scaleY(.3);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+}
+
+@-webkit-keyframes scale-up-ver-top {
+    0% {
+        -webkit-transform: scaleY(.4);
+        transform: scaleY(.4);
+        -webkit-transform-origin: 100% 0;
+        transform-origin: 100% 0
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 100% 0;
+        transform-origin: 100% 0
+    }
+}
+
+@keyframes scale-up-ver-top {
+    0% {
+        -webkit-transform: scaleY(.4);
+        transform: scaleY(.4);
+        -webkit-transform-origin: 100% 0;
+        transform-origin: 100% 0
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 100% 0;
+        transform-origin: 100% 0
+    }
+}
+
+
+@-webkit-keyframes scale-up-ver-bottom {
+    0% {
+        -webkit-transform: scaleY(.4);
+        transform: scaleY(.4);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+}
+
+@keyframes scale-up-ver-bottom {
+    0% {
+        -webkit-transform: scaleY(.4);
+        transform: scaleY(.4);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%
+    }
+}
+
+@-webkit-keyframes color-change-4x-blue {
+    0% {
+        background: var(--color-1);
+    }
+    100% {
+        background: var(--color-2);
+    }
+}
+
+@keyframes color-change-4x-blue {
+    0% {
+        background: var(--color-1)
+    }
+    100% {
+        background: var(--color-2);
+    }
+}
+
+@-webkit-keyframes color-change-8x-white {
+    0% {
+        background: white;
+    }
+    100% {
+        background: #f3f8fd;
+    }
+}
+
+@keyframes color-change-8x-white {
+    0% {
+        background: white;
+    }
+    100% {
+        background: #f3f8fd;
+    }
+}
+
+
+.scale-down-ver-top {
+    -webkit-animation: scale-up-ver-bottom 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-ver-bottom 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.scale-down-ver-bottom {
+    -webkit-animation: scale-down-ver-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: scale-down-ver-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.scale-up-ver-top {
+    -webkit-animation: scale-up-ver-top .4s cubic-bezier(.39, .575, .565, 1.000) both;
+    animation: scale-up-ver-top .4s cubic-bezier(.39, .575, .565, 1.000) both
+}
+
+.scale-up-ver-bottom {
+    -webkit-animation: scale-up-ver-bottom .4s cubic-bezier(.39, .575, .565, 1.000) both;
+    animation: scale-up-ver-bottom .4s cubic-bezier(.39, .575, .565, 1.000) both
+}
+
+.color-change-4x-blue {
+    -webkit-animation: color-change-4x-blue 4s linear infinite alternate both;
+    animation: color-change-4x-blue 4s linear infinite alternate both
+}
+
+.color-change-8x-white {
+    -webkit-animation: color-change-8x-white 8s linear infinite alternate both;
+    animation: color-change-8x-white 8s linear infinite alternate both
+}

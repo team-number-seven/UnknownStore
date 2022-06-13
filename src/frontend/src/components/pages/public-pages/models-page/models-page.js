@@ -1,15 +1,14 @@
 import {useEffect, useState} from "react";
 import {CONFIG} from "../../../../configs/config";
-import {useAuth} from "../../../../hook/useAuth";
 import API from "../../../../server/API";
 import {FilterBar} from "../../../filter-bar/filter-bar";
-import {ModelViewBox} from "../../../model-view/model-view-box";
+import {ModelViewBox} from "./model-view/model-view-box";
 import "./models-page.css";
 
 
 export const ModelsPage = () => {
-    const {refreshUser} = useAuth();
-    refreshUser();
+    /*const {refreshUser} = useAuth();
+    refreshUser();*/
 
     const [models, setModels] = useState(null);
 
