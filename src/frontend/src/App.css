@@ -237,4 +237,7 @@ form.container {
         padding: 0;
         margin: var(--margin-page-half);
     }
+    .nav-list {
+        width: 80vw;
+    }
 }
