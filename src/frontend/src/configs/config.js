@@ -42,6 +42,10 @@ export const CONFIG = {
             "get-all": "season/get-all",
             "dto": "seasonDtos"
         },
+        "gender": {
+            "get-all": "gender/get-all",
+            "dto":"genderDtos"
+        },
         "model": {
             "get-models": "model/get-models",
             "get": "model/get"
@@ -62,8 +66,8 @@ export const CONFIG = {
             "get-favorites": "user/get-favorites",
         }
     },
-    "DELETE":{
-        "user":{
+    "DELETE": {
+        "user": {
             "remove-favorite": "user/remove-favorite",
         }
     }

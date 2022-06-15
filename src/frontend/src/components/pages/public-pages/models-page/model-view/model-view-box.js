@@ -23,14 +23,14 @@ export const ModelViewBox = ({model}) => {
     }
 
     const handleModelLike = () => {
-        user.favorites.push(model.id);
+        user.favorites?.push(model.id);
         if (isAuthenticated) {
             API.post(CONFIG.POST.user["add-favorite"],
                 {UserId: user.id, ModelId: model.id}, {headers: {"Authorization": `Bearer ${user.access_token}`}})
                 .then(result => console.log(result))
                 .catch(error => console.log(error))
         } else {
-            localStorage.setItem("guestFavorites", JSON.stringify(user.favorites));
+            localStorage.setItem("guestFavorites", JSON.stringify(user?.favorites));
         }
     }
 
@@ -81,7 +81,7 @@ export const ModelViewBox = ({model}) => {
 
                         </div>
                         <div className={"model-view-box-footer"}>
-                            {user?.favorites.includes(model.id) ?
+                            {user?.favorites?.includes(model.id) ?
                                 <button className={"btn-lighter"} onClick={handleModelUnlike}>Unlike</button>
                                 :
                                 <button onClick={handleModelLike}>Like</button>

@@ -3,13 +3,23 @@ import {CONFIG} from "../../configs/config";
 import API from "../../server/API";
 import {Categories} from "../../server/dto/classes/Categories";
 
-export const CategoryContext = createContext(null);
+export const CategoryContext = createContext();
 export const CategoryProvider = ({children}) => {
     const [categoryParams, setCategoryParams] = useState(null);
 
+    const init = {
+        categories: null,
+        ageTypes: null,
+        brands: null,
+        colors: null,
+        seasons: null,
+        factories: null,
+        genders: null,
+    }
+
     useEffect(() => {
         getAllCategoryParams().then(result => setCategoryParams(result));
-    },[])
+    }, [])
 
     const providerValues = {
         categoryParams,
@@ -54,6 +64,11 @@ const getAllCategoryParams = async () => {
     await API.get(CONFIG.GET.factory["get-all"])
         .then(result => result.data[CONFIG.GET.factory.dto])
         .then(value => allCategoryParams.factories = value)
+        .catch(error => console.log(error));
+
+    await API.get(CONFIG.GET.gender["get-all"])
+        .then(result => result.data[CONFIG.GET.gender.dto])
+        .then(value => allCategoryParams.genders = value)
         .catch(error => console.log(error));
 
     return allCategoryParams;
