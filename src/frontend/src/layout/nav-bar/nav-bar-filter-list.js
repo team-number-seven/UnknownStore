@@ -55,11 +55,11 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
                     <span>For Boys</span>
                 </div>
                 <div className={"nav-list-half-body"} key={++key}>
-                    {boysCategoryGroup?.map((boysCategory, key = 0) => {
+                    {boysCategoryGroup?.map((boysCategory) => {
                         return (
-                            <div className={"category-list"}>
+                            <div className={"category-list"} key={++key}>
                                 <Link to={"models"} key={boysCategory.id} replace={true}
-                                      className={"link"}>
+                                      className={"link category-link"}>
                                     {boysCategory.title}
                                 </Link>
                                 {boysCategory.subCategories
@@ -86,11 +86,11 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
                     <span>For Girls</span>
                 </div>
                 <div className={"nav-list-half-body"} key={++key}>
-                    {girlsCategoryGroup?.map((girlsCategory, key = 0) => {
+                    {girlsCategoryGroup?.map((girlsCategory) => {
                         return (
-                            <div className={"category-list"}>
+                            <div className={"category-list"} key={++key}>
                                 <Link to={"models"} key={girlsCategory.id} replace={true}
-                                      className={"link"}>
+                                      className={"link category-link"}>
                                     {girlsCategory.title}
                                 </Link>
                                 {girlsCategory.subCategories

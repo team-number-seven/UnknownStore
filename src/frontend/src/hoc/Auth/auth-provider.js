@@ -9,8 +9,8 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     useEffect(() => {
-        refreshUser();
         authenticationCheck();
+        refreshUser();
     }, []);
 
     const mgr = new UserManager(AuthConfig);
@@ -21,16 +21,14 @@ export const AuthProvider = ({children}) => {
         mgr.signoutRedirect().then().catch(error => console.log(error));
     }
     const refreshUser = () => {
-        if (user && Date.now() >= user?.expires_at * 1000) {
+        if (Date.now() >= user?.expires_at * 1000) {
             try {
                 mgr.signinRedirect()
-                    .then((userAfterRedirect) => {
-                        console.log("Token refreshed", userAfterRedirect);
-                        mgr.getUser().then((userDataAfterRefresh) => {
-                            let tempUser = user;
-                            tempUser.access_token = userDataAfterRefresh.access_token;
-                            tempUser.expires_at = userDataAfterRefresh.expires_at;
-                            setUser(tempUser);
+                    .then((user) => {
+                        console.log("Token refreshed", user);
+                        mgr.getUser().then((userData) => {
+                            user.access_token = userData.access_token;
+                            user.expires_at = userData.expires_at;
                         })
                     })
                     .catch((error) => {
@@ -47,12 +45,20 @@ export const AuthProvider = ({children}) => {
                 const userInfo = userData.profile;
                 userInfo.access_token = userData.access_token;
                 userInfo.expires_at = userData.expires_at;
+                userInfo.favorites = [];
+
+                if (!userInfo.favorites.length) {
+                    API.get(CONFIG.GET.user["get-favorites"],
+                        {
+                            headers: {"Authorization": `Bearer ${userInfo.access_token}`},
+                            params: {userId: userInfo.id}
+                        })
+                        .then(result => {
+                            userInfo.favorites = result.data.modelDtos.map((favourite => favourite.id));
+                        })
+                }
                 setUser(userInfo);
                 setIsAuthenticated(true);
-                getUserFavorites();
-
-
-
             } else {
                 let favorites = JSON.parse(localStorage.getItem("guestFavorites"));
                 setUser({
@@ -63,24 +69,6 @@ export const AuthProvider = ({children}) => {
         }).catch(error => console.log(error));
     }
 
-    const getUserFavorites = () => {
-        debugger;
-        if (user) {
-            debugger;
-            API.get(CONFIG.GET.user["get-favorites"],
-                {
-                    headers: {"Authorization": `Bearer ${user.access_token}`},
-                    params: {userId: user.id}
-                })
-                .then(result => {
-                    let tempUser = user;
-                    tempUser.favorites = result.data["modelDtos"].map((favourite => favourite.id));
-                    setUser(tempUser);
-                });
-        }
-    }
-
-
     const providerValues = {
         user,
         setUser,
@@ -89,8 +77,7 @@ export const AuthProvider = ({children}) => {
         signIn,
         signOut,
         refreshUser,
-        authenticationCheck,
-        getUserFavorites
+        authenticationCheck
     };
 
     return (
@@ -99,6 +86,3 @@ export const AuthProvider = ({children}) => {
         </AuthContext.Provider>
     )
 }
-
-
-

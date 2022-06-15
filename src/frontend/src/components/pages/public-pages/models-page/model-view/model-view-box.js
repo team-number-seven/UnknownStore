@@ -81,7 +81,7 @@ export const ModelViewBox = ({model}) => {
 
                         </div>
                         <div className={"model-view-box-footer"}>
-                            {user?.favorites.includes(model.id) ?
+                            {user?.favorites?.includes(model.id) ?
                                 <button className={"btn-lighter"} onClick={handleModelUnlike}>Unlike</button>
                                 :
                                 <button onClick={handleModelLike}>Like</button>
