@@ -80,7 +80,7 @@
 .nav-list {
     z-index: 0;
     position: fixed;
-    margin-top: 50vh;
+    margin-top: 49.3vh;
     width: 60vw;
     height: 45vh;
     background: white;
@@ -92,7 +92,7 @@
     align-items: stretch;
     align-content: stretch;
 
-    border-bottom: 3px solid var(--color-1);
+    border-top: 3px solid var(--color-1);
 
     /*box-shadow: var(--shadow);
     -moz-box-shadow: var(--shadow);

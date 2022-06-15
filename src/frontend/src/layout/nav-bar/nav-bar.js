@@ -103,18 +103,14 @@ export const NavBar = ({onSearch}) => {
                               onClick={handleDisplayKids}>
                             <span>Kids</span>
                         </Link>
-                        {/*{(categoryParams && displayKids) &&
+                        {(categoryParams && displayKids) &&
                             <div className={"nav-list scale-up-ver-top"} onMouseEnter={handleDisplayKidsSecond}
                                  onMouseLeave={handleDisplayKidsSecond}
                                  onClick={handleDisplayKidsSecond}>
                                 <NavBarFilterList ageTitle={"kids"}/>
                             </div>
-                        }*/}
-                        <div className={"nav-list scale-up-ver-top"} onMouseEnter={handleDisplayKidsSecond}
-                             onMouseLeave={handleDisplayKidsSecond}
-                             onClick={handleDisplayKidsSecond}>
-                            <NavBarFilterList ageTitle={"kids"}/>
-                        </div>
+                        }
+
 
                     </div>
                 </div>
