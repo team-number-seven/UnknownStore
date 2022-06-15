@@ -2,9 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;700;800;900&display=swap');
 
+
 :root {
     /*COLORS*/
-    --color-text: #424242;
+    --color-text: #2c3e50;  /*#424242*/
     --color-placeholder: #858585;
     --color-1: #0984e3;
     --color-2: #74b9ff;
@@ -12,10 +13,10 @@
     --color-2-megalight: rgba(116, 185, 255, 0.3);
     --color-3: white;
     --color-error: #e74c3c;
-    --background: #dadade;
+    --background: #ecf0f1;
     --background-page: white;
     --background-dark: rgb(66, 66, 66);
-    --background-main: #f3f8fd;
+    --background-main: #ecf0f1;
     /*CONSTANT SIZES*/
 
     --width-header: 100vw;
@@ -168,7 +169,9 @@ button:disabled /*, input[type="file"]::file-selector-button:disabled*/
     border-radius: unset;
     color: var(--color-text);
     height: 2.5rem;
+    background:unset;
 }
+
 
 .form-control input {
     color: var(--color-placeholder);
@@ -176,6 +179,7 @@ button:disabled /*, input[type="file"]::file-selector-button:disabled*/
 }
 
 .form-control:focus {
+    background:unset;
     border-bottom: var(--color-1) 2px solid;
     box-shadow: unset;
     color: var(--color-1);
