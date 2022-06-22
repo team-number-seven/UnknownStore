@@ -30,7 +30,6 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.FactoryCommand
             var address = new Address
             {
                 AddressLine = dto.AddressLine,
-                CountryId = dto.CountryId,
                 CityId = dto.CityId
             };
             var factory = new Factory { Address = address, Title = dto.Title };

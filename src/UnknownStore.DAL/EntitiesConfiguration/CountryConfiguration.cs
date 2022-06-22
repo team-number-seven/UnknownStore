@@ -25,11 +25,6 @@ namespace UnknownStore.DAL.EntitiesConfiguration
             builder
                 .Property(c => c.Iso2)
                 .IsRequired();
-
-            builder
-                .HasMany(c => c.Address)
-                .WithOne(a => a.Country)
-                .HasForeignKey(a => a.CountryId);
             builder
                 .HasMany(c => c.Cities)
                 .WithOne(c => c.Country)

@@ -21,10 +21,6 @@ namespace UnknownStore.DAL.EntitiesConfiguration
                 .WithMany(c => c.Addresses)
                 .HasForeignKey(a => a.CityId);
             builder
-                .HasOne(a => a.Country)
-                .WithMany(c => c.Address)
-                .HasForeignKey(a => a.CountryId);
-            builder
                 .HasOne(a => a.Factory)
                 .WithOne(f => f.Address)
                 .HasForeignKey<Factory>(f => f.AddressId);

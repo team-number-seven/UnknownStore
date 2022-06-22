@@ -238,14 +238,9 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Property<Guid>("CityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CountryId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("CountryId");
 
                     b.ToTable("Addresses");
                 });
@@ -489,6 +484,26 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.HasIndex("CityId");
 
                     b.ToTable("DeliveryCities");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryPoint", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AddressId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
+                    b.ToTable("DeliveryPoints");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Factory", b =>
@@ -796,6 +811,31 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.ToTable("SubCategories");
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.WorkDay", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("DeliveryPointId")
+                        .HasColumnType("uuid");
+
+                    b.Property<TimeSpan>("EndOfWork")
+                        .HasColumnType("interval");
+
+                    b.Property<TimeSpan>("StartOfWork")
+                        .HasColumnType("interval");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeliveryPointId");
+
+                    b.ToTable("WorkDays");
+                });
+
             modelBuilder.Entity("ModelUser", b =>
                 {
                     b.HasOne("UnknownStore.DAL.Entities.Store.Model", null)
@@ -870,15 +910,7 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UnknownStore.DAL.Entities.Store.Country", "Country")
-                        .WithMany("Address")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("City");
-
-                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.AmountOfSize", b =>
@@ -994,6 +1026,17 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                         .IsRequired();
 
                     b.Navigation("City");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryPoint", b =>
+                {
+                    b.HasOne("UnknownStore.DAL.Entities.Store.Address", "Address")
+                        .WithOne("DeliveryPoint")
+                        .HasForeignKey("UnknownStore.DAL.Entities.Store.DeliveryPoint", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Factory", b =>
@@ -1130,6 +1173,17 @@ namespace UnknownStore.DAL.Data.Migrations.Store
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.WorkDay", b =>
+                {
+                    b.HasOne("UnknownStore.DAL.Entities.Store.DeliveryPoint", "DeliveryPoint")
+                        .WithMany("WorkDays")
+                        .HasForeignKey("DeliveryPointId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DeliveryPoint");
+                });
+
             modelBuilder.Entity("UnknownStore.DAL.Entities.Identity.User", b =>
                 {
                     b.Navigation("BagModels");
@@ -1141,6 +1195,8 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Address", b =>
                 {
+                    b.Navigation("DeliveryPoint");
+
                     b.Navigation("Factory");
 
                     b.Navigation("Orders");
@@ -1173,14 +1229,17 @@ namespace UnknownStore.DAL.Data.Migrations.Store
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Country", b =>
                 {
-                    b.Navigation("Address");
-
                     b.Navigation("Cities");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryCity", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("UnknownStore.DAL.Entities.Store.DeliveryPoint", b =>
+                {
+                    b.Navigation("WorkDays");
                 });
 
             modelBuilder.Entity("UnknownStore.DAL.Entities.Store.Factory", b =>

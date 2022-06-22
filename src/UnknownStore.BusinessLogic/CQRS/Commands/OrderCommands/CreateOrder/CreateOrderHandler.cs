@@ -68,11 +68,11 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder
             CancellationToken cancellationToken = new())
         {
             var deliveryCity = await _context.DeliveryCities.FindAsync(deliveryCityId);
-            var address = await _context.Addresses.FirstOrDefaultAsync(a =>
-                    a.CountryId == countryId && a.CityId == deliveryCity.CityId && a.AddressLine == addressLine,
+            var address = await _context.Addresses.FirstOrDefaultAsync(
+                a => a.CityId == deliveryCity.CityId && a.AddressLine == addressLine,
                 cancellationToken);
             return address ?? new Address
-                { AddressLine = addressLine, CityId = deliveryCity.CityId, CountryId = countryId };
+                { AddressLine = addressLine, CityId = deliveryCity.CityId };
         }
 
         private void UpdateCountSizeModels(IEnumerable<BuyModel> buyModels)

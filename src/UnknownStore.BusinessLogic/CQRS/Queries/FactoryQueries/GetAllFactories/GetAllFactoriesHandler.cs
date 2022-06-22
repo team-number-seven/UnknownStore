@@ -46,7 +46,6 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.FactoryQueries.GetAllFactories
             {
                 var factoryDto = _mapper.Map<GetFactoryDto>(factory);
                 factoryDto.Address = _mapper.Map<GetAddressDto>(factory.Address);
-                factoryDto.Address.Country = _mapper.Map<GetCountryDto>(factory.Address.Country);
                 factoryDto.Address.City = _mapper.Map<GetCityDto>(factory.Address.City);
                 factoryDtos.Add(factoryDto);
             }

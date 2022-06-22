@@ -43,6 +43,8 @@ namespace UnknownStore.DAL
         public DbSet<DeliveryCity> DeliveryCities { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<BuyModel> BuyModels { get; set; }
+        public DbSet<WorkDay> WorkDays { get; set; }
+        public DbSet<DeliveryPoint> DeliveryPoints { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
