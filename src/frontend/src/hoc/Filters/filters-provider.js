@@ -14,6 +14,8 @@ export const FiltersProvider = ({children}) => {
         categoriesId: null,
         seasonsId: null,
     });
+    const [filtersIsEmpty, setFiltersIsEmpty] = useState(true);
+
 
     const changeFilters = (newFilters = {}) => {
         const verifiedFilters = {};
@@ -24,11 +26,20 @@ export const FiltersProvider = ({children}) => {
         }
         const newVerifiedFilters = Object.assign(filters, verifiedFilters);
         setFilters(newVerifiedFilters);
+        setFiltersIsEmpty(false);
+    };
+
+    const resetFilters = () => {
+        for (let filter in filters) {
+            filters[filter] = null;
+        }
     };
 
     const providerValues = {
         filters,
-        changeFilters
+        changeFilters,
+        resetFilters,
+        filtersIsEmpty
     };
 
     return (

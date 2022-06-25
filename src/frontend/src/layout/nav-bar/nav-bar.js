@@ -75,10 +75,10 @@ export const NavBar = ({onSearch}) => {
                             <span>Men</span>
                         </Link>
                         {(categoryParams && displayMen) &&
-                            <div className={"nav-list scale-up-ver-top"} onMouseEnter={handleDisplayMenSecond}
+                            <div className={"nav-list nav-list-short scale-up-ver-top"} onMouseEnter={handleDisplayMenSecond}
                                  onMouseLeave={handleDisplayMenSecond}
                                  onClick={handleDisplayMenSecond}>
-                                <NavBarFilterList genderTitle={"Men"} ageTitle={"Adult"}/>
+                                <NavBarFilterList genderTitle={"Men"} ageTitle={"Adults"}/>
                             </div>
                         }
                     </div>
@@ -89,10 +89,10 @@ export const NavBar = ({onSearch}) => {
                             <span>Women</span>
                         </Link>
                         {(categoryParams && displayWomen) &&
-                            <div className={"nav-list scale-up-ver-top"} onMouseEnter={handleDisplayWomenSecond}
+                            <div className={"nav-list nav-list-short scale-up-ver-top"} onMouseEnter={handleDisplayWomenSecond}
                                  onMouseLeave={handleDisplayWomenSecond}
                                  onClick={handleDisplayWomenSecond}>
-                                <NavBarFilterList genderTitle={"Women"} ageTitle={"Adult"}/>
+                                <NavBarFilterList genderTitle={"Women"} ageTitle={"Adults"}/>
                             </div>
                         }
                     </div>

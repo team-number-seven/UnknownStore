@@ -102,6 +102,17 @@
     box-shadow: 0px 25px 45px -27px rgba(34, 60, 80, 0.3);
 }
 
+.nav-list-short {
+    margin-top: 64.3vh;
+    width: 30vw !important;
+    height: 60vh !important;
+}
+
+.nav-list-half-short {
+    width: 30vw !important;
+    height: 60vh !important;
+}
+
 .nav-list-half {
     width: 50%;
     height: 45vh;
@@ -156,7 +167,7 @@
 
 .category-link {
     padding: 1.3rem 0 1rem 0;
-    color: var(--color-2)!important;
+    color: var(--color-2) !important;
 }
 
 .sub-category-link {

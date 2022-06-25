@@ -1,41 +1,62 @@
 import {Link} from "react-router-dom";
 import {useCategory} from "../../hook/useCategory";
+import {useFilters} from "../../hook/useFilters";
 
 export const NavBarFilterList = ({genderTitle, ageTitle}) => {
     const {categoryParams} = useCategory();
+    const {changeFilters, resetFilters} = useFilters();
     if (!categoryParams) {
         return <></>
     }
+    let key = 0;
+
+
+    const handleCategoryLink = (category = {}) => {
+        resetFilters();
+        if (category.id) {
+            changeFilters({categoriesId: category.id, gendersId: category.gender.id, ageTypesId: category.ageType.id});
+        }
+    }
+
 
     let pieceForRender = [];
     if (genderTitle && ageTitle) {
-        let currentAgeType = categoryParams.ageTypes.filter((ageType) => ageType.title.toLowerCase() === ageTitle.toLowerCase())[0];
+
+        let currentAge = categoryParams.ageTypes.filter((ageType) => ageType.title.toLowerCase() === ageTitle.toLowerCase())[0];
         let currentGender = categoryParams.genders.filter((gender) => gender.title.toLowerCase() === genderTitle.toLowerCase())[0];
-        let currentCategories = categoryParams.categories.getByGender(currentGender.id).filter((category) => category.ageType.title.toLowerCase() === ageTitle.toLowerCase());
+        let categoriesByAge = categoryParams.categories.getByAge(currentAge.id);
+        let currentCategories = categoriesByAge.filter((category) => category.gender.id === currentGender.id);
 
 
-        pieceForRender.push(<div className={"age-gender-part"} key={0}>
-            <span>For {genderTitle}</span>
-            {currentCategories?.map((currentCategory, key = 0) => {
-                return (
-                    <div className={"age-gender-part-category"} key={++key}>
-                        <Link to={"models"} key={currentCategory.id} replace={true}
-                              className={"link"}>
-                            {currentCategory.title}
-                        </Link>
-                        {currentCategory.subCategories
-                            .map((currentSubCategory) => {
-                                return (
-                                    <Link to={"models"} key={currentSubCategory.id} replace={true}
-                                          className={"link"}>
-                                        {currentSubCategory.title}
-                                    </Link>
-                                )
-                            })}
-                    </div>
-                );
-            })}
-        </div>);
+        pieceForRender.push(
+            <div className={"nav-list-half nav-list-half-short"} key={++key}>
+                <div className={"nav-list-half-header"}>
+                    <span>For {genderTitle}</span>
+                </div>
+                <div className={"nav-list-half-body"} key={++key}>
+                    {currentCategories?.map((category) => {
+                        return (
+                            <div className={"category-list"} key={++key}>
+                                <Link to={"models"} key={category.id} replace={true}
+                                      className={"link category-link"} onClick={() => handleCategoryLink(category)}>
+                                    {category.title}
+                                </Link>
+                                {category.subCategories
+                                    .map((subCategory) => {
+                                        return (
+                                            <Link to={"models"} key={subCategory.id} replace={true}
+                                                  className={"link sub-category-link"}>
+                                                {subCategory.title}
+                                            </Link>
+                                        )
+                                    })}
+                            </div>
+                        )
+                    })}
+                < /div>
+
+
+            </div>);
     }
 
     //KIDS
@@ -48,7 +69,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
 
         let girlsSearchTerm = "women";
         let girlsCategoryGroup = currentCategories.filter((currentCategory) => currentCategory.gender.title.toLowerCase() === girlsSearchTerm.toLowerCase());
-        let key = 0;
+
         pieceForRender.push(
             <div className={"nav-list-half"} key={++key}>
                 <div className={"nav-list-half-header"}>
@@ -59,7 +80,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
                         return (
                             <div className={"category-list"} key={++key}>
                                 <Link to={"models"} key={boysCategory.id} replace={true}
-                                      className={"link category-link"}>
+                                      className={"link category-link"} onClick={() => handleCategoryLink(boysCategory)}>
                                     {boysCategory.title}
                                 </Link>
                                 {boysCategory.subCategories
@@ -90,7 +111,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
                         return (
                             <div className={"category-list"} key={++key}>
                                 <Link to={"models"} key={girlsCategory.id} replace={true}
-                                      className={"link category-link"}>
+                                      className={"link category-link"} onClick={() => handleCategoryLink(girlsCategory)}>
                                     {girlsCategory.title}
                                 </Link>
                                 {girlsCategory.subCategories
