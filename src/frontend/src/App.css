@@ -241,3 +241,8 @@ form.container {
         width: 80vw;
     }
 }
+
+
+.size-container{
+    padding-left: 1rem;
+}

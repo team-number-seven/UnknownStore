@@ -3,9 +3,9 @@ export const ROUTES_CONFIG = {
     "index": "*",
     "home": "/",
     "public": {
-        "men": "men",
-        "women": "women",
-        "kids": "kids",
+        "men": "models/men",
+        "women": "models/women",
+        "kids": "models/kids",
         "profile": "profile",
         "bag": "bag",
     },

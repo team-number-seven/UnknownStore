@@ -69,7 +69,7 @@ export const NavBar = ({onSearch}) => {
             <div className={'nav-bar'}>
                 <div className={'nav-filters'}>
                     <div className={"nav-filter"}>
-                        <Link to={"models"} replace={false} className={'link'} onMouseEnter={handleDisplayMen}
+                        <Link to={"models/men"} replace={false} className={'link'} onMouseEnter={handleDisplayMen}
                               onMouseLeave={handleDisplayMen}
                               onClick={handleDisplayMen}>
                             <span>Men</span>
@@ -83,7 +83,7 @@ export const NavBar = ({onSearch}) => {
                         }
                     </div>
                     <div className={"nav-filter"}>
-                        <Link to={"models"} replace={false} className={'link'} onMouseEnter={handleDisplayWomen}
+                        <Link to={"models/women"} replace={false} className={'link'} onMouseEnter={handleDisplayWomen}
                               onMouseLeave={handleDisplayWomen}
                               onClick={handleDisplayWomen}>
                             <span>Women</span>
@@ -98,7 +98,7 @@ export const NavBar = ({onSearch}) => {
                     </div>
 
                     <div className={"nav-filter"}>
-                        <Link to={"models"} replace={false} className={'link'} onMouseEnter={handleDisplayKids}
+                        <Link to={"models/kids"} replace={false} className={'link'} onMouseEnter={handleDisplayKids}
                               onMouseLeave={handleDisplayKids}
                               onClick={handleDisplayKids}>
                             <span>Kids</span>
