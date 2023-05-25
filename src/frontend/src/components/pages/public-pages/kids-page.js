@@ -12,8 +12,6 @@ export const KidsPage = () => {
     useEffect(() => {
         if(!categoryParams)return;
 
-        console.log(categoryParams);
-
         const ageId = categoryParams.ageTypes.find(x => x.title === "Kids").id;
 
         API.get(CONFIG.GET.model["get-models"], {

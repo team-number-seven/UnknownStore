@@ -15,8 +15,6 @@ export const WomenPage = () => {
     useEffect(() => {
         if(!categoryParams)return;
 
-        console.log(categoryParams);
-
         const genderId = categoryParams.genders.find(x => x.title === "Women").id;
         const ageId = categoryParams.ageTypes.find(x => x.title === "Adults").id;
 

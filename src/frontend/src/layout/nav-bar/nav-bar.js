@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ROUTES_CONFIG} from "../../configs/routes-config";
 import {useAuth} from "../../hook/useAuth";
 import {cutString} from "../../components/utilites/cutString";
@@ -9,6 +9,7 @@ import "../../components/pages/public-pages/models-page/models-page.css";
 import {useCategory} from "../../hook/useCategory";
 import {NavBarFilterList} from "./nav-bar-filter-list";
 import {Search} from "./search";
+import {useFilters} from "../../hook/useFilters";
 
 export const NavBar = ({onSearch}) => {
     const {user} = useAuth();
@@ -18,11 +19,23 @@ export const NavBar = ({onSearch}) => {
     const [displayWomen, setDisplayWomen] = useState(false);
     const [displayKids, setDisplayKids] = useState(false);
 
+    const navigate = useNavigate();
+    const {
+        filters,
+        changeFilters,
+    } = useFilters();
+
     const handleDisplayMen = (e) => {
         if (e.type === "mouseenter") {
             setDisplayMen(true);
         } else if (e.type === "mouseleave") {
             setDisplayMen(false);
+        } else if (e.type === "click") {
+            const genderId = categoryParams.genders.find(x => x.title === "Men").id;
+            const ageId = categoryParams.ageTypes.find(x => x.title === "Adults").id;
+            changeFilters({gendersId: genderId, ageTypesId: ageId});
+
+            navigate("models");
         }
     }
     const handleDisplayMenSecond = (e) => {
@@ -38,6 +51,12 @@ export const NavBar = ({onSearch}) => {
             setDisplayWomen(true);
         } else if (e.type === "mouseleave") {
             setDisplayWomen(false);
+        } else if (e.type === "click") {
+            const genderId = categoryParams.genders.find(x => x.title === "Women").id;
+            const ageId = categoryParams.ageTypes.find(x => x.title === "Adults").id;
+            changeFilters({gendersId: genderId, ageTypesId: ageId});
+
+            navigate("models");
         }
     }
     const handleDisplayWomenSecond = (e) => {
@@ -53,6 +72,11 @@ export const NavBar = ({onSearch}) => {
             setDisplayKids(true);
         } else if (e.type === "mouseleave") {
             setDisplayKids(false);
+        } else if (e.type === "click") {
+            const ageId = categoryParams.ageTypes.find(x => x.title === "Kids").id;
+            changeFilters({ageTypesId: ageId, gendersId: null});
+
+            navigate("models");
         }
     }
     const handleDisplayKidsSecond = (e) => {
@@ -69,13 +93,14 @@ export const NavBar = ({onSearch}) => {
             <div className={'nav-bar'}>
                 <div className={'nav-filters'}>
                     <div className={"nav-filter"}>
-                        <Link to={"models/men"} replace={false} className={'link'} onMouseEnter={handleDisplayMen}
-                              onMouseLeave={handleDisplayMen}
-                              onClick={handleDisplayMen}>
+                        <div className={'link'} onMouseEnter={handleDisplayMen}
+                             onMouseLeave={handleDisplayMen}
+                             onClick={handleDisplayMen}>
                             <span>Men</span>
-                        </Link>
+                        </div>
                         {(categoryParams && displayMen) &&
-                            <div className={"nav-list nav-list-short scale-up-ver-top"} onMouseEnter={handleDisplayMenSecond}
+                            <div className={"nav-list nav-list-short scale-up-ver-top"}
+                                 onMouseEnter={handleDisplayMenSecond}
                                  onMouseLeave={handleDisplayMenSecond}
                                  onClick={handleDisplayMenSecond}>
                                 <NavBarFilterList genderTitle={"Men"} ageTitle={"Adults"}/>
@@ -83,13 +108,14 @@ export const NavBar = ({onSearch}) => {
                         }
                     </div>
                     <div className={"nav-filter"}>
-                        <Link to={"models/women"} replace={false} className={'link'} onMouseEnter={handleDisplayWomen}
-                              onMouseLeave={handleDisplayWomen}
-                              onClick={handleDisplayWomen}>
+                        <div className={'link'} onMouseEnter={handleDisplayWomen}
+                             onMouseLeave={handleDisplayWomen}
+                             onClick={handleDisplayWomen}>
                             <span>Women</span>
-                        </Link>
+                        </div>
                         {(categoryParams && displayWomen) &&
-                            <div className={"nav-list nav-list-short scale-up-ver-top"} onMouseEnter={handleDisplayWomenSecond}
+                            <div className={"nav-list nav-list-short scale-up-ver-top"}
+                                 onMouseEnter={handleDisplayWomenSecond}
                                  onMouseLeave={handleDisplayWomenSecond}
                                  onClick={handleDisplayWomenSecond}>
                                 <NavBarFilterList genderTitle={"Women"} ageTitle={"Adults"}/>
@@ -98,11 +124,11 @@ export const NavBar = ({onSearch}) => {
                     </div>
 
                     <div className={"nav-filter"}>
-                        <Link to={"models/kids"} replace={false} className={'link'} onMouseEnter={handleDisplayKids}
-                              onMouseLeave={handleDisplayKids}
-                              onClick={handleDisplayKids}>
+                        <div className={'link'} onMouseEnter={handleDisplayKids}
+                             onMouseLeave={handleDisplayKids}
+                             onClick={handleDisplayKids}>
                             <span>Kids</span>
-                        </Link>
+                        </div>
                         {(categoryParams && displayKids) &&
                             <div className={"nav-list scale-up-ver-top"} onMouseEnter={handleDisplayKidsSecond}
                                  onMouseLeave={handleDisplayKidsSecond}

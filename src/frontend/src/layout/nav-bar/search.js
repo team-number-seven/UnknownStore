@@ -1,12 +1,15 @@
 import {useFilters} from "../../hook/useFilters";
+import {useNavigate} from "react-router-dom";
 
 export const Search = () => {
 
     const {changeFilters} = useFilters();
+    const navigate = useNavigate();
 
     const onEnterPress = (e) => {
         if (e.code === "Enter") {
             changeFilters({title: e.target.value});
+            navigate("models")
         }
     };
 
