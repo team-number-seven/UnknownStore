@@ -8,10 +8,16 @@ export const AuthContext = createContext(null);
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [needToRefresh, setNeedToRefresh] = useState(false);
     useEffect(() => {
         authenticationCheck();
-        refreshUser();
     }, []);
+
+    useEffect(()=>{
+        if(needToRefresh){
+            refreshUser();
+        }
+    },[needToRefresh])
 
     const mgr = new UserManager(AuthConfig);
     const signIn = () => {
@@ -29,6 +35,7 @@ export const AuthProvider = ({children}) => {
                         mgr.getUser().then((userData) => {
                             user.access_token = userData.access_token;
                             user.expires_at = userData.expires_at;
+                            setUser(user);
                         })
                     })
                     .catch((error) => {
@@ -55,7 +62,7 @@ export const AuthProvider = ({children}) => {
                         })
                         .then(result => {
                             userInfo.favorites = result.data.modelDtos.map((favourite => favourite.id));
-                        })
+                        }).catch(e => setNeedToRefresh(true));
                 }
                 setUser(userInfo);
                 setIsAuthenticated(true);
