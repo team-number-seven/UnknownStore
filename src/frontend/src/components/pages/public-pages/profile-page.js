@@ -13,6 +13,7 @@ export const ProfilePage = () => {
             {(user?.role === CONFIG["user-role"].Owner
                     || user?.role === CONFIG["user-role"].Manager)
                 && <Link className={'link'} to={'../' + ROUTES_CONFIG.private.manager["manager"]}>Manager Panel</Link>}
+            <Link className={"link"} to={"../" + ROUTES_CONFIG.public.favorites}>My Favorites</Link>
         </div>
     )
 }

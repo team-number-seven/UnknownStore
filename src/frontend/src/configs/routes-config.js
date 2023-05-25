@@ -7,6 +7,7 @@ export const ROUTES_CONFIG = {
         "women": "models/women",
         "kids": "models/kids",
         "profile": "profile",
+        "favorites":"favourites",
         "bag": "bag",
     },
     "private": {

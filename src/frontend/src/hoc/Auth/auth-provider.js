@@ -7,11 +7,18 @@ import API from "../../server/API";
 export const AuthContext = createContext(null);
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [favoritesLoaded,setFavoritesLoaded]=useState(false)
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [needToRefresh, setNeedToRefresh] = useState(false);
     useEffect(() => {
         authenticationCheck();
     }, []);
+
+    useEffect(()=>{
+        if(user?.favorites){
+            setFavoritesLoaded(true)
+        }
+    },[user])
 
     useEffect(()=>{
         if(needToRefresh){
@@ -77,6 +84,7 @@ export const AuthProvider = ({children}) => {
     }
 
     const providerValues = {
+        favoritesLoaded,
         user,
         setUser,
         isAuthenticated,

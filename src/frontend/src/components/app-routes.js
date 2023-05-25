@@ -20,11 +20,10 @@ import {ProfilePage} from "./pages/public-pages/profile-page";
 import {MenPage} from "./pages/public-pages/men-page";
 import {WomenPage} from "./pages/public-pages/women-page";
 import {KidsPage} from "./pages/public-pages/kids-page";
+import {FavoritesPage} from "./pages/public-pages/favorites-page";
 
 
-function FavouritesPage() {
-    return null;
-}
+
 
 function OrdersPage() {
     return null;
@@ -48,8 +47,10 @@ export const AppRoutes = () => {
                 <Route path={"profile"} element={<ProfilePage/>}>
                     <Route path={"orders"} element={<OrdersPage/>}/>
                     <Route path={"bag"} element={<BagPage/>}/>
-                    <Route path={"favourites"} element={<FavouritesPage/>}/>
                 </Route>
+                <Route path={"favourites"} element={<FavoritesPage/>}/>
+
+
 
                 <Route path={ROUTES_CONFIG.public.men} element={<MenPage/>}/>
                 <Route path={ROUTES_CONFIG.public.women} element={<WomenPage/>}/>
