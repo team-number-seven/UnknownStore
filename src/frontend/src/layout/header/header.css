@@ -1,5 +1,4 @@
 header {
-    font-weight: normal;
     position: relative;
     width: var(--width-header);
     height: var(--height-header);
@@ -7,9 +6,15 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: var(--color-1);
-    color: white;
+    color: var(--color-text);
+    font-weight: normal;
     /* background: rgb(116,185,255);
      background: radial-gradient(circle, rgba(116,185,255,1) 0%, rgba(9,132,227,1) 100%);*/
+}
+
+header > span:nth-child(2) > button{
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
 header span {
@@ -17,20 +22,24 @@ header span {
 }
 
 header span button.link {
-    color: white;
+    color: var(--color-text);
 }
 
 header span a:hover {
-    transition: color 0.2s ease-out;
-    color: rgba(255, 255, 255, 0.78);
+    transition: opacity 0.2s ease-out;
+    opacity: 0.8;
     background-color: unset;
     cursor: pointer;
 }
 
 header span button.link:hover {
-    transition: color 0.2s ease-out;
-    color: rgba(255, 255, 255, 0.78);
+    transition: opacity 0.2s ease-out;
+    opacity: 0.8;
     background-color: unset;
     cursor: pointer;
+}
+
+header > span:nth-child(2) > button{
+
 }
 

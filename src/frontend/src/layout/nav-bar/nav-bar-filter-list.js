@@ -102,7 +102,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
         );
 
         pieceForRender.push(
-            <div className={"nav-list-half"} key={++key}>
+            <div className={"nav-list-half .nav-list-short"} key={++key}>
                 <div className={"nav-list-half-header"}>
                     <span>For Girls</span>
                 </div>

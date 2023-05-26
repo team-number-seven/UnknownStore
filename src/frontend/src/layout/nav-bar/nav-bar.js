@@ -36,6 +36,7 @@ export const NavBar = ({onSearch}) => {
             changeFilters({gendersId: genderId, ageTypesId: ageId});
 
             navigate("models");
+            setDisplayMen(false);
         }
     }
     const handleDisplayMenSecond = (e) => {
@@ -57,6 +58,8 @@ export const NavBar = ({onSearch}) => {
             changeFilters({gendersId: genderId, ageTypesId: ageId});
 
             navigate("models");
+            setDisplayWomen(false);
+
         }
     }
     const handleDisplayWomenSecond = (e) => {
@@ -77,6 +80,7 @@ export const NavBar = ({onSearch}) => {
             changeFilters({ageTypesId: ageId, gendersId: null});
 
             navigate("models");
+            setDisplayKids(false);
         }
     }
     const handleDisplayKidsSecond = (e) => {
@@ -99,10 +103,10 @@ export const NavBar = ({onSearch}) => {
                             <span>Men</span>
                         </div>
                         {(categoryParams && displayMen) &&
-                            <div className={"nav-list nav-list-short scale-up-ver-top"}
+                            <div className={"nav-list nav-list-short"}
                                  onMouseEnter={handleDisplayMenSecond}
                                  onMouseLeave={handleDisplayMenSecond}
-                                 onClick={handleDisplayMenSecond}>
+                                 onClick={handleDisplayMen}>
                                 <NavBarFilterList genderTitle={"Men"} ageTitle={"Adults"}/>
                             </div>
                         }
@@ -114,10 +118,10 @@ export const NavBar = ({onSearch}) => {
                             <span>Women</span>
                         </div>
                         {(categoryParams && displayWomen) &&
-                            <div className={"nav-list nav-list-short scale-up-ver-top"}
+                            <div className={"nav-list nav-list-short"}
                                  onMouseEnter={handleDisplayWomenSecond}
                                  onMouseLeave={handleDisplayWomenSecond}
-                                 onClick={handleDisplayWomenSecond}>
+                                 onClick={handleDisplayWomen}>
                                 <NavBarFilterList genderTitle={"Women"} ageTitle={"Adults"}/>
                             </div>
                         }
@@ -130,9 +134,9 @@ export const NavBar = ({onSearch}) => {
                             <span>Kids</span>
                         </div>
                         {(categoryParams && displayKids) &&
-                            <div className={"nav-list scale-up-ver-top"} onMouseEnter={handleDisplayKidsSecond}
+                            <div className={"nav-list"} onMouseEnter={handleDisplayKidsSecond}
                                  onMouseLeave={handleDisplayKidsSecond}
-                                 onClick={handleDisplayKidsSecond}>
+                                 onClick={handleDisplayKids}>
                                 <NavBarFilterList ageTitle={"kids"}/>
                             </div>
                         }
@@ -142,10 +146,10 @@ export const NavBar = ({onSearch}) => {
                 </div>
                 <div className={'user-panel'}>
                     <Search/>
-                    <span><Link className={'link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
+                    <span><Link className={'fake-link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
 
                     <span>
-                        <Link className={'link'} to={ROUTES_CONFIG.public.profile}>
+                        <Link className={'fake-link'} to={ROUTES_CONFIG.public.profile}>
                         {user?.id ? cutString(userNameFromUserData(user), 8) : user?.name}
                         </Link>
                     </span>
