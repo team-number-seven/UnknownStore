@@ -69,7 +69,7 @@ export const ModelViewBox = ({model}) => {
 
                 {!showBoxInfo &&
                     <div className={"model-view-box-header"}>
-                        <h2>{cutString(model.title, 12)}</h2>
+                        <h2>{cutString(model.title, 52)}</h2>
                         <span className={"model-view-box-price"}>{model.price} $</span>
                     </div>
                 }
