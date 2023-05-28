@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ROUTES_CONFIG} from "../../configs/routes-config";
 import {useAuth} from "../../hook/useAuth";
 import {cutString} from "../../components/utilites/cutString";
@@ -9,6 +9,7 @@ import "../../components/pages/public-pages/models-page/models-page.css";
 import {useCategory} from "../../hook/useCategory";
 import {NavBarFilterList} from "./nav-bar-filter-list";
 import {Search} from "./search";
+import {useFilters} from "../../hook/useFilters";
 
 export const NavBar = ({onSearch}) => {
     const {user} = useAuth();
@@ -18,10 +19,25 @@ export const NavBar = ({onSearch}) => {
     const [displayWomen, setDisplayWomen] = useState(false);
     const [displayKids, setDisplayKids] = useState(false);
 
+    const navigate = useNavigate();
+    const {
+        filters,
+        changeFilters,
+        resetFilters,
+    } = useFilters();
+
     const handleDisplayMen = (e) => {
         if (e.type === "mouseenter") {
             setDisplayMen(true);
         } else if (e.type === "mouseleave") {
+            setDisplayMen(false);
+        } else if (e.type === "click") {
+            const genderId = categoryParams.genders.find(x => x.title === "Men").id;
+            const ageId = categoryParams.ageTypes.find(x => x.title === "Adults").id;
+            resetFilters();
+            changeFilters({gendersId: genderId, ageTypesId: ageId});
+
+            navigate("models");
             setDisplayMen(false);
         }
     }
@@ -38,6 +54,16 @@ export const NavBar = ({onSearch}) => {
             setDisplayWomen(true);
         } else if (e.type === "mouseleave") {
             setDisplayWomen(false);
+        } else if (e.type === "click") {
+            const genderId = categoryParams.genders.find(x => x.title === "Women").id;
+            const ageId = categoryParams.ageTypes.find(x => x.title === "Adults").id;
+
+            resetFilters();
+            changeFilters({gendersId: genderId, ageTypesId: ageId});
+
+            navigate("models");
+            setDisplayWomen(false);
+
         }
     }
     const handleDisplayWomenSecond = (e) => {
@@ -52,6 +78,14 @@ export const NavBar = ({onSearch}) => {
         if (e.type === "mouseenter") {
             setDisplayKids(true);
         } else if (e.type === "mouseleave") {
+            setDisplayKids(false);
+        } else if (e.type === "click") {
+            const ageId = categoryParams.ageTypes.find(x => x.title === "Kids").id;
+
+            resetFilters();
+            changeFilters({ageTypesId: ageId, gendersId: null});
+
+            navigate("models");
             setDisplayKids(false);
         }
     }
@@ -69,44 +103,46 @@ export const NavBar = ({onSearch}) => {
             <div className={'nav-bar'}>
                 <div className={'nav-filters'}>
                     <div className={"nav-filter"}>
-                        <Link to={"models"} replace={false} className={'link'} onMouseEnter={handleDisplayMen}
-                              onMouseLeave={handleDisplayMen}
-                              onClick={handleDisplayMen}>
+                        <div className={'link'} onMouseEnter={handleDisplayMen}
+                             onMouseLeave={handleDisplayMen}
+                             onClick={handleDisplayMen}>
                             <span>Men</span>
-                        </Link>
+                        </div>
                         {(categoryParams && displayMen) &&
-                            <div className={"nav-list nav-list-short scale-up-ver-top"} onMouseEnter={handleDisplayMenSecond}
+                            <div className={"nav-list nav-list-short"}
+                                 onMouseEnter={handleDisplayMenSecond}
                                  onMouseLeave={handleDisplayMenSecond}
-                                 onClick={handleDisplayMenSecond}>
+                                 onClick={handleDisplayMen}>
                                 <NavBarFilterList genderTitle={"Men"} ageTitle={"Adults"}/>
                             </div>
                         }
                     </div>
                     <div className={"nav-filter"}>
-                        <Link to={"models"} replace={false} className={'link'} onMouseEnter={handleDisplayWomen}
-                              onMouseLeave={handleDisplayWomen}
-                              onClick={handleDisplayWomen}>
+                        <div className={'link'} onMouseEnter={handleDisplayWomen}
+                             onMouseLeave={handleDisplayWomen}
+                             onClick={handleDisplayWomen}>
                             <span>Women</span>
-                        </Link>
+                        </div>
                         {(categoryParams && displayWomen) &&
-                            <div className={"nav-list nav-list-short scale-up-ver-top"} onMouseEnter={handleDisplayWomenSecond}
+                            <div className={"nav-list nav-list-short"}
+                                 onMouseEnter={handleDisplayWomenSecond}
                                  onMouseLeave={handleDisplayWomenSecond}
-                                 onClick={handleDisplayWomenSecond}>
+                                 onClick={handleDisplayWomen}>
                                 <NavBarFilterList genderTitle={"Women"} ageTitle={"Adults"}/>
                             </div>
                         }
                     </div>
 
                     <div className={"nav-filter"}>
-                        <Link to={"models"} replace={false} className={'link'} onMouseEnter={handleDisplayKids}
-                              onMouseLeave={handleDisplayKids}
-                              onClick={handleDisplayKids}>
+                        <div className={'link'} onMouseEnter={handleDisplayKids}
+                             onMouseLeave={handleDisplayKids}
+                             onClick={handleDisplayKids}>
                             <span>Kids</span>
-                        </Link>
+                        </div>
                         {(categoryParams && displayKids) &&
-                            <div className={"nav-list scale-up-ver-top"} onMouseEnter={handleDisplayKidsSecond}
+                            <div className={"nav-list"} onMouseEnter={handleDisplayKidsSecond}
                                  onMouseLeave={handleDisplayKidsSecond}
-                                 onClick={handleDisplayKidsSecond}>
+                                 onClick={handleDisplayKids}>
                                 <NavBarFilterList ageTitle={"kids"}/>
                             </div>
                         }
@@ -116,10 +152,10 @@ export const NavBar = ({onSearch}) => {
                 </div>
                 <div className={'user-panel'}>
                     <Search/>
-                    <span><Link className={'link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
+                    <span><Link className={'fake-link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
 
                     <span>
-                        <Link className={'link'} to={ROUTES_CONFIG.public.profile}>
+                        <Link className={'fake-link'} to={ROUTES_CONFIG.public.profile}>
                         {user?.id ? cutString(userNameFromUserData(user), 8) : user?.name}
                         </Link>
                     </span>

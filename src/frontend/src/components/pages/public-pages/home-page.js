@@ -1,4 +1,11 @@
+import {useEffect} from "react";
+import {useFilters} from "../../../hook/useFilters";
+
 export const HomePage = () => {
+    const {resetFilters} = useFilters();
+    useEffect(() => {
+        resetFilters();
+    }, [])
     return (
         <div>
             <h1>Unknown store</h1>

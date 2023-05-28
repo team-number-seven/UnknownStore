@@ -1,18 +1,22 @@
 .filter-bar-container {
+    margin-top: 1rem;
     width: 19vw;
-    height: var(--height-page);
+    height: 100vh;
     position: fixed;
     z-index: 1;
     right: 0;
+    top:0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
+    background: white;
 }
 
 .filter-bar {
+    height: calc(var(--height-page) + 2vh);
     background: white;
-    height: 95%;
-    width: 90%;
+
+    width: 100%;
 
     box-shadow: var(--shadow);
     -moz-box-shadow: var(--shadow);

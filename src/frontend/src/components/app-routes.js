@@ -17,11 +17,13 @@ import {NotFoundPage} from "./pages/public-pages/not-found-page";
 import {ModelsPage} from "./pages/public-pages/models-page/models-page";
 import {NewOrderPage} from "./pages/public-pages/orders-page/new-order-page";
 import {ProfilePage} from "./pages/public-pages/profile-page";
+import {MenPage} from "./pages/public-pages/men-page";
+import {WomenPage} from "./pages/public-pages/women-page";
+import {KidsPage} from "./pages/public-pages/kids-page";
+import {FavoritesPage} from "./pages/public-pages/favorites-page";
 
 
-function FavouritesPage() {
-    return null;
-}
+
 
 function OrdersPage() {
     return null;
@@ -45,8 +47,14 @@ export const AppRoutes = () => {
                 <Route path={"profile"} element={<ProfilePage/>}>
                     <Route path={"orders"} element={<OrdersPage/>}/>
                     <Route path={"bag"} element={<BagPage/>}/>
-                    <Route path={"favourites"} element={<FavouritesPage/>}/>
                 </Route>
+                <Route path={"favourites"} element={<FavoritesPage/>}/>
+
+
+
+                <Route path={ROUTES_CONFIG.public.men} element={<MenPage/>}/>
+                <Route path={ROUTES_CONFIG.public.women} element={<WomenPage/>}/>
+                <Route path={ROUTES_CONFIG.public.kids} element={<KidsPage/>}/>
 
 
                 <Route path={"models"} element={<ModelsPage/>}/>
@@ -61,7 +69,7 @@ export const AppRoutes = () => {
                         <Route path={ROUTES_CONFIG.private.manager["create-model"]} element={<CreateModelPage/>}/>
                         <Route path={ROUTES_CONFIG.private.manager["create-factory"]} element={<CreateFactoryPage/>}/>
                     </Route>
-                }}
+                }
             </Route>
         </Routes>
     );

@@ -70,7 +70,7 @@ namespace UnknownStore.BusinessLogic.Extensions
         {
             return title.IsNullOrEmpty()
                 ? models
-                : models.Where(i => i.Title.Contains(title));
+                : models.Where(i => i.Title.ToLower().Contains(title.ToLower()));
         }
 
         public static IQueryable<Model> FilterByIsAvailable(this IQueryable<Model> models, bool? isAvailable)

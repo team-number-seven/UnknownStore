@@ -5,18 +5,18 @@
 
 :root {
     /*COLORS*/
-    --color-text: #2c3e50;  /*#424242*/
-    --color-placeholder: #858585;
-    --color-1: #0984e3;
-    --color-2: #74b9ff;
+    --color-text: #404040;  /*#424242*/
+    --color-placeholder: #A6A6A6;
+    --color-1: white;
+    --color-2: #595959;
     --color-2-light: rgba(116, 185, 255, 0.8);
     --color-2-megalight: rgba(116, 185, 255, 0.3);
-    --color-3: white;
+    --color-3: #f8f8f8;
     --color-error: #e74c3c;
     --background: #ecf0f1;
-    --background-page: white;
+    --background-page: #F2F2F2;
     --background-dark: rgb(66, 66, 66);
-    --background-main: #ecf0f1;
+    --background-main: #F2F2F2;
     /*CONSTANT SIZES*/
 
     --width-header: 100vw;
@@ -51,7 +51,7 @@
 
     /*FONT*/
     --font-main: 'Radio Canada', sans-serif;
-    --font-second: 'Jost', sans-serif;
+    --font-second: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 ::-ms-reveal {
@@ -102,7 +102,7 @@ body {
     text-decoration: none;
     color: unset;
     transition: opacity 0.2s ease-out;
-    opacity: 60%;
+    opacity: 0.55;
 }
 
 .link {
@@ -111,14 +111,14 @@ body {
     background-color: unset;
     height: unset;
 
-    color: var(--color-1);
+    color: var(--color-text);
     text-decoration: none;
     font-weight: unset;
 }
 
 .link:hover {
-    transition: color 0.2s ease-out;
-    color: var(--color-2);
+    transition: opacity 0.2s ease-out;
+    opacity: 0.55;
     background-color: unset;
     cursor: pointer;
 }
@@ -127,7 +127,7 @@ button /*, input[type="file"]::file-selector-button*/
 {
     -moz-box-shadow: var(--shadow);
     -webkit-box-shadow: var(--shadow);
-    background-color: var(--color-1);
+    background-color: var(--color-text);
     border: none;
     border-radius: unset;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
@@ -138,7 +138,7 @@ button /*, input[type="file"]::file-selector-button*/
 
     height: 40px;
     padding: unset;
-    min-width: 10vw;
+    width: 5rem;
 }
 
 /*input[type="file"]::file-selector-button{
@@ -161,11 +161,12 @@ button:disabled /*, input[type="file"]::file-selector-button:disabled*/
 
 
 .form-control {
-    width: 15vw;
+    width: 100%;
     padding-bottom: 0;
     padding-top: 0;
+    padding-left: 0.5rem;
     border: none;
-    /*border-bottom: var(--color-placeholder) 1px solid;*/
+    border-bottom: var(--color-1) 1px solid;
     border-radius: unset;
     color: var(--color-text);
     height: 2.5rem;
@@ -173,16 +174,17 @@ button:disabled /*, input[type="file"]::file-selector-button:disabled*/
 }
 
 
-.form-control input {
+input.form-control {
     color: var(--color-placeholder);
-    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 
 .form-control:focus {
     background:unset;
-    border-bottom: var(--color-1) 2px solid;
+    border-bottom: var(--color-text) 2px solid;
     box-shadow: unset;
-    color: var(--color-1);
+    color: var(--color-text);
 }
 
 .form-control:focus::placeholder {
@@ -194,7 +196,8 @@ button:disabled /*, input[type="file"]::file-selector-button:disabled*/
 }
 
 .btn-lighter {
-    background-color: var(--color-2-light);
+    background-color: var(--color-placeholder);
+    color:var(--color-text)
 }
 
 .input-error-container {
@@ -224,6 +227,7 @@ form.container {
     background-color: var(--background-main);
 
     display: flex;
+    flex-wrap: wrap;
 
     box-shadow: var(--shadow);
     -moz-box-shadow: var(--shadow);
@@ -240,4 +244,9 @@ form.container {
     .nav-list {
         width: 80vw;
     }
+}
+
+
+.size-container{
+    padding-left: 1rem;
 }

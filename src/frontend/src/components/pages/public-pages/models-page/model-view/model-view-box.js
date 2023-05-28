@@ -55,7 +55,13 @@ export const ModelViewBox = ({model}) => {
                 <div className={"model-view-image"}>
 
                     <img src={`data:${model.mainImage["contentType"]};base64, ` + model.mainImage["fileContents"]}
-                         alt={model.title}/>
+                         alt={model.title}
+                         style={{
+                             transition: showBoxInfo && "filter 0.2s ease-out",
+                             filter: showBoxInfo && "brightness(70%)",
+                             objectFit: showBoxInfo && "cover",
+                         }}
+                    />
                 </div>
             </Link>
 
@@ -63,7 +69,7 @@ export const ModelViewBox = ({model}) => {
 
                 {!showBoxInfo &&
                     <div className={"model-view-box-header"}>
-                        <h2>{cutString(model.title, 12)}</h2>
+                        <h2>{cutString(model.title, 52)}</h2>
                         <span className={"model-view-box-price"}>{model.price} $</span>
                     </div>
                 }
@@ -75,10 +81,12 @@ export const ModelViewBox = ({model}) => {
                             <span className={"model-view-box-price"}>{model.price} $</span>
                         </div>
                         <div className={"model-view-box-body"}>
-                            <span className={"model-view-box-brand"} id={model?.brand?.id}>{model?.brand?.title}</span>
                             <span className={"model-view-box-category"}
                                   id={model?.["subCategory"].id}>{model?.["subCategory"].title}</span>
 
+                        </div>
+                        <div className={"model-view-box-body"}>
+                            <span className={"model-view-box-brand"} id={model?.brand?.id}>{model?.brand?.title}</span>
                         </div>
                         <div className={"model-view-box-footer"}>
                             {user?.favorites?.includes(model.id) ?
