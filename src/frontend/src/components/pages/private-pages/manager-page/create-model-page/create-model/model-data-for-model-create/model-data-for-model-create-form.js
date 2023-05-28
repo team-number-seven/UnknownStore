@@ -25,42 +25,42 @@ export const ModelDataForModelCreateForm = ({onFill}) => {
                   className="container form-group"
                   onSubmit={handleSubmit(onSubmit)}
             >
-
-
-                <input type={'text'}
-                       className="form-control"
-                       placeholder={'Header'}
-                       {...register('header', {
-                           required: {
-                               value: true,
-                               message: 'This field cannot be empty',
-                           },
-                           pattern: {
-                               value: /^[a-zA-Z\s]*$/,
-                               message: 'Invalid header',
-                           }
-                       })}
-                />
-                {errors?.header &&
-                    <small className="input-error">{errors?.header?.message}</small>}
-
-                <input type={'text'}
-                       className="form-control"
-                       placeholder={'Description'}
-                       {...register('description', {
-                           required: {
-                               value: true,
-                               message: 'This field cannot be empty',
-                           },
-                           pattern: {
-                               value: /^[a-zA-Z\d\s,'-]*$/,
-                               message: 'Invalid description',
-                           }
-                       })}
-                />
-                {errors?.description &&
-                    <small className="input-error">{errors?.description?.message}</small>}
-
+                <div>
+                    <input type={'text'}
+                           className="form-control"
+                           placeholder={'Header'}
+                           {...register('header', {
+                               required: {
+                                   value: true,
+                                   message: 'This field cannot be empty',
+                               },
+                               pattern: {
+                                   value: /^[a-zA-Z\s]*$/,
+                                   message: 'Invalid header',
+                               }
+                           })}
+                    />
+                    {errors?.header &&
+                        <small className="input-error">{errors?.header?.message}</small>}
+                </div>
+                <div>
+                    <input type={'text'}
+                           className="form-control"
+                           placeholder={'Description'}
+                           {...register('description', {
+                               required: {
+                                   value: true,
+                                   message: 'This field cannot be empty',
+                               },
+                               pattern: {
+                                   value: /^[a-zA-Z\d\s,'-]*$/,
+                                   message: 'Invalid description',
+                               }
+                           })}
+                    />
+                    {errors?.description &&
+                        <small className="input-error">{errors?.description?.message}</small>}
+                </div>
                 <button type="submit"
                         disabled={!isValid}
                 >
