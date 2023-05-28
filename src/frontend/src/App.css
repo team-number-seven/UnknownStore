@@ -251,3 +251,30 @@ form.container {
     padding-top: 3rem;
 }
 
+.home-page{
+    width: 100vw;
+    height:var(--height-page);
+    object-fit: cover;
+}
+
+.home-page-text{
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.home-page-text h1{
+    font-weight: bolder;
+    font-size: 13rem;
+}
+
+.home-page-text h1.white{
+    font-size: 13rem;
+    position: absolute;
+    top: -7rem;
+    left: -30rem;
+}
+
+.white{
+    color:white;
+}
