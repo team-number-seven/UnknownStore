@@ -1,19 +1,37 @@
+.create-model-background-container{
+    width:70vw;
+    background-color: var(--color-1);
+}
+
+.create-model-background-container h1 {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+
 .create-model-page {
+    width: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .form-size-list-field-container {
     position: relative;
     width: 15vw;
-    max-height: 36vh;
+    max-height: 24vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: auto;
+
+}
+.form-size-list-field-container label{
+    margin-right: 1rem;
 }
 
 .form-size-list-field-container:hover {
-    border-bottom: var(--color-1) 2px solid;
-    overflow: auto;
 }
 
 .form-field-container {
@@ -22,6 +40,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.form-field-container input{
+    height: 2.3rem !important;
+    border-bottom: var(--background) 2px solid;
 }
 
 .form-field-container span {
@@ -50,18 +72,69 @@
 #create-model-form {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color:var(--color-text) !important;
+}
 
+#create-model-form > div {
+    order: 0;
+}
+
+#create-model-form > button {
+    order: 1;
+    margin-top: 1rem;
+    width: calc(70vw - 4rem);
 }
 
 .main-info-container, .info-container, .images-container {
     width: 30%;
     max-width: 30%;
+
+    padding: 2rem 3rem 2rem 3rem;
+
+
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 }
 
 ::file-selector-button {
 
 }
 
+.model-data-container{
+    display: flex;
+    width: 42vw;
+    margin: 1rem 2rem 0 2rem;
+}
 
+.model-data-info{
+    position: relative;
+    width: 30vw;
+    max-height: 9rem;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+}
+.model-data-info span{
+
+    padding: 0.5rem 0.5rem 0rem 0.5rem;
+}
+
+#create-factory-short-form{
+    display: flex;
+    align-items: start;
+}
+#create-factory-short-form div{
+    margin-right: 1rem;
+}
+
+#create-factory-short-form input{
+    height: 2rem;
+    width:10rem;
+    border-bottom: var(--background) 2px solid;
+
+}
 

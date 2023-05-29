@@ -28,7 +28,7 @@ export const CreateModel = () => {
                 if (result.status >= 200 && result.status < 300) {
                     alert('Successfully create');
                 }
-            })
+            }).catch(error=>alert("Something went wrong"))
     }
 
     const handleShowCreateFactory = () => {

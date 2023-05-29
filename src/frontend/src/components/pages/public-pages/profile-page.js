@@ -8,12 +8,16 @@ export const ProfilePage = () => {
     const {user} = useAuth();
 
     return (
-        <div>
+        <div className={"profile-page"}>
             <h1>{userNameFromUserData(user)} profile</h1>
             {(user?.role === CONFIG["user-role"].Owner
                     || user?.role === CONFIG["user-role"].Manager)
-                && <Link className={'link'} to={'../' + ROUTES_CONFIG.private.manager["manager"]}>Manager Panel</Link>}
-            <Link className={"link"} to={"../" + ROUTES_CONFIG.public.favorites}>My Favorites</Link>
+                && <Link className={'link'} to={'../' + ROUTES_CONFIG.private.manager["manager"]}>
+                    <button>Manager Panel</button>
+                </Link>}
+            <Link className={"link"} to={"../" + ROUTES_CONFIG.public.favorites}>
+                <button>My Favorites</button>
+            </Link>
         </div>
     )
 }

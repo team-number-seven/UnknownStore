@@ -14,6 +14,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
     const handleCategoryLink = (category = {}) => {
         resetFilters();
         if (category.id) {
+            resetFilters();
             changeFilters({categoriesId: category.id, gendersId: category.gender.id, ageTypesId: category.ageType.id});
         }
     }
@@ -71,7 +72,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
         let girlsCategoryGroup = currentCategories.filter((currentCategory) => currentCategory.gender.title.toLowerCase() === girlsSearchTerm.toLowerCase());
 
         pieceForRender.push(
-            <div className={"nav-list-half"} key={++key}>
+            <div className={"nav-list-half left-nav-side"} key={++key}>
                 <div className={"nav-list-half-header"}>
                     <span>For Boys</span>
                 </div>
@@ -102,7 +103,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
         );
 
         pieceForRender.push(
-            <div className={"nav-list-half .nav-list-short"} key={++key}>
+            <div className={"nav-list-half left-nav-side "} key={++key}>
                 <div className={"nav-list-half-header"}>
                     <span>For Girls</span>
                 </div>

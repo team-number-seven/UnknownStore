@@ -78,7 +78,7 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
     return (
 
         <div className={'create-model-background-container'}>
-
+            <h1>Create Model</h1>
 
 
             <form id={'create-model-form'}
@@ -97,10 +97,10 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
                                        value: true,
                                        message: 'This field cannot be empty',
                                    },
-                                   pattern: {
+                                  /* pattern: {
                                        value: /^[a-zA-Z\s]*$/,
                                        message: 'Invalid title',
-                                   }
+                                   }*/
                                })}
                         />
                         <div className={'input-error-container'}>
@@ -122,10 +122,10 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
                                        value: true,
                                        message: 'This field cannot be empty',
                                    },
-                                   pattern: {
+                                  /* pattern: {
                                        value: /[^a-zA-Z\d]/g,
                                        message: 'Invalid description',
-                                   }
+                                   }*/
                                })}
                         />
                         <div className={'input-error-container'}>
@@ -335,8 +335,8 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
                         </div>
 
                         <span>
-                            No factory?
-                            <span className={'link'} onClick={handleShowCreateFactory}>
+                            {"No factory? "}
+                            <span className={'link'} onClick={handleShowCreateFactory} style={{textDecoration:"underline"}}>
                                 Create one!
                             </span>
                         </span>
@@ -395,7 +395,12 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
 
                 </div>
 
+
+
                 <div className={'images-container'}>
+
+                    <span>Main images</span>
+
                     <input type={'file'}
                            accept={'image/*'}
                            {...register(createModelFormValues.mainImage, {
@@ -412,6 +417,8 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
                             </small>
                         }
                     </div>
+
+                    <span>Additional images</span>
 
                     <input type={'file'}
                            accept={'image/*'}
@@ -436,13 +443,20 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
                         Upload
                     </button>
                 </div>
-
+                <button className={"green"} type="submit"
+                        disabled={!isValid || !modelDataIsNotEmpty}
+                >
+                    Upload
+                </button>
 
             </form>
 
             <div className={'model-data-container'}>
-                {modelDataDisplay(modelData)}
                 <ModelDataForModelCreate onFillPair={onUpdateModelDataHandler}/>
+
+                <div className={"model-data-info"}>
+                    {modelDataDisplay(modelData)}
+                </div>
             </div>
 
         </div>
