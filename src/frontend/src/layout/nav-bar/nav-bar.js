@@ -34,7 +34,6 @@ export const NavBar = ({onSearch}) => {
         } else if (e.type === "click") {
             const genderId = categoryParams.genders.find(x => x.title === "Men").id;
             const ageId = categoryParams.ageTypes.find(x => x.title === "Adults").id;
-            resetFilters();
             changeFilters({gendersId: genderId, ageTypesId: ageId});
 
             navigate("models");
@@ -58,7 +57,6 @@ export const NavBar = ({onSearch}) => {
             const genderId = categoryParams.genders.find(x => x.title === "Women").id;
             const ageId = categoryParams.ageTypes.find(x => x.title === "Adults").id;
 
-            resetFilters();
             changeFilters({gendersId: genderId, ageTypesId: ageId});
 
             navigate("models");
@@ -82,7 +80,6 @@ export const NavBar = ({onSearch}) => {
         } else if (e.type === "click") {
             const ageId = categoryParams.ageTypes.find(x => x.title === "Kids").id;
 
-            resetFilters();
             changeFilters({ageTypesId: ageId, gendersId: null});
 
             navigate("models");

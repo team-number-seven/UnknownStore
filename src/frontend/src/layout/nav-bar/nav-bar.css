@@ -136,7 +136,12 @@ div.user-panel > div{
     justify-content: start;
     flex-direction: column;
     flex-wrap: nowrap;
-    padding: 1rem 1rem;
+    padding: 1rem 5rem 0 0;
+}
+
+.left-nav-side{
+    padding-left: 13rem !important;
+
 }
 
 .nav-list-half-header {

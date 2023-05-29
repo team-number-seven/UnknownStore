@@ -278,3 +278,12 @@ form.container {
 .white{
     color:white;
 }
+
+
+.favorite-page{
+    display: flex;
+    flex-wrap: wrap;
+    width:80vw;
+    background: white;
+    margin-left: 10vw;
+}

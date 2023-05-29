@@ -1,15 +1,14 @@
 import {Link} from "react-router-dom";
 import {ROUTES_CONFIG} from "../../../../../configs/routes-config";
+import "../../private-pages.css";
 
 export const ManagerPanelPage = () => {
 
     return (
-        <div>
+        <div className={"manager-page"}>
+            <h1>Manager Panel</h1>
             <Link to={'../' + ROUTES_CONFIG.private.manager["create-model"]}>
-                <button className={'link'}>Create Model</button>
-            </Link>
-            <Link to={'../' + ROUTES_CONFIG.private.manager["create-factory"]}>
-                <button className={'link'}>Create Factory</button>
+                <button >Create Model</button>
             </Link>
         </div>
     )

@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import API from "../../../server/API";
 import {CONFIG} from "../../../configs/config";
 import {ModelViewBox} from "./models-page/model-view/model-view-box";
+import "./pages.css";
 
 export const FavoritesPage = () => {
     const {user, favoritesLoaded} = useAuth();
@@ -40,7 +41,7 @@ export const FavoritesPage = () => {
     }, [user, favoritesLoaded]);
 
     return (
-        <>
+        <div className={"favorite-page"}>
             {isLoading && <div>Loading...</div>}
             {!isLoading && !models.length && <div>No Favorites</div>}
             {!isLoading &&
@@ -48,6 +49,6 @@ export const FavoritesPage = () => {
                 models.map((model, key = 0) => (
                     <ModelViewBox id={model['modelDto'].id} model={model['modelDto']} key={++key}/>
                 ))}
-        </>
+        </div>
     );
 };
