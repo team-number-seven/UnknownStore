@@ -51,7 +51,7 @@ export const ModelViewBox = ({model}) => {
     return (
         <div className={"model-view-box"} onClick={handleModelView} onMouseEnter={handleShowBoxInfo}
              onMouseLeave={handleHideBoxInfo}>
-            <Link to={`/models/${model.id}`}>
+            <Link to={`/models/${model.id}`} replace={true}>
                 <div className={"model-view-image"}>
 
                     <img src={`data:${model.mainImage["contentType"]};base64, ` + model.mainImage["fileContents"]}

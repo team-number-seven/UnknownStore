@@ -97,10 +97,10 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
                                        value: true,
                                        message: 'This field cannot be empty',
                                    },
-                                   pattern: {
+                                  /* pattern: {
                                        value: /^[a-zA-Z\s]*$/,
                                        message: 'Invalid title',
-                                   }
+                                   }*/
                                })}
                         />
                         <div className={'input-error-container'}>
@@ -122,10 +122,10 @@ export const CreateModelForm = ({listValues, onModelCreate, showCreateFactory}) 
                                        value: true,
                                        message: 'This field cannot be empty',
                                    },
-                                   pattern: {
+                                  /* pattern: {
                                        value: /[^a-zA-Z\d]/g,
                                        message: 'Invalid description',
-                                   }
+                                   }*/
                                })}
                         />
                         <div className={'input-error-container'}>
