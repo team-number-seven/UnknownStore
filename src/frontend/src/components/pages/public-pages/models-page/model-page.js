@@ -38,7 +38,7 @@ const defaultModelState = {
 }
 
 export const ModelPage = () => {
-    const {user, isAuthenticated, refreshUser} = useAuth();
+    const {user, isAuthenticated, refreshUser, setUser} = useAuth();
     const [model, setModel] = useState(defaultModelState);
 
     const [toggleLike, setToggleLike] = useState(false);
@@ -47,7 +47,10 @@ export const ModelPage = () => {
 
     useEffect(() => {
         setToggleLike(user?.favorites?.includes(model.id))
-    }, [user?.favorites]);
+    }, [])
+    useEffect(() => {
+        setToggleLike(user?.favorites?.includes(model.id))
+    }, [user, user?.favorites]);
 
     useEffect(() => {
         API.get(CONFIG.GET.model.get, {params: {id}})
@@ -60,7 +63,8 @@ export const ModelPage = () => {
     }, [id]);
 
     const handleModelLike = () => {
-        user.favorites?.push(model.id);
+        setUser({...user, favorites: user?.favorites.concat([model.id])});
+
         if (isAuthenticated) {
             API.post(CONFIG.POST.user["add-favorite"],
                 {UserId: user.id, ModelId: model.id}, {headers: {"Authorization": `Bearer ${user.access_token}`}})
@@ -72,7 +76,9 @@ export const ModelPage = () => {
     }
 
     const handleModelUnlike = () => {
-        user.favorites = user.favorites.filter(favorite => favorite !== model.id);
+        const newFavoriteList = user.favorites.filter(favorite => favorite !== model.id);
+        setUser({...user, favorites: newFavoriteList});
+
         if (isAuthenticated) {
             API.delete(CONFIG.DELETE.user["remove-favorite"],
                 {
@@ -95,7 +101,6 @@ export const ModelPage = () => {
                     {model.images && model.images.length > 0 && (
                         <Swiper
                             spaceBetween={30}
-                            effect={"fade"}
                             navigation={true}
                             pagination={{
                                 clickable: true,
@@ -103,7 +108,12 @@ export const ModelPage = () => {
                             modules={[EffectFade, Navigation, Pagination]}
                             className="mySwiper"
                         >
-                            {model.images.map((image, index) => (
+                            <SwiperSlide key={0}>
+                                <img className={"model-image"}
+                                     src={`data:${model.mainImage.contentType};base64,${model.mainImage.fileContents}`}
+                                     alt={`Image ${1}`}/>
+                            </SwiperSlide>
+                            {model.images.map((image, index = 1) => (
                                 <SwiperSlide key={index}>
                                     <img className={"model-image"}
                                          src={`data:${image.contentType};base64,${image.fileContents}`}
@@ -122,7 +132,7 @@ export const ModelPage = () => {
 
                         <div className="model-header-right">
                             <p>{model.price + " $"}</p>
-                            {toggleLike ?
+                            {toggleLike || user?.favorites?.includes(model.id) ?
                                 <button className={"btn-lighter"} onClick={handleModelUnlike}>Unlike</button>
                                 :
                                 <button onClick={handleModelLike}>Like</button>
