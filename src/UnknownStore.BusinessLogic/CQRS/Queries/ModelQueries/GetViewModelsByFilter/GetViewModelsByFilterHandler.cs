@@ -50,14 +50,14 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetViewModelsByFi
             models = models.FilterByBrands(filter.BrandsId?.ToList());
             models = models.FilterByAgeTypesId(filter.AgeTypesId?.ToList());
             models = models.FilterByCategories(filter.CategoriesId?.ToList());
+            models = models.FilterBySubCategories(filter.SubCategoriesId.ToList());
             models = models.FilterByColors(filter.ColorsId?.ToList());
             models = models.FilterByGenders(filter.GendersId?.ToList());
             models = models.FilterByIsAvailable(filter.IsAvailable);
             models = models.FilterByMaxPrice(filter.MaxPrice);
-            models = models.FilterByMaxPrice(filter.MinPrice);
+            models = models.FilterByMinPrice(filter.MinPrice);
             models = models.FilterBySeasons(filter.SeasonsId?.ToList());
             models = models.FilterByTitle(filter.Title);
-            models = models.FilterBySubCategories(filter.SubCategoryId);
 
             return await models.OrderBy(m=>m.Title).ToListAsync(cancellationToken);
         }

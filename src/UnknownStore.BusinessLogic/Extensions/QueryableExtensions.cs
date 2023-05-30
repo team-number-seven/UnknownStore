@@ -38,12 +38,6 @@ namespace UnknownStore.BusinessLogic.Extensions
                 : models.Where(i => colorsId.Contains(i.ColorId));
         }
 
-        public static IQueryable<Model> FilterByCategories(this IQueryable<Model> models, IList<Guid> categoriesId)
-        {
-            return categoriesId.IsNullOrEmpty()
-                ? models
-                : models.Where(i => categoriesId.Contains(i.SubCategory.CategoryId));
-        }
 
         public static IQueryable<Model> FilterBySeasons(this IQueryable<Model> models, IList<Guid> seasonsId)
         {
@@ -80,11 +74,18 @@ namespace UnknownStore.BusinessLogic.Extensions
                 : models;
         }
 
-        public static IQueryable<Model> FilterBySubCategories(this IQueryable<Model> models, Guid? subCategoryId)
+        public static IQueryable<Model> FilterBySubCategories(this IQueryable<Model> models,
+            IList<Guid> subCategoriesId)
         {
-            return models.IsNullOrEmpty() || subCategoryId is null
+            return subCategoriesId.IsNullOrEmpty()
                 ? models
-                : models.Where(i => i.SubCategory.Id == subCategoryId);
+                : models.Where(i => subCategoriesId.Contains(i.SubCategoryId));
+        }
+        public static IQueryable<Model> FilterByCategories(this IQueryable<Model> models, IList<Guid> categoriesId)
+        {
+            return categoriesId.IsNullOrEmpty()
+                ? models
+                : models.Where(i => categoriesId.Contains(i.SubCategory.CategoryId));
         }
 
         //todo
