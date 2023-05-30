@@ -7,7 +7,7 @@ import {cutString} from "../../../../utilites/cutString";
 
 export const ModelViewBox = ({model}) => {
 
-    const {user, isAuthenticated} = useAuth();
+    const {user, isAuthenticated, setUser} = useAuth();
 
     const [showBoxInfo, setShowBoxInfo] = useState(false);
 
@@ -23,7 +23,7 @@ export const ModelViewBox = ({model}) => {
     }
 
     const handleModelLike = () => {
-        user.favorites?.push(model.id);
+        setUser({...user, favorites: user?.favorites.concat([model.id])});
         if (isAuthenticated) {
             API.post(CONFIG.POST.user["add-favorite"],
                 {UserId: user.id, ModelId: model.id}, {headers: {"Authorization": `Bearer ${user.access_token}`}})
@@ -35,7 +35,8 @@ export const ModelViewBox = ({model}) => {
     }
 
     const handleModelUnlike = () => {
-        user.favorites = user.favorites.filter(favorite => favorite !== model.id);
+        const newFavoriteList = user.favorites.filter(favorite => favorite !== model.id);
+        setUser({...user, favorites: newFavoriteList});
         if (isAuthenticated) {
             API.delete(CONFIG.DELETE.user["remove-favorite"],
                 {
