@@ -13,6 +13,7 @@ export const FiltersProvider = ({children}) => {
         colorsId: null,
         categoriesId: null,
         seasonsId: null,
+        subCategoriesId:null,
     });
     const [filtersIsEmpty, setFiltersIsEmpty] = useState(true);
 

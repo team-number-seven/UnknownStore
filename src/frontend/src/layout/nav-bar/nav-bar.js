@@ -149,7 +149,7 @@ export const NavBar = ({onSearch}) => {
                 </div>
                 <div className={'user-panel'}>
                     <Search/>
-                    <span><Link className={'fake-link'} to={ROUTES_CONFIG.public.bag}>Bag</Link></span>
+                    <span><Link className={'fake-link'} to={ROUTES_CONFIG.public.favorites}>Favorites</Link></span>
 
                     <span>
                         <Link className={'fake-link'} to={ROUTES_CONFIG.public.profile}>
