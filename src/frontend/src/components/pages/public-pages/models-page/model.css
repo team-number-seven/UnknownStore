@@ -20,7 +20,7 @@
 }
 
 .model-image {
-    object-fit: contain;
+    object-fit: cover;
     width: 60vh;
     height: 60vh;
 }
