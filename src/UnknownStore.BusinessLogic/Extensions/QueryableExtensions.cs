@@ -81,6 +81,7 @@ namespace UnknownStore.BusinessLogic.Extensions
                 ? models
                 : models.Where(i => subCategoriesId.Contains(i.SubCategoryId));
         }
+
         public static IQueryable<Model> FilterByCategories(this IQueryable<Model> models, IList<Guid> categoriesId)
         {
             return categoriesId.IsNullOrEmpty()
