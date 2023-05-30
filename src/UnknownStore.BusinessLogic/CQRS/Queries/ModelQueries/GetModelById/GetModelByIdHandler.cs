@@ -59,7 +59,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetModelById
             {
                 new FileExtensionContentTypeProvider().TryGetContentType(image.Format, out contentType);
                 imageDtos.Add(new FileContentResult(await File.ReadAllBytesAsync
-                    (model.MainImage.Path, cancellationToken), contentType));
+                    (image.Path, cancellationToken), contentType));
             }
 
             modelDto.Images = imageDtos;
