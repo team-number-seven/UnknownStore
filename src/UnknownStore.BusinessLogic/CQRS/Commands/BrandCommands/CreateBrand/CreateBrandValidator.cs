@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UnknownStore.Common.CQRS.Validation;
@@ -23,10 +22,14 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.BrandCommands.CreateBrand
         {
             var dto = request.BrandDto;
             if (dto is null)
+            {
                 return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(request.BrandDto)));
+            }
 
             if (await _context.Countries.FindAsync(dto.CountryId) is null)
+            {
                 return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.CountryId)));
+            }
 
             return await _context.Brands.FirstOrDefaultAsync(c => c.Title == dto.Title, cancellationToken) is not null
                 ? ValidationResult.Fail(ValidationMessenger.ObjectAlreadyExists(nameof(dto.Title)))

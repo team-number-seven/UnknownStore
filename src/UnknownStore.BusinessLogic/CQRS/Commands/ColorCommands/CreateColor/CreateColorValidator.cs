@@ -22,7 +22,9 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.ColorCommands.CreateColor
         {
             var dto = request.ColorDto;
             if (dto is null)
+            {
                 return ValidationResult.Fail(ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(request.ColorDto)));
+            }
 
             return await _context.Colors.FirstOrDefaultAsync(c => c.HexCode == dto.HexCode || c.Title == dto.Title,
                 cancellationToken) is not null

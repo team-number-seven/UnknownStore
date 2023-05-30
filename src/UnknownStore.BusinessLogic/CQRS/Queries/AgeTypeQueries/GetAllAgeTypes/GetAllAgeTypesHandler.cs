@@ -33,7 +33,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.AgeTypeQueries.GetAllAgeTypes
 
         public async Task<ResponseBase> Handle(GetAllAgeTypesQuery request, CancellationToken cancellationToken)
         {
-            var ageTypes = await _context.AgeTypes.OrderBy(c=>c.Title).ToListAsync(cancellationToken);
+            var ageTypes = await _context.AgeTypes.OrderBy(c => c.Title).ToListAsync(cancellationToken);
             var ageTypeDtos = MapAgeTypeToGetAgeTypeDtos(ageTypes);
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllAgeTypesHandler)));
             return new GetAllAgeTypesResponse(ageTypeDtos);

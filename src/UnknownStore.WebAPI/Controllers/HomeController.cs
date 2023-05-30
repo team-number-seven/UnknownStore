@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UnknownStore.BusinessLogic.CQRS.Commands.DeliveryCityCommands.CreateDeliveryCity;
-using UnknownStore.BusinessLogic.CQRS.Commands.ModelCommands.CreateModel;
 using UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.CreateOrder;
 using UnknownStore.Common.DataTransferObjects.Create;
 using UnknownStore.DAL.Interfaces;

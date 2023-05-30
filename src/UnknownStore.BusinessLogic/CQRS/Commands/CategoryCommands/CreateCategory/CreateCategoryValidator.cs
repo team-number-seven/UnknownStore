@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using UnknownStore.Common.CQRS.Validation;
 using UnknownStore.DAL.Interfaces;
@@ -22,11 +21,15 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.CategoryCommands.CreateCatego
         {
             var dto = request.CategoryDto;
             if (dto is null)
+            {
                 return ValidationResult.Fail(
                     ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(request.CategoryDto)));
+            }
 
             if (await _context.AgeTypes.FindAsync(dto.AgeTypeId) is null)
+            {
                 return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.AgeTypeId)));
+            }
 
             return await _context.Genders.FindAsync(dto.GenderId) is null
                 ? ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.GenderId)))

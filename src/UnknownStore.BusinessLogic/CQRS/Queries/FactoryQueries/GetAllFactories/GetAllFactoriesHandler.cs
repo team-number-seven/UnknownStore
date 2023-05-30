@@ -33,7 +33,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.FactoryQueries.GetAllFactories
 
         public async Task<ResponseBase> Handle(GetAllFactoriesQuery request, CancellationToken cancellationToken)
         {
-            var factories = await _context.Factories.OrderBy(f=>f.Title).ToListAsync(cancellationToken);
+            var factories = await _context.Factories.OrderBy(f => f.Title).ToListAsync(cancellationToken);
             var factoryDtos = MapFactoriesToFactoryDtos(factories);
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllFactoriesHandler)));
             return new GetAllFactoriesResponse(factoryDtos);

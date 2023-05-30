@@ -33,7 +33,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.SeasonQueries.GetAllSeasons
 
         public async Task<ResponseBase> Handle(GetAllSeasonsQuery request, CancellationToken cancellationToken)
         {
-            var seasons = await _context.Seasons.OrderBy(s=>s.Title).ToListAsync(cancellationToken);
+            var seasons = await _context.Seasons.OrderBy(s => s.Title).ToListAsync(cancellationToken);
             var seasonDtos = MapSeasonsToGetSeasonDtos(seasons);
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllSeasonsHandler)));
             return new GetAllSeasonsResponse(seasonDtos);

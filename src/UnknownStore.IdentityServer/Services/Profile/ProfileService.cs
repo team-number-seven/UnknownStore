@@ -44,7 +44,10 @@ namespace UnknownStore.IdentityServer.Services.Profile
                     if (_roleManager.SupportsRoleClaims)
                     {
                         var role = await _roleManager.FindByNameAsync(roleName);
-                        if (role != null) claims.AddRange(await _roleManager.GetClaimsAsync(role));
+                        if (role != null)
+                        {
+                            claims.AddRange(await _roleManager.GetClaimsAsync(role));
+                        }
                     }
                 }
             }

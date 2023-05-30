@@ -1,4 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;600&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;700;800;900&display=swap');
 
 :root {
@@ -13,9 +14,7 @@
     --box-color: white;
 }
 
-::-ms-reveal {
-    display: none;
-}
+::-ms-reveal { display: none; }
 
 * {
     margin: 0;
@@ -33,7 +32,7 @@ body {
 
 #login {
     align-items: center;
-    background-color:var(--background);
+    background-color: var(--background);
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -314,7 +313,7 @@ span {
     justify-content: center;
     overflow: hidden;
     position: relative;
-    width: 100vw;   
+    width: 100vw;
 }
 
 .success-registrated h1 {
@@ -337,11 +336,12 @@ span {
     position: relative;
     width: 100vw;
 }
+
 .not-found-page h1 {
-    line-height:15rem;
     font-size: 15rem;
     font-weight: 900;
-    padding:0;
+    line-height: 15rem;
+    padding: 0;
 }
 
 .access-denied-page {
@@ -360,9 +360,9 @@ span {
 }
 
 .access-denied-page h1 {
-    line-height: 15rem;
     font-size: 15rem;
     font-weight: 900;
+    line-height: 15rem;
     padding: 0;
 }
 
@@ -380,10 +380,11 @@ span {
     position: relative;
     width: 100vw;
 }
+
 .email-confirm h1 {
-    line-height: 15rem;
     font-size: 15rem;
     font-weight: 900;
+    line-height: 15rem;
     padding: 0;
 }
 
@@ -398,22 +399,15 @@ span {
     -webkit-animation: color-change-8x-white 12s linear infinite alternate both;
     animation: color-change-8x-white 12s linear infinite alternate both
 }
-@-webkit-keyframes color-change-8x-white {
-    0% {
-        background: white;
-    }
 
-    100% {
-        background: #74b9ff;
-    }
+@-webkit-keyframes color-change-8x-white {
+    0% { background: white; }
+
+    100% { background: #74b9ff; }
 }
 
 @keyframes color-change-8x-white {
-    0% {
-        background: white;
-    }
+    0% { background: white; }
 
-    100% {
-        background: #74b9ff;
-    }
+    100% { background: #74b9ff; }
 }

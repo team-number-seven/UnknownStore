@@ -60,7 +60,11 @@ namespace UnknownStore.IdentityServer.Controllers
         public async Task<IActionResult> Login([FromQuery] string returnUrl)
         {
             var externalProviders = await _signInManager.GetExternalAuthenticationSchemesAsync();
-            if (string.IsNullOrEmpty(returnUrl)) return View("_NotFound");
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return View("_NotFound");
+            }
+
             var loginViewModel = _modelsBuilder.LoginViewModelBuilder.Build(returnUrl, externalProviders);
             return View(loginViewModel);
         }
@@ -83,7 +87,10 @@ namespace UnknownStore.IdentityServer.Controllers
                 }
 
                 var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRemember, true);
-                if (result.Succeeded) return Redirect(model.ReturnUrl);
+                if (result.Succeeded)
+                {
+                    return Redirect(model.ReturnUrl);
+                }
             }
 
             await _interaction.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
@@ -116,7 +123,11 @@ namespace UnknownStore.IdentityServer.Controllers
 
             var result = await _signInManager.ExternalLoginSignInAsync(externalLoginInfo.LoginProvider,
                 externalLoginInfo.ProviderKey, false, false);
-            if (result.Succeeded) return Redirect(returnUrl);
+            if (result.Succeeded)
+            {
+                return Redirect(returnUrl);
+            }
+
             return RedirectToAction("RegisterExternal", new { returnUrl });
         }
 
@@ -166,7 +177,10 @@ namespace UnknownStore.IdentityServer.Controllers
         [HttpGet]
         public IActionResult Register(string returnUrl)
         {
-            if (string.IsNullOrEmpty(returnUrl)) return View("_NotFound");
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return View("_NotFound");
+            }
 
             var registerViewModel = _modelsBuilder.RegisterViewModelBuilder.Build(returnUrl);
             return View(registerViewModel);
@@ -231,7 +245,11 @@ namespace UnknownStore.IdentityServer.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout(string logoutId)
         {
-            if (string.IsNullOrEmpty(logoutId)) return View("_NotFound");
+            if (string.IsNullOrEmpty(logoutId))
+            {
+                return View("_NotFound");
+            }
+
             await _signInManager.SignOutAsync();
             var logoutResult = await _interaction.GetLogoutContextAsync(logoutId);
             return Redirect(logoutResult.PostLogoutRedirectUri);

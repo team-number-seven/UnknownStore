@@ -31,13 +31,19 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.UpdateOrderStat
 
             var order = await _context.Orders.FindAsync(dto.OrderId);
             if (dto.OrderStatus.IsNullOrEmpty() is false)
+            {
                 order.OrderStatus = Enum.Parse<OrderStatus>(dto.OrderStatus);
+            }
 
             if (dto.PickUpBefore.IsNullOrEmpty() is false)
+            {
                 order.PickUpBefore = dto.PickUpBefore;
+            }
 
             if (dto.OrderStatusDescription.IsNullOrEmpty() is false)
+            {
                 order.OrderStatusDescription = dto.OrderStatusDescription;
+            }
 
             _context.Orders.Update(order);
             await _context.SaveChangesAsync(cancellationToken);

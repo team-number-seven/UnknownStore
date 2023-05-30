@@ -25,15 +25,21 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.OrderCommands.UpdateOrderStat
         {
             var dto = request.UpdateOrderStatusDto;
             if (dto is null)
+            {
                 return ValidationResult.Fail(
                     ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(request.UpdateOrderStatusDto)));
+            }
 
             if (await _context.Orders.FindAsync(dto.OrderId) is null)
+            {
                 return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.OrderId)));
+            }
 
             if (dto.PickUpBefore.IsNullOrEmpty() is false && DateTime.TryParse(dto.PickUpBefore, out var _) is false)
+            {
                 return ValidationResult.Fail(
                     ValidationMessenger.InvalidFormat(nameof(dto.PickUpBefore), dto.PickUpBefore));
+            }
 
             return Enum.TryParse<OrderStatus>(dto.OrderStatus, out var _) is false
                 ? ValidationResult.Fail(ValidationMessenger.InvalidValue(nameof(dto.OrderStatus), dto.OrderStatus))

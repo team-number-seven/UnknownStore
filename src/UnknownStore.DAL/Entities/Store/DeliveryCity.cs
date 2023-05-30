@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UnknownStore.DAL.Entities.Store
 {
-    public class DeliveryCity:BaseEntity
+    public class DeliveryCity : BaseEntity
     {
         public virtual City City { get; set; }
         public Guid CityId { get; set; }

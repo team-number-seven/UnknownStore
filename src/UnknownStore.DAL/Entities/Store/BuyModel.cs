@@ -3,7 +3,7 @@ using UnknownStore.DAL.Entities.Identity;
 
 namespace UnknownStore.DAL.Entities.Store
 {
-    public class BuyModel:BaseEntity
+    public class BuyModel : BaseEntity
     {
         public int Amount { get; set; }
 

@@ -2,10 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using UnknownStore.BusinessLogic.CQRS.Commands.FactoryCommand;
-using UnknownStore.BusinessLogic.CQRS.Queries.FactoryQueries.GetAllFactories;
 using UnknownStore.BusinessLogic.CQRS.Queries.GenderQueries.GetAllGenders;
-using UnknownStore.Common.DataTransferObjects.Create;
 
 namespace UnknownStore.WebAPI.Controllers
 {

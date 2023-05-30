@@ -23,7 +23,10 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.UserCommands.DeleteFavoriteIt
         {
             var user = await _context.Users.FindAsync(request.UserId);
             if (user is null)
+            {
                 return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(request.UserId)));
+            }
+
             return user.FavoriteModels.FirstOrDefault(c => c.Id == request.FavoriteItemId) is null
                 ? ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(request.FavoriteItemId)))
                 : ValidationResult.Success;

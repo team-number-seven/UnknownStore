@@ -33,7 +33,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ColorQueries.GetAllColors
 
         public async Task<ResponseBase> Handle(GetAllColorsQuery request, CancellationToken cancellationToken)
         {
-            var colors = await _context.Colors.OrderBy(c=>c.Title).ToListAsync(cancellationToken);
+            var colors = await _context.Colors.OrderBy(c => c.Title).ToListAsync(cancellationToken);
             var colorDtos = MapColorsToColorDtos(colors);
             _logger.LogInformation(LoggerMessages.QueryExecutedSuccessfully(nameof(GetAllColorsHandler)));
             return new GetAllColorsResponse(colorDtos);

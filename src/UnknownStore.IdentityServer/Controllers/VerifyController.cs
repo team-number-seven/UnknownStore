@@ -25,15 +25,23 @@ namespace UnknownStore.IdentityServer.Controllers
         public async Task<IActionResult> DeclineEmail([FromQuery] ConfirmationEmail model)
         {
             if (StringHelper.HasNullOrEmptyStrings(model.UserId, model.ReturnUrl, model.TokenConfirmation))
+            {
                 return View("_NotFound");
+            }
 
             var user = await _userManager.FindByIdAsync(model.UserId);
-            if (user is null) return View("_NotFound");
+            if (user is null)
+            {
+                return View("_NotFound");
+            }
 
             var isVerifyUserToken = await _userManager.VerifyUserTokenAsync(user,
                 _userManager.Options.Tokens.EmailConfirmationTokenProvider, "EmailConfirmation",
                 model.TokenConfirmation);
-            if (isVerifyUserToken is false) return View("_NotFound");
+            if (isVerifyUserToken is false)
+            {
+                return View("_NotFound");
+            }
 
             await _userManager.DeleteAsync(user);
 
@@ -45,15 +53,26 @@ namespace UnknownStore.IdentityServer.Controllers
         public async Task<IActionResult> ConfirmEmail([FromQuery] ConfirmationEmail model)
         {
             if (StringHelper.HasNullOrEmptyStrings(model.UserId, model.ReturnUrl, model.TokenConfirmation))
+            {
                 return View("_NotFound");
+            }
 
             var user = await _userManager.FindByIdAsync(model.UserId);
-            if (user == null) return View("_NotFound");
+            if (user == null)
+            {
+                return View("_NotFound");
+            }
 
-            if (user.EmailConfirmed) return Redirect(model.ReturnUrl);
+            if (user.EmailConfirmed)
+            {
+                return Redirect(model.ReturnUrl);
+            }
 
             var result = await _userManager.ConfirmEmailAsync(user, model.TokenConfirmation);
-            if (result.Succeeded) return Redirect(model.ReturnUrl);
+            if (result.Succeeded)
+            {
+                return Redirect(model.ReturnUrl);
+            }
 
             return View("_NotFound");
         }

@@ -7,6 +7,6 @@
         SentToDeliveryAddress,
         ArrivedAtDeliveryPoint,
         Delivered,
-        Cancelled,
+        Cancelled
     }
 }

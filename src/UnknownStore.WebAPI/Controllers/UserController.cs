@@ -41,19 +41,25 @@ namespace UnknownStore.WebAPI.Controllers
         public async Task<IActionResult> GetAllFavoriteModels([FromQuery] Guid userId)
         {
             Guid.TryParse(User!.FindFirstValue("id"), out var id);
-            if (id != userId) return StatusCode(StatusCodes.Status400BadRequest, new { error = "Invalid userId" });
+            if (id != userId)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { error = "Invalid userId" });
+            }
 
             var response = await _mediator.Send(new GetFavoriteModelsQuery(userId));
             return StatusCode((int)response.StatusCode, response);
         }
 
-        
+
         [HttpDelete]
         [Route("remove-favorite")]
         public async Task<IActionResult> RemoveFavorite([FromQuery] Guid modelId)
         {
             var parseResult = Guid.TryParse(User!.FindFirstValue("id"), out var userId);
-            if (parseResult is false) return StatusCode(StatusCodes.Status400BadRequest, new { error = "Invalid userId" });
+            if (parseResult is false)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { error = "Invalid userId" });
+            }
 
             var response = await _mediator.Send(new DeleteFavoriteItemCommand(userId, modelId));
             return StatusCode((int)response.StatusCode, response);

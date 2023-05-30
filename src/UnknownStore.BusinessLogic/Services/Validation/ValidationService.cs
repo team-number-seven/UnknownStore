@@ -9,7 +9,10 @@ namespace UnknownStore.BusinessLogic.Services.Validation
         {
             foreach (var (value, typeObject) in objects)
                 if (value is null)
+                {
                     return ValidationResult.Fail(LoggerMessages.ObjectPropertyIsNullOrEmptyMessage(typeObject));
+                }
+
             return ValidationResult.Success;
         }
     }

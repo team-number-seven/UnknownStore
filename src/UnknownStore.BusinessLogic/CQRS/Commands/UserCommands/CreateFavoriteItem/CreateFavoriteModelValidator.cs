@@ -22,11 +22,15 @@ namespace UnknownStore.BusinessLogic.CQRS.Commands.UserCommands.CreateFavoriteIt
         {
             var dto = request.FavoriteModelDto;
             if (dto is null)
+            {
                 return ValidationResult.Fail(
                     ValidationMessenger.PropertyCannotBeNullOrEmpty(nameof(request.FavoriteModelDto)));
+            }
 
             if (await _context.Users.FindAsync(dto.UserId) is null)
+            {
                 return ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.UserId)));
+            }
 
             return await _context.Models.FindAsync(dto.ModelId) is null
                 ? ValidationResult.Fail(ValidationMessenger.NotFoundEntity(nameof(dto.ModelId)))

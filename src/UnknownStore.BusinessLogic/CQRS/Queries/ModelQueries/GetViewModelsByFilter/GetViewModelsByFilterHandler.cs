@@ -50,7 +50,7 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetViewModelsByFi
             models = models.FilterByBrands(filter.BrandsId?.ToList());
             models = models.FilterByAgeTypesId(filter.AgeTypesId?.ToList());
             models = models.FilterByCategories(filter.CategoriesId?.ToList());
-            models = models.FilterBySubCategories(filter.SubCategoriesId.ToList());
+            models = models.FilterBySubCategories(filter.SubCategoriesId?.ToList());
             models = models.FilterByColors(filter.ColorsId?.ToList());
             models = models.FilterByGenders(filter.GendersId?.ToList());
             models = models.FilterByIsAvailable(filter.IsAvailable);
