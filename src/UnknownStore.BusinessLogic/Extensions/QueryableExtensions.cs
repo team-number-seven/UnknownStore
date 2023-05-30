@@ -80,6 +80,12 @@ namespace UnknownStore.BusinessLogic.Extensions
                 : models;
         }
 
+        public static IQueryable<Model> FilterBySubCategories(this IQueryable<Model> models, Guid? subCategoryId)
+        {
+            return models.IsNullOrEmpty() || subCategoryId is null
+                ? models
+                : models.Where(i => i.SubCategory.Id == subCategoryId);
+        }
 
         //todo
         private static IQueryable<Model> FilterBySizes(this IQueryable<Model> models, IList<Guid> sizes)

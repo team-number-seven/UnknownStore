@@ -3,7 +3,8 @@
     "UnknownStore.WebAPI": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
-      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "launchBrowser": true,
       "applicationUrl": "https://localhost:2001;http://localhost:2000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

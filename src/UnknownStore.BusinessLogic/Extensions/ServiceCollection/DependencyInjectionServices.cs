@@ -18,6 +18,7 @@ namespace UnknownStore.BusinessLogic.Extensions.ServiceCollection
             services.AddJwtAuthentication(configuration);
             services.AddAuthorizationPolicy();
             services.AddCorsPolicy(configuration);
+
             return services;
         }
     }
