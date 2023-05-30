@@ -6,7 +6,7 @@ export const Header = () => {
     const {isAuthenticated, signIn, signOut} = useAuth();
     return (
         <header className={"header"}>
-            <span><Link className={"fake-link"} to={"/"}>UnknownStore</Link></span>
+            <span id={"logo"}><Link className={"fake-link"} to={"/"}>UnkStr</Link></span>
             {!isAuthenticated ?
                 <span><button className={"link"} onClick={signIn}>Sign In</button></span>
                 : <span><button className={"link"} onClick={signOut}>Sign Out</button></span>

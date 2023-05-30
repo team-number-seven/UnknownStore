@@ -7,6 +7,8 @@
     align-items: start;
     flex-wrap: wrap;
     justify-content: start;
+    font-family: var(--font-navbar);
+    
 
 }
 

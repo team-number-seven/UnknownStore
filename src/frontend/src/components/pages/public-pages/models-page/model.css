@@ -8,12 +8,15 @@
     -webkit-user-drag: none;
 }
 
+
+
 .model-container {
     width: 80vw;
     background: var(--color-1);
 }
 
 .model-page {
+    font-family: var(--font-navbar);
     width: 100vw;
     display: flex;
     justify-content: center;

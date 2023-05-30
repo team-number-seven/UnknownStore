@@ -144,7 +144,7 @@ export const ModelPage = () => {
                         <div className={"model-body-left"}>
 
                             <span>
-                                <label>Description: </label><span>{model.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, animi aperiam aspernatur, consequuntur corporis, dolor ducimus eos maxime mollitia natus nemo quam qui rem soluta unde vel vitae voluptate voluptates!    </span>
+                                <label>Description: </label><span>{model.description}</span>
                             </span>
                             <span>
                             <label>Subcategory: </label> <span>{model.subCategory.title}</span>
