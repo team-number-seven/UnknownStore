@@ -57,6 +57,14 @@ namespace UnknownStore.BusinessLogic.CQRS.Queries.ModelQueries.GetViewModelsByFi
             models = models.FilterByMaxPrice(filter.MaxPrice);
             models = models.FilterByMinPrice(filter.MinPrice);
             models = models.FilterBySeasons(filter.SeasonsId?.ToList());
+            models = models.FilterByBrand(filter.BrandTitle);
+            models = models.FilterByAgeType(filter.AgeTypeTitle);
+            models = models.FilterByCategories(filter.CategoryTitle);
+            models = models.FilterBySeason(filter.SeasonTitle);
+            models = models.FilterBySubCategory(filter.SubCategoryTitle);
+            models = models.FilterByGender(filter.GenderTitle);
+            models = models.FilterByColor(filter.ColorTitle);
+
             models = models.FilterByTitle(filter.Title);
 
             return await models.OrderBy(m => m.Title).ToListAsync(cancellationToken);

@@ -16,6 +16,54 @@ namespace UnknownStore.BusinessLogic.Extensions
         }
 
 
+        public static IQueryable<Model> FilterByCategories(this IQueryable<Model> models, string title)
+        {
+            return title.IsNullOrEmpty()
+                ? models
+                : models.Where(i => i.SubCategory.Category.Title.ToLower() == title.ToLower());
+        }
+
+        public static IQueryable<Model> FilterBySubCategory(this IQueryable<Model> models, string title)
+        {
+            return title.IsNullOrEmpty()
+                ? models
+                : models.Where(i => i.SubCategory.Title.ToLower() == title.ToLower());
+        }
+
+        public static IQueryable<Model> FilterByBrand(this IQueryable<Model> models, string title)
+        {
+            return title.IsNullOrEmpty()
+                ? models
+                : models.Where(i => i.Brand.Title.ToLower() == title.ToLower());
+        }
+
+        public static IQueryable<Model> FilterBySeason(this IQueryable<Model> models, string title)
+        {
+            return title.IsNullOrEmpty()
+                ? models
+                : models.Where(i => i.Season.Title.ToLower() == title.ToLower());
+        }
+
+        public static IQueryable<Model> FilterByColor(this IQueryable<Model> models, string title)
+        {
+            return title.IsNullOrEmpty()
+                ? models
+                : models.Where(i => i.Color.Title.ToLower() == title.ToLower());
+        }
+
+        public static IQueryable<Model> FilterByGender(this IQueryable<Model> models, string title)
+        {
+            return title.IsNullOrEmpty()
+                ? models
+                : models.Where(i => i.SubCategory.Category.Gender.Title.ToLower() == title.ToLower());
+        }
+        public static IQueryable<Model> FilterByAgeType(this IQueryable<Model> models, string title)
+        {
+            return title.IsNullOrEmpty()
+                ? models
+                : models.Where(i => i.SubCategory.Category.AgeType.Title.ToLower() == title.ToLower());
+        }
+
         public static IQueryable<Model> FilterByBrands(this IQueryable<Model> models, IList<Guid> brandsId)
         {
             return brandsId.IsNullOrEmpty()

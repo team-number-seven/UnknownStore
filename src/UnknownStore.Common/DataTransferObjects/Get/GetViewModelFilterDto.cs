@@ -16,5 +16,12 @@ namespace UnknownStore.Common.DataTransferObjects.Get
         public IEnumerable<Guid> ColorsId { get; set; }
         public IEnumerable<Guid> CategoriesId { get; set; }
         public IEnumerable<Guid> SeasonsId { get; set; }
+        public string CategoryTitle { get; set; }
+        public string BrandTitle { get; set; }
+        public string GenderTitle { get; set; }
+        public string ColorTitle { get; set; }
+        public string SubCategoryTitle { get; set; }
+        public string SeasonTitle { get; set; }
+        public string AgeTypeTitle { get; set; }
     }
 }
