@@ -19,6 +19,16 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
         }
     }
 
+    const handleSubCategoryLink = (category = {}, subcategory = {}) => {
+        if (subcategory.id) {
+            changeFilters({
+                categoriesId: category.id,
+                gendersId: category.gender.id,
+                ageTypesId: category.ageType.id,
+                subCategoriesId: subcategory.id
+            });
+        }
+    }
 
     let pieceForRender = [];
     if (genderTitle && ageTitle) {
@@ -46,6 +56,7 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
                                     .map((subCategory) => {
                                         return (
                                             <Link to={"models"} key={subCategory.id} replace={true}
+                                                  onClick={() => handleSubCategoryLink(category, subCategory)}
                                                   className={"link sub-category-link"}>
                                                 {subCategory.title}
                                             </Link>
@@ -112,7 +123,8 @@ export const NavBarFilterList = ({genderTitle, ageTitle}) => {
                         return (
                             <div className={"category-list"} key={++key}>
                                 <Link to={"models"} key={girlsCategory.id} replace={true}
-                                      className={"link category-link"} onClick={() => handleCategoryLink(girlsCategory)}>
+                                      className={"link category-link"}
+                                      onClick={() => handleCategoryLink(girlsCategory)}>
                                     {girlsCategory.title}
                                 </Link>
                                 {girlsCategory.subCategories

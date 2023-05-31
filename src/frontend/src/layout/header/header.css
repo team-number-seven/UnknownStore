@@ -1,9 +1,10 @@
 header {
     position: relative;
+    font-family: var(--font-navbar);
     width: var(--width-header);
     height: var(--height-header);
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     background-color: var(--color-1);
     color: var(--color-text);
