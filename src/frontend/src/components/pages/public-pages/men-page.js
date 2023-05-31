@@ -1,4 +1,3 @@
-import {FilterBar} from "../../filter-bar/filter-bar";
 import {ModelViewBox} from "./models-page/model-view/model-view-box";
 import {useEffect, useState} from "react";
 import API from "../../../server/API";
@@ -26,8 +25,8 @@ export const MenPage = () => {
         }).then(response => setModels(response.data["modelDtos"]));
     }, [categoryParams]);
     return (
-        <>
-            <FilterBar/>
+        <div className={"favorite-page"}>
+
             <div className={"models-page"}>
                 {models &&
                     models.map((model, key = 0) =>
@@ -35,6 +34,6 @@ export const MenPage = () => {
                     )
                 }
             </div>
-        </>
+        </div>
     );
 }

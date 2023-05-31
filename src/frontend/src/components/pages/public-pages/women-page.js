@@ -26,8 +26,7 @@ export const WomenPage = () => {
         }).then(response => setModels(response.data["modelDtos"]));
     }, [categoryParams]);
     return (
-        <>
-            <FilterBar/>
+        <div className={"favorite-page"}>
             <div className={"models-page"}>
                 {models &&
                     models.map((model, key = 0) =>
@@ -35,6 +34,6 @@ export const WomenPage = () => {
                     )
                 }
             </div>
-        </>
+        </div>
     );
 }

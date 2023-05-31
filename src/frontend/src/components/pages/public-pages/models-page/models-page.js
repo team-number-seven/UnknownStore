@@ -30,6 +30,7 @@ export const ModelsPage = () => {
 
     const getFiltersFromQuery = () => {
         const filtersFromQuery = {};
+        console.log(filters);
         searchParams.forEach((value, key) => {
             Object.assign(filtersFromQuery, {[key]: value})
         });
@@ -47,6 +48,7 @@ export const ModelsPage = () => {
     };
 
     const getModels = () => {
+        debugger
         API.get(CONFIG.GET.model["get-models"], {params: filters})
             .then(result => {
                 setModels(result.data["modelDtos"]);
