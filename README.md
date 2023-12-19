@@ -17,7 +17,7 @@ This project is a clothing store web application built to practice and enhance m
 ## Featured Section or Promotional Banner ![Image](https://github.com/team-number-seven/UnknownStore/blob/dev/src/images/5.jpg)
 ## Category List ![Image](https://github.com/team-number-seven/UnknownStore/blob/dev/src/images/r4KqKuPkbvw.jpg)
 ## Login Interface ![Image](https://github.com/team-number-seven/UnknownStore/blob/dev/src/images/3.jpg)
-## Product Catalog or Listing ![Image](https://github.com/team-number-seven/UnknownStore/blob/dev/src/images/4.jpg)
+## Product Catalog ![Image](https://github.com/team-number-seven/UnknownStore/blob/dev/src/images/4.jpg)
 ## Product Creation Interface ![Image](https://github.com/team-number-seven/UnknownStore/blob/dev/src/images/2.jpg)
 
 Feel free to explore the code snippets and project structure. Your feedback and suggestions are always welcome!
